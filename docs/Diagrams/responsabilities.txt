@@ -1,0 +1,15 @@
+Responsabilities:
+Enache Rares:
+	- retrieve & process data from eBirds API
+	- convert data into RDF and persist them into DataBase
+	- make statistics based on these informations and print them into GUI
+
+Foca Razvan:
+	- retrieve & process data from Facebook API
+	- convert data into RDF and persist them into DataBase
+	- make statistics based on these informations and print them into GUI
+
+Gilca Iulian
+	- retrieve & process data from Twitter API
+	- convert data into RDF and persist them into DataBase
+	- make statistics based on these informations and print them into GUI
