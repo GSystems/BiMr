@@ -1,0 +1,13 @@
+Diagrams Authors
+
+Enache Rares
+- Package Diagram
+- Deployment Diagram
+
+Foca Razvan
+- Sequence Diagram
+- State Diagram
+
+Gilca Iulian
+- UseCase Diagram
+- Class Diagram
