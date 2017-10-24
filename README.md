@@ -8,4 +8,4 @@ Members:
 	Gilca Iulian - iulian.gilca@info.uaic.ro
 
 Coordinator:
-	Buraga Sabin
+	Buraga Sabin - busaco@info.uaic.ro
