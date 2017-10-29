@@ -1,2 +1,0 @@
-INDEX VERSION 1.127+/Users/GLK/git/BiMr/.metadata/.plugins/org.eclipse.jdt.core
-141823625.index

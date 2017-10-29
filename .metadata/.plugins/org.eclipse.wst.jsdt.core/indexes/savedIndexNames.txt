@@ -1,6 +1,0 @@
-INDEX VERSION 1.3+/Users/GLK/git/BiMr/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
-1931540020.index
-141823625.index
-2939397094.index
-4283114397.index
-3720999099.index
