@@ -12,8 +12,34 @@
 <h:body>
 	<h1>Tweets</h1>
 
+	<h:form>
+		<p:commandButton value="Update" id="tweets" update="tweets"
+			actionListener="#{mapBean.buttonAction}"
+			styleClass="ui-priority-primary" />
+	</h:form>
+
+	<h:form>
+		<p:growl id="growl" life="2000" />
+
+		<p:commandButton value="Ajax Submit" id="ajax" update="growl"
+			actionListener="#{buttonView.buttonAction}"
+			styleClass="ui-priority-primary" />
+
+		<p:commandButton value="Non-Ajax Submit" id="nonAjax"
+			actionListener="#{buttonView.buttonAction}" ajax="false" />
+
+		<p:commandButton value="With Icon" id="withIcon"
+			actionListener="#{buttonView.buttonAction}" update="growl"
+			icon="ui-icon-disk" />
+
+		<p:commandButton actionListener="#{buttonView.buttonAction}"
+			id="iconOnly" update="growl" icon="ui-icon-disk" title="Icon Only" />
+
+		<p:commandButton value="Disabled" id="disabled" disabled="true" />
+	</h:form>
+
 	<p:panel id="tweets">
-		<p:dataTable var="tweet" value="#{mapModel.tweets}">
+		<p:dataTable var="tweet" value="#{mapBean.mapModel.tweets}">
 			<p:column headerText="User">
 				<h:outputText value="#{tweet.user}" />
 			</p:column>
