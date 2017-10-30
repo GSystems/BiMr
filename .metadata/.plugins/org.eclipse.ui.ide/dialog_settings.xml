@@ -5,6 +5,7 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="D:\Facultate\MSD1\TA-IP\Project"/>
 			<item value="/Users/GLK/Documents/workspaces/Facultate/Wade/BiMr"/>
 			<item value="/Users/GLK/git/BiMr/BiMr"/>
 		</list>
