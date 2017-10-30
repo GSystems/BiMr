@@ -1,4 +1,4 @@
-package com.gsys.bimr.df.model;
+package com.gsys.bimr.rf.model;
 
 import java.util.Date;
 
@@ -6,7 +6,7 @@ import java.util.Date;
  * @author Rares
  */
 
-public class EBirdData {
+public class EBirdDataWrapper {
 	private String userDisplayName;
 	private String commonName;
 	private String scientificName;

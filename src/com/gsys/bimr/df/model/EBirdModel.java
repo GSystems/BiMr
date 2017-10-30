@@ -6,7 +6,7 @@ import java.util.Date;
  * @author Rares
  */
 
-public class EBirdData {
+public class EBirdModel {
 	private String userDisplayName;
 	private String commonName;
 	private String scientificName;

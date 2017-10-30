@@ -1,4 +1,4 @@
-package com.gsys.bimr.rf;
+package com.gsys.bimr.rf.eBird;
 
 public class EbirdsServiceClientBean {
 

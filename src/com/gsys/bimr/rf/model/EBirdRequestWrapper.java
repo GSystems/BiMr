@@ -1,5 +1,5 @@
 package com.gsys.bimr.rf.model;
 
-public class EbirdsWrapper {
+public class EBirdRequestWrapper {
 
 }
