@@ -1,4 +1,4 @@
-package com.gsys.bimr.bf.dto;
+package com.gsys.bimr.bfcl.dto;
 
 import twitter4j.GeoLocation;
 

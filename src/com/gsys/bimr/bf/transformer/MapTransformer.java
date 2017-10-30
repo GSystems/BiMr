@@ -3,9 +3,9 @@ package com.gsys.bimr.bf.transformer;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gsys.bimr.bf.dto.TwitterDataDTO;
-import com.gsys.bimr.bf.dto.TwitterRequestDTO;
-import com.gsys.bimr.bf.dto.TwitterResponseDTO;
+import com.gsys.bimr.bfcl.dto.TwitterDataDTO;
+import com.gsys.bimr.bfcl.dto.TwitterRequestDTO;
+import com.gsys.bimr.bfcl.dto.TwitterResponseDTO;
 import com.gsys.bimr.df.model.TwitterData;
 import com.gsys.bimr.df.model.TwitterRequest;
 import com.gsys.bimr.df.model.TwitterResponse;

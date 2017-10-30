@@ -7,8 +7,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import com.gsys.bimr.bf.dto.TwitterRequestDTO;
 import com.gsys.bimr.bfcl.MapFacade;
+import com.gsys.bimr.bfcl.dto.TwitterRequestDTO;
 import com.gsys.bimr.util.GeneralConstants;
 
 @ManagedBean

@@ -2,7 +2,7 @@ package com.gsys.bimr.pf;
 
 import java.util.List;
 
-import com.gsys.bimr.bf.dto.TwitterDataDTO;
+import com.gsys.bimr.bfcl.dto.TwitterDataDTO;
 
 /**
  * @author GLK
