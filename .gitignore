@@ -2,3 +2,5 @@
 .DS_Store
 /Servers/
 /target/
+/.apt_generated/
+/.classpath
