@@ -3,8 +3,7 @@ package com.gsys.bimr.bf;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-
-//import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
 
 import com.gsys.bimr.bf.dto.TwitterRequestDTO;
 import com.gsys.bimr.bf.dto.TwitterResponseDTO;
@@ -16,7 +15,7 @@ import com.gsys.bimr.df.MapRepository;
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class MapFacadeBean implements MapFacade {
 
-	// @Autowired
+	@Inject
 	private MapRepository repo;
 
 	@Override

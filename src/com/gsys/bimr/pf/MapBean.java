@@ -3,8 +3,8 @@ package com.gsys.bimr.pf;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import com.gsys.bimr.bf.dto.TwitterRequestDTO;
@@ -19,7 +19,7 @@ public class MapBean implements Serializable  {
 
 	private MapModel mapModel;
 	
-	@ManagedProperty("#{MapFacade}")
+	@EJB
 	private MapFacade mapFacade;
 
 	@PostConstruct
