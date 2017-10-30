@@ -33,7 +33,7 @@ public class MapMapper {
 			TwitterData td = new TwitterData();
 			td.setLocation(tdw.getLocation());
 			td.setMessage(tdw.getMessage());
-			td.setUser(tdw.getMessage());
+			td.setUser(tdw.getUser());
 			twitterData.add(td);
 		}
 		return twitterData;
