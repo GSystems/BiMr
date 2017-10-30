@@ -5,6 +5,11 @@ import com.gsys.bimr.bf.dto.TwitterResponseDTO;
 
 public interface MapFacade {
 
+	/**
+	 * Retrieves tweets
+	 * @param request
+	 * @return
+	 */
 	TwitterResponseDTO retrieveTweets(TwitterRequestDTO request);
 
 }

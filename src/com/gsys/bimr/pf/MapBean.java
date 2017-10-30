@@ -1,19 +1,25 @@
 package com.gsys.bimr.pf;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 
 import com.gsys.bimr.bf.dto.TwitterRequestDTO;
 import com.gsys.bimr.bfcl.MapFacade;
 import com.gsys.bimr.util.GeneralConstants;
 
-@ManagedBean(eager = true)
-public class MapBean {
+@ManagedBean
+@ViewScoped
+public class MapBean implements Serializable  {
+
+	private static final long serialVersionUID = 1L;
 
 	private MapModel mapModel;
+	
+	@ManagedProperty("#{MapFacade}")
 	private MapFacade mapFacade;
 
 	@PostConstruct
@@ -36,13 +42,12 @@ public class MapBean {
 		this.mapModel = mapModel;
 	}
 
-	public void buttonAction(ActionEvent actionEvent) {
-		addMessage("Welcome to Primefaces!!");
+	public MapFacade getMapFacade() {
+		return mapFacade;
 	}
 
-	public void addMessage(String summary) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
-		FacesContext.getCurrentInstance().addMessage(null, message);
+	public void setMapFacade(MapFacade mapFacade) {
+		this.mapFacade = mapFacade;
 	}
 
 }

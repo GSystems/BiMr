@@ -35,12 +35,16 @@
 
 	<context-param>
 		<param-name>javax.faces.CONFIG_FILES</param-name>
-		<param-value>WEB-INF/faces-config.xml</param-value>
+		<param-value>
+        WEB-INF/faces-config.xml
+    </param-value>
 	</context-param>
 
-	<context-param>
-		<param-name>javax.faces.PROJECT_STAGE</param-name>
-		<param-value>Development</param-value>
-	</context-param>
+	<ejb-local-ref>
+		<description />
+		<ejb-ref-name>ejb/MapFacade</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<local>com.gsys.bimr.bfcl.MapFacade</local>
+	</ejb-local-ref>
 
 </web-app>
