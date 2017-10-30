@@ -15,7 +15,7 @@ public class DataTransformer {
 	private DataTransformer() {
 	}
 
-	public static List<TwitterDataWrapper> fromResponseToWrapper(List<Status> tweets) {
+	public static List<TwitterDataWrapper> fromTwitterRawResponseToWrapper(List<Status> tweets) {
 		List<TwitterDataWrapper> tweetsWrapper = new ArrayList<>();
 		for (Status status : tweets) {
 			TwitterDataWrapper wrapper = new TwitterDataWrapper();

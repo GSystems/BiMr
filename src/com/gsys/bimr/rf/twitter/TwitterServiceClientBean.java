@@ -58,7 +58,7 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 		}
 
 		TwitterResponseWrapper response = new TwitterResponseWrapper();
-		response.setTweets(DataTransformer.fromResponseToWrapper(tweets));
+		response.setTweets(DataTransformer.fromTwitterRawResponseToWrapper(tweets));
 		return response;
 	}
 
