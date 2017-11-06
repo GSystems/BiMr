@@ -7,7 +7,7 @@ import com.gsys.bimr.rf.model.TwitterResponseWrapper;
  * @author GLK
  */
 public interface TwitterServiceClient {
-	
+
 	TwitterResponseWrapper retrieveTweets(TwitterRequestWrapper request);
 
 }

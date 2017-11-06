@@ -1,6 +1,6 @@
 package com.gsys.bimr.pf;
 
-import java.util.List;
+import java.util.Map;
 
 import com.gsys.bimr.bfcl.dto.TwitterDataDTO;
 
@@ -10,14 +10,14 @@ import com.gsys.bimr.bfcl.dto.TwitterDataDTO;
  */
 public class MapModel {
 
-	private List<TwitterDataDTO> tweets;
+	private Map<String, TwitterDataDTO> tweets;
 
-	public List<TwitterDataDTO> getTweets() {
+	public Map<String, TwitterDataDTO> getTweets() {
 		return tweets;
 	}
 
-	public void setTweets(List<TwitterDataDTO> tweets) {
+	public void setTweets(Map<String, TwitterDataDTO> tweets) {
 		this.tweets = tweets;
 	}
-	
+
 }

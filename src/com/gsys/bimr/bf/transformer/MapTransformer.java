@@ -1,7 +1,7 @@
 package com.gsys.bimr.bf.transformer;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.gsys.bimr.bfcl.dto.TwitterDataDTO;
 import com.gsys.bimr.bfcl.dto.TwitterRequestDTO;
@@ -21,21 +21,18 @@ public class MapTransformer {
 		return responseDTO;
 	}
 
-	private static List<TwitterDataDTO> fromTwitterDataWrapperToDTO(List<TwitterData> tweets) {
-		List<TwitterDataDTO> tweetsDTO = new ArrayList<>();
-		for (TwitterData tweet : tweets) {
-			TwitterDataDTO tweetDTO = new TwitterDataDTO();
-			tweetDTO.setLocation(tweet.getLocation());
-			tweetDTO.setMessage(tweet.getMessage());
-			tweetDTO.setUser(tweet.getUser());
-			tweetsDTO.add(tweetDTO);
+	private static Map<String, TwitterDataDTO> fromTwitterDataWrapperToDTO(Map<String, TwitterData> tweets) {
+		Map<String, TwitterDataDTO> tweetsDTO = new HashMap<>();
+		for (Map.Entry<String, TwitterData> entry : tweets.entrySet()) {
+			TwitterData tweet = entry.getValue();
+			tweetsDTO.put(entry.getKey(), new TwitterDataDTO(tweet.getUser(), tweet.getLocation()));
 		}
 		return tweetsDTO;
 	}
 
 	public static TwitterRequest twitterRequestFromDTO(TwitterRequestDTO requestDTO) {
 		TwitterRequest request = new TwitterRequest();
-		request.setHashtag(requestDTO.getHashtag());
+		request.setHashtags(requestDTO.getHashtags());
 		return request;
 	}
 

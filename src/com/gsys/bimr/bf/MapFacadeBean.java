@@ -32,6 +32,4 @@ public class MapFacadeBean implements MapFacade {
 		return null;
 	}
 
-	
-	
 }

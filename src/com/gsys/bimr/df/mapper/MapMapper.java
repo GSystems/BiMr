@@ -1,7 +1,7 @@
 package com.gsys.bimr.df.mapper;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.gsys.bimr.df.model.TwitterData;
 import com.gsys.bimr.df.model.TwitterRequest;
@@ -17,7 +17,7 @@ public class MapMapper {
 
 	public static TwitterRequestWrapper fromTwitterRequestToWrapper(TwitterRequest request) {
 		TwitterRequestWrapper requestWrapper = new TwitterRequestWrapper();
-		requestWrapper.setHashtag(request.getHashtag());
+		requestWrapper.setHashtags(request.getHashtags());
 		return requestWrapper;
 	}
 
@@ -27,14 +27,12 @@ public class MapMapper {
 		return response;
 	}
 
-	private static List<TwitterData> fromTwitterTwitterDataWrapperToTwitterData(List<TwitterDataWrapper> tweets) {
-		List<TwitterData> twitterData = new ArrayList<>();
-		for (TwitterDataWrapper tdw : tweets) {
-			TwitterData td = new TwitterData();
-			td.setLocation(tdw.getLocation());
-			td.setMessage(tdw.getMessage());
-			td.setUser(tdw.getUser());
-			twitterData.add(td);
+	private static Map<String, TwitterData> fromTwitterTwitterDataWrapperToTwitterData(
+			Map<String, TwitterDataWrapper> tweets) {
+		Map<String, TwitterData> twitterData = new HashMap<>();
+		for (Map.Entry<String, TwitterDataWrapper> tdw : tweets.entrySet()) {
+			TwitterDataWrapper td = tdw.getValue();
+			twitterData.put(tdw.getKey(), new TwitterData(td.getUser(), td.getLocation()));
 		}
 		return twitterData;
 	}
