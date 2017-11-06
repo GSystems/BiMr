@@ -1,12 +1,16 @@
 package com.gsys.bimr.tests;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
-import com.gsys.bimr.rf.model.TwitterDataWrapper;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+
 import com.gsys.bimr.rf.model.TwitterRequestWrapper;
 import com.gsys.bimr.rf.model.TwitterResponseWrapper;
 import com.gsys.bimr.rf.twitter.TwitterServiceClientBean;
+import com.gsys.bimr.util.GeneralConstants;
 
 public class TwitterServiceClientBeanUnitTesting {
 
@@ -14,43 +18,19 @@ public class TwitterServiceClientBeanUnitTesting {
 	public void testRetrieveTweets() {
 
 		TwitterRequestWrapper request = new TwitterRequestWrapper();
-		request.setHashtag("birdMigration");
+		request.setHashtags(generateHashTags());
 
 		TwitterServiceClientBean client = new TwitterServiceClientBean();
 		TwitterResponseWrapper response = client.retrieveTweets(request);
-		
-		assertNotNull(response);
-		
-		response.getTweets();
-		
-		for(TwitterDataWrapper tweet: response.getTweets()) {
-			assertNotNull(tweet);
-			assertNotNull(tweet.getLocation());
-			assertNotNull(tweet.getMessage());	
-			assertNotNull(tweet.getUser());
-		}
 
+		assertNotNull(response);
+		assertNotNull(response.getTweets());
 	}
 	
-	@Test
-	public void testRetrieveTweetsContent() {
-		
-		String hashTag = "birdMigration";
-		
-		TwitterRequestWrapper request = new TwitterRequestWrapper();
-		request.setHashtag(hashTag);
-		
-		TwitterServiceClientBean client = new TwitterServiceClientBean();
-		TwitterResponseWrapper response = client.retrieveTweets(request);
-		
-		assertNotNull(response);
-		
-		response.getTweets();
-		
-		for(TwitterDataWrapper tweet: response.getTweets()) {
-			if(!tweet.getMessage().contains(hashTag))
-				assertNull(tweet.getMessage());
-		}
+	private List<String> generateHashTags() {
+		List<String> hashtags = new ArrayList<>();
+		hashtags.add(GeneralConstants.TWITTER_BIRDMIGRATION);
+		return hashtags;
 	}
 
 }
