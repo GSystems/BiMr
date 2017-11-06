@@ -28,10 +28,8 @@ public class MapFacadeBean implements MapFacade {
 
 	@Override
 	public EBirdResponseDTO retrieveEBirdData(EBirdRequestDTO request) {
-		// TODO Auto-generated method stub
-		return null;
+		return MapTransformer
+				.fromEBirdResponseToDTO(repo.retrieveEBirdData(MapTransformer.ebirdRequestFromDTO(request)));
 	}
 
-	
-	
 }

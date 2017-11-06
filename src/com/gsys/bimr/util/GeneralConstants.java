@@ -18,4 +18,6 @@ public class GeneralConstants {
 	public static final String CONSUMER_SECRET = "aERQTUoMvOYvgpv7Uof19ix9ESBJp0Lvi0T69h5lTkYHRnS6pt";
 	public static final String ACCESS_TOKEN = "4831081090-3KETssKWWNdFnfagOtnQGDSvUitx7dHS1dkUE16";
 	public static final String ACCESS_TOKEN_SECRET = "UQg4utsCPp2CiW5XC8cWiiZImcqZa56S9ovCqspTMt0xM";
+
+	public static final String EBIRDS_API_REQUEST_URI = "http://ebird.org/ws1.1/data/notable/region/recent?rtype=subnational1&r=US-NV&back=5&maxResults=500&locale=en_US&fmt=json";
 }

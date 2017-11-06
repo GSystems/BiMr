@@ -5,6 +5,8 @@ import com.gsys.bimr.df.model.EBirdRequest;
 import com.gsys.bimr.df.model.EBirdResponse;
 import com.gsys.bimr.df.model.TwitterRequest;
 import com.gsys.bimr.df.model.TwitterResponse;
+import com.gsys.bimr.rf.eBird.EbirdsServiceClient;
+import com.gsys.bimr.rf.eBird.EbirdsServiceClientBean;
 import com.gsys.bimr.rf.twitter.TwitterServiceClientBean;
 
 public class MapRepositoryBean implements MapRepository {
@@ -18,7 +20,9 @@ public class MapRepositoryBean implements MapRepository {
 
 	@Override
 	public EBirdResponse retrieveEBirdData(EBirdRequest request) {
-		return null;
+		EbirdsServiceClient service = new EbirdsServiceClientBean();
+		return MapMapper.fromEBirdResponseWrapperToResponse(
+				service.retrieveEBirdData(MapMapper.fromEBirdRequestToWrapper(request)));
 	}
 
 }
