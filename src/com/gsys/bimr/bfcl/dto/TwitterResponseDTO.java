@@ -1,19 +1,19 @@
 package com.gsys.bimr.bfcl.dto;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  * @author GLK
  */
 public class TwitterResponseDTO {
 
-	private List<TwitterDataDTO> tweets;
+	private Map<String, TwitterDataDTO> tweets;
 
-	public List<TwitterDataDTO> getTweets() {
+	public Map<String, TwitterDataDTO> getTweets() {
 		return tweets;
 	}
 
-	public void setTweets(List<TwitterDataDTO> tweets) {
+	public void setTweets(Map<String, TwitterDataDTO> tweets) {
 		this.tweets = tweets;
 	}
 

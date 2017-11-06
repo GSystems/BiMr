@@ -10,7 +10,7 @@ public class EBirdResponseWrapper {
 	
 	private List<EBirdDataWrapper> eBirdData;
 
-	public List<EBirdDataWrapper> geteBirdData() {
+	public List<EBirdDataWrapper> getBirdData() {
 		return eBirdData;
 	}
 

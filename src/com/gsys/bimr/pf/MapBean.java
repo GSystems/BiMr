@@ -1,6 +1,8 @@
 package com.gsys.bimr.pf;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -14,14 +16,14 @@ import com.gsys.bimr.util.GeneralConstants;
 
 @ManagedBean
 @ViewScoped
-public class MapBean implements Serializable  {
+public class MapBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private MapModel mapModel;
-	
+
 	@EJB
-	private MapFacade mapFacade;
+	private transient MapFacade mapFacade;
 
 	@PostConstruct
 	public void init() {
@@ -37,9 +39,17 @@ public class MapBean implements Serializable  {
 	}
 	
 	public void retrieveTweets() {
-		TwitterRequestDTO request = new TwitterRequestDTO();
-		request.setHashtag(GeneralConstants.TWITTER_BIRDMIGRATION);
+		TwitterRequestDTO request = generateRequest();
 		mapModel.setTweets(mapFacade.retrieveTweets(request).getTweets());
+	}
+
+	private TwitterRequestDTO generateRequest() {
+		TwitterRequestDTO request = new TwitterRequestDTO();
+		List<String> hashtags = new ArrayList<>();
+		hashtags.add(GeneralConstants.TWITTER_BIRDMIGRATION);
+		hashtags.add(GeneralConstants.TWITTER_BIRDMIG);
+		request.setHashtags(hashtags);
+		return request;
 	}
 
 	public MapModel getMapModel() {

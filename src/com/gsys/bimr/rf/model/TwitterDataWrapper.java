@@ -8,7 +8,7 @@ import twitter4j.GeoLocation;
 public class TwitterDataWrapper {
 
 	private String user;
-	private String message;
+
 	private GeoLocation location;
 
 	public String getUser() {
@@ -17,14 +17,6 @@ public class TwitterDataWrapper {
 
 	public void setUser(String user) {
 		this.user = user;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
 	}
 
 	public GeoLocation getLocation() {

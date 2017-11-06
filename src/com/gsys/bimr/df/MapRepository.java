@@ -9,5 +9,5 @@ public interface MapRepository {
 
 	TwitterResponse retrieveTweets(TwitterRequest request);
 
-	EBirdResponse retrieveEBirdData(EBirdRequest request);
+	EBirdResponse retrieveEBirdData(EBirdRequest requests);
 }

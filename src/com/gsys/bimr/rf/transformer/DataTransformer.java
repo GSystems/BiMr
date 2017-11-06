@@ -2,9 +2,10 @@ package com.gsys.bimr.rf.transformer;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -25,14 +26,13 @@ public class DataTransformer {
 	private DataTransformer() {
 	}
 
-	public static List<TwitterDataWrapper> fromTwitterRawResponseToWrapper(List<Status> tweets) {
-		List<TwitterDataWrapper> tweetsWrapper = new ArrayList<>();
+	public static Map<String, TwitterDataWrapper> fromTwitterRawResponseToWrapper(List<Status> tweets) {
+		Map<String, TwitterDataWrapper> tweetsWrapper = new HashMap<>();
 		for (Status status : tweets) {
 			TwitterDataWrapper wrapper = new TwitterDataWrapper();
 			wrapper.setLocation(status.getGeoLocation());
-			wrapper.setMessage(status.getText());
 			wrapper.setUser(status.getUser().getScreenName());
-			tweetsWrapper.add(wrapper);
+			tweetsWrapper.put(status.getText(), wrapper);
 		}
 		return tweetsWrapper;
 	}
