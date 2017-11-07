@@ -13,7 +13,7 @@ import com.gsys.bimr.bfcl.dto.TwitterDataDTO;
 public class MapModel {
 
 	private List<EBirdDataDTO> ebirdData;
-
+	
 	public List<EBirdDataDTO> getEbirdData() {
 		return ebirdData;
 	}
