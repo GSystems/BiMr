@@ -33,7 +33,9 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 		TwitterResponseWrapper response = new TwitterResponseWrapper();
 		Map<String, TwitterDataWrapper> tweets = new HashMap<>();
 		for (String hashtag : request.getHashtags()) {
-			tweets.putAll(DataTransformer.fromTwitterRawResponseToWrapper(callTwitterApi(hashtag)));
+			if(hashtag != null && !hashtag.equals("")) {
+				tweets.putAll(DataTransformer.fromTwitterRawResponseToWrapper(callTwitterApi(hashtag)));
+			}
 		}
 		response.setTweets(tweets);
 		return response;
