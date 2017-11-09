@@ -29,7 +29,7 @@ public class MapBean implements Serializable {
 	public void init() {
 		mapModel = new MapModel();
 		retrieveTweets();
-		retrieveEbirdApiData();
+		// retrieveEbirdApiData();
 	}
 
 	public void retrieveEbirdApiData() {
@@ -37,7 +37,7 @@ public class MapBean implements Serializable {
 		request.setRequestUriPattern(GeneralConstants.EBIRDS_API_REQUEST_URI);
 		mapModel.setEbirdData(mapFacade.retrieveEBirdData(request).geteBirdData());
 	}
-	
+
 	public void retrieveTweets() {
 		TwitterRequestDTO request = generateRequest();
 		mapModel.setTweets(mapFacade.retrieveTweets(request).getTweets());

@@ -52,6 +52,7 @@ public class DataTransformer {
 			System.out.println(e.getMessage());
 		}
 
+		@SuppressWarnings("rawtypes")
 		Iterator i = jsonArray.iterator();
 		List<EBirdDataWrapper> ebirdWrapper = new ArrayList<>();
 		while (i.hasNext()) {

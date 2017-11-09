@@ -7,8 +7,9 @@ import com.gsys.bimr.bfcl.dto.EBirdDataDTO;
 import com.gsys.bimr.bfcl.dto.TwitterDataDTO;
 
 /**
- * @author GLK this class will contain a single model representation to populate
- *         the map
+ * @author GLK 
+ * this class will contain a single model representation
+ * to populate the map
  */
 public class MapModel {
 
