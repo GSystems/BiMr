@@ -12,8 +12,10 @@ import com.gsys.bimr.bfcl.dto.TwitterDataDTO;
  */
 public class MapModel {
 
-	private List<EBirdDataDTO> ebirdData;
+	private Map<String, TwitterDataDTO> tweets;
 
+	private List<EBirdDataDTO> ebirdData;
+	
 	public List<EBirdDataDTO> getEbirdData() {
 		return ebirdData;
 	}
@@ -21,8 +23,6 @@ public class MapModel {
 	public void setEbirdData(List<EBirdDataDTO> ebirdData) {
 		this.ebirdData = ebirdData;
 	}
-
-	private Map<String, TwitterDataDTO> tweets;
 
 	public Map<String, TwitterDataDTO> getTweets() {
 		return tweets;

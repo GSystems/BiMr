@@ -15,19 +15,57 @@
 	<p:panel id="tweets">
 		<p:dataTable var="tweet" value="#{mapBean.mapModel.tweets}">
 			<p:column headerText="User">
-				<h:outputText value="#{tweet.user}" />
+				<h:outputText value="#{tweet.value.user}" />
 			</p:column>
 
 			<p:column headerText="Message">
-				<h:outputText value="#{tweet.message}" />
+				<h:outputText value="#{tweet.key}" />
 			</p:column>
 
 			<p:column headerText="Latitude">
-				<h:outputText value="#{tweet.location.latitude}" />
+				<h:outputText value="#{tweet.value.location.latitude}" />
 			</p:column>
 
 			<p:column headerText="Longitude">
-				<h:outputText value="#{tweet.location.longitude}" />
+				<h:outputText value="#{tweet.value.location.longitude}" />
+			</p:column>
+		</p:dataTable>
+	</p:panel>
+	
+	<h1>EBird API Data</h1>
+	
+	<p:panel id="ebirdData">
+		<p:dataTable var="ebird" value="#{mapBean.mapModel.ebirdData}">
+			<p:column headerText="User">
+				<h:outputText value="#{ebird.userDisplayName}" />
+			</p:column>
+			
+			<p:column headerText="Common Name">
+				<h:outputText value="#{ebird.commonName}" />
+			</p:column>
+			
+			<p:column headerText="Country">
+				<h:outputText value="#{ebird.countryName}" />
+			</p:column>
+			
+			<p:column headerText="State">
+				<h:outputText value="#{ebird.stateName}" />
+			</p:column>
+			
+			<p:column headerText="Locality">
+				<h:outputText value="#{ebird.localityName}" />
+			</p:column>
+			
+			<p:column headerText="Observation Date">
+				<h:outputText value="#{ebird.observationDate}" />
+			</p:column>
+			
+			<p:column headerText="Latitude">
+				<h:outputText value="#{ebird.latitude}" />
+			</p:column>
+			
+			<p:column headerText="Longitude">
+				<h:outputText value="#{ebird.longitude}" />
 			</p:column>
 		</p:dataTable>
 	</p:panel>
