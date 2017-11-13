@@ -14,23 +14,23 @@ import com.gsys.bimr.rf.transformer.DataTransformer;
 public class EbirdsServiceClientBean implements EbirdsServiceClient {
 
 	public static final Logger LOGGER = Logger.getLogger(EbirdsServiceClientBean.class.getName());
-	
+
 	@Override
 	public EBirdResponseWrapper retrieveEBirdData(EBirdRequestWrapper request) {
-		
+
 		EBirdResponseWrapper response = new EBirdResponseWrapper();
-		
+
 		try {
 			// prep connection + settings
 			URL url = new URL(request.getRequestUriPattern());
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
 			con.setRequestProperty("Content-Type", "application/json");
-			
+
 			// reading response from API
-			
+
 			StringBuffer content = new StringBuffer();
-			
+
 			try (BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
 				String line;
 				// line by line
@@ -44,7 +44,7 @@ public class EbirdsServiceClientBean implements EbirdsServiceClient {
 		} catch (IOException e) {
 			LOGGER.severe("Unable to connect: " + e.getMessage());
 		}
-		
+
 		return response;
 	}
 

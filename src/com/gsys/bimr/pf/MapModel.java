@@ -7,10 +7,13 @@ import com.gsys.bimr.bfcl.dto.EBirdDataDTO;
 import com.gsys.bimr.bfcl.dto.TwitterDataDTO;
 
 /**
- * @author GLK this class will contain a single model representation to populate
- *         the map
+ * @author GLK 
+ * this class will contain a single model representation
+ * to populate the map
  */
 public class MapModel {
+
+	private Map<String, TwitterDataDTO> tweets;
 
 	private List<EBirdDataDTO> ebirdData;
 	
@@ -21,8 +24,6 @@ public class MapModel {
 	public void setEbirdData(List<EBirdDataDTO> ebirdData) {
 		this.ebirdData = ebirdData;
 	}
-
-	private Map<String, TwitterDataDTO> tweets;
 
 	public Map<String, TwitterDataDTO> getTweets() {
 		return tweets;
