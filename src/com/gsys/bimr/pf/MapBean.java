@@ -10,7 +10,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import com.gsys.bimr.bfcl.MapFacade;
+import com.gsys.bimr.bfcl.dto.EBirdDataDTO;
 import com.gsys.bimr.bfcl.dto.EBirdRequestDTO;
+import com.gsys.bimr.bfcl.dto.EBirdResponseDTO;
 import com.gsys.bimr.bfcl.dto.TwitterRequestDTO;
 import com.gsys.bimr.util.GeneralConstants;
 
@@ -28,14 +30,16 @@ public class MapBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		mapModel = new MapModel();
-		retrieveTweets();
+		//retrieveTweets();
 		retrieveEbirdApiData();
 	}
 
 	public void retrieveEbirdApiData() {
 		EBirdRequestDTO request = new EBirdRequestDTO();
 		request.setRequestUriPattern(GeneralConstants.EBIRDS_API_REQUEST_URI);
-		mapModel.setEbirdData(mapFacade.retrieveEBirdData(request).geteBirdData());
+		EBirdResponseDTO response = mapFacade.retrieveEBirdData(request); 
+		List<EBirdDataDTO> list = response.geteBirdData();
+		mapModel.setEbirdData(list);
 	}
 	
 	public void retrieveTweets() {

@@ -31,7 +31,7 @@ public class MapMapper {
 	
 	public static EBirdRequestWrapper fromEBirdRequestToWrapper(EBirdRequest request) {
 		EBirdRequestWrapper requestWrapper = new EBirdRequestWrapper();
-		request.setRequestUriPattern(request.getRequestUriPattern());
+		requestWrapper.setRequestUriPattern(request.getRequestUriPattern());
 		return requestWrapper;
 	}
 
@@ -43,7 +43,11 @@ public class MapMapper {
 
 	public static EBirdResponse fromEBirdResponseWrapperToResponse(EBirdResponseWrapper responseWrapper) {
 		EBirdResponse response = new EBirdResponse();
-		response.seteBirdData(fromEBirdDataWrapperToEBirdData(responseWrapper.getBirdData()));
+		List<EBirdData> data = new ArrayList<>();
+		if(responseWrapper.getBirdData() != null) {
+			data = fromEBirdDataWrapperToEBirdData(responseWrapper.getBirdData());
+		}
+		response.seteBirdData(data);
 		return response;
 	}
 	
@@ -70,6 +74,7 @@ public class MapMapper {
 			ebd.setScientificName(ebdw.getScientificName());
 			ebd.setStateName(ebdw.getStateName());
 			ebd.setUserDisplayName(ebdw.getUserDisplayName());
+			ebird.add(ebd);
 		}
 		return ebird;
 	}

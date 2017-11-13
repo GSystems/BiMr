@@ -49,6 +49,7 @@ public class DataTransformer {
 		try {
 			jsonArray = (JSONArray) jsonParser.parse(ebirdData);
 		} catch (ParseException e) {
+			//TODO Replace with logger
 			System.out.println(e.getMessage());
 		}
 
@@ -65,6 +66,7 @@ public class DataTransformer {
 			try {
 				wrapper.setObservationDate((Date) formatter.parse((String) jsonObject.get("obsDt")));
 			} catch (java.text.ParseException e) {
+				// TODO manage the exception
 				e.printStackTrace();
 			}
 			wrapper.setScientificName((String) jsonObject.get("sciName"));
