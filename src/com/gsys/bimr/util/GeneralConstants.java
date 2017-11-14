@@ -21,4 +21,6 @@ public class GeneralConstants {
 
 	public static final String EBIRDS_API_REQUEST_URI = "http://ebird.org/ws1.1/data/notable/region/recent?rtype=subnational1&r=US-NV&back=5&maxResults=500&locale=en_US&fmt=json";
 	public static final String RETWEET = "RT";
+	
+	public static final String DATE_FORMAT = "dd-MM-yyyy";
 }
