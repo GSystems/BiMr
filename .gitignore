@@ -116,3 +116,4 @@ src/com/gsys/bimr/pf/MapModel.java
 .settings/org.eclipse.m2e.core.prefs
 /.settings/
 .metadata/.plugins/org.eclipse.debug.core/.launches/BiMr.launch
+/bin/
