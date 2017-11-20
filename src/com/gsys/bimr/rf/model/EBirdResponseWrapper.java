@@ -8,14 +8,14 @@ import java.util.List;
 
 public class EBirdResponseWrapper {
 	
-	private List<EBirdDataWrapper> eBirdData;
+	private List<EBirdDataWrapper> ebirdData;
 
-	public List<EBirdDataWrapper> getBirdData() {
-		return eBirdData;
+	public List<EBirdDataWrapper> getEbirdData() {
+		return ebirdData;
 	}
 
-	public void seteBirdData(List<EBirdDataWrapper> eBirdData) {
-		this.eBirdData = eBirdData;
+	public void setEbirdData(List<EBirdDataWrapper> ebirdData) {
+		this.ebirdData = ebirdData;
 	}
 	
 }

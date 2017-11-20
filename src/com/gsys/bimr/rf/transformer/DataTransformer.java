@@ -7,12 +7,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.gsys.bimr.rf.eBird.EbirdsServiceClientBean;
 import com.gsys.bimr.rf.model.EBirdDataWrapper;
 import com.gsys.bimr.rf.model.TwitterDataWrapper;
 
@@ -23,6 +25,8 @@ import twitter4j.Status;
  */
 public class DataTransformer {
 
+	public static final Logger LOGGER = Logger.getLogger(DataTransformer.class.getName());
+	
 	private static JSONParser jsonParser;
 	private static JSONArray jsonArray;
 	private static JSONObject jsonObject;
@@ -50,7 +54,7 @@ public class DataTransformer {
 			jsonArray = (JSONArray) jsonParser.parse(ebirdData);
 		} catch (ParseException e) {
 			//TODO Replace with logger
-			System.out.println(e.getMessage());
+			LOGGER.severe("JSON Parser Exception: " + e.getMessage());
 		}
 
 		@SuppressWarnings("rawtypes")
@@ -67,8 +71,7 @@ public class DataTransformer {
 			try {
 				wrapper.setObservationDate((Date) formatter.parse((String) jsonObject.get("obsDt")));
 			} catch (java.text.ParseException e) {
-				// TODO manage the exception
-				e.printStackTrace();
+				LOGGER.severe("JSON Parser Exception when trying to parse Date: " + e.getMessage());
 			}
 			wrapper.setScientificName((String) jsonObject.get("sciName"));
 			wrapper.setStateName((String) jsonObject.get("subnational1Name"));

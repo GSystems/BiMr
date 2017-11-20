@@ -8,15 +8,15 @@ import java.util.List;
 
 public class EBirdResponse {
 	
-	private List<EBirdData> eBirdData;
+	private List<EBirdData> ebirdData;
 
-	public List<EBirdData> geteBirdData() {
-		return eBirdData;
+	public List<EBirdData> getEbirdData() {
+		return ebirdData;
 	}
 
 	// TODO change the methods name
-	public void seteBirdData(List<EBirdData> eBirdData) {
-		this.eBirdData = eBirdData;
+	public void setEbirdData(List<EBirdData> ebirdData) {
+		this.ebirdData = ebirdData;
 	}
 	
 }

@@ -22,12 +22,12 @@ public class EbirdsServiceClientBeanUnitTesting {
 		EBirdResponseWrapper response = client.retrieveEBirdData(request);
 
 		assertNotNull(response);
-		assertNotNull(response.getBirdData());
+		assertNotNull(response.getEbirdData());
 
 		request.setRequestUriPattern(
 				"http://ebird.org/ws1.1/data/obs/region/recent?rtype=subnational1&r=US-NV&fmt=json&maxResults=10");
 		response = client.retrieveEBirdData(request);
 
-		assertEquals(10, response.getBirdData().size());
+		assertEquals(10, response.getEbirdData().size());
 	}
 }

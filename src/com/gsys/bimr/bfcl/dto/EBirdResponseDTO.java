@@ -7,14 +7,14 @@ import java.util.*;
  */
 public class EBirdResponseDTO {
 	
-	private List<EBirdDataDTO> eBirdData;
+	private List<EBirdDataDTO> ebirdData;
 
-	public List<EBirdDataDTO> geteBirdData() {
-		return eBirdData;
+	public List<EBirdDataDTO> getEbirdData() {
+		return ebirdData;
 	}
 
-	public void seteBirdData(List<EBirdDataDTO> eBirdData) {
-		this.eBirdData = eBirdData;
+	public void setEbirdData(List<EBirdDataDTO> ebirdData) {
+		this.ebirdData = ebirdData;
 	}
 
 }

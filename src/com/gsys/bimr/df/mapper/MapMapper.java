@@ -44,10 +44,10 @@ public class MapMapper {
 	public static EBirdResponse fromEBirdResponseWrapperToResponse(EBirdResponseWrapper responseWrapper) {
 		EBirdResponse response = new EBirdResponse();
 		List<EBirdData> data = new ArrayList<>();
-		if(responseWrapper.getBirdData() != null) {
-			data = fromEBirdDataWrapperToEBirdData(responseWrapper.getBirdData());
+		if(responseWrapper.getEbirdData() != null) {
+			data = fromEBirdDataWrapperToEBirdData(responseWrapper.getEbirdData());
 		}
-		response.seteBirdData(data);
+		response.setEbirdData(data);
 		return response;
 	}
 	

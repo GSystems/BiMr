@@ -30,20 +30,15 @@ public class MapBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		mapModel = new MapModel();
-<<<<<<< HEAD
 		//retrieveTweets();
 		retrieveEbirdApiData();
-=======
-		retrieveTweets();
-		// retrieveEbirdApiData();
->>>>>>> ab47390097020ac2d88244ff78b31fec24140ad0
 	}
 
 	public void retrieveEbirdApiData() {
 		EBirdRequestDTO request = new EBirdRequestDTO();
 		request.setRequestUriPattern(GeneralConstants.EBIRDS_API_REQUEST_URI);
 		EBirdResponseDTO response = mapFacade.retrieveEBirdData(request); 
-		List<EBirdDataDTO> list = response.geteBirdData();
+		List<EBirdDataDTO> list = response.getEbirdData();
 		mapModel.setEbirdData(list);
 	}
 

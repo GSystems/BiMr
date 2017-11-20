@@ -39,8 +39,7 @@ public class EbirdsServiceClientBean implements EbirdsServiceClient {
 				}
 			}
 			// sending to DataTransformer
-			// TODO rename the method
-			response.seteBirdData(DataTransformer.fromEBirdRawResponseToWrapper(content.toString()));
+			response.setEbirdData(DataTransformer.fromEBirdRawResponseToWrapper(content.toString()));
 		} catch (IOException e) {
 			LOGGER.severe("Unable to connect: " + e.getMessage());
 		}
