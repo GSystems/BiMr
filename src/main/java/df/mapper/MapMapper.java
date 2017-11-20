@@ -26,8 +26,7 @@ public class MapMapper {
 	}
 
 	public static TwitterRequestWrapper fromTwitterRequestToWrapper(TwitterRequest request) {
-		TwitterRequestWrapper requestWrapper = new TwitterRequestWrapper(request.getHashtag());
-		return requestWrapper;
+		return new TwitterRequestWrapper(request.getHashtag());
 	}
 
 	public static EBirdRequestWrapper fromEBirdRequestToWrapper(EBirdRequest request) {
@@ -73,27 +72,27 @@ public class MapMapper {
 		return user;
 	}
 
-	public static TweetEntity fromTweetToEntity(Tweet tweet) {
-		TweetEntity tweetEntity = new TweetEntity();
-		tweetEntity.setId(tweet.getId());
-		tweetEntity.setLatitude(tweet.getLatitude());
-		tweetEntity.setLongitude(tweet.getLongitude());
-		tweetEntity.setObservationDate(tweet.getObservationDate());
-		tweetEntity.setTweetMessage(tweet.getTweetMessage());
-		tweetEntity.setUser(fromTwitterUserToEntity(tweet.getUser()));
-		return tweetEntity;
-	}
-
-	private static TwitterUserEntity fromTwitterUserToEntity(TwitterUser user) {
-		TwitterUserEntity userEntity = new TwitterUserEntity();
-		userEntity.setEmail(user.getEmail());
-		userEntity.setId(user.getId());
-		userEntity.setLocation(user.getLocation());
-		userEntity.setScreenName(user.getScreenName());
-		userEntity.setUrl(user.getUrl());
-		userEntity.setUsername(user.getUsername());
-		return userEntity;
-	}
+//	public static TweetEntity fromTweetToEntity(Tweet tweet) {
+//		TweetEntity tweetEntity = new TweetEntity();
+//		tweetEntity.setId(tweet.getId());
+//		tweetEntity.setLatitude(tweet.getLatitude());
+//		tweetEntity.setLongitude(tweet.getLongitude());
+//		tweetEntity.setObservationDate(tweet.getObservationDate());
+//		tweetEntity.setTweetMessage(tweet.getTweetMessage());
+//		tweetEntity.setUser(fromTwitterUserToEntity(tweet.getUser()));
+//		return tweetEntity;
+//	}
+//
+//	private static TwitterUserEntity fromTwitterUserToEntity(TwitterUser user) {
+//		TwitterUserEntity userEntity = new TwitterUserEntity();
+//		userEntity.setEmail(user.getEmail());
+//		userEntity.setId(user.getId());
+//		userEntity.setLocation(user.getLocation());
+//		userEntity.setScreenName(user.getScreenName());
+//		userEntity.setUrl(user.getUrl());
+//		userEntity.setUsername(user.getUsername());
+//		return userEntity;
+//	}
 
 	public static EBirdResponse toEbirdsResponseFromWrapper(EBirdResponseWrapper responseWrapper) {
 		EBirdResponse response = new EBirdResponse();

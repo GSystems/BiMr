@@ -35,9 +35,9 @@ public class MapRepositoryBean implements MapRepository {
 
 	@Override
 	public void insertTweets(List<Tweet> tweets) {
-		for(Tweet tweet : tweets) {
-			twitterDAO.insertTweet(MapMapper.fromTweetToEntity(tweet));
-		}
+//		for(Tweet tweet : tweets) {
+//			twitterDAO.insertTweet(MapMapper.fromTweetToEntity(tweet));
+//		}
 	}
 
 	@Override
