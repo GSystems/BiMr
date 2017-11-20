@@ -1,27 +1,65 @@
-package com.gsys.bimr.df.model;
+package main.java.df.model;
 
-import twitter4j.GeoLocation;
+import java.util.Date;
 
 /**
  * @author GLK
  */
-public class TwitterData {
+public class Tweet {
 
-	private String user;
+	private String id;
+	private String tweetMessage;
+	private String latitude;
+	private String longitude;
+	private Date observationDate;
+	private TwitterUser user;
 
-	private GeoLocation location;
-
-	public TwitterData(String user, GeoLocation location) {
-		this.user = user;
-		this.location = location;
+	public String getId() {
+		return id;
 	}
 
-	public String getUser() {
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getTweetMessage() {
+		return tweetMessage;
+	}
+
+	public void setTweetMessage(String tweetMessage) {
+		this.tweetMessage = tweetMessage;
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	public Date getObservationDate() {
+		return observationDate;
+	}
+
+	public void setObservationDate(Date observationDate) {
+		this.observationDate = observationDate;
+	}
+
+	public TwitterUser getUser() {
 		return user;
 	}
 
-	public GeoLocation getLocation() {
-		return location;
+	public void setUser(TwitterUser user) {
+		this.user = user;
 	}
 
 }

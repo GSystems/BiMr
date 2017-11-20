@@ -1,20 +1,25 @@
-package com.gsys.bimr.bfcl;
+package main.java.bfcl;
 
-import com.gsys.bimr.bfcl.dto.EBirdRequestDTO;
-import com.gsys.bimr.bfcl.dto.EBirdResponseDTO;
-import com.gsys.bimr.bfcl.dto.TwitterRequestDTO;
-import com.gsys.bimr.bfcl.dto.TwitterResponseDTO;
+import main.java.bfcl.dto.EBirdRequestDTO;
+import main.java.bfcl.dto.EBirdResponseDTO;
+import main.java.bfcl.dto.TwitterRequestDTO;
 
 public interface MapFacade {
 
 	/**
-	 * Retrieves tweets
+	 * Retrieves tweets from twitter api and persist them into database
 	 * 
 	 * @param request
 	 * @return
 	 */
-	TwitterResponseDTO retrieveTweets(TwitterRequestDTO request);
+	void retrieveTweetsFromApi(TwitterRequestDTO request);
 
+	/**
+	 * Retrieve data from eBirds API
+	 * 
+	 * @param request
+	 * @return
+	 */
 	EBirdResponseDTO retrieveEBirdData(EBirdRequestDTO request);
 
 }

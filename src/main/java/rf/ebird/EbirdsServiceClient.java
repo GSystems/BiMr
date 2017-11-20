@@ -1,7 +1,7 @@
-package com.gsys.bimr.rf.eBird;
+package main.java.rf.ebird;
 
-import com.gsys.bimr.rf.model.EBirdRequestWrapper;
-import com.gsys.bimr.rf.model.EBirdResponseWrapper;
+import main.java.rf.ebird.wrapper.EBirdRequestWrapper;
+import main.java.rf.ebird.wrapper.EBirdResponseWrapper;
 
 /**
  * @author Rares

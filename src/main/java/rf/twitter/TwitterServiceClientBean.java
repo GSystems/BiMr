@@ -1,17 +1,14 @@
-package com.gsys.bimr.rf.twitter;
+package main.java.rf.twitter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
-import com.gsys.bimr.rf.model.TwitterDataWrapper;
-import com.gsys.bimr.rf.model.TwitterRequestWrapper;
-import com.gsys.bimr.rf.model.TwitterResponseWrapper;
-import com.gsys.bimr.rf.transformer.DataTransformer;
-import com.gsys.bimr.util.GeneralConstants;
-
+import main.java.rf.transformer.DataTransformer;
+import main.java.rf.twitter.wrapper.TweetWrapper;
+import main.java.rf.twitter.wrapper.TwitterRequestWrapper;
+import main.java.rf.twitter.wrapper.TwitterResponseWrapper;
+import main.java.util.GeneralConstants;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
@@ -25,20 +22,49 @@ import twitter4j.conf.ConfigurationBuilder;
  */
 public class TwitterServiceClientBean implements TwitterServiceClient {
 
-	public static final Logger LOGGER = Logger.getLogger(TwitterServiceClientBean.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(TwitterServiceClientBean.class.getName());
 
 	@Override
 	public TwitterResponseWrapper retrieveTweets(TwitterRequestWrapper request) {
 
 		TwitterResponseWrapper response = new TwitterResponseWrapper();
-		Map<String, TwitterDataWrapper> tweets = new HashMap<>();
-		for (String hashtag : request.getHashtags()) {
-			if (hashtag != null && !hashtag.equals("")) {
-				tweets.putAll(DataTransformer.fromTwitterRawResponseToWrapper(callTwitterApi(hashtag)));
-			}
+		List<TweetWrapper> tweets = new ArrayList<>();
+		String hashtag = request.getHashtag();
+		if (hashtag != null && !hashtag.equals("")) {
+			tweets.addAll(DataTransformer.fromTwitterApiResponseToWrapper(callTwitterApi(hashtag)));
 		}
 		response.setTweets(tweets);
 		return response;
+	}
+
+	private List<Status> retrieveTweetsFromApi(String hashtag) {
+		List<Status> tweets = new ArrayList<>();
+		ConfigurationBuilder configurationBuilder = credentialsSetup();
+		Twitter twitter = new TwitterFactory(configurationBuilder.build()).getInstance();
+
+		Query query = new Query(hashtag);
+		Integer numberOfTweets = GeneralConstants.MAX_NUMBER_OF_TWEETS;
+		long sinceId = 930464129936175104l;
+		long lastId = 0l;
+		query.setSinceId(sinceId);
+		QueryResult result = null;
+		while (tweets.size() < numberOfTweets) {
+			try {
+				result = twitter.search(query);
+				tweets.addAll(result.getTweets());
+				if (!tweets.isEmpty()) {
+					lastId = tweets.get(tweets.size() - 1).getId();
+				} else {
+					break;
+				}
+			} catch (TwitterException e) {
+				LOGGER.severe("Couldn't connect: " + e);
+				break;
+			} finally {
+				query.setSinceId(lastId);
+			}
+		}
+		return tweets;
 	}
 
 	private List<Status> callTwitterApi(String hashtag) {
@@ -60,17 +86,19 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 			try {
 				result = twitter.search(query);
 				tweets.addAll(result.getTweets());
-				for (Status t : tweets)
+				for (Status t : tweets) {
 					if (t.getId() < lastID) {
 						lastID = t.getId();
 					}
-			} catch (TwitterException te) {
-				LOGGER.severe("Couldn't connect: " + te);
+				}
+			} catch (TwitterException e) {
+				LOGGER.severe("Couldn't connect: " + e);
 				break;
+			} finally {
+				query.setMaxId(lastID - 1);
 			}
-			query.setMaxId(lastID - 1);
 		}
-		return result.getTweets();
+		return tweets;
 	}
 
 	private ConfigurationBuilder credentialsSetup() {

@@ -1,22 +1,24 @@
-package com.gsys.bimr.df.mapper;
+package main.java.df.mapper;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import com.gsys.bimr.df.model.EBirdData;
-import com.gsys.bimr.df.model.EBirdRequest;
-import com.gsys.bimr.df.model.EBirdResponse;
-import com.gsys.bimr.df.model.TwitterData;
-import com.gsys.bimr.df.model.TwitterRequest;
-import com.gsys.bimr.df.model.TwitterResponse;
-import com.gsys.bimr.rf.model.EBirdDataWrapper;
-import com.gsys.bimr.rf.model.EBirdRequestWrapper;
-import com.gsys.bimr.rf.model.EBirdResponseWrapper;
-import com.gsys.bimr.rf.model.TwitterDataWrapper;
-import com.gsys.bimr.rf.model.TwitterRequestWrapper;
-import com.gsys.bimr.rf.model.TwitterResponseWrapper;
+import main.java.df.model.EBirdData;
+import main.java.df.model.EBirdRequest;
+import main.java.df.model.EBirdResponse;
+import main.java.df.model.Tweet;
+import main.java.df.model.TwitterRequest;
+import main.java.df.model.TwitterResponse;
+import main.java.df.model.TwitterUser;
+import main.java.rf.ebird.wrapper.EBirdDataWrapper;
+import main.java.rf.ebird.wrapper.EBirdRequestWrapper;
+import main.java.rf.ebird.wrapper.EBirdResponseWrapper;
+import main.java.rf.twitter.entity.TweetEntity;
+import main.java.rf.twitter.entity.TwitterUserEntity;
+import main.java.rf.twitter.wrapper.TweetWrapper;
+import main.java.rf.twitter.wrapper.TwitterRequestWrapper;
+import main.java.rf.twitter.wrapper.TwitterResponseWrapper;
+import main.java.rf.twitter.wrapper.TwitterUserWrapper;
 
 public class MapMapper {
 
@@ -24,59 +26,101 @@ public class MapMapper {
 	}
 
 	public static TwitterRequestWrapper fromTwitterRequestToWrapper(TwitterRequest request) {
-		TwitterRequestWrapper requestWrapper = new TwitterRequestWrapper();
-		requestWrapper.setHashtags(request.getHashtags());
+		TwitterRequestWrapper requestWrapper = new TwitterRequestWrapper(request.getHashtag());
 		return requestWrapper;
 	}
-	
+
 	public static EBirdRequestWrapper fromEBirdRequestToWrapper(EBirdRequest request) {
 		EBirdRequestWrapper requestWrapper = new EBirdRequestWrapper();
 		requestWrapper.setRequestUriPattern(request.getRequestUriPattern());
 		return requestWrapper;
 	}
 
-	public static TwitterResponse fromTwitterResponseWrapperToResponse(TwitterResponseWrapper responseWrapper) {
+	public static TwitterResponse toTwitterResponseFromWrapper(TwitterResponseWrapper responseWrapper) {
 		TwitterResponse response = new TwitterResponse();
-		response.setTweets(fromTwitterTwitterDataWrapperToTwitterData(responseWrapper.getTweets()));
+		response.setTweets(toTwitterDataListFromWrapper(responseWrapper.getTweets()));
 		return response;
 	}
 
-	public static EBirdResponse fromEBirdResponseWrapperToResponse(EBirdResponseWrapper responseWrapper) {
+	private static List<Tweet> toTwitterDataListFromWrapper(List<TweetWrapper> tweetsWrapper) {
+		List<Tweet> tweets = new ArrayList<>();
+		for (TweetWrapper tweetWrapper : tweetsWrapper) {
+			Tweet tweet = toTwitterDataFromWrapper(tweetWrapper);
+			tweets.add(tweet);
+		}
+		return tweets;
+	}
+
+	private static Tweet toTwitterDataFromWrapper(TweetWrapper tweetWrapper) {
+		Tweet tweet = new Tweet();
+		tweet.setId(tweetWrapper.getId());
+		tweet.setLatitude(tweetWrapper.getLatitude());
+		tweet.setLongitude(tweetWrapper.getLongitude());
+		tweet.setObservationDate(tweetWrapper.getObservationDate());
+		tweet.setTweetMessage(tweetWrapper.getTweetMessage());
+		tweet.setUser(toTwitterUserFromWrapper(tweetWrapper.getUser()));
+		return tweet;
+	}
+
+	private static TwitterUser toTwitterUserFromWrapper(TwitterUserWrapper userWrapper) {
+		TwitterUser user = new TwitterUser();
+		user.setEmail(userWrapper.getEmail());
+		user.setId(userWrapper.getId());
+		user.setLocation(userWrapper.getLocation());
+		user.setScreenName(userWrapper.getScreenName());
+		user.setUrl(userWrapper.getUrl());
+		user.setUsername(userWrapper.getUsername());
+		return user;
+	}
+
+	public static TweetEntity fromTweetToEntity(Tweet tweet) {
+		TweetEntity tweetEntity = new TweetEntity();
+		tweetEntity.setId(tweet.getId());
+		tweetEntity.setLatitude(tweet.getLatitude());
+		tweetEntity.setLongitude(tweet.getLongitude());
+		tweetEntity.setObservationDate(tweet.getObservationDate());
+		tweetEntity.setTweetMessage(tweet.getTweetMessage());
+		tweetEntity.setUser(fromTwitterUserToEntity(tweet.getUser()));
+		return tweetEntity;
+	}
+
+	private static TwitterUserEntity fromTwitterUserToEntity(TwitterUser user) {
+		TwitterUserEntity userEntity = new TwitterUserEntity();
+		userEntity.setEmail(user.getEmail());
+		userEntity.setId(user.getId());
+		userEntity.setLocation(user.getLocation());
+		userEntity.setScreenName(user.getScreenName());
+		userEntity.setUrl(user.getUrl());
+		userEntity.setUsername(user.getUsername());
+		return userEntity;
+	}
+
+	public static EBirdResponse toEbirdsResponseFromWrapper(EBirdResponseWrapper responseWrapper) {
 		EBirdResponse response = new EBirdResponse();
 		List<EBirdData> data = new ArrayList<>();
-		if(responseWrapper.getBirdData() != null) {
-			data = fromEBirdDataWrapperToEBirdData(responseWrapper.getBirdData());
+		if (responseWrapper.getBirdData() != null) {
+			data = toEbirdDataFromWrapper(responseWrapper.getBirdData());
 		}
 		response.seteBirdData(data);
 		return response;
 	}
-	
-	private static Map<String, TwitterData> fromTwitterTwitterDataWrapperToTwitterData(
-			Map<String, TwitterDataWrapper> tweets) {
-		Map<String, TwitterData> twitterData = new HashMap<>();
-		for (Map.Entry<String, TwitterDataWrapper> tdw : tweets.entrySet()) {
-			TwitterDataWrapper td = tdw.getValue();
-			twitterData.put(tdw.getKey(), new TwitterData(td.getUser(), td.getLocation()));
+
+	private static List<EBirdData> toEbirdDataFromWrapper(List<EBirdDataWrapper> ebirdsData) {
+		List<EBirdData> ebirds = new ArrayList<>();
+		for (EBirdDataWrapper ebirdWrapper : ebirdsData) {
+			EBirdData ebird = new EBirdData();
+			ebird.setCommonName(ebirdWrapper.getCommonName());
+			ebird.setCountryName(ebirdWrapper.getCountryName());
+			ebird.setLatitude(ebirdWrapper.getLatitude());
+			ebird.setLocalityName(ebirdWrapper.getLocalityName());
+			ebird.setLongitude(ebirdWrapper.getLongitude());
+			ebird.setObservationDate(ebirdWrapper.getObservationDate());
+			ebird.setScientificName(ebirdWrapper.getScientificName());
+			ebird.setStateName(ebirdWrapper.getStateName());
+			ebird.setUserDisplayName(ebirdWrapper.getUserDisplayName());
+			ebirds.add(ebird);
 		}
-		return twitterData;
-	}
-	
-	private static List<EBirdData> fromEBirdDataWrapperToEBirdData(List<EBirdDataWrapper> ebirdData) {
-		List<EBirdData> ebird = new ArrayList<>();
-		for (EBirdDataWrapper ebdw: ebirdData) {
-			EBirdData ebd = new EBirdData();
-			ebd.setCommonName(ebdw.getCommonName());
-			ebd.setCountryName(ebdw.getCountryName());
-			ebd.setLatitude(ebdw.getLatitude());
-			ebd.setLocalityName(ebdw.getLocalityName());
-			ebd.setLongitude(ebdw.getLongitude());
-			ebd.setObservationDate(ebdw.getObservationDate());
-			ebd.setScientificName(ebdw.getScientificName());
-			ebd.setStateName(ebdw.getStateName());
-			ebd.setUserDisplayName(ebdw.getUserDisplayName());
-			ebird.add(ebd);
-		}
-		return ebird;
+		return ebirds;
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.gsys.bimr.df.model;
+package main.java.df.model;
 
 public class EBirdRequest {
 	

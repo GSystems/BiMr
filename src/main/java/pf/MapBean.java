@@ -1,18 +1,16 @@
-package com.gsys.bimr.pf;
+package main.java.pf;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import com.gsys.bimr.bfcl.MapFacade;
-import com.gsys.bimr.bfcl.dto.EBirdRequestDTO;
-import com.gsys.bimr.bfcl.dto.TwitterRequestDTO;
-import com.gsys.bimr.util.GeneralConstants;
+import main.java.bfcl.MapFacade;
+import main.java.bfcl.dto.EBirdRequestDTO;
+import main.java.bfcl.dto.TwitterRequestDTO;
+import main.java.util.GeneralConstants;
 
 @ManagedBean
 @ViewScoped
@@ -20,7 +18,7 @@ public class MapBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private MapModel mapModel;
+	private transient MapModel mapModel;
 
 	@EJB
 	private transient MapFacade mapFacade;
@@ -29,7 +27,7 @@ public class MapBean implements Serializable {
 	public void init() {
 		mapModel = new MapModel();
 		retrieveTweets();
-		retrieveEbirdApiData();
+		// retrieveEbirdApiData();
 	}
 
 	public void retrieveEbirdApiData() {
@@ -39,17 +37,11 @@ public class MapBean implements Serializable {
 	}
 
 	public void retrieveTweets() {
-		TwitterRequestDTO request = generateRequest();
-		mapModel.setTweets(mapFacade.retrieveTweets(request).getTweets());
+		mapFacade.retrieveTweetsFromApi(generateRequest());
 	}
 
-	private TwitterRequestDTO generateRequest() {
-		TwitterRequestDTO request = new TwitterRequestDTO();
-		List<String> hashtags = new ArrayList<>();
-		hashtags.add(GeneralConstants.TWITTER_BIRDMIGRATION);
-		hashtags.add(GeneralConstants.TWITTER_BIRDMIG);
-		request.setHashtags(hashtags);
-		return request;
+	public TwitterRequestDTO generateRequest() {
+		return new TwitterRequestDTO(GeneralConstants.TWITTER_BIRDMIGRATION);
 	}
 
 	public MapModel getMapModel() {

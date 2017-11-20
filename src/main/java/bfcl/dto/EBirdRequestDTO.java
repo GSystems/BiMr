@@ -1,4 +1,4 @@
-package com.gsys.bimr.bfcl.dto;
+package main.java.bfcl.dto;
 
 public class EBirdRequestDTO {
 	

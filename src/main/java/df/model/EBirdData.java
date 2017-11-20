@@ -1,4 +1,4 @@
-package com.gsys.bimr.df.model;
+package main.java.df.model;
 
 import java.util.Date;
 
@@ -7,6 +7,7 @@ import java.util.Date;
  */
 
 public class EBirdData {
+
 	private String userDisplayName;
 	private String commonName;
 	private String scientificName;
@@ -88,4 +89,5 @@ public class EBirdData {
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
+
 }

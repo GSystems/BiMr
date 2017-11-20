@@ -1,22 +1,20 @@
-package com.gsys.bimr.pf;
+package main.java.pf;
 
 import java.util.List;
-import java.util.Map;
 
-import com.gsys.bimr.bfcl.dto.EBirdDataDTO;
-import com.gsys.bimr.bfcl.dto.TwitterDataDTO;
+import main.java.bfcl.dto.EBirdDataDTO;
+import main.java.bfcl.dto.TweetDTO;
 
 /**
- * @author GLK 
- * this class will contain a single model representation
- * to populate the map
+ * @author 
+ * GLK this class will contain a single
+ * model representation to populate the map
  */
 public class MapModel {
 
-	private Map<String, TwitterDataDTO> tweets;
-
+	private List<TweetDTO> tweets;
 	private List<EBirdDataDTO> ebirdData;
-	
+
 	public List<EBirdDataDTO> getEbirdData() {
 		return ebirdData;
 	}
@@ -25,11 +23,11 @@ public class MapModel {
 		this.ebirdData = ebirdData;
 	}
 
-	public Map<String, TwitterDataDTO> getTweets() {
+	public List<TweetDTO> getTweets() {
 		return tweets;
 	}
 
-	public void setTweets(Map<String, TwitterDataDTO> tweets) {
+	public void setTweets(List<TweetDTO> tweets) {
 		this.tweets = tweets;
 	}
 

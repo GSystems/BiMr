@@ -1,4 +1,4 @@
-package com.gsys.bimr.rf.model;
+package main.java.rf.ebird.wrapper;
 
 import java.util.Date;
 

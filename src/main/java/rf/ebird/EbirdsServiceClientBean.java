@@ -1,4 +1,4 @@
-package com.gsys.bimr.rf.eBird;
+package main.java.rf.ebird;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,9 +7,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.logging.Logger;
 
-import com.gsys.bimr.rf.model.EBirdRequestWrapper;
-import com.gsys.bimr.rf.model.EBirdResponseWrapper;
-import com.gsys.bimr.rf.transformer.DataTransformer;
+import main.java.rf.ebird.wrapper.EBirdRequestWrapper;
+import main.java.rf.ebird.wrapper.EBirdResponseWrapper;
+import main.java.rf.transformer.DataTransformer;
 
 public class EbirdsServiceClientBean implements EbirdsServiceClient {
 
@@ -40,7 +40,7 @@ public class EbirdsServiceClientBean implements EbirdsServiceClient {
 			}
 			// sending to DataTransformer
 			// TODO rename the method
-			response.seteBirdData(DataTransformer.fromEBirdRawResponseToWrapper(content.toString()));
+			response.seteBirdData(DataTransformer.fromEBirdApiResponseToWrapper(content.toString()));
 		} catch (IOException e) {
 			LOGGER.severe("Unable to connect: " + e.getMessage());
 		}

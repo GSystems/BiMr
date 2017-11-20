@@ -1,7 +1,7 @@
-package com.gsys.bimr.rf.twitter;
+package main.java.rf.twitter;
 
-import com.gsys.bimr.rf.model.TwitterRequestWrapper;
-import com.gsys.bimr.rf.model.TwitterResponseWrapper;
+import main.java.rf.twitter.wrapper.TwitterRequestWrapper;
+import main.java.rf.twitter.wrapper.TwitterResponseWrapper;
 
 /**
  * @author GLK

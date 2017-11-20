@@ -1,20 +1,21 @@
-package com.gsys.bimr.rf.model;
+package main.java.rf.twitter.wrapper;
 
-import java.util.Map;
+import java.util.List;
 
 /**
  * @author GLK
  */
 public class TwitterResponseWrapper {
 
-	private Map<String, TwitterDataWrapper> tweets;
+	private List<TweetWrapper> tweets;
 
-	public Map<String, TwitterDataWrapper> getTweets() {
+	public List<TweetWrapper> getTweets() {
 		return tweets;
 	}
 
-	public void setTweets(Map<String, TwitterDataWrapper> tweets) {
+	public void setTweets(List<TweetWrapper> tweets) {
 		this.tweets = tweets;
 	}
+
 
 }

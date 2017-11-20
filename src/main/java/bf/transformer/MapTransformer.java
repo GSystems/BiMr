@@ -1,26 +1,100 @@
-package com.gsys.bimr.bf.transformer;
+package main.java.bf.transformer;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import com.gsys.bimr.bfcl.dto.EBirdDataDTO;
-import com.gsys.bimr.bfcl.dto.EBirdRequestDTO;
-import com.gsys.bimr.bfcl.dto.EBirdResponseDTO;
-import com.gsys.bimr.bfcl.dto.TwitterDataDTO;
-import com.gsys.bimr.bfcl.dto.TwitterRequestDTO;
-import com.gsys.bimr.bfcl.dto.TwitterResponseDTO;
-import com.gsys.bimr.df.model.EBirdData;
-import com.gsys.bimr.df.model.EBirdRequest;
-import com.gsys.bimr.df.model.EBirdResponse;
-import com.gsys.bimr.df.model.TwitterData;
-import com.gsys.bimr.df.model.TwitterRequest;
-import com.gsys.bimr.df.model.TwitterResponse;
+import main.java.bfcl.dto.EBirdDataDTO;
+import main.java.bfcl.dto.EBirdRequestDTO;
+import main.java.bfcl.dto.EBirdResponseDTO;
+import main.java.bfcl.dto.TweetDTO;
+import main.java.bfcl.dto.TwitterRequestDTO;
+import main.java.bfcl.dto.TwitterResponseDTO;
+import main.java.bfcl.dto.TwitterUserDTO;
+import main.java.df.model.EBirdData;
+import main.java.df.model.EBirdRequest;
+import main.java.df.model.EBirdResponse;
+import main.java.df.model.Tweet;
+import main.java.df.model.TwitterRequest;
+import main.java.df.model.TwitterResponse;
+import main.java.df.model.TwitterUser;
 
 public class MapTransformer {
 
 	private MapTransformer() {
+	}
+
+	public static TwitterRequest twitterRequestFromDTO(TwitterRequestDTO requestDTO) {
+		TwitterRequest request = new TwitterRequest(requestDTO.getHashtag());
+		return request;
+	}
+
+	public static TwitterResponseDTO fromTwitterResponseToDTO(TwitterResponse response) {
+		TwitterResponseDTO responseDTO = new TwitterResponseDTO();
+		responseDTO.setTweets(fromTweetsWrapperToDTO(response.getTweets()));
+		return responseDTO;
+	}
+
+	private static List<TweetDTO> fromTweetsWrapperToDTO(List<Tweet> tweets) {
+		List<TweetDTO> tweetsDTO = new ArrayList<>();
+		for (Tweet tweet : tweets) {
+			TweetDTO tweetDTO = fromTweetToDTO(tweet);
+			tweetsDTO.add(tweetDTO);
+		}
+		return tweetsDTO;
+	}
+
+	private static TweetDTO fromTweetToDTO(Tweet tweet) {
+		TweetDTO tweetDTO = new TweetDTO();
+		tweetDTO.setId(tweet.getId());
+		tweetDTO.setLatitude(tweet.getLatitude());
+		tweetDTO.setLongitude(tweet.getLongitude());
+		tweetDTO.setObservationDate(tweet.getObservationDate());
+		tweetDTO.setTweetMessage(tweet.getTweetMessage());
+		tweetDTO.setUser(fromTwitterUserToDTO(tweet.getUser()));
+		return tweetDTO;
+	}
+
+	private static TwitterUserDTO fromTwitterUserToDTO(TwitterUser user) {
+		TwitterUserDTO userDTO = new TwitterUserDTO();
+		userDTO.setEmail(user.getEmail());
+		userDTO.setId(String.valueOf(user.getId()));
+		userDTO.setLocation(user.getLocation());
+		userDTO.setUsername(user.getUsername());
+		userDTO.setScreenName(user.getScreenName());
+		userDTO.setUrl(user.getUrl());
+		return userDTO;
+	}
+
+	public static List<Tweet> toTweetsFromDTO(List<TweetDTO> tweetsDTO) {
+		List<Tweet> tweets = new ArrayList<>();
+		for (TweetDTO tweetDTO : tweetsDTO) {
+			Tweet tweet = new Tweet();
+			tweet.setId(tweetDTO.getId());
+			tweet.setLatitude(tweetDTO.getLatitude());
+			tweet.setLongitude(tweetDTO.getLongitude());
+			tweet.setObservationDate(tweetDTO.getObservationDate());
+			tweet.setTweetMessage(tweetDTO.getTweetMessage());
+			tweet.setUser(toTwitterUserFromDTO(tweetDTO.getUser()));
+			tweets.add(tweet);
+		}
+		return tweets;
+	}
+
+	private static TwitterUser toTwitterUserFromDTO(TwitterUserDTO userDTO) {
+		TwitterUser user = new TwitterUser();
+		user.setEmail(userDTO.getEmail());
+		user.setId(userDTO.getId());
+		user.setLocation(userDTO.getLocation());
+		user.setScreenName(userDTO.getScreenName());
+		user.setUrl(userDTO.getUrl());
+		user.setUsername(userDTO.getUsername());
+		return user;
+	}
+
+	public static EBirdRequest toEbirdRequestFromDTO(EBirdRequestDTO requestDTO) {
+		EBirdRequest request = new EBirdRequest();
+		request.setRequestUriPattern(requestDTO.getRequestUriPattern());
+		return request;
 	}
 
 	public static EBirdResponseDTO fromEBirdResponseToDTO(EBirdResponse response) {
@@ -28,16 +102,10 @@ public class MapTransformer {
 		responseDTO.seteBirdData(fromEBirdDataWrapperToDTO(response.geteBirdData()));
 		return responseDTO;
 	}
-	
-	public static TwitterResponseDTO fromTwitterResponseToDTO(TwitterResponse response) {
-		TwitterResponseDTO responseDTO = new TwitterResponseDTO();
-		responseDTO.setTweets(fromTwitterDataWrapperToDTO(response.getTweets()));
-		return responseDTO;
-	}
-	
+
 	private static List<EBirdDataDTO> fromEBirdDataWrapperToDTO(List<EBirdData> ebirdData) {
 		List<EBirdDataDTO> ebirdDataDTO = new ArrayList<>();
-		for (EBirdData currentData: ebirdData) {
+		for (EBirdData currentData : ebirdData) {
 			EBirdDataDTO ebirdDTO = new EBirdDataDTO();
 			ebirdDTO.setCommonName(currentData.getCommonName());
 			ebirdDTO.setCountryName(currentData.getCountryName());
@@ -51,27 +119,6 @@ public class MapTransformer {
 			ebirdDataDTO.add(ebirdDTO);
 		}
 		return ebirdDataDTO;
-	}
-
-	private static Map<String, TwitterDataDTO> fromTwitterDataWrapperToDTO(Map<String, TwitterData> tweets) {
-		Map<String, TwitterDataDTO> tweetsDTO = new HashMap<>();
-		for (Map.Entry<String, TwitterData> entry : tweets.entrySet()) {
-			TwitterData tweet = entry.getValue();
-			tweetsDTO.put(entry.getKey(), new TwitterDataDTO(tweet.getUser(), tweet.getLocation()));
-		}
-		return tweetsDTO;
-	}
-
-	public static EBirdRequest ebirdRequestFromDTO(EBirdRequestDTO requestDTO) {
-		EBirdRequest request = new EBirdRequest();
-		request.setRequestUriPattern(requestDTO.getRequestUriPattern());
-		return request;
-	}
-	
-	public static TwitterRequest twitterRequestFromDTO(TwitterRequestDTO requestDTO) {
-		TwitterRequest request = new TwitterRequest();
-		request.setHashtags(requestDTO.getHashtags());
-		return request;
 	}
 
 }

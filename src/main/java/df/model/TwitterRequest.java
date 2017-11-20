@@ -1,20 +1,18 @@
-package com.gsys.bimr.df.model;
-
-import java.util.List;
+package main.java.df.model;
 
 /**
  * @author GLK
  */
 public class TwitterRequest {
 
-	private List<String> hashtags;
+	private String hashtag;
 
-	public List<String> getHashtags() {
-		return hashtags;
+	public TwitterRequest(String hashtag) {
+		this.hashtag = hashtag;
 	}
 
-	public void setHashtags(List<String> hashtags) {
-		this.hashtags = hashtags;
+	public String getHashtag() {
+		return hashtag;
 	}
 
 }

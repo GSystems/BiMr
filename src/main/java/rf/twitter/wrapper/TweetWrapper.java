@@ -1,30 +1,65 @@
-package com.gsys.bimr.rf.model;
+package main.java.rf.twitter.wrapper;
 
-import twitter4j.GeoLocation;
+import java.util.Date;
 
 /**
  * @author GLK
  */
-public class TwitterDataWrapper {
+public class TweetWrapper {
 
-	private String user;
+	private String id;
+	private String tweetMessage;
+	private String latitude;
+	private String longitude;
+	private Date observationDate;
+	private TwitterUserWrapper user;
+	
+	public String getId() {
+		return id;
+	}
 
-	private GeoLocation location;
+	public void setId(String id) {
+		this.id = id;
+	}
 
-	public String getUser() {
+	public String getTweetMessage() {
+		return tweetMessage;
+	}
+
+	public void setTweetMessage(String tweetMessage) {
+		this.tweetMessage = tweetMessage;
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	public Date getObservationDate() {
+		return observationDate;
+	}
+
+	public void setObservationDate(Date observationDate) {
+		this.observationDate = observationDate;
+	}
+
+	public TwitterUserWrapper getUser() {
 		return user;
 	}
 
-	public void setUser(String user) {
+	public void setUser(TwitterUserWrapper user) {
 		this.user = user;
-	}
-
-	public GeoLocation getLocation() {
-		return location;
-	}
-
-	public void setLocation(GeoLocation location) {
-		this.location = location;
 	}
 
 }

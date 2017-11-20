@@ -1,20 +1,18 @@
-package com.gsys.bimr.bfcl.dto;
-
-import java.util.List;
+package main.java.bfcl.dto;
 
 /**
  * @author GLK
  */
 public class TwitterRequestDTO {
 
-	private List<String> hashtags;
+	private String hashtag;
 
-	public List<String> getHashtags() {
-		return hashtags;
+	public TwitterRequestDTO(String hashtag) {
+		this.hashtag = hashtag;
 	}
 
-	public void setHashtags(List<String> hashtags) {
-		this.hashtags = hashtags;
+	public String getHashtag() {
+		return hashtag;
 	}
 
 }

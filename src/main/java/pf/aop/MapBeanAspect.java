@@ -1,18 +1,20 @@
-package com.gsys.bimr.pf.aop;
+package main.java.pf.aop;
 
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Logger;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 
+@Aspect
 public class MapBeanAspect {
 
 	private static final Logger LOGGER = Logger.getLogger(MapBeanAspect.class.getName());
 	private static final Integer DELAY_IN_MINUTES = 15;
 
-	@After("com.gsys.bimr.pf.MapBean.generateRequest())")
+	@Before("execution(** com.gsys.bimr.pf.Map.generateRequest(..))")
 	public void callScheduler(JoinPoint joinPoint) {
 
 		long delay = 1000 * 60L * DELAY_IN_MINUTES;
@@ -25,6 +27,6 @@ public class MapBeanAspect {
 				// make any call from here
 			}
 		}, 0, delay);
-		LOGGER.info("before" + joinPoint.getSignature().getName());
+		LOGGER.info("after" + joinPoint.getSignature().getName());
 	}
 }

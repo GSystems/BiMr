@@ -1,20 +1,18 @@
-package com.gsys.bimr.rf.model;
-
-import java.util.List;
+package main.java.rf.twitter.wrapper;
 
 /**
  * @author GLK
  */
 public class TwitterRequestWrapper {
 
-	private List<String> hashtags;
+	private String hashtag;
 
-	public List<String> getHashtags() {
-		return hashtags;
+	public TwitterRequestWrapper(String hashtag) {
+		this.hashtag = hashtag;
 	}
 
-	public void setHashtags(List<String> hashtags) {
-		this.hashtags = hashtags;
+	public String getHashtag() {
+		return hashtag;
 	}
 
 }

@@ -1,13 +1,13 @@
-package com.gsys.bimr.tests;
+package test.java.rf.ebird;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
-import com.gsys.bimr.rf.eBird.EbirdsServiceClientBean;
-import com.gsys.bimr.rf.model.EBirdRequestWrapper;
-import com.gsys.bimr.rf.model.EBirdResponseWrapper;
+import main.java.rf.ebird.EbirdsServiceClientBean;
+import main.java.rf.ebird.wrapper.EBirdRequestWrapper;
+import main.java.rf.ebird.wrapper.EBirdResponseWrapper;
 
 public class EbirdsServiceClientBeanTest {
 

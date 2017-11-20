@@ -1,19 +1,19 @@
-package com.gsys.bimr.df.model;
+package main.java.df.model;
 
-import java.util.Map;
+import java.util.List;
 
 /**
  * @author GLK
  */
 public class TwitterResponse {
 
-	private Map<String, TwitterData> tweets;
+	private List<Tweet> tweets;
 
-	public Map<String, TwitterData> getTweets() {
+	public List<Tweet> getTweets() {
 		return tweets;
 	}
 
-	public void setTweets(Map<String, TwitterData> tweets) {
+	public void setTweets(List<Tweet> tweets) {
 		this.tweets = tweets;
 	}
 
