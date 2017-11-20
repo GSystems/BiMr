@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Bird Migration</title>
+	<style>
+	#map{
+		height:960px;
+		width:100%;
+	}
+	html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+	</style>
+</h:head>
+<h:body>
+	<div id="map"></div>
+	<script>
+		function initMap(){
+
+
+			
+			var options = {
+				zoom:8,
+				center:{lat:36.114647,lng:-115.172813},
+			}
+			var map = new google.maps.Map(document.getElementById('map'),options)
+
+	        var markers = birds.map(function(birds, i) {
+	            var marker = new google.maps.Marker({
+	              position: birds.coord,
+	            });
+
+
+		        var contentString = '<div id="content">'+
+	            '<div id="siteNotice">'+
+	            '</div>'+
+	            '<h1 id="firstHeading" class="firstHeading">' + birds.name + '</h1>'+
+	            '<div id="bodyContent">'+
+	            '<p>Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy,'+
+	            'snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating'+
+	            'their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters.'+ 
+	            'Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.</p>'+
+	            '</div>'+
+	        	'</div>';
+
+		        var infowindow = new google.maps.InfoWindow({
+		            content: contentString
+		        });
+
+		        marker.addListener('click',function(){
+			        infowindow.open(map,marker)
+			    });
+
+			    return marker
+	          });
+
+
+			 var markerCluster = new MarkerClusterer(map, markers,
+		            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+ 
+			
+		}
+		var birds = [
+			{
+			 coord:{lat: 36.0369429, lng: -115.0544178},
+			 name: 'American Tree Sparrow'
+			},
+	        {
+		     coord:{lat: 39.500583,  lng: -119.80673},
+			 name: 'American Tree Sparrow'
+			},
+	        {coord:{lat: 39.4908565, lng: -119.7410685},
+		 	 name: 'American Tree Sparrow'},
+	        {coord:{lat: 36.3249025, lng: -115.266594},
+		  	 name: 'American Tree Sparrow'},
+	        {coord:{lat: 36.0877316, lng: -114.9838436},
+		 	 name: 'American Tree Sparrow'},
+	        {coord:{lat: 39.5383369, lng: -119.8350906},
+		 	 name: 'American Tree Sparrow'},
+	        {coord:{lat: 36.0749791, lng: -115.0021416},
+		 	 name: 'American Tree Sparrow'},
+	        {coord:{lat: 39.3871964, lng: -119.8268473},
+		 	 name: 'American Tree Sparrow'},
+	        {coord:{lat: 36.0749791, lng: -115.0021416},
+		 	 name: 'American Tree Sparrow'},
+	        {coord:{lat: 36.438797,  lng: -115.359566},
+		 	 name: 'American Tree Sparrow'},
+	        {coord:{lat: 36.3249025, lng: -115.266594},
+		 	 name: 'American Tree Sparrow'},
+	        {coord:{lat: 39.5348915, lng: -119.7295699},
+		 	 name: 'American Tree Sparrow'},
+	        {coord:{lat: 39.5375943, lng: -119.8156735},
+		 	 name: 'American Tree Sparrow'},
+	        {coord:{lat: 39.5348915, lng: -119.7295699},
+		 	 name: 'American Tree Sparrow'},
+	        {coord:{lat: 39.5208387, lng: 145.137978},
+		 	 name: 'American Tree Sparrow'},
+	        {coord:{lat: 37.819616,  lng: -119.831905},
+		 	 name: 'American Tree Sparrow'},
+	        {coord:{lat: 39.500583,  lng: -119.80673},
+		     name: 'American Tree Sparrow'},
+	        {coord:{lat: 39.4908565, lng: -119.7410685},
+		     name: 'American Tree Sparrow'},
+	        {coord:{lat: 36.0749791, lng: -115.0021416},
+	         name: 'American Tree Sparrow'},
+	        {coord:{lat: 39.5470076, lng: -119.8303968},
+             name:'American Tree Sparrow'},
+	        {coord:{lat: 36.1006947, lng: -115.022462},
+   	         name: 'American Tree Sparrow'},
+	        {coord:{lat: 36.0749791, lng: -115.0021416},
+		     name: 'American Tree Sparrow'},
+	        {coord:{lat: 39.5348915, lng: -119.7295699},
+		     name: 'American Tree Sparrow'}
+		]
+		
+	</script>
+	<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+	<script async="defer" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf10kOSOGdrAt5B_cOiGEmZG_e_myQTNg&amp;callback=initMap"></script>
+</h:body>
+</html>
