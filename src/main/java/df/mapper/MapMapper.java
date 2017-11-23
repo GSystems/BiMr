@@ -13,8 +13,8 @@ import main.java.df.model.TwitterUser;
 import main.java.rf.ebird.wrapper.EBirdDataWrapper;
 import main.java.rf.ebird.wrapper.EBirdRequestWrapper;
 import main.java.rf.ebird.wrapper.EBirdResponseWrapper;
-import main.java.rf.twitter.entity.TweetEntity;
-import main.java.rf.twitter.entity.TwitterUserEntity;
+//import main.java.rf.twitter.entity.TweetEntity;
+//import main.java.rf.twitter.entity.TwitterUserEntity;
 import main.java.rf.twitter.wrapper.TweetWrapper;
 import main.java.rf.twitter.wrapper.TwitterRequestWrapper;
 import main.java.rf.twitter.wrapper.TwitterResponseWrapper;
@@ -98,10 +98,10 @@ public class MapMapper {
 	public static EBirdResponse toEbirdsResponseFromWrapper(EBirdResponseWrapper responseWrapper) {
 		EBirdResponse response = new EBirdResponse();
 		List<EBirdData> data = new ArrayList<>();
-		if (responseWrapper.getBirdData() != null) {
-			data = toEbirdDataFromWrapper(responseWrapper.getBirdData());
+		if (responseWrapper.getEbirdData() != null) {
+			data = toEbirdDataFromWrapper(responseWrapper.getEbirdData());
 		}
-		response.seteBirdData(data);
+		response.setEbirdData(data);
 		return response;
 	}
 

@@ -99,7 +99,7 @@ public class MapTransformer {
 
 	public static EBirdResponseDTO fromEBirdResponseToDTO(EBirdResponse response) {
 		EBirdResponseDTO responseDTO = new EBirdResponseDTO();
-		responseDTO.seteBirdData(fromEBirdDataWrapperToDTO(response.geteBirdData()));
+		responseDTO.setEbirdData(fromEBirdDataWrapperToDTO(response.getEbirdData()));
 		return responseDTO;
 	}
 

@@ -13,7 +13,7 @@ import main.java.df.model.TwitterResponse;
 import main.java.rf.ebird.EbirdsServiceClient;
 import main.java.rf.ebird.EbirdsServiceClientBean;
 import main.java.rf.twitter.TwitterServiceClientBean;
-import main.java.rf.twitter.dao.TwitterDAO;
+//import main.java.rf.twitter.dao.TwitterDAO;
 
 public class MapRepositoryBean implements MapRepository {
 
@@ -23,8 +23,8 @@ public class MapRepositoryBean implements MapRepository {
 	@Inject
 	private EbirdsServiceClient ebirdsService;
 	
-	@Inject
-	private TwitterDAO twitterDAO;
+//	@Inject
+//	private TwitterDAO twitterDAO;
 
 	@Override
 	public TwitterResponse retrieveTweets(TwitterRequest request) {
