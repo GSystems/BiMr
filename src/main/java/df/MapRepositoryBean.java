@@ -19,10 +19,10 @@ public class MapRepositoryBean implements MapRepository {
 
 	@Inject
 	private TwitterServiceClientBean twitterService;
-	
+
 	@Inject
 	private EbirdsServiceClient ebirdsService;
-	
+
 	@Inject
 	private TwitterDAO twitterDAO;
 
@@ -35,9 +35,9 @@ public class MapRepositoryBean implements MapRepository {
 
 	@Override
 	public void insertTweets(List<Tweet> tweets) {
-//		for(Tweet tweet : tweets) {
-//			twitterDAO.insertTweet(MapMapper.fromTweetToEntity(tweet));
-//		}
+		for (Tweet tweet : tweets) {
+			twitterDAO.insertTweet(MapMapper.fromTweetToEntity(tweet));
+		}
 	}
 
 	@Override
@@ -45,6 +45,11 @@ public class MapRepositoryBean implements MapRepository {
 		ebirdsService = new EbirdsServiceClientBean();
 		return MapMapper.toEbirdsResponseFromWrapper(
 				ebirdsService.retrieveEBirdData(MapMapper.fromEBirdRequestToWrapper(request)));
+	}
+
+	@Override
+	public List<Tweet> retrieveTweetsFromDB() {
+		return MapMapper.toTweetListFromEntity(twitterDAO.findAllTweets());
 	}
 
 }

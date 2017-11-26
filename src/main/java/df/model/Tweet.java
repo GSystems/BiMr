@@ -12,7 +12,6 @@ public class Tweet {
 	private String latitude;
 	private String longitude;
 	private Date observationDate;
-	private TwitterUser user;
 
 	public String getId() {
 		return id;
@@ -52,14 +51,6 @@ public class Tweet {
 
 	public void setObservationDate(Date observationDate) {
 		this.observationDate = observationDate;
-	}
-
-	public TwitterUser getUser() {
-		return user;
-	}
-
-	public void setUser(TwitterUser user) {
-		this.user = user;
 	}
 
 }

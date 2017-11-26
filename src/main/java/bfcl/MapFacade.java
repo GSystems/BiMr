@@ -1,7 +1,10 @@
 package main.java.bfcl;
 
+import java.util.List;
+
 import main.java.bfcl.dto.EBirdRequestDTO;
 import main.java.bfcl.dto.EBirdResponseDTO;
+import main.java.bfcl.dto.TweetDTO;
 import main.java.bfcl.dto.TwitterRequestDTO;
 
 public interface MapFacade {
@@ -21,5 +24,12 @@ public interface MapFacade {
 	 * @return
 	 */
 	EBirdResponseDTO retrieveEBirdData(EBirdRequestDTO request);
+
+	/**
+	 * Retrieve tweets from database
+	 * 
+	 * @return
+	 */
+	List<TweetDTO> retrieveTweetsFromDB();
 
 }
