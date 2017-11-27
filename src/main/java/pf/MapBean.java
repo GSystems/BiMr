@@ -26,8 +26,13 @@ public class MapBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		mapModel = new MapModel();
-		retrieveTweets();
-		// retrieveEbirdApiData();
+		retrieveTweetsFromDB();
+//		retrieveTweetsFromApi();
+//		retrieveEbirdApiData();
+	}
+
+	public void retrieveTweetsFromDB() {
+		mapModel.setTweets(mapFacade.retrieveTweetsFromDB());
 	}
 
 	public void retrieveEbirdApiData() {
@@ -36,7 +41,7 @@ public class MapBean implements Serializable {
 		mapModel.setEbirdData(mapFacade.retrieveEBirdData(request).getEbirdData());
 	}
 
-	public void retrieveTweets() {
+	public void retrieveTweetsFromApi() {
 		mapFacade.retrieveTweetsFromApi(generateRequest());
 	}
 

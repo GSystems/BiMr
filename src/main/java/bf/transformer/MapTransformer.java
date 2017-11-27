@@ -9,14 +9,12 @@ import main.java.bfcl.dto.EBirdResponseDTO;
 import main.java.bfcl.dto.TweetDTO;
 import main.java.bfcl.dto.TwitterRequestDTO;
 import main.java.bfcl.dto.TwitterResponseDTO;
-import main.java.bfcl.dto.TwitterUserDTO;
 import main.java.df.model.EBirdData;
 import main.java.df.model.EBirdRequest;
 import main.java.df.model.EBirdResponse;
 import main.java.df.model.Tweet;
 import main.java.df.model.TwitterRequest;
 import main.java.df.model.TwitterResponse;
-import main.java.df.model.TwitterUser;
 
 public class MapTransformer {
 
@@ -24,17 +22,16 @@ public class MapTransformer {
 	}
 
 	public static TwitterRequest twitterRequestFromDTO(TwitterRequestDTO requestDTO) {
-		TwitterRequest request = new TwitterRequest(requestDTO.getHashtag());
-		return request;
+		return new TwitterRequest(requestDTO.getHashtag());
 	}
 
 	public static TwitterResponseDTO fromTwitterResponseToDTO(TwitterResponse response) {
 		TwitterResponseDTO responseDTO = new TwitterResponseDTO();
-		responseDTO.setTweets(fromTweetsWrapperToDTO(response.getTweets()));
+		responseDTO.setTweets(fromTweetsToDTO(response.getTweets()));
 		return responseDTO;
 	}
 
-	private static List<TweetDTO> fromTweetsWrapperToDTO(List<Tweet> tweets) {
+	public static List<TweetDTO> fromTweetsToDTO(List<Tweet> tweets) {
 		List<TweetDTO> tweetsDTO = new ArrayList<>();
 		for (Tweet tweet : tweets) {
 			TweetDTO tweetDTO = fromTweetToDTO(tweet);
@@ -50,19 +47,7 @@ public class MapTransformer {
 		tweetDTO.setLongitude(tweet.getLongitude());
 		tweetDTO.setObservationDate(tweet.getObservationDate());
 		tweetDTO.setTweetMessage(tweet.getTweetMessage());
-		tweetDTO.setUser(fromTwitterUserToDTO(tweet.getUser()));
 		return tweetDTO;
-	}
-
-	private static TwitterUserDTO fromTwitterUserToDTO(TwitterUser user) {
-		TwitterUserDTO userDTO = new TwitterUserDTO();
-		userDTO.setEmail(user.getEmail());
-		userDTO.setId(String.valueOf(user.getId()));
-		userDTO.setLocation(user.getLocation());
-		userDTO.setUsername(user.getUsername());
-		userDTO.setScreenName(user.getScreenName());
-		userDTO.setUrl(user.getUrl());
-		return userDTO;
 	}
 
 	public static List<Tweet> toTweetsFromDTO(List<TweetDTO> tweetsDTO) {
@@ -74,21 +59,9 @@ public class MapTransformer {
 			tweet.setLongitude(tweetDTO.getLongitude());
 			tweet.setObservationDate(tweetDTO.getObservationDate());
 			tweet.setTweetMessage(tweetDTO.getTweetMessage());
-			tweet.setUser(toTwitterUserFromDTO(tweetDTO.getUser()));
 			tweets.add(tweet);
 		}
 		return tweets;
-	}
-
-	private static TwitterUser toTwitterUserFromDTO(TwitterUserDTO userDTO) {
-		TwitterUser user = new TwitterUser();
-		user.setEmail(userDTO.getEmail());
-		user.setId(userDTO.getId());
-		user.setLocation(userDTO.getLocation());
-		user.setScreenName(userDTO.getScreenName());
-		user.setUrl(userDTO.getUrl());
-		user.setUsername(userDTO.getUsername());
-		return user;
 	}
 
 	public static EBirdRequest toEbirdRequestFromDTO(EBirdRequestDTO requestDTO) {

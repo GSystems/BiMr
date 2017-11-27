@@ -32,4 +32,12 @@ public interface MapRepository {
 	 * @return
 	 */
 	EBirdResponse retrieveEBirdData(EBirdRequest requests);
+
+	/**
+	 * Retrieve tweets from database 
+	 *
+	 * @return
+	 */
+	List<Tweet> retrieveTweetsFromDB();
+
 }

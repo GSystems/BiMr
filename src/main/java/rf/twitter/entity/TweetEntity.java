@@ -1,12 +1,18 @@
-package main.java.bfcl.dto;
+package main.java.rf.twitter.entity;
 
 import java.util.Date;
 
-/**
- * @author GLK
- */
-public class TweetDTO {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+import main.java.util.GeneralConstants;
+
+@Entity
+@Table(schema = GeneralConstants.SCHEMA, name = "tweets")
+public class TweetEntity {
+
+	@Id
 	private String id;
 	private String tweetMessage;
 	private String latitude;

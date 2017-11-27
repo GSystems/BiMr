@@ -9,16 +9,13 @@ import main.java.df.model.EBirdResponse;
 import main.java.df.model.Tweet;
 import main.java.df.model.TwitterRequest;
 import main.java.df.model.TwitterResponse;
-import main.java.df.model.TwitterUser;
 import main.java.rf.ebird.wrapper.EBirdDataWrapper;
 import main.java.rf.ebird.wrapper.EBirdRequestWrapper;
 import main.java.rf.ebird.wrapper.EBirdResponseWrapper;
-//import main.java.rf.twitter.entity.TweetEntity;
-//import main.java.rf.twitter.entity.TwitterUserEntity;
+import main.java.rf.twitter.entity.TweetEntity;
 import main.java.rf.twitter.wrapper.TweetWrapper;
 import main.java.rf.twitter.wrapper.TwitterRequestWrapper;
 import main.java.rf.twitter.wrapper.TwitterResponseWrapper;
-import main.java.rf.twitter.wrapper.TwitterUserWrapper;
 
 public class MapMapper {
 
@@ -57,43 +54,41 @@ public class MapMapper {
 		tweet.setLongitude(tweetWrapper.getLongitude());
 		tweet.setObservationDate(tweetWrapper.getObservationDate());
 		tweet.setTweetMessage(tweetWrapper.getTweetMessage());
-		tweet.setUser(toTwitterUserFromWrapper(tweetWrapper.getUser()));
 		return tweet;
 	}
 
-	private static TwitterUser toTwitterUserFromWrapper(TwitterUserWrapper userWrapper) {
-		TwitterUser user = new TwitterUser();
-		user.setEmail(userWrapper.getEmail());
-		user.setId(userWrapper.getId());
-		user.setLocation(userWrapper.getLocation());
-		user.setScreenName(userWrapper.getScreenName());
-		user.setUrl(userWrapper.getUrl());
-		user.setUsername(userWrapper.getUsername());
-		return user;
+	public static TweetEntity fromTweetToEntity(Tweet tweet) {
+		TweetEntity tweetEntity = new TweetEntity();
+		tweetEntity.setId(tweet.getId());
+		tweetEntity.setLatitude(tweet.getLatitude());
+		tweetEntity.setLongitude(tweet.getLongitude());
+		tweetEntity.setObservationDate(tweet.getObservationDate());
+		tweetEntity.setTweetMessage(tweet.getTweetMessage());
+		return tweetEntity;
 	}
 
-	// public static TweetEntity fromTweetToEntity(Tweet tweet) {
-	// TweetEntity tweetEntity = new TweetEntity();
-	// tweetEntity.setId(tweet.getId());
-	// tweetEntity.setLatitude(tweet.getLatitude());
-	// tweetEntity.setLongitude(tweet.getLongitude());
-	// tweetEntity.setObservationDate(tweet.getObservationDate());
-	// tweetEntity.setTweetMessage(tweet.getTweetMessage());
-	// tweetEntity.setUser(fromTwitterUserToEntity(tweet.getUser()));
-	// return tweetEntity;
-	// }
-	//
-	// private static TwitterUserEntity fromTwitterUserToEntity(TwitterUser
-	// user) {
 	// TwitterUserEntity userEntity = new TwitterUserEntity();
 	// userEntity.setEmail(user.getEmail());
 	// userEntity.setId(user.getId());
-	// userEntity.setLocation(user.getLocation());
 	// userEntity.setScreenName(user.getScreenName());
 	// userEntity.setUrl(user.getUrl());
-	// userEntity.setUsername(user.getUsername());
-	// return userEntity;
-	// }
+	public static List<Tweet> toTweetListFromEntity(List<TweetEntity> entities) {
+		List<Tweet> tweets = new ArrayList<>();
+			Tweet tweet = toTweetFromEntity(entity);
+			tweets.add(tweet);
+		}
+		return tweets;
+	}
+
+	private static Tweet toTweetFromEntity(TweetEntity tweetEntity) {
+		Tweet tweet = new Tweet();
+		tweet.setId(tweetEntity.getId());
+		tweet.setLatitude(tweetEntity.getLatitude());
+		tweet.setLongitude(tweetEntity.getLongitude());
+		tweet.setObservationDate(tweetEntity.getObservationDate());
+		tweet.setTweetMessage(tweetEntity.getTweetMessage());
+		return tweet;
+	}
 
 	public static EBirdResponse toEbirdsResponseFromWrapper(EBirdResponseWrapper responseWrapper) {
 		EBirdResponse response = new EBirdResponse();

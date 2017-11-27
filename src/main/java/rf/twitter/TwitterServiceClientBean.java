@@ -59,7 +59,6 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 				}
 			} catch (TwitterException e) {
 				LOGGER.severe("Couldn't connect: " + e);
-				break;
 			} finally {
 				query.setSinceId(lastId);
 			}

@@ -42,4 +42,9 @@ public class MapFacadeBean implements MapFacade {
 				.fromEBirdResponseToDTO(repo.retrieveEBirdData(MapTransformer.toEbirdRequestFromDTO(request)));
 	}
 
+	@Override
+	public List<TweetDTO> retrieveTweetsFromDB() {
+		return MapTransformer.fromTweetsToDTO(repo.retrieveTweetsFromDB());
+	}
+
 }
