@@ -67,13 +67,9 @@ public class MapMapper {
 		return tweetEntity;
 	}
 
-	// TwitterUserEntity userEntity = new TwitterUserEntity();
-	// userEntity.setEmail(user.getEmail());
-	// userEntity.setId(user.getId());
-	// userEntity.setScreenName(user.getScreenName());
-	// userEntity.setUrl(user.getUrl());
 	public static List<Tweet> toTweetListFromEntity(List<TweetEntity> entities) {
 		List<Tweet> tweets = new ArrayList<>();
+		for (TweetEntity entity : entities) {
 			Tweet tweet = toTweetFromEntity(entity);
 			tweets.add(tweet);
 		}
