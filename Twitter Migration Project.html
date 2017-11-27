@@ -173,21 +173,21 @@
 
          <h2>Data Persistance</h2>
           <p>
-            All of the data collected will be stored in a <a href="https://www.mysql.com/">MySql</a> Database and in <a href="https://en.wikipedia.org/wiki/RDFa">RDFa</a> files. 
+            All of the data collected will be stored in a <a href="https://www.mysql.com/">MySql</a> Database and in <a href="https://en.wikipedia.org/wiki/RDFa">RDFa</a> files. The same model of data will be used for the information coming from twitter as well as the information coming from eBirds.
           </p>
          
 
           <h2>Data processing</h2>
           <p>
             Now that we have a continously fresh stream of data we can filter and process tweets. We keep only tweets which are in english, have the right hastTag (eg: #birdMigration, #birds, etc) and come with a place or a specified location. Then we analyse each tweet's content using Stanford NLP's TokensRegex framework, defining different patterns over text, patterns which match with the description of a bird or several birds.
-            For determination of the migration of the birds, we will be monitoring the location of given species, and if over the course of several days, the location keeps changing in one direction (eg. south, south-west), then we will asume that those birds are migrating. 
+            For determination of the migration of the birds, we will be monitoring the location of given species, and if over the course of several days, the location keeps changing in one direction (eg. south, south-west) and if the distance between the locations isn't greater than distance the respective species can travel in one day, then we will asume that those birds are migrating.
           </p>
 
 
           <figure typeof="sa:Image">
             <img src="./docs/diagrams/SequenceDiagram.png" width="950" height="700">
             <figcaption style="text-align: center">
-             Figure 3. Application sequence diagram
+             Figure 4. Application sequence diagram
             </figcaption>
           </figure>
 
@@ -200,12 +200,12 @@
 
           <figure typeof="sa:Image">
             <img src="./Twitter Migration Project_files/worldMap.png" width="950" height="700">
-            <figcaption style="text-align: center">Figure 4. Birds that we're spotted</figcaption>
+            <figcaption style="text-align: center">Figure 5. Birds that we're spotted</figcaption>
           </figure>
 
           <figure typeof="sa:Image">
             <img src="./Twitter Migration Project_files/descriptionSpecies.png" width="950" height="700">
-            <figcaption style="text-align: center">Figure 5. Species Information</figcaption>
+            <figcaption style="text-align: center">Figure 6. Species Information</figcaption>
           </figure>
 
 
@@ -248,16 +248,13 @@
           <pre class=" language-json"><code class=" language-json">
 {
   lng: -76.5190244,
+  lat: 42.4618954,
   locName: "Hog Hole (Allan H. Treman State Marine Park)",
   howMany: 2,
   sciName: "Corvus brachyrhynchos",
-  obsValid: true,
   locationPrivate: false,
   obsDt: "2017-11-25 13:42",
-  obsReviewed: false,
   comName: "American Crow",
-  lat: 42.4618954,
-  locID: "L99382"
 }
           </code></pre>
 
@@ -268,6 +265,11 @@
                The following streams offer samples of the public data flowing through Twitter.
               Once applications establish a connection to a streaming endpoint, they are delivered a feed of Tweets,
               without needing to worry about polling or exceeding REST API quotas.
+            </p>
+
+            <p>
+               <b><a href="http://twitter4j.org/">Twitter4J</a></b><br>
+               Is an open source Java library used to integrate our application with Twitter services.
             </p>
 
         <b><a href="https://developers.google.com/maps/documentation/geocoding/intro">The Google Maps Geocoding API</a></b><br>
@@ -305,15 +307,10 @@
             Response received from the Google Geocoding API for a specific city
           </figcaption>
         <p></p>
-            <p>
-               <b><a href="http://twitter4j.org/">Twitter4J</a></b><br>
-               Is an open source Java library used to integrate our application with Twitter services.
-            </p>
-            <p>
+
 
             <h2>Conclusion</h2>
-            <p>TO DO </p>
-            <h2>References</h2>
+            <p>The application will provide a real-time migration map of different species of birds across the globe with the help of live data in the form of tweets from twitter and also from stable data coming from the eBirds API for people who love birds or who have a hooby in spotting birds or those of whom just have curiosity about the birds migration. </p>
             <p>
          </p>
     <footer>
