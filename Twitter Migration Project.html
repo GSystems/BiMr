@@ -139,11 +139,10 @@
         <p></p>
           <h2>Architecture (Modules)</h2>
           <p>
-            Our real time stream processing architecture
-            is typically made of the following main components:
+            The four main components of the application:
           </p>
           <figure typeof="sa:Image">
-            <img src="./Twitter Migration Project_files/architecture.png" width="950" height="700">
+            <img src="./docs/diagrams/DeploymentDiagram.png" width="950" height="700">
             <figcaption style="text-align: center">
               Figure 1. Communication between modules
             </figcaption>
@@ -151,361 +150,112 @@
           <p>
           </p><h2>Data collector</h2>
           <p>
-               A module which collects data from <a href="https://dev.twitter.com/streaming/public">Twitter Public Streaming API</a>. Once the application establishes
-               a connection to a streaming endpoint, a feed of Tweets is piped into our processing funnel without needing to worry about reaching request quotas.
-               We are using <a href="http://twitter4j.org/">twitter4j</a>, Java library to get tweets from twitter, which is then streamed to Apache Kafka.
+               A module which collects data from <a href="https://dev.twitter.com/streaming/public">Twitter Public Streaming API</a> and the <a href="https://confluence.cornell.edu/display/CLOISAPI/eBird+API+1.1">eBirds</a>. For the twitter data we will be using <a href="http://twitter4j.org/">twitter4j</a>, Java library to get tweets from twitter.
                Twitter credentials are required for twitter4j to be able to pull tweets. We get these credentials by creating <a href="https://apps.twitter.com/app/new">a new app</a>
                on twitter. By all means, this does not require the user to provide his actual credentials but for each created application, Twitter provides secrets to serve in
                authenticating via <a href="https://oauth.net/">OAuth</a>.<br>
-               We use Kafka, a reliable, high-throughput and low latency messaging system to transfer tweet data between modules.
-               Like many publish-subscribe messaging systems, Kafka maintains feeds of messages in topics from where the second
-               module will take tweets one by one.
+               For the eBirds data we will be making calls every 24 hours to the API and will collect all the new data that appeared in last 24 hours. EBirds api does not require any kind of authentification or key and can be use at anytime.
           </p>
-          <h3>Scalable message queuing with Apache Kakfa</h3>
-        <p>   We use Kafka, a reliable, high-throughput and low latency messaging system to transfer tweet data between modules.
-           Like many publish-subscribe messaging systems, Kafka maintains feeds of messages in topics from where the second
-           module will take tweets one by one.
-         </p>
-         <p> <a href="http://kafka.apache.org/"> Apache Kafka </a>provides a scalable message queue, where producers send records
-          to topics that are processed by consumers. In the application proposed we use we’re using message queues as the
-          communication bus between modules. We use two queues within the application, one for queueing  tweets from the Twitter
-          and the other for filtered tweets.
-          Using a message queue to schedule tasks makes it simple to distribute the work across multiple service instances and
-          handle instance failure without losing work.
-        </p> Kafka supports both the publish-subscribe and queueing message patterns
-          for consumers reading records from a topic. It does this through allowing consumers to belong to a consumer group.
-          Each message published to a topic is delivered to one consumer instance within each subscribing consumer group. If all
-          consumer instances have the same group,
-          this works like a traditional message queue. If all consumers have different groups, this works like publish-subscribe topics.
-      <p></p>
-          <p></p>
+
+          <figure typeof="sa:Image">
+            <img src="./docs/bpmn.svg" width="950" height="700">
+            <figcaption style="text-align: center">
+              Figure 2. Class Diagram
+            </figcaption>
+          </figure>
+
+         <h2>Data Persistance</h2>
+          <p>
+            All of the data collected will be stored in a <a href="https://www.mysql.com/">MySql</a> Database and in <a href="https://en.wikipedia.org/wiki/RDFa">RDFa</a> files. 
+          </p>
+         
 
           <h2>Data processing</h2>
           <p>
-            Now that we have a continously fresh stream of data we can filter and process tweets. We keep only tweets which are in
-            english and come with a place or a specified location. Then we analyse each tweet's content using Stanford NLP's TokensRegex
-            framework, defining different patterns over text, patterns which match the intention of moving to a place.
-            These assignment rules are presented below:
+            Now that we have a continously fresh stream of data we can filter and process tweets. We keep only tweets which are in english, have the right hastTag (eg: #birdMigration, #birds, etc) and come with a place or a specified location. Then we analyse each tweet's content using Stanford NLP's TokensRegex framework, defining different patterns over text, patterns which match with the description of a bird or several birds.
+            For determination of the migration of the birds, we will be monitoring the location of given species, and if over the course of several days, the location keeps changing in one direction (eg. south, south-west), then we will asume that those birds are migrating. 
           </p>
-          <pre class=" language-css"><code class=" language-css">
-  <span class="token selector">$RULE_1  = "( /I|i|we|We|WE/ /am|'m|are|'re|AM|'M|ARE|'RE/ /going|GOING/ /to|TO/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] )"
-  $RULE_2  = "( /I|i|we|We|WE/ /will|'ll|WILL|'LL/ /go|GO|be|BE/ /to|TO|in|IN/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] )"
-  $RULE_3  = "( /I|i|we|We|WE/ /will|'ll|WILL|'LL/ /travel|TRAVEL/ /to|TO|in|IN/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] )"
-  $RULE_4  = "( /I|i|we|We|WE/ /am|'m|are|'re|AM|'M|ARE|'RE/ /flying|FLYING/ /to|TO|in|IN/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] )"
-  $RULE_5  = "( /I|i|we|We|WE/ /am|'m|are|'re|AM|'M|ARE|'RE/ /going|GOING/ /to|TO/ /visit|VISIT/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] )"
-  $RULE_6  = "( /I|i|we|We|WE/ /will|'ll|WILL|'LL/ /move|MOVE/ /to|TO|in|IN/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] )"
-  $RULE_7  = "( /I|i|we|We|WE/ /am|'m|are|'re|AM|'M|ARE|'RE/ /going|GOING/ /to|TO/ /be|BE/ /at|AT/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] )"
-  $RULE_8  = "( /I|i|we|We|WE/ /will|'ll|WILL|'LL/ /leave|LEAVE/ /in|IN/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] )"
-  $RULE_9  = "( /I|i|we|We|WE/ /am|'m|are|'re|AM|'M|ARE|'RE/ /moving|MOVING/ /to|TO/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] )"
-  $RULE_10 = "( /I|i|we|We|WE/ /am|'m|are|'re|AM|'M|ARE|'RE/ /moving|MOVING/ /to|TO/ /THE|the/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] )"
-  $RULE_11 = "( /I|i|we|We|WE/ /want|WANT/ /to|TO/ /visit|VISIT/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] )"
-  $RULE_12 = "( /I|i|we|We|WE/ /am|'m|are|'re|AM|'M|ARE|'RE/ /coming|COMING/ /to|TO/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] )"
-  $RULE_13 = "( /moving|MOVING/ /to|TO/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] )"
-  $RULE_14 = "( [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] /is|IS/ /what|WHAT/ /I|i/ /will|'ll|WILL|'LL/ /call|CALL/ /home|HOME/)"
-  $RULE_15 = "( /I|i|we|We|WE/ /will|'ll|WILL|'LL/ /live|LIVE/ /in|IN/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">])"
-  $RULE_16 = "( /I|i|we|We|WE/ /will|'ll|WILL|'LL/ /visit|VISIT/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] )"
-  $RULE_17 = "( /I|i|we|We|WE/ /will|'ll|WILL|'LL/ /fly|FLY/ /to|TO/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">])"
-  $RULE_18 = "( [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] /is|IS/ /my|MY/ /new|NEW/ /home|HOME/ )"
-  $RULE_19 = "( /hello|HELLO|Hello/  [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">])"
-  $RULE_20 = "( /welcome|WELCOME|Welcome/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] )"
-  $RULE_21 = "( [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] /is|IS/ /what|WHAT/ /I|i/ /call|CALL/ /home|HOME/ )"
-  $RULE_22 = "( /I|i|we|We|WE/ /am|'m|are|'re|AM|'M|ARE|'RE/ /going|GOING/ /to|TO/ /travel|TRAVEL|live|LIVE/ /in|IN/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] )"
-  $RULE_23 = "( /I|i|we|We|WE/  /am|'m|are|'re|AM|'M|ARE|'RE/ /traveling|travelling|TRAVELING|TRAVELLING/ /in|IN|to|TO/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] )"
-  $RULE_24 = "( /I|i|we|We|WE/  /am|'m|are|'re|AM|'M|ARE|'RE/ /visiting|VISITING/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">])"
-  $RULE_25 = "( [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">]  /will|'ll|WILL|'LL/ /be|BE/ /my|MY/ /future|FUTURE/ /home|HOME/ )"
-  $RULE_26 = "( [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] /will|'ll|WILL|'LL/ /be|BE/ /my|MY/ /new|NEW/ /home|HOME/ )"
-  $RULE_27 = "( /let|LET|Let/ /'s|'S/ /go|GO/ /to|TO/ [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">])"
-  $RULE_28 = "( [</span><span class="token punctuation">{</span> <span class="token property">ner</span><span class="token punctuation">:</span>LOCATION <span class="token punctuation">}</span><span class="token selector">] /Here|here/ /I|i|we|We|WE/ /come|COME|go|GO/ )"</span>
 
-<span class="token punctuation">{</span>
-  <span class="token property">ruleType</span><span class="token punctuation">:</span> <span class="token string">"tokens"</span>,
-  <span class="token property">pattern</span><span class="token punctuation">:</span> <span class="token punctuation">(</span> $RULE_1 | $RULE_2 | $RULE_3 | $RULE_4 |$RULE_5 | $RULE_6 | $RULE_7 | $RULE_8 | $RULE_9 | $RULE_10| $RULE_11 | $RULE_12 | $RULE_13| $RULE_14 | $RULE_15 | $RULE_16 | $RULE_17 | $RULE_18 | $RULE_19 | $RULE_20 | $RULE_21 | $RULE_22 | $RULE_23 | $RULE_24 | $RULE_25 | $RULE_26 | $RULE_27 | $RULE_28 <span class="token punctuation">)</span>,
-  <span class="token property">result</span><span class="token punctuation">:</span> <span class="token string">"match"</span>
-<span class="token punctuation">}</span>
-            </code></pre>
-            <figcaption style="text-align: center">
-              Assignment rules for matching the intention of moving to a location
-            </figcaption>
-
-            <p>
-              Once we decided which tweets satisfy our scope, we have to represent the data and store it in a database within the Fuseki
-              server.
-            </p>
-          <p></p>
-          <h3>Data visualization - Web API</h3>
-          <p>
-            The Web Api is the third module and the layer which exposes data to the front-end.
-          </p>
 
           <figure typeof="sa:Image">
-            <img src="./Twitter Migration Project_files/sequence_diagram.png" width="950" height="700">
+            <img src="./docs/diagrams/SequenceDiagram.png" width="950" height="700">
             <figcaption style="text-align: center">
-             Figure 2. Application sequence diagram
+             Figure 3. Application sequence diagram
             </figcaption>
           </figure>
 
-          <figure typeof="sa:Image">
-            <img src="./Twitter Migration Project_files/HorizontalScalabilityT.png" width="950" height="700">
-            <figcaption style="text-align: center">
-              Figure 3. Stream Processing Architecture
-            </figcaption>
-          </figure>
-
-          <h3>Internal data models</h3>
-            <p>
-              The Tweet is the essential entity in our application, therefore the comunication
-              between modules implies sending and receiving information about tweets and their owners.
-              All the stored data will be in the RDF/XML format, aiming to model the necessary information
-              about a tweet. For this purpose we used 4 different schemas:
-
-              </p><pre class=" language-xml"><code class=" language-xml">
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">rdf:</span>RDF</span>
-    <span class="token attr-name"><span class="token namespace">xmlns:</span>rdf</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/1999/02/22-rdf-syntax-ns#<span class="token punctuation">"</span></span>
-    <span class="token attr-name"><span class="token namespace">xmlns:</span>migration</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://xmlns.com/migration#<span class="token punctuation">"</span></span>
-    <span class="token attr-name"><span class="token namespace">xmlns:</span>location</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://xmlns.com/location#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">rdf:</span>Description</span> <span class="token attr-name"><span class="token namespace">rdf:</span>about</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://xmlns.com/migration#1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">migration:</span>date</span> <span class="token attr-name"><span class="token namespace">rdf:</span>datatype</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema#dateTime<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>2017-02-05T19:32:31.614<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">migration:</span>date</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">migration:</span>from</span> <span class="token attr-name"><span class="token namespace">rdf:</span>parseType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Resource<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">location:</span>country</span><span class="token punctuation">&gt;</span></span>Romania<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">location:</span>country</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">location:</span>longitude</span><span class="token punctuation">&gt;</span></span>27.5903865<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">location:</span>longitude</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">location:</span>latitude</span><span class="token punctuation">&gt;</span></span>47.1560806<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">location:</span>latitude</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">location:</span>city</span><span class="token punctuation">&gt;</span></span>Iasi<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">location:</span>city</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">location:</span>country_code</span><span class="token punctuation">&gt;</span></span>RO<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">location:</span>country_code</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">migration:</span>from</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">migration:</span>tweetId</span><span class="token punctuation">&gt;</span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">migration:</span>tweetId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">migration:</span>to</span> <span class="token attr-name"><span class="token namespace">rdf:</span>parseType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Resource<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">location:</span>longitude</span><span class="token punctuation">&gt;</span></span>11.559682<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">location:</span>longitude</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">location:</span>city</span><span class="token punctuation">&gt;</span></span>Munich<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">location:</span>city</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">location:</span>country</span><span class="token punctuation">&gt;</span></span>Germany<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">location:</span>country</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">location:</span>latitude</span><span class="token punctuation">&gt;</span></span>48.135582<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">location:</span>latitude</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">location:</span>country_code</span><span class="token punctuation">&gt;</span></span>DE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">location:</span>country_code</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">migration:</span>to</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">migration:</span>person</span><span class="token punctuation">&gt;</span></span>vrachieru_<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">migration:</span>person</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">rdf:</span>Description</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">rdf:</span>RDF</span><span class="token punctuation">&gt;</span></span>
-              </code></pre>
-              <figcaption style="text-align: center">
-                RDF/XML data format modelling a migration
-              </figcaption>
-
-              <pre class=" language-xml"><code class=" language-xml">
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">rdf:</span>RDF</span>
-    <span class="token attr-name"><span class="token namespace">xmlns:</span>tweet</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://xmlns.com/tweet#<span class="token punctuation">"</span></span>
-    <span class="token attr-name"><span class="token namespace">xmlns:</span>rdf</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/1999/02/22-rdf-syntax-ns#<span class="token punctuation">"</span></span>
-    <span class="token attr-name"><span class="token namespace">xmlns:</span>location</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://xmlns.com/location#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">rdf:</span>Description</span> <span class="token attr-name"><span class="token namespace">rdf:</span>about</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://xmlns.com/tweet#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">tweet:</span>author</span><span class="token punctuation">&gt;</span></span>vrachieru_<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">tweet:</span>author</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">tweet:</span>location</span> <span class="token attr-name"><span class="token namespace">rdf:</span>parseType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Resource<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">location:</span>latitude</span><span class="token punctuation">&gt;</span></span>47.1560806<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">location:</span>latitude</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">location:</span>longitude</span><span class="token punctuation">&gt;</span></span>27.5903865<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">location:</span>longitude</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">tweet:</span>location</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">tweet:</span>text</span><span class="token punctuation">&gt;</span></span>Goodbye Earth! I'm moving to Mars!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">tweet:</span>text</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">tweet:</span>date</span> <span class="token attr-name"><span class="token namespace">rdf:</span>datatype</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema#dateTime<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Sun Feb 05 13:48:08 EET 2017<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">tweet:</span>date</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">tweet:</span>language</span><span class="token punctuation">&gt;</span></span>en<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">tweet:</span>language</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">tweet:</span>id</span><span class="token punctuation">&gt;</span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">tweet:</span>id</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">rdf:</span>Description</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">rdf:</span>RDF</span><span class="token punctuation">&gt;</span></span>
-              </code></pre>
-              <figcaption style="text-align: center">
-                RDF/XML data format modelling a tweet
-              </figcaption>
-
-              <pre class=" language-xml"><code class=" language-xml">
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">rdf:</span>RDF</span> <span class="token attr-name"><span class="token namespace">xmlns:</span>rdf</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/1999/02/22-rdf-syntax-ns#<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>foaf</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://xmlns.com/foaf/0.1#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">rdf:</span>Description</span> <span class="token attr-name"><span class="token namespace">rdf:</span>about</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://xmlns.com/foaf/0.1#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">foaf:</span>email</span> <span class="token attr-name"><span class="token namespace">rdf:</span>datatype</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema#string<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>https://github.com/vrachieru<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">foaf:</span>website</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">foaf:</span>description</span> <span class="token attr-name"><span class="token namespace">rdf:</span>datatype</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema#string<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>developer<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">foaf:</span>description</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">foaf:</span>location</span> <span class="token attr-name"><span class="token namespace">rdf:</span>datatype</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema#string<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Iasi, Romania<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">foaf:</span>location</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">foaf:</span>birthday</span> <span class="token attr-name"><span class="token namespace">rdf:</span>datatype</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema#date<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>16-01-1991<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">foaf:</span>birthday</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">foaf:</span>fullname</span> <span class="token attr-name"><span class="token namespace">rdf:</span>datatype</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema#string<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Victor Rachieru<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">foaf:</span>fullname</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">foaf:</span>accountName</span><span class="token punctuation">&gt;</span></span>vrachieru_<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">foaf:</span>accountName</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">rdf:</span>Description</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">rdf:</span>RDF</span><span class="token punctuation">&gt;</span></span>
-              </code></pre>
-              <figcaption style="text-align: center">
-                RDF/XML data format modelling a person using FOAF
-              </figcaption>
-
-              <pre class=" language-xml"><code class=" language-xml">
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">rdf:</span>RDF</span> <span class="token attr-name"><span class="token namespace">xmlns:</span>rdf</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/1999/02/22-rdf-syntax-ns#<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>location</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://xmlns.com/location#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">rdf:</span>Description</span> <span class="token attr-name"><span class="token namespace">rdf:</span>about</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://xmlns.com/location#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">location:</span>longitude</span> <span class="token attr-name"><span class="token namespace">rdf:</span>datatype</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema#double<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>27.5903865<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">location:</span>longitude</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">location:</span>latitude</span> <span class="token attr-name"><span class="token namespace">rdf:</span>datatype</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema#double<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>47.1560806<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">location:</span>latitude</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">location:</span>country</span> <span class="token attr-name"><span class="token namespace">rdf:</span>datatype</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema#string<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Romania<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">location:</span>country</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">location:</span>city</span> <span class="token attr-name"><span class="token namespace">rdf:</span>datatype</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema#string<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Iasi<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">location:</span>city</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">location:</span>name</span> <span class="token attr-name"><span class="token namespace">rdf:</span>datatype</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema#string<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Iasi, Romania<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">location:</span>name</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">location:</span>country_code</span> <span class="token attr-name"><span class="token namespace">rdf:</span>datatype</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema#string<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>RO<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">location:</span>country_code</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">rdf:</span>Description</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">rdf:</span>RDF</span><span class="token punctuation">&gt;</span></span>
-              </code></pre>
-              <figcaption style="text-align: center">
-                RDF/XML data format modelling a location
-              </figcaption>
-
-            <p>We store our tweets data using <a href="https://jena.apache.org/documentation/fuseki2/">Apache Jena Fuseki</a>
-                which is a SPARQL server. It provides REST-style SPARQL Query, and SPARQL Update using the SPARQL protocol over HTTP.
-            </p>
-            <p>
-                We use it to store RDF triples and to retrieve information using SPARQL queries.
-                An example of a SPARQL query used to select information about a migration, who wants to migrate and what contains the
-                tweet posted, is shown below:
-              </p>
-
-              <pre class=" language-sql"><code class=" language-sql">
-PREFIX foaf: &lt;http://xmlns.com/foaf/0.1#&gt;
-PREFIX location: &lt;http://xmlns.com/location#&gt;
-PREFIX migration: &lt;http://xmlns.com/migration#&gt;
-PREFIX tweet: &lt;http://xmlns.com/tweet#&gt;
-PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
-SELECT DISTINCT ?migration ?lat_from ?long_from ?country_from ?country_code_from ?city_from ?date ?lat_to ?long_to
-?country_to ?city_to ?country_code_to ?lat_from ?tweet_id ?tweet_text ?tweet_language ?person_account ?person_name
-WHERE {
-  ?migration     migration:from ?location_from.
-  ?location_from location:latitude ?lat_from.
-
-  ?location_from  location:longitude ?long_from.
-  OPTIONAL { ?location_from  location:country ?country_from}.
-  OPTIONAL { ?location_from  location:city ?city_from } .
-  OPTIONAL { ?location_from  location:country_code ?country_code_from. }
-
-  ?migration     migration:to ?location_to.
-  ?location_to   location:latitude ?lat_to;
-  location:longitude ?long_to.
-          OPTIONAL { ?location_to  location:country ?country_to. }
-          OPTIONAL { ?location_to    location:city ?city_to . }
-          OPTIONAL { ?location_to  location:country_code ?country_code_to. }
-
-  ?migration     migration:date ?date;
-                 migration:person ?person_account .
-
-  ?migration     migration:tweetId ?tweet_id.
-  ?tweet         tweet:id ?tweet_id;
-                 tweet:text ?tweet_text.
-      OPTIONAL { ?tweet tweet:language ?tweet_language . }
-  ?foaf          foaf:accountName ?person_account;
-                 foaf:name ?person_name.
-FILTER( ?date&lt;="2020-02-09T21:42:15"^^xsd:dateTime &amp;&amp; ?date &gt;="1994-03-28T00:00:00"^^xsd:dateTime)
-}
-
-              </code></pre>
-              <figcaption style="text-align: center">
-                SPARQL query extracting relevant data about a migration
-              </figcaption>
-
-            <pre class=" language-sql"><code class=" language-sql">
-PREFIX location: &lt;http://xmlns.com/location#&gt;
-PREFIX migration: &lt;http://xmlns.com/migration#&gt;
-PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
-SELECT (?country_from AS ?Country) ( COUNT(?country_from) AS ?Count)
-WHERE {
-?migration     migration:from   ?location_from.
-?migration     migration:date ?date.
-?location_from  location:country ?country_from.
-FILTER( ?date&lt;="2017-02-09T21:42:15"^^xsd:dateTime &amp;&amp; ?date &gt;="1994-03-28T00:00:00"^^xsd:dateTime)
-}
-GROUP BY ?country_from
-ORDER BY DESC(?Count)
-            </code></pre>
-            <figcaption style="text-align: center">
-              SPARQL query extracting how many migrations occured FROM different countries in a specified period
-            </figcaption>
-          <p></p>
-        
-        <pre class=" language-sql"><code class=" language-sql">
-PREFIX location: &lt;http://xmlns.com/location#&gt;
-PREFIX migration: &lt;http://xmlns.com/migration#&gt;
-PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
-SELECT (?country_to AS ?CountryTo)( COUNT(?country_to) AS ?Count)
-WHERE {
-?migration    migration:to     ?location_to.
-?location_to  location:country ?country_to.
-?migration    migration:date ?date;
-FILTER( ?date&lt;="2019-02-09T21:42:15"^^xsd:dateTime &amp;&amp; ?date &gt;="1994-03-28T00:00:00"^^xsd:dateTime)
-}
-GROUP BY ?country_to
-ORDER BY DESC(?Count)
-        </code></pre>
-        <figcaption style="text-align: center">
-          SPARQL query extracting how many migrations occured TO different countries in a specified period of time
-        </figcaption>
-      <p></p>
-          <p> In order to represent the data, we used known vocabularies in addition to our vocabulary created for this application.
-          Below we represent the ontology we use. </p>
-          <figure typeof="sa:Image">
-            <img src="./Twitter Migration Project_files/tweet_ontology.jpg" width="950" height="700">
-            <figcaption style="text-align: center">
-               Tweet Migration Tool Ontology
-            </figcaption>
-          </figure>
-
-
-          <h2>REST api</h2>
-
+          <h2>Data visualization</h2>
           <p>
-            The UI communicates with the backend via websocket for the live stream and REST for the information heavy operations, such as the historical view.<br>
-            Such an endpoint converts the Apache Jena format into a UI friendly format, json.
+            All of the data which have been collected and processed will be renderend on a world map with the help of 
+            <a href="https://developers.google.com/maps/">Google Maps API</a>. The vizualization of migration of the birds will be shown in timeframes, for every day the application will display the location where the birds we're spoted, and as such over the course of several weeks, the application will be able to show the birds migration. The website will also display information about the birds that we're spotted, like the species , number of birds that we're spotted in a location and a small description of the species.
           </p>
 
+
+          <figure typeof="sa:Image">
+            <img src="./Twitter Migration Project_files/worldMap.png" width="950" height="700">
+            <figcaption style="text-align: center">Figure 4. Birds that we're spotted</figcaption>
+          </figure>
+
+          <figure typeof="sa:Image">
+            <img src="./Twitter Migration Project_files/descriptionSpecies.png" width="950" height="700">
+            <figcaption style="text-align: center">Figure 5. Species Information</figcaption>
+          </figure>
+
+
+
+
+        <section typeof="sa:Open Api" id="openApi">
+          <h2>Open API</h2>
           <p>
-            Several endoints such as this exist.<br>
-            They all are POST methods with one exception, the endpoint which retrieves all the migrations from within the detabase.
-            For example:
-            </p><ul>
-              <li>
-                /tweets
-                <ul>
-                  <li>/getAll</li>
-                  <li>/getFrom/{date}</li>
-                  <li>/getBetween/{startDate}/{endDate}</li>
-                </ul>
-              </li>
-              <li>
-                /stats
-                <ul>
-                  <li>/getCountriesToBetween/{startDate}/{endDate}</li>
-                  <li>/getCountriesFromBetween/{startDate}/{endDate}</li>
-                </ul>
-              </li>
+            The application will provide an REST API which can be used to access the data collected by the aplication.  The API will define a set of functions which will offer information about the data, from where has been collected, statistics about the data and the data itself.  Developers can perform requests and receive responses via HTTP protocol such as GET and POST. The responses will be in JSON format.
+          </p>
+          <p>
+            All the endpoints of the API will require GET methods to be accessed. Some example of these endpoints: 
+          </p>
+          <ul>
+            <li>/tweets</li>
+            <ul>
+              <li>/all – returns all the tweets stored by the application;</li>
+              <li>/date/from/{date} – returns all the tweets from the respective date stored by the application;</li>
+              <li>/date/between?{startDate}&{endDate} – returns all the tweets from the time interval stored by the application;</li>
             </ul>
-          <p></p>
+            <li>/data</li>
+              <ul>
+                <li>/obs /recent – returns the data collected by the application in the last  seven days;</li>
+                <li>/obs/location/?{lat}&{lng}&{range}– returns all the data collected by the application at the specified location and in the range specified (km) ;</li>
+                <li>/obs/date?{datetime} – returns the data collected by the application on the specified date;</li>
+                <li>/obs/date?{startDate}&{endDate} – returns the data collected by the application between the specified interval;</li>
+                <li>/obs/bird?{commonName} – return the data about the birds specified by the ‘commonName’ argument;</li>
+              </ul>
+            <li>/stats</li>
+            <ul>
+              <li>/birds/ count?{commonName} – returns all the number of data about the birds with the specfied name;</li>
+              <li>/location?{lat}&{lng} – returns a json with the information about the birds that have spotted at the location within 50 km, like the total number of birds spotted, the composition of the migration, etc; </li>
+            </ul>
+          </ul>
+        </section>
 
           <p>
-            The representation of a tweet in json format does not differ much from the one in RDF as can be seen below:
+            The representation of the data coming from the Open API:
           </p>
           <pre class=" language-json"><code class=" language-json">
 {
-    "destination": {
-        "city": "Marrakesh-Safi",
-        "country": "Morocco",
-        "country_code": "MA",
-        "latitude": 31.791702,
-        "longitude": -7.092619999999999
-    },
-    "name": "Kimi Henze",
-    "source": {
-        "city": "Northern Province",
-        "country": "Sierra Leone",
-        "country_code": "SL",
-        "latitude": 8.460555,
-        "longitude": -11.779889
-    },
-    "timestamp": 1486949171561,
-    "tweet": "I am going to visit Morocco",
-    "username": "KHenze"
+  lng: -76.5190244,
+  locName: "Hog Hole (Allan H. Treman State Marine Park)",
+  howMany: 2,
+  sciName: "Corvus brachyrhynchos",
+  obsValid: true,
+  locationPrivate: false,
+  obsDt: "2017-11-25 13:42",
+  obsReviewed: false,
+  comName: "American Crow",
+  lat: 42.4618954,
+  locID: "L99382"
 }
           </code></pre>
 
-
-          <p>
-            Statistical entries are simply countries with their count information attached.
-          </p>
-          <pre class=" language-json"><code class=" language-json">
-{
-  "country": "Morocco",
-  "count": 13
-}
           </code></pre>
-          <h3>External data sources</h3>
+          <h2>External data sources</h2>
             <p>
               <b><a href="https://dev.twitter.com/streaming/public">Twitter Public Streaming API</a></b><br>
                The following streams offer samples of the public data flowing through Twitter.
@@ -554,36 +304,10 @@ ORDER BY DESC(?Count)
             </p>
             <p>
 
-               <b><a href="http://xmlns.com/foaf/spec/">FOAF</a></b><br>
-             Used to describe information about an Twitter user.
-
-              </p><pre class=" language-sql"><code class=" language-sql">
-PREFIX tweet: &lt;http://xmlns.com/tweet#&gt;
-PREFIX location: &lt;http://xmlns.com/location#&gt;
-PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
-
-SELECT DISTINCT ?person ?name ?accountName ?description ?email  ?location
-WHERE {
-               ?person foaf:name ?name.
-               ?person foaf:account ?account.
-               ?account foaf:onlineAccount ?online_account.
-               ?online_account foaf:accountName ?accountName.
-    OPTIONAL { ?person foaf:description ?description. }
-    OPTIONAL { ?person foaf:email ?email. }
-    OPTIONAL { ?person foaf:location ?location. }
-}
-              </code></pre>
-              <figcaption style="text-align: center">
-                SPARQL query which displays data about all the people in the database.
-              </figcaption>
-            <p></p>
             <h2>Conclusion</h2>
-            <p>We designed and developed a real-time application for Twitter data analysis.
-               Using Apache Kafka as a message bus for connecting microservices makes designing
-                a scalable and robust architecture for processing Twitter streams simple. </p>
+            <p>TO DO </p>
             <h2>References</h2>
             <p>
-           <a href="http://nlp.stanford.edu/">Stanford NLP </a> - by The Stanford Natural Language Processing Group
          </p>
     <footer>
 
