@@ -22,11 +22,6 @@ public class MapRepositoryBean implements MapRepository {
 
 	@Inject
 	private EbirdsServiceClient ebirdsService;
-<<<<<<< HEAD
-	
-//	@Inject
-//	private TwitterDAO twitterDAO;
-=======
 
 	@Inject
 	private TwitterDAO twitterDAO;
