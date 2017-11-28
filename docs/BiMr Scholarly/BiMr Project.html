@@ -134,7 +134,7 @@
         <h2>Our proposal</h2>
         <p>
           Our proposal is meant to offer a scalable solution of obtaining and analysing tweets in real time and data feed from eBird API, concerning the aforementioned topic. 
-          For this, we have developed our application by adapting the following architecture: 
+          For this, we will develope our application by adapting the following architecture: 
 
           <figure typeof="sa:Image">
             <img src="./BiMr Project_files/x-frame-architecture.png" width="1050" height="800">
@@ -159,11 +159,13 @@
           <p>
           </p><h2>Data collector</h2>
           <p>
-               A module which collects data from <a href="https://dev.twitter.com/streaming/public">Twitter Public Streaming API</a> and the <a href="https://confluence.cornell.edu/display/CLOISAPI/eBird+API+1.1">eBird</a>. For the twitter data we will be using <a href="http://twitter4j.org/">twitter4j</a>, Java library to get tweets from twitter.
-               Twitter credentials are required for twitter4j to be able to pull tweets. We get these credentials by creating <a href="https://apps.twitter.com/app/new">a new app</a>
+               First of all we need to have a contiously stream of data provided by Twitter and eBirds.
+               A module which collects data from <a href="https://dev.twitter.com/streaming/public">Twitter Public Streaming API</a> and the <a href="https://confluence.cornell.edu/display/CLOISAPI/eBird+API+1.1">eBird</a> will be implemented. For the twitter data we will be using <a href="http://twitter4j.org/">twitter4j</a>, Java library to get tweets from <a href="https://twitter.com/">Twitter</a>.
+               <a href="https://twitter.com/">Twitter</a> credentials are required for twitter4j to be able to pull tweets. We get these credentials by creating <a href="https://apps.twitter.com/app/new">a new app</a>
                on twitter. By all means, this does not require the user to provide his actual credentials but for each created application, Twitter provides secrets to serve in
                authenticating via <a href="https://oauth.net/">OAuth</a>.<br>
-               For the eBird data we will be making calls every 24 hours to the API and will collect all the new data that appeared in last 24 hours. EBirds api does not require any kind of authentification or key and can be use at anytime.
+               A Job Scheduler will make calls every 24 hours to the <a href="https://confluence.cornell.edu/display/CLOISAPI/eBird+API+1.1">eBird API</a>  and will collect all the new data. <a href="https://confluence.cornell.edu/display/CLOISAPI/eBird+API+1.1">eBird API</a> api does not require any kind of authentification or key and can be use at anytime.
+               For <a href="https://twitter.com/">Twitter</a> the Job Scheduler will make calls at every 15 minutes (it is a constraint from <a href="https://twitter.com/">Twitter</a>).
           </p>
 
           <figure typeof="sa:Image">
@@ -173,16 +175,21 @@
             </figcaption>
           </figure>
 
-         <h2>Data Persistance</h2>
-          <p>
-            All of the data collected will be stored in a <a href="https://www.mysql.com/">MySql</a> Database and in <a href="https://en.wikipedia.org/wiki/RDFa">RDFa</a> files. The same model of data will be used for the information coming from twitter as well as the information coming from eBird.
-          </p>
-         
-
           <h2>Data processing</h2>
           <p>
-            Now that we have a continously fresh stream of data we can filter and process tweets. We keep only tweets which are in english, have the right hastTag (eg: #birdMigration, #birds, etc) and come with a place or a specified location. Then we analyse each tweet's content using Stanford NLP's TokensRegex framework, defining different patterns over text, patterns which match with the description of a bird or several birds.
-            For determination of the migration of the birds, we will be monitoring the location of given species, and if over the course of several days, the location keeps changing in one direction (eg. south, south-west) and if the distance between the locations isn't greater than distance the respective species can travel in one day, then we will asume that those birds are migrating.
+            
+            Now that we have a continously fresh stream of data we can filter and process tweets. We keep only tweets which have the right hasttag (eg: #birdMigration, #birds, #birdsmig, etc) and come with a place or a specified location. 
+            Nowadays the users deactivate their localisation service of their phones and the tweets that have the location included are very few.
+            Also, the tweet must to include the common name or the scientific name of the birds species.
+            To filter the tweets that meets this criterias we will analyse each tweet's content using <a href="https://nlp.stanford.edu/">Stanford NLP</a> TokensRegex framework, defining different patterns over text, patterns which match with the description of a location/bird.
+            In the case of data provided by the <a href="https://confluence.cornell.edu/display/CLOISAPI/eBird+API+1.1">eBird API</a> the things are way simpler because the API provides all information needed by our application.
+          </p>
+
+          <h2>Data Persistance</h2>
+          <p>
+            All of the data collected will be filtered by the necessities of our application and 
+            the resulted  will be stored in in <a href="https://en.wikipedia.org/wiki/RDFa">RDFa</a> format.
+            The same model of data will be used for the information coming from twitter as well as the information coming from eBird.
           </p>
 
 
@@ -196,7 +203,8 @@
           <h2>Data visualization</h2>
           <p>
             All of the data which have been collected and processed will be renderend on a world map with the help of 
-            <a href="https://developers.google.com/maps/">Google Maps API</a>. The vizualization of migration of the birds will be shown in timeframes, for every day the application will display the location where the birds we're spoted, and as such over the course of several weeks, the application will be able to show the birds migration. The website will also display information about the birds that we're spotted, like the species , number of birds that we're spotted in a location and a small description of the species.
+            <a href="https://developers.google.com/maps/">Google Maps API</a>. The vizualization of migration of the birds will be shown in timeframes, for every day the application will display the location where the birds we're spoted, and as such over the course of several weeks, the application will be able to show the birds migration in an animated manner. The website will also display information about the birds that we're spotted, like the species, number of birds that we're spotted in a location and a small description of the species with picture.
+            The flocks of birds will be clusterized by region. When the user will zoom in, the bigger cluster will be divided in multiple smaller clusters. 
           </p>
 
           <p>Also, as a part of the visualization module, we are going to create some statistics over time, after collecting amounts of data.
