@@ -17,3 +17,12 @@ CREATE TABLE twitter_user (
 	location varchar(50),
 	url varchar(50)
 );
+
+CREATE TABLE ebird_data (
+	id int,
+	user varchar(50),
+	common_name varchar(50),
+	latitude varchar(50),
+	longitute varchar(50),
+	observation_date date
+);

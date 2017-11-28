@@ -26,27 +26,19 @@ public class MapBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		mapModel = new MapModel();
-		retrieveTweetsFromDB();
-//		retrieveTweetsFromApi();
-//		retrieveEbirdApiData();
+		mapFacade.twitterApiCallScheduler();
+		mapModel.setTweets(mapFacade.retrieveTweetsFromDB());
+		retrieveEbirdApiData();
 	}
 
-	public void retrieveTweetsFromDB() {
-		mapModel.setTweets(mapFacade.retrieveTweetsFromDB());
+	public TwitterRequestDTO generateRequest() {
+		return new TwitterRequestDTO(GeneralConstants.TWITTER_BIRDMIGRATION);
 	}
 
 	public void retrieveEbirdApiData() {
 		EBirdRequestDTO request = new EBirdRequestDTO();
 		request.setRequestUriPattern(GeneralConstants.EBIRDS_API_REQUEST_URI);
 		mapModel.setEbirdData(mapFacade.retrieveEBirdData(request).getEbirdData());
-	}
-
-	public void retrieveTweetsFromApi() {
-		mapFacade.retrieveTweetsFromApi(generateRequest());
-	}
-
-	public TwitterRequestDTO generateRequest() {
-		return new TwitterRequestDTO(GeneralConstants.TWITTER_BIRDMIGRATION);
 	}
 
 	public MapModel getMapModel() {

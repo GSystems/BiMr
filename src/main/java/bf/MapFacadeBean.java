@@ -15,12 +15,11 @@ import main.java.bfcl.dto.TweetDTO;
 import main.java.bfcl.dto.TwitterRequestDTO;
 import main.java.bfcl.dto.TwitterResponseDTO;
 import main.java.df.MapRepository;
+import main.java.util.GeneralConstants;
 
 @Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class MapFacadeBean implements MapFacade {
-
-//	private static final Logger LOGGER = Logger.getLogger(MapFacadeBean.class.getName());
 
 	@Inject
 	private MapRepository repo;
@@ -29,11 +28,18 @@ public class MapFacadeBean implements MapFacade {
 	public void retrieveTweetsFromApi(TwitterRequestDTO request) {
 		TwitterResponseDTO response = MapTransformer
 				.fromTwitterResponseToDTO(repo.retrieveTweets(MapTransformer.twitterRequestFromDTO(request)));
-		persistTweets(response.getTweets());
+		if (!response.getTweets().isEmpty()) {
+			persistTweets(response.getTweets());
+		}
 	}
 
 	private void persistTweets(List<TweetDTO> tweets) {
 		repo.insertTweets(MapTransformer.toTweetsFromDTO(tweets));
+	}
+
+	@Override
+	public List<TweetDTO> retrieveTweetsFromDB() {
+		return MapTransformer.fromTweetsToDTO(repo.retrieveTweetsFromDB());
 	}
 
 	@Override
@@ -43,8 +49,24 @@ public class MapFacadeBean implements MapFacade {
 	}
 
 	@Override
-	public List<TweetDTO> retrieveTweetsFromDB() {
-		return MapTransformer.fromTweetsToDTO(repo.retrieveTweetsFromDB());
+	public void twitterApiCallScheduler() {
+		Thread thread = new TwitterApiCall();
+		thread.start();
 	}
 
+	class TwitterApiCall extends Thread {
+		@Override
+		public void run() {
+			while (true) {
+				TwitterRequestDTO request = new TwitterRequestDTO(GeneralConstants.TWITTER_BIRDMIGRATION);
+				retrieveTweetsFromApi(request);
+				try {
+					Thread.sleep(1000 * 60 * 15l);
+				} catch (InterruptedException e) {
+					// Restore interrupted state
+					Thread.currentThread().interrupt();
+				}
+			}
+		}
+	}
 }
