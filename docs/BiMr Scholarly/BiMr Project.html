@@ -2,9 +2,9 @@
 <html lang="en-GB"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width">
     <title>BiMr - Bird Migration Tool</title>
-    <link rel="stylesheet" href="./Twitter Migration Project_files/scholarly.css">
-    <link rel="stylesheet" href="./Twitter Migration Project_files/prism-coy.css">
-    <script src="./Twitter Migration Project_files/prism.js.descărcare" defer=""></script>
+    <link rel="stylesheet" href="./BiMr Project_files/scholarly.css">
+    <link rel="stylesheet" href="./BiMr Project_files/prism-coy.css">
+    <script src="./BiMr Project_files/prism.js.descărcare" defer=""></script>
   </head>
   <body prefix="schema: http://schema.org/ xsd: http://www.w3.org/2001/XMLSchema# sa: https://ns.science.ai/">
     <header>
@@ -12,7 +12,7 @@
       <p class="subtitle">Scholarly Html Technical Report </p>
     </header>
     <article id="what" typeof="schema:ScholarlyArticle" resource="#">
-      <h1><img src="./Twitter Migration Project_files/bird.png" style="width:35px;height:25px; margin-right:15px; margin-top:10px">BiMr - Bird Migration Tool</h1>
+      <h1><img src="./BiMr Project_files/bird.png" style="width:35px;height:25px; margin-right:15px; margin-top:10px">BiMr - Bird Migration Tool</h1>
       <section>
         <ol>
           <li property="schema:author" typeof="sa:ContributorRole">
@@ -83,7 +83,7 @@
           so people will know where the author was located when he posted the tweet.
         </p> 
         <p>
-          <a href="https://confluence.cornell.edu/display/CLOISAPI/eBird+API+1.1">eBirds API 1.1</a> is a public API created by 
+          <a href="https://confluence.cornell.edu/display/CLOISAPI/eBird+API+1.1">eBird API 1.1</a> is a public API created by 
           <a href="https://en.wikipedia.org/wiki/Cornell_University">Cornell University</a>, a private and statutory Ivy League research
           university located in Ithaca, New York. For our particular application, it provides a real-time updated data feed concerning
             bird migration phenomena. For example, it can offer show pieces of information such as hotspot sightings summaries,
@@ -110,9 +110,11 @@
                 <li><a href="http://wildfly.org/">WildFly</a> , formerly known as JBoss AS, or simply JBoss, is an application server authored by JBoss, now developed by Red Hat. WildFly is written in Java, and implements the Java Platform, Enterprise Edition (Java EE) specification. It runs on multiple platforms.</li>
                 <li><a href="https://developers.google.com/maps/documentation/geolocation/intro">
     The Google Maps Geolocation API</a> - converts human fiendly location information (address) to GPS coordinates.</li>
-                <li><a href="https://confluence.cornell.edu/display/CLOISAPI/eBird+API+1.1">eBirds API</a>, the public API created by Cornell University, that provides real-time data feed about migratory birds.</li>
-                <li><a href="https://www.mysql.com/">MySQL</a>, an open-source relational database management system (RDBMS).</li>
+                <li><a href="https://confluence.cornell.edu/display/CLOISAPI/eBird+API+1.1">eBird API</a>, the public API created by Cornell University, that provides real-time data feed about migratory birds.</li>
+                <li><a href="https://www.w3.org/RDF/">RDF</a> is a standard model for data interchange on the Web. RDF has features that facilitate data merging even if the underlying schemas differ, and it specifically supports the evolution of schemas over time without requiring all the data consumers to be changed.</li>
+                <li><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gijsz.html">Enterprise JavaBeans (EJB)</a> is one of several Java APIs for modular construction of enterprise software. EJB is a server-side software component that encapsulates business logic of an application. The EJB specification is a subset of the Java EE specification.</li>
                 <li><a href="http://hibernate.org/">Hibernate ORM</a>, an object-relational mapping tool for the Java programming language. It provides a framework for mapping an object-oriented domain model to a relational database.</li>
+                <li><a href="https://nlp.stanford.edu/">Stanford NLP</a> is a team of faculty, postdocs, programmers and students who work together on algorithms that allow computers to process and understand human languages, by covering areas such as sentence understanding, automatic question answering, machine translation, syntactic parsing and tagging, sentiment analysis, and models of text and visual scenes, as well as applications of natural language processing to the digital humanities and computational social sciences. </li>
               </ul>
             </li>
             <li>
@@ -121,6 +123,7 @@
                 <li><a href="http://www.w3schools.com/js/">JavaScript</a> - a full-fledged dynamic programming language that, when applied to an HTML document, can provide dynamic interactivity on websites.</li>
                 <li><a href="https://developer.mozilla.org/en/docs/Web/Guide/HTML/HTML5">HTML5</a> - the latest evolution of the standard that defines HTML.</li>
                 <li><a href="https://www.w3.org/Style/CSS/Overview.en.html">CSS</a> - a simple mechanism for adding style (e.g., fonts, colors, spacing) to Web documents.</li>
+                <li><a href="http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html">JavaServer Faces (JSF)</a> is a Java specification for building component-based user interfaces for web applications and was formalized as a standard through the Java Community Process being part of the Java Platform, Enterprise Edition. It is also a MVC web framework that simplifies construction of user interfaces (UI) for server-based applications by using reusable UI components in a page.</li>
                 <li><a href="https://www.primefaces.org/">PrimeFaces</a>, an open source user interface (UI) component library for JavaServer Faces (JSF) based applications, created by PrimeTek,Turkey.</li>
               </ul>
             </li>
@@ -131,11 +134,11 @@
         </p>
         <h2>Our proposal</h2>
         <p>
-          Our proposal is meant to offer a scalable solution of obtaining and analysing tweets in real time and data feed from eBirds API, concerning the aforementioned topic. 
+          Our proposal is meant to offer a scalable solution of obtaining and analysing tweets in real time and data feed from eBird API, concerning the aforementioned topic. 
           For this, we have developed our application by adapting the following architecture: 
 
           <figure typeof="sa:Image">
-            <img src="./docs/Diagrams/x-frame-architecture.png" width="1050" height="800">
+            <img src="./BiMr Project_files/x-frame-architecture.png" width="1050" height="800">
             <figcaption style="text-align: center">
               Figure 1. Architecture model
             </figcaption>
@@ -149,7 +152,7 @@
             After studying the architecture shown above, we have come up with the following four main components of our application:
           </p>
           <figure typeof="sa:Image">
-            <img src="./docs/Diagrams/Deployment Diagram.png" width="950" height="700">
+            <img src="./BiMr Project_files/Deployment Diagram.png" width="950" height="700">
             <figcaption style="text-align: center">
               Figure 2. Communication between modules
             </figcaption>
@@ -157,15 +160,15 @@
           <p>
           </p><h2>Data collector</h2>
           <p>
-               A module which collects data from <a href="https://dev.twitter.com/streaming/public">Twitter Public Streaming API</a> and the <a href="https://confluence.cornell.edu/display/CLOISAPI/eBird+API+1.1">eBirds</a>. For the twitter data we will be using <a href="http://twitter4j.org/">twitter4j</a>, Java library to get tweets from twitter.
+               A module which collects data from <a href="https://dev.twitter.com/streaming/public">Twitter Public Streaming API</a> and the <a href="https://confluence.cornell.edu/display/CLOISAPI/eBird+API+1.1">eBird</a>. For the twitter data we will be using <a href="http://twitter4j.org/">twitter4j</a>, Java library to get tweets from twitter.
                Twitter credentials are required for twitter4j to be able to pull tweets. We get these credentials by creating <a href="https://apps.twitter.com/app/new">a new app</a>
                on twitter. By all means, this does not require the user to provide his actual credentials but for each created application, Twitter provides secrets to serve in
                authenticating via <a href="https://oauth.net/">OAuth</a>.<br>
-               For the eBirds data we will be making calls every 24 hours to the API and will collect all the new data that appeared in last 24 hours. EBirds api does not require any kind of authentification or key and can be use at anytime.
+               For the eBird data we will be making calls every 24 hours to the API and will collect all the new data that appeared in last 24 hours. EBirds api does not require any kind of authentification or key and can be use at anytime.
           </p>
 
           <figure typeof="sa:Image">
-            <img src="./docs/bpmn.svg" width="950" height="700">
+            <img src="./BiMr Project_files/bpmn.svg" width="950" height="700">
             <figcaption style="text-align: center">
               Figure 3. Class Diagram
             </figcaption>
@@ -173,7 +176,7 @@
 
          <h2>Data Persistance</h2>
           <p>
-            All of the data collected will be stored in a <a href="https://www.mysql.com/">MySql</a> Database and in <a href="https://en.wikipedia.org/wiki/RDFa">RDFa</a> files. The same model of data will be used for the information coming from twitter as well as the information coming from eBirds.
+            All of the data collected will be stored in a <a href="https://www.mysql.com/">MySql</a> Database and in <a href="https://en.wikipedia.org/wiki/RDFa">RDFa</a> files. The same model of data will be used for the information coming from twitter as well as the information coming from eBird.
           </p>
          
 
@@ -185,7 +188,7 @@
 
 
           <figure typeof="sa:Image">
-            <img src="./docs/diagrams/SequenceDiagram.png" width="950" height="700">
+            <img src="./BiMr Project_files/SequenceDiagram.png" width="950" height="700">
             <figcaption style="text-align: center">
              Figure 4. Application sequence diagram
             </figcaption>
@@ -199,12 +202,12 @@
 
 
           <figure typeof="sa:Image">
-            <img src="./Twitter Migration Project_files/worldMap.png" width="950" height="700">
+            <img src="./BiMr Project_files/worldMap.png" width="950" height="700">
             <figcaption style="text-align: center">Figure 5. Birds that we're spotted</figcaption>
           </figure>
 
           <figure typeof="sa:Image">
-            <img src="./Twitter Migration Project_files/descriptionSpecies.png" width="950" height="700">
+            <img src="./BiMr Project_files/descriptionSpecies.png" width="950" height="700">
             <figcaption style="text-align: center">Figure 6. Species Information</figcaption>
           </figure>
 
@@ -310,9 +313,20 @@
 
 
             <h2>Conclusion</h2>
-            <p>The application will provide a real-time migration map of different species of birds across the globe with the help of live data in the form of tweets from twitter and also from stable data coming from the eBirds API for people who love birds or who have a hooby in spotting birds or those of whom just have curiosity about the birds migration. </p>
-            <p>
-         </p>
+            <p>The application will provide a real-time migration map of different species of birds across the globe with the help of live data in the form of tweets from twitter and also from stable data coming from the eBird API for people who love birds or who have a hooby in spotting birds or those of whom just have curiosity about the birds migration. </p>
+            <h2>References</h2>
+            <ul>
+              <li><a href="https://twitter.com/">Twitter</a> - social media for tweets concerning the bird migration</li>  
+              <li><a href="https://confluence.cornell.edu/display/CLOISAPI/eBird+API+1.1">eBird API</a> - public data feed specific for our project's needs</li>
+              <li><a href="http://twitter4j.org/">Twitter4J</a> - tool for grabbing tweets</li>
+              <li><a href="http://wildfly.org/">WildFly</a> - application server</li>
+              <li><a href="https://developers.google.com/maps/documentation/geolocation/intro">The Google Maps Geolocation API</a> - converts human fiendly location information (address) to GPS coordinates</li>
+              <li><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gijsz.html">Enterprise JavaBeans (EJB)</a> - encapsulates business logic</li>
+              <li><a href="http://hibernate.org/">Hibernate ORM</a> - object-relational mapping tool</li>
+              <li><a href="https://nlp.stanford.edu/">Stanford NLP</a> - by The Stanford Natural Language Processing Group</li>
+              <li><a href="http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html">JavaServer Faces (JSF)</a> - for building component-based user interfaces</li>
+              <li><a href="https://www.primefaces.org/">PrimeFaces</a> - component library for JavaServer Faces (JSF) based applications</li>
+            </ul>
     <footer>
 
     </footer>
