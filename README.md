@@ -7,9 +7,13 @@ Project overview (Scholarly HTML Document): https://gsystems.github.io/BiMr_Scho
 Open API Specification (Swagger UI): https://gsystems.github.io/Open_Api/dist/index.html
 
 Members:
+
 	Enache Rares - rares.enache@info.uaic.ro
+
 	Foca Razvan - razvan.andrei94@gmail.com
+
 	Gilca Iulian - gilca.iulian.nicolae@info.uaic.ro
 
 Coordinator:
+
 	Dr. Buraga Sabin - busaco@info.uaic.ro
