@@ -1,5 +1,6 @@
 package main.java.bf;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -15,7 +16,6 @@ import main.java.bfcl.dto.TweetDTO;
 import main.java.bfcl.dto.TwitterRequestDTO;
 import main.java.bfcl.dto.TwitterResponseDTO;
 import main.java.df.MapRepository;
-import main.java.util.GeneralConstants;
 
 @Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
@@ -31,6 +31,14 @@ public class MapFacadeBean implements MapFacade {
 		if (!response.getTweets().isEmpty()) {
 			persistTweets(response.getTweets());
 		}
+	}
+	
+	private List<TweetDTO> filterTweets(List<TweetDTO> tweets) {
+		List<TweetDTO> filteredTweets = new ArrayList<>();
+		for (TweetDTO tweet : tweets) {
+			
+		}
+		return filteredTweets; 
 	}
 
 	private void persistTweets(List<TweetDTO> tweets) {
@@ -48,25 +56,4 @@ public class MapFacadeBean implements MapFacade {
 				.fromEBirdResponseToDTO(repo.retrieveEBirdData(MapTransformer.toEbirdRequestFromDTO(request)));
 	}
 
-	@Override
-	public void twitterApiCallScheduler() {
-		Thread thread = new TwitterApiCall();
-		thread.start();
-	}
-
-	class TwitterApiCall extends Thread {
-		@Override
-		public void run() {
-			while (true) {
-				TwitterRequestDTO request = new TwitterRequestDTO(GeneralConstants.TWITTER_BIRDMIGRATION);
-				retrieveTweetsFromApi(request);
-				try {
-					Thread.sleep(1000 * 60 * 15l);
-				} catch (InterruptedException e) {
-					// Restore interrupted state
-					Thread.currentThread().interrupt();
-				}
-			}
-		}
-	}
 }

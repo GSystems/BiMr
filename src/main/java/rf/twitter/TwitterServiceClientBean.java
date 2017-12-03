@@ -22,7 +22,7 @@ import twitter4j.conf.ConfigurationBuilder;
  */
 public class TwitterServiceClientBean implements TwitterServiceClient {
 
-	private static final Logger LOGGER = Logger.getLogger(TwitterServiceClientBean.class.getName());
+	private static final Logger log = Logger.getLogger(TwitterServiceClientBean.class.getName());
 
 	@Override
 	public TwitterResponseWrapper retrieveTweets(TwitterRequestWrapper request) {
@@ -44,21 +44,24 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 
 		Query query = new Query(hashtag);
 		Integer numberOfTweets = GeneralConstants.MAX_NUMBER_OF_TWEETS;
-		long sinceId = 930464129936175104l;
+		long sinceId = 931486142918250496l;
 		long lastId = 0l;
 		query.setSinceId(sinceId);
 		QueryResult result = null;
 		while (tweets.size() < numberOfTweets) {
 			try {
 				result = twitter.search(query);
-				tweets.addAll(result.getTweets());
+				for (Status t : result.getTweets()) {
+					if (!t.getText().contains("RT")) {
+						tweets.add(t);
+					}
+				}
+//				tweets.addAll(result.getTweets());
 				if (!tweets.isEmpty()) {
 					lastId = tweets.get(tweets.size() - 1).getId();
-				} else {
-					break;
 				}
 			} catch (TwitterException e) {
-				LOGGER.severe("Couldn't connect: " + e);
+				log.severe("Couldn't connect: " + e);
 			} finally {
 				query.setSinceId(lastId);
 			}
@@ -84,14 +87,18 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 			}
 			try {
 				result = twitter.search(query);
-				tweets.addAll(result.getTweets());
+				for (Status t : result.getTweets()) {
+					if (!t.getText().contains("RT")) {
+						tweets.add(t);
+					}
+				}
 				for (Status t : tweets) {
 					if (t.getId() < lastID) {
 						lastID = t.getId();
 					}
 				}
 			} catch (TwitterException e) {
-				LOGGER.severe("Couldn't connect: " + e);
+				log.severe("Couldn't connect: " + e);
 				break;
 			} finally {
 				query.setMaxId(lastID - 1);

@@ -5,15 +5,16 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
+import main.java.bfcl.ApiCallSchedulerFacade;
 import main.java.bfcl.MapFacade;
 import main.java.bfcl.dto.EBirdRequestDTO;
 import main.java.bfcl.dto.TwitterRequestDTO;
 import main.java.util.GeneralConstants;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class MapBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -23,10 +24,13 @@ public class MapBean implements Serializable {
 	@EJB
 	private transient MapFacade mapFacade;
 
+	@EJB
+	private transient ApiCallSchedulerFacade schedulerFacade;
+
 	@PostConstruct
 	public void init() {
 		mapModel = new MapModel();
-		mapFacade.twitterApiCallScheduler();
+		schedulerFacade.twitterApiCallScheduler();
 		mapModel.setTweets(mapFacade.retrieveTweetsFromDB());
 		retrieveEbirdApiData();
 	}
