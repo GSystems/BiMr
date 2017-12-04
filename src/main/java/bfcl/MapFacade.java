@@ -7,6 +7,9 @@ import main.java.bfcl.dto.EBirdResponseDTO;
 import main.java.bfcl.dto.TweetDTO;
 import main.java.bfcl.dto.TwitterRequestDTO;
 
+/**
+ * @author GLK
+ */
 public interface MapFacade {
 
 	/**
@@ -31,5 +34,12 @@ public interface MapFacade {
 	 * @return
 	 */
 	List<TweetDTO> retrieveTweetsFromDB();
+
+	/**
+	 * Retrieve tweets from API automatically by calling retrieveTweetsFromApi
+	 * method at every 15 minutes
+	 * 
+	 */
+	void twitterApiCallScheduled();
 
 }

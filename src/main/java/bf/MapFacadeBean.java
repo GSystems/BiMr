@@ -3,6 +3,7 @@ package main.java.bf;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -16,7 +17,11 @@ import main.java.bfcl.dto.TweetDTO;
 import main.java.bfcl.dto.TwitterRequestDTO;
 import main.java.bfcl.dto.TwitterResponseDTO;
 import main.java.df.MapRepository;
+import main.java.util.TwitterEnum;
 
+/**
+ * @author GLK
+ */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class MapFacadeBean implements MapFacade {
@@ -32,13 +37,13 @@ public class MapFacadeBean implements MapFacade {
 			persistTweets(response.getTweets());
 		}
 	}
-	
+
 	private List<TweetDTO> filterTweets(List<TweetDTO> tweets) {
 		List<TweetDTO> filteredTweets = new ArrayList<>();
 		for (TweetDTO tweet : tweets) {
-			
+
 		}
-		return filteredTweets; 
+		return filteredTweets;
 	}
 
 	private void persistTweets(List<TweetDTO> tweets) {
@@ -48,6 +53,13 @@ public class MapFacadeBean implements MapFacade {
 	@Override
 	public List<TweetDTO> retrieveTweetsFromDB() {
 		return MapTransformer.fromTweetsToDTO(repo.retrieveTweetsFromDB());
+	}
+
+	@Override
+	@Schedule(second = "*", minute = "15", hour = "*", persistent = false)
+	public void twitterApiCallScheduled() {
+		TwitterRequestDTO request = new TwitterRequestDTO(TwitterEnum.BIRDMIGRATION.getCode());
+		retrieveTweetsFromApi(request);
 	}
 
 	@Override

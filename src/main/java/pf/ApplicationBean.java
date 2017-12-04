@@ -9,7 +9,10 @@ import javax.faces.bean.ManagedBean;
 
 import main.java.bfcl.MapFacade;
 
-@ManagedBean
+/**
+ * @author GLK
+ */
+@ManagedBean(eager = true)
 @ApplicationScoped
 public class ApplicationBean implements Serializable {
 
@@ -20,7 +23,7 @@ public class ApplicationBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-//		mapFacade.twitterApiCallScheduler();
+		mapFacade.twitterApiCallScheduled();
 	}
 
 	public MapFacade getMapFacade() {

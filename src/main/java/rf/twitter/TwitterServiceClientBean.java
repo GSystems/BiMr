@@ -9,6 +9,7 @@ import main.java.rf.twitter.wrapper.TweetWrapper;
 import main.java.rf.twitter.wrapper.TwitterRequestWrapper;
 import main.java.rf.twitter.wrapper.TwitterResponseWrapper;
 import main.java.util.GeneralConstants;
+import main.java.util.TwitterEnum;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
@@ -31,7 +32,7 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 		List<TweetWrapper> tweets = new ArrayList<>();
 		String hashtag = request.getHashtag();
 		if (hashtag != null && !hashtag.equals("")) {
-			tweets.addAll(DataTransformer.fromTwitterApiResponseToWrapper(callTwitterApi(hashtag)));
+			tweets.addAll(DataTransformer.fromTwitterApiResponseToWrapper(retrieveTweetsFromApi(hashtag)));
 		}
 		response.setTweets(tweets);
 		return response;
@@ -56,7 +57,7 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 						tweets.add(t);
 					}
 				}
-//				tweets.addAll(result.getTweets());
+				// tweets.addAll(result.getTweets());
 				if (!tweets.isEmpty()) {
 					lastId = tweets.get(tweets.size() - 1).getId();
 				}
@@ -109,10 +110,10 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 
 	private ConfigurationBuilder credentialsSetup() {
 		ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
-		configurationBuilder.setDebugEnabled(true).setOAuthConsumerKey(GeneralConstants.CONSUMER_KEY)
-				.setOAuthConsumerSecret(GeneralConstants.CONSUMER_SECRET)
-				.setOAuthAccessToken(GeneralConstants.ACCESS_TOKEN)
-				.setOAuthAccessTokenSecret(GeneralConstants.ACCESS_TOKEN_SECRET);
+		configurationBuilder.setDebugEnabled(true).setOAuthConsumerKey(TwitterEnum.CONSUMER_KEY.getCode())
+				.setOAuthConsumerSecret(TwitterEnum.CONSUMER_SECRET.getCode())
+				.setOAuthAccessToken(TwitterEnum.ACCESS_TOKEN.getCode())
+				.setOAuthAccessTokenSecret(TwitterEnum.ACCESS_TOKEN_SECRET.getCode());
 		return configurationBuilder;
 	}
 

@@ -7,12 +7,15 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import main.java.bfcl.ApiCallSchedulerFacade;
 import main.java.bfcl.MapFacade;
 import main.java.bfcl.dto.EBirdRequestDTO;
 import main.java.bfcl.dto.TwitterRequestDTO;
-import main.java.util.GeneralConstants;
+import main.java.util.EbirdsEnum;
+import main.java.util.TwitterEnum;
 
+/**
+ * @author GLK
+ */
 @ManagedBean
 @RequestScoped
 public class MapBean implements Serializable {
@@ -24,24 +27,19 @@ public class MapBean implements Serializable {
 	@EJB
 	private transient MapFacade mapFacade;
 
-	@EJB
-	private transient ApiCallSchedulerFacade schedulerFacade;
-
 	@PostConstruct
 	public void init() {
 		mapModel = new MapModel();
-		schedulerFacade.twitterApiCallScheduler();
 		mapModel.setTweets(mapFacade.retrieveTweetsFromDB());
-		retrieveEbirdApiData();
 	}
 
 	public TwitterRequestDTO generateRequest() {
-		return new TwitterRequestDTO(GeneralConstants.TWITTER_BIRDMIGRATION);
+		return new TwitterRequestDTO(TwitterEnum.BIRDMIGRATION.getCode());
 	}
 
 	public void retrieveEbirdApiData() {
 		EBirdRequestDTO request = new EBirdRequestDTO();
-		request.setRequestUriPattern(GeneralConstants.EBIRDS_API_REQUEST_URI);
+		request.setRequestUriPattern(EbirdsEnum.API_REQUEST_URI.getCode());
 		mapModel.setEbirdData(mapFacade.retrieveEBirdData(request).getEbirdData());
 	}
 
