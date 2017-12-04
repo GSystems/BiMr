@@ -10,7 +10,7 @@ import javax.faces.bean.RequestScoped;
 import main.java.bfcl.MapFacade;
 import main.java.bfcl.dto.EBirdRequestDTO;
 import main.java.bfcl.dto.TwitterRequestDTO;
-import main.java.util.EbirdsEnum;
+import main.java.util.GeneralConstants;
 import main.java.util.TwitterEnum;
 
 /**
@@ -38,9 +38,11 @@ public class MapBean implements Serializable {
 	}
 
 	public void retrieveEbirdApiData() {
-		EBirdRequestDTO request = new EBirdRequestDTO();
-		request.setRequestUriPattern(EbirdsEnum.API_REQUEST_URI.getCode());
-		mapModel.setEbirdData(mapFacade.retrieveEBirdData(request).getEbirdData());
+		for (String EBIRDS_API_REQUEST_URI: GeneralConstants.EBIRDS_API_REQUEST_URIS){
+			EBirdRequestDTO request = new EBirdRequestDTO();
+			request.setRequestUriPattern(EBIRDS_API_REQUEST_URI);
+			mapModel.setEbirdData(mapFacade.retrieveEBirdData(request).getEbirdData());
+		}
 	}
 
 	public MapModel getMapModel() {
