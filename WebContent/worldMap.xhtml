@@ -11,64 +11,106 @@
 	<title>Bird Migration</title>
 	<style>
 	#map{
-		height:960px;
-		width:100%;
+		height: 100%;
 	}
 	html, body {
         height: 100%;
         margin: 0;
         padding: 0;
       }
+    .slider-panel {
+        position: absolute;
+        top: 93%;
+        left: 33%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+     }
+     .slider{
+     	width: 600px;
+     }
 	</style>
 </h:head>
 <h:body>
 	<div id="map"></div>
+	<div class="slider-panel" >
+		<button onclick="toggleHeatmap()">Toggle Heatmap</button>
+		<button onclick="toggleCircleMap()">Toggle Circle Map</button>
+		<br></br>
+		<input type="range" min="1" max="10" value="1" class="slider" id="myRange"/>
+		<br></br>
+	</div>
+	<div class="action-panel">
+
+	</div>
 	<script>
+
+		var map;
+		var heatmap;
 		function initMap(){
 
-
-			
-			var options = {
-				zoom:8,
-				center:{lat:36.114647,lng:-115.172813},
-			}
-			var map = new google.maps.Map(document.getElementById('map'),options)
-
-	        var markers = birds.map(function(birds, i) {
-	            var marker = new google.maps.Marker({
-	              position: birds.coord,
-	            });
-
-
-		        var contentString = '<div id="content">'+
-	            '<div id="siteNotice">'+
-	            '</div>'+
-	            '<h1 id="firstHeading" class="firstHeading">' + birds.name + '</h1>'+
-	            '<div id="bodyContent">'+
-	            '<p>Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy,'+
-	            'snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating'+
-	            'their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters.'+ 
-	            'Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.</p>'+
-	            '</div>'+
-	        	'</div>';
-
-		        var infowindow = new google.maps.InfoWindow({
-		            content: contentString
-		        });
-
-		        marker.addListener('click',function(){
-			        infowindow.open(map,marker)
-			    });
-
-			    return marker
+	        map = new google.maps.Map(document.getElementById('map'), {
+	            zoom: 6,
+	            center: {lat: 37.775, lng: -122.434},
+	            mapTypeId: 'terrain'
 	          });
+    
+ 			var script = document.createElement('script');
 
+	        script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+	        document.getElementsByTagName('head')[0].appendChild(script); 
 
-			 var markerCluster = new MarkerClusterer(map, markers,
-		            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
- 
+ 	        map.data.setStyle(function(feature) {
+	            var magnitude = feature.getProperty('mag'); 
+	            magnitude -= 0.2;
+	            return {
+	              icon: getCircle(magnitude)
+	            };
+	        }); 
 			
 		}
+
+		function getPoints() {
+	        return [
+	          new google.maps.LatLng(37.782551, -122.445368),
+	          new google.maps.LatLng(37.782745, -122.444586),
+	          new google.maps.LatLng(37.782842, -122.443688),
+	          new google.maps.LatLng(37.782919, -122.442815),
+	          new google.maps.LatLng(37.782992, -122.442112),
+	          new google.maps.LatLng(37.783100, -122.441461),
+	          new google.maps.LatLng(37.783206, -122.440829),
+	          new google.maps.LatLng(37.783273, -122.440324),
+	          new google.maps.LatLng(37.783316, -122.440023),
+	          new google.maps.LatLng(37.783357, -122.439794),
+	          new google.maps.LatLng(37.783371, -122.439687),
+	          new google.maps.LatLng(37.783368, -122.439666)
+	       ];
+		}
+
+	    function getCircle(magnitude) {
+		    return {
+	            path: google.maps.SymbolPath.CIRCLE,
+	            fillColor: 'red',
+	            fillOpacity: .2,
+	            scale: Math.pow(2, magnitude),
+	            strokeColor: 'white',
+	            strokeWeight: .5
+	        };
+	    }
+
+	   	function eqfeed_callback(results) {
+		   	map.data.addGeoJson(results);
+	    }
+
+	    function toggleHeatmap() {
+		    heatmap.setMap(heatmap.getMap() ? null : map);
+	    }
+		
 		var birds = [
 			{
 			 coord:{lat: 36.0369429, lng: -115.0544178},
@@ -124,6 +166,7 @@
 		
 	</script>
 	<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-	<script async="defer" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf10kOSOGdrAt5B_cOiGEmZG_e_myQTNg&amp;callback=initMap"></script>
+ 	<script async="defer" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf10kOSOGdrAt5B_cOiGEmZG_e_myQTNg&amp;callback=initMap"></script>
+	<!-- <script async="defer" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf10kOSOGdrAt5B_cOiGEmZG_e_myQTNg&amp;libraries=visualization&amo;callback=initMap"></script> -->
 </h:body>
 </html>
