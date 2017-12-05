@@ -1,6 +1,7 @@
 package test.java.rf.ebird;
 
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
@@ -16,10 +17,13 @@ public class EbirdsServiceClientBeanTest {
 		EBirdRequestWrapper request = new EBirdRequestWrapper();
 		
 		request.setRequestUriPattern(
-				"http://ebird.org/ws1.1/data/obs/region/recent?rtype=subnational1&r=US-NV&fmt=json");
+				"mockedUri");
 
-		EbirdsServiceClientBean client = new EbirdsServiceClientBean();
-		EBirdResponseWrapper response = client.retrieveEBirdData(request);
+		EbirdsServiceClientBean client = mock(EbirdsServiceClientBean.class);
+
+		EBirdResponseWrapper response = mock(EBirdResponseWrapper.class);
+		
+		when(client.retrieveEBirdData(request)).thenReturn(response);
 
 		assertNotNull(response);
 		assertNotNull(response.getEbirdData());
