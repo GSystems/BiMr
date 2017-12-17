@@ -2,7 +2,8 @@ package main.java.df;
 
 import javax.inject.Inject;
 
-import main.java.df.mapper.MapMapper;
+import main.java.df.mapper.EbirdMapper;
+import main.java.df.mapper.TweetMapper;
 import main.java.df.model.EBirdRequest;
 import main.java.df.model.EBirdResponse;
 import main.java.rf.ebird.EbirdsServiceClient;
@@ -16,8 +17,8 @@ public class EbirdRepoBean implements EbirdRepo {
 	@Override
 	public EBirdResponse retrieveEBirdData(EBirdRequest request) {
 		ebirdsService = new EbirdsServiceClientBean();
-		return MapMapper.toEbirdsResponseFromWrapper(
-				ebirdsService.retrieveEBirdData(MapMapper.fromEBirdRequestToWrapper(request)));
+		return EbirdMapper.toEbirdsResponseFromWrapper(
+				ebirdsService.retrieveEBirdData(TweetMapper.fromEBirdRequestToWrapper(request)));
 	}
 
 }

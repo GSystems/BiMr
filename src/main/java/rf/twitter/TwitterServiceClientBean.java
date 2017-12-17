@@ -8,7 +8,6 @@ import main.java.rf.transformer.DataTransformer;
 import main.java.rf.twitter.wrapper.TweetWrapper;
 import main.java.rf.twitter.wrapper.TwitterRequestWrapper;
 import main.java.rf.twitter.wrapper.TwitterResponseWrapper;
-import main.java.util.GeneralConstants;
 import main.java.util.TwitterEnum;
 import twitter4j.Query;
 import twitter4j.QueryResult;
@@ -31,79 +30,32 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 		TwitterResponseWrapper response = new TwitterResponseWrapper();
 		List<TweetWrapper> tweets = new ArrayList<>();
 		String hashtag = request.getHashtag();
+		Long lastId = request.getLastTweetId();
 		if (hashtag != null && !hashtag.equals("")) {
-			tweets.addAll(DataTransformer.fromTwitterApiResponseToWrapper(retrieveTweetsFromApi(hashtag)));
+			tweets.addAll(DataTransformer.fromTwitterApiResponseToWrapper(retrieveTweetsFromApi(hashtag, lastId)));
 		}
 		response.setTweets(tweets);
 		return response;
 	}
 
-	private List<Status> retrieveTweetsFromApi(String hashtag) {
+	private List<Status> retrieveTweetsFromApi(String hashtag, Long sinceId) {
 		List<Status> tweets = new ArrayList<>();
 		ConfigurationBuilder configurationBuilder = credentialsSetup();
 		Twitter twitter = new TwitterFactory(configurationBuilder.build()).getInstance();
 
 		Query query = new Query(hashtag);
-		Integer numberOfTweets = GeneralConstants.MAX_NUMBER_OF_TWEETS;
-		long sinceId = 931486142918250496l;
-		long lastId = 0l;
 		query.setSinceId(sinceId);
 		QueryResult result = null;
-		while (tweets.size() < numberOfTweets) {
-			try {
-				result = twitter.search(query);
-				for (Status t : result.getTweets()) {
-					if (!t.getText().contains("RT")) {
-						tweets.add(t);
-					}
+		try {
+			result = twitter.search(query);
+			for (Status t : result.getTweets()) {
+				if (!t.getText().contains("RT")) {
+					tweets.add(t);
 				}
-				// tweets.addAll(result.getTweets());
-				if (!tweets.isEmpty()) {
-					lastId = tweets.get(tweets.size() - 1).getId();
-				}
-			} catch (TwitterException e) {
-				log.severe("Couldn't connect: " + e);
-			} finally {
-				query.setSinceId(lastId);
 			}
-		}
-		return tweets;
-	}
-
-	private List<Status> callTwitterApi(String hashtag) {
-		ConfigurationBuilder configurationBuilder = credentialsSetup();
-		Twitter twitter = new TwitterFactory(configurationBuilder.build()).getInstance();
-
-		Query query = new Query(hashtag);
-		Integer numberOfTweets = GeneralConstants.MAX_NUMBER_OF_TWEETS;
-		Long lastID = Long.MAX_VALUE;
-		List<Status> tweets = new ArrayList<>();
-		QueryResult result = null;
-
-		while (tweets.size() < numberOfTweets) {
-			if (numberOfTweets - tweets.size() > GeneralConstants.MAX_NUMBER_OF_TWEETS) {
-				query.setCount(GeneralConstants.MAX_NUMBER_OF_TWEETS);
-			} else {
-				query.setCount(numberOfTweets - tweets.size());
-			}
-			try {
-				result = twitter.search(query);
-				for (Status t : result.getTweets()) {
-					if (!t.getText().contains("RT")) {
-						tweets.add(t);
-					}
-				}
-				for (Status t : tweets) {
-					if (t.getId() < lastID) {
-						lastID = t.getId();
-					}
-				}
-			} catch (TwitterException e) {
-				log.severe("Couldn't connect: " + e);
-				break;
-			} finally {
-				query.setMaxId(lastID - 1);
-			}
+			tweets.addAll(result.getTweets());
+		} catch (TwitterException e) {
+			log.severe("Couldn't connect: " + e);
 		}
 		return tweets;
 	}

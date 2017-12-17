@@ -39,17 +39,17 @@ public class TwitterServiceClientBeanTest {
 
 		tweet1.setLatitude(latitude);
 		tweet1.setLongitude(longitude);
-		tweet1.setId("id1");
+		tweet1.setId(1L);
 		tweet1.setTweetMessage("message1");
 
 		tweet2.setLatitude(latitude);
 		tweet2.setLongitude(longitude);
-		tweet2.setId("id2");
+		tweet2.setId(2L);
 		tweet2.setTweetMessage("message2");
 
 		tweet3.setLatitude(latitude);
 		tweet3.setLongitude(longitude);
-		tweet3.setId("id3");
+		tweet3.setId(3L);
 		tweet3.setTweetMessage("message3");
 
 		tweets.add(tweet1);

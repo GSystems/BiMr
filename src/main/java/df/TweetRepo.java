@@ -17,7 +17,7 @@ public interface TweetRepo {
 	TwitterResponse retrieveTweets(TwitterRequest request);
 
 	/**
-	 * Persist tweets into database
+	 * Insert a list of tweets into database
 	 * 
 	 * @param tweets
 	 */
@@ -29,5 +29,11 @@ public interface TweetRepo {
 	 * @return
 	 */
 	List<Tweet> retrieveTweetsFromDB();
+
+	/**
+	 * Retrieve the most recent tweet id from the database
+	 * 
+	 */
+	Long retrieveLastTweetId();
 
 }

@@ -6,23 +6,19 @@ package main.java.bfcl.dto;
 public class TwitterRequestDTO {
 
 	private String hashtag;
+	private Long lastTweetId;
 
-	private String lastTweetId;
-
-	public TwitterRequestDTO(String hashtag) {
+	public TwitterRequestDTO(String hashtag, Long lastTweetId) {
 		this.hashtag = hashtag;
+		this.lastTweetId = lastTweetId;
 	}
 
 	public String getHashtag() {
 		return hashtag;
 	}
 
-	public String getLastTweetId() {
+	public Long getLastTweetId() {
 		return lastTweetId;
-	}
-
-	public void setLastTweetId(String lastTweetId) {
-		this.lastTweetId = lastTweetId;
 	}
 
 }

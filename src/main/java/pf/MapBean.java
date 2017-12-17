@@ -9,8 +9,6 @@ import javax.faces.bean.RequestScoped;
 
 import main.java.bfcl.EbirdFacade;
 import main.java.bfcl.TweetFacade;
-import main.java.bfcl.dto.TwitterRequestDTO;
-import main.java.util.TwitterEnum;
 
 /**
  * @author GLK
@@ -35,12 +33,7 @@ public class MapBean implements Serializable {
 		mapModel.setTweets(tweetFacade.retrieveTweetsFromDB());
 	}
 
-	public TwitterRequestDTO generateRequest() {
-		return new TwitterRequestDTO(TwitterEnum.BIRDMIGRATION.getCode());
-	}
-
 	// TODO solve this errors
-
 	// public void retrieveEbirdApiData() {
 	// for (String EBIRDS_API_REQUEST_URI:
 	// GeneralConstants.EBIRDS_API_REQUEST_URIS){

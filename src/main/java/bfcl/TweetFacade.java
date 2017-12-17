@@ -5,6 +5,9 @@ import java.util.List;
 import main.java.bfcl.dto.TweetDTO;
 import main.java.bfcl.dto.TwitterRequestDTO;
 
+/**
+ * @author GLK
+ */
 public interface TweetFacade {
 
 	/**
@@ -16,7 +19,7 @@ public interface TweetFacade {
 	void retrieveTweetsFromApi(TwitterRequestDTO request);
 
 	/**
-	 * Persist tweets into database
+	 * Insert a list of tweets into database
 	 * 
 	 * @param tweets
 	 */
@@ -36,4 +39,9 @@ public interface TweetFacade {
 	 */
 	void twitterApiCallScheduled();
 
+	/**
+	 * Retrieve the most recent tweet id from the database
+	 * 
+	 */
+	Long retrieveLastTweetId();
 }

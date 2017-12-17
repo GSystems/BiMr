@@ -21,7 +21,7 @@ import twitter4j.User;
 
 public class DataTransformer {
 
-	private static final Logger LOGGER = Logger.getLogger(DataTransformer.class.getName());
+	private static final Logger log = Logger.getLogger(DataTransformer.class.getName());
 
 	private DataTransformer() {
 	}
@@ -30,7 +30,7 @@ public class DataTransformer {
 		List<TweetWrapper> tweetsWrapper = new ArrayList<>();
 		for (Status status : tweets) {
 			TweetWrapper tweetWrapper = new TweetWrapper();
-			tweetWrapper.setId(String.valueOf(status.getId()));
+			tweetWrapper.setId(status.getId());
 			tweetWrapper.setTweetMessage(status.getText());
 			if (status.getGeoLocation() != null) {
 				tweetWrapper.setLatitude(String.valueOf(status.getGeoLocation().getLatitude()));
@@ -67,7 +67,7 @@ public class DataTransformer {
 		try {
 			jsonArray = (JSONArray) jsonParser.parse(ebirdData);
 		} catch (ParseException e) {
-			LOGGER.info(e.getMessage());
+			log.info(e.getMessage());
 		}
 
 		@SuppressWarnings("rawtypes")
@@ -84,7 +84,7 @@ public class DataTransformer {
 			try {
 				ebirdWrapper.setObservationDate((Date) formatter.parse((String) jsonObject.get("obsDt")));
 			} catch (java.text.ParseException e) {
-				LOGGER.info(e.getMessage());
+				log.info(e.getMessage());
 			}
 			ebirdWrapper.setScientificName((String) jsonObject.get("sciName"));
 			ebirdWrapper.setStateName((String) jsonObject.get("subnational1Name"));

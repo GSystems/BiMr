@@ -22,7 +22,7 @@ public class MapTransformer {
 	}
 
 	public static TwitterRequest twitterRequestFromDTO(TwitterRequestDTO requestDTO) {
-		return new TwitterRequest(requestDTO.getHashtag());
+		return new TwitterRequest(requestDTO.getHashtag(), requestDTO.getLastTweetId());
 	}
 
 	public static TwitterResponseDTO fromTwitterResponseToDTO(TwitterResponse response) {

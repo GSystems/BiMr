@@ -8,12 +8,12 @@ import main.java.rf.twitter.entity.TweetEntity;
 public interface TwitterDAO extends BaseDAO<TweetEntity, Long> {
 
 	/**
-	 * Insert a tweet into database
+	 * Insert a list of tweets into database
 	 * 
 	 * @param tweets
 	 * @return
 	 */
-	TweetEntity insertTweet(TweetEntity tweets);
+	void insertTweet(List<TweetEntity> tweets);
 
 	/**
 	 * Return all tweets from database
@@ -21,5 +21,11 @@ public interface TwitterDAO extends BaseDAO<TweetEntity, Long> {
 	 * @return
 	 */
 	List<TweetEntity> findAllTweets();
+
+	/**
+	 * Retrieve the most recent tweet id from the database
+	 * 
+	 */
+	Long retrieveLastTweetId();
 
 }

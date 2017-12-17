@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import main.java.df.mapper.MapMapper;
+import main.java.df.mapper.TweetMapper;
 import main.java.df.model.Tweet;
 import main.java.df.model.TwitterRequest;
 import main.java.df.model.TwitterResponse;
@@ -22,20 +22,23 @@ public class TweetRepoBean implements TweetRepo {
 	@Override
 	public TwitterResponse retrieveTweets(TwitterRequest request) {
 		twitterService = new TwitterServiceClientBean();
-		return MapMapper.toTwitterResponseFromWrapper(
-				twitterService.retrieveTweets(MapMapper.fromTwitterRequestToWrapper(request)));
+		return TweetMapper.toTwitterResponseFromWrapper(
+				twitterService.retrieveTweets(TweetMapper.fromTwitterRequestToWrapper(request)));
 	}
 
 	@Override
 	public void insertTweets(List<Tweet> tweets) {
-		for (Tweet tweet : tweets) {
-			twitterDAO.insertTweet(MapMapper.fromTweetToEntity(tweet));
-		}
+		twitterDAO.insertTweet(TweetMapper.fromTweetListToEntity(tweets));
 	}
 
 	@Override
 	public List<Tweet> retrieveTweetsFromDB() {
-		return MapMapper.toTweetListFromEntity(twitterDAO.findAllTweets());
+		return TweetMapper.toTweetListFromEntity(twitterDAO.findAllTweets());
+	}
+
+	@Override
+	public Long retrieveLastTweetId() {
+		return twitterDAO.retrieveLastTweetId();
 	}
 
 }

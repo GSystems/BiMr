@@ -6,8 +6,8 @@ import main.java.bfcl.dto.EBirdDataDTO;
 import main.java.bfcl.dto.TweetDTO;
 
 /**
- * @author 
- * GLK this class will contain a single
+ * @author GLK
+ * this class will contain a single
  * model representation to populate the map
  */
 public class MapModel {

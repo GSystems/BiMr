@@ -13,7 +13,7 @@ import main.java.rf.transformer.DataTransformer;
 
 public class EbirdsServiceClientBean implements EbirdsServiceClient {
 
-	public static final Logger LOGGER = Logger.getLogger(EbirdsServiceClientBean.class.getName());
+	public static final Logger log = Logger.getLogger(EbirdsServiceClientBean.class.getName());
 
 	@Override
 	public EBirdResponseWrapper retrieveEBirdData(EBirdRequestWrapper request) {
@@ -41,7 +41,7 @@ public class EbirdsServiceClientBean implements EbirdsServiceClient {
 			// sending to DataTransformer
 			response.setEbirdData(DataTransformer.fromEBirdApiResponseToWrapper(content.toString()));
 		} catch (IOException e) {
-			LOGGER.severe("Unable to connect: " + e.getMessage());
+			log.severe("Unable to connect: " + e.getMessage());
 		}
 
 		return response;
