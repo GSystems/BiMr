@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.java.df.model.EBirdData;
+import main.java.df.model.EBirdRequest;
 import main.java.df.model.EBirdResponse;
 import main.java.rf.ebird.wrapper.EBirdDataWrapper;
+import main.java.rf.ebird.wrapper.EBirdRequestWrapper;
 import main.java.rf.ebird.wrapper.EBirdResponseWrapper;
 
 public class EbirdMapper {
@@ -36,6 +38,12 @@ public class EbirdMapper {
 			ebirds.add(ebird);
 		}
 		return ebirds;
+	}
+
+	public static EBirdRequestWrapper fromEBirdRequestToWrapper(EBirdRequest request) {
+		EBirdRequestWrapper requestWrapper = new EBirdRequestWrapper();
+		requestWrapper.setRequestUriPattern(request.getRequestUriPattern());
+		return requestWrapper;
 	}
 
 }

@@ -1,12 +1,15 @@
 GRANT ALL PRIVILEGES ON BIMR.* TO bimruser@localhost;
 
+DROP TABLE `tweets`;
+
 CREATE TABLE tweets (
-	id varchar(100),
+	id bigint(100) NOT NULL AUTO_INCREMENT,
+	tweetId bigint(100),
 	tweetMessage varchar(200),
 	latitude varchar(50),
 	longitude varchar(50),
 	observationDate date,
-	user_id varchar(50)
+	PRIMARY KEY(id)
 );
 
 CREATE TABLE twitter_user (

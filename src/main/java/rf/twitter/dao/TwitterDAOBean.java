@@ -33,7 +33,7 @@ public class TwitterDAOBean extends BaseDAOBean<TweetEntity, Long> implements Tw
 		if (result.get(0) == null) {
 			return GeneralConstants.DEFAULT_SINCE_ID;
 		}
-		return result.get(0).getId();
+		return result.get(0).getTweetId();
 	}
 
 }

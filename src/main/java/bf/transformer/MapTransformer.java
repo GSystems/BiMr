@@ -43,6 +43,7 @@ public class MapTransformer {
 	private static TweetDTO fromTweetToDTO(Tweet tweet) {
 		TweetDTO tweetDTO = new TweetDTO();
 		tweetDTO.setId(tweet.getId());
+		tweetDTO.setTweetId(tweet.getTweetId());
 		tweetDTO.setLatitude(tweet.getLatitude());
 		tweetDTO.setLongitude(tweet.getLongitude());
 		tweetDTO.setObservationDate(tweet.getObservationDate());
@@ -55,6 +56,7 @@ public class MapTransformer {
 		for (TweetDTO tweetDTO : tweetsDTO) {
 			Tweet tweet = new Tweet();
 			tweet.setId(tweetDTO.getId());
+			tweet.setTweetId(tweetDTO.getTweetId());
 			tweet.setLatitude(tweetDTO.getLatitude());
 			tweet.setLongitude(tweetDTO.getLongitude());
 			tweet.setObservationDate(tweetDTO.getObservationDate());

@@ -48,12 +48,12 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 		QueryResult result = null;
 		try {
 			result = twitter.search(query);
+			CharSequence cs = "RT";
 			for (Status t : result.getTweets()) {
-				if (!t.getText().contains("RT")) {
+				if (!t.getText().contains(cs)) {
 					tweets.add(t);
 				}
 			}
-			tweets.addAll(result.getTweets());
 		} catch (TwitterException e) {
 			log.severe("Couldn't connect: " + e);
 		}

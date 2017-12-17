@@ -7,19 +7,18 @@ import java.util.Date;
  */
 public class TweetWrapper {
 
-	private Long id;
+	private Long tweetId;
 	private String tweetMessage;
 	private String latitude;
 	private String longitude;
 	private Date observationDate;
-	private TwitterUserWrapper user;
-	
-	public Long getId() {
-		return id;
+
+	public Long getTweetId() {
+		return tweetId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setTweetId(Long tweetId) {
+		this.tweetId = tweetId;
 	}
 
 	public String getTweetMessage() {
@@ -52,14 +51,6 @@ public class TweetWrapper {
 
 	public void setObservationDate(Date observationDate) {
 		this.observationDate = observationDate;
-	}
-
-	public TwitterUserWrapper getUser() {
-		return user;
-	}
-
-	public void setUser(TwitterUserWrapper user) {
-		this.user = user;
 	}
 
 }

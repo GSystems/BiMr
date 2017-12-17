@@ -23,7 +23,7 @@ public class TwitterServiceClientBeanTest {
 		for (TweetWrapper tweet : response.getTweets()) {
 			assertNotNull(tweet.getLatitude());
 			assertNotNull(tweet.getLongitude());
-			assertNotNull(tweet.getId());
+			assertNotNull(tweet.getTweetId());
 			assertNotNull(tweet.getTweetMessage());
 		}
 	}
@@ -39,17 +39,17 @@ public class TwitterServiceClientBeanTest {
 
 		tweet1.setLatitude(latitude);
 		tweet1.setLongitude(longitude);
-		tweet1.setId(1L);
+		tweet1.setTweetId(1L);
 		tweet1.setTweetMessage("message1");
 
 		tweet2.setLatitude(latitude);
 		tweet2.setLongitude(longitude);
-		tweet2.setId(2L);
+		tweet2.setTweetId(2L);
 		tweet2.setTweetMessage("message2");
 
 		tweet3.setLatitude(latitude);
 		tweet3.setLongitude(longitude);
-		tweet3.setId(3L);
+		tweet3.setTweetId(3L);
 		tweet3.setTweetMessage("message3");
 
 		tweets.add(tweet1);

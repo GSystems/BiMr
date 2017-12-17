@@ -14,10 +14,8 @@ import org.json.simple.parser.ParseException;
 
 import main.java.rf.ebird.wrapper.EBirdDataWrapper;
 import main.java.rf.twitter.wrapper.TweetWrapper;
-import main.java.rf.twitter.wrapper.TwitterUserWrapper;
 import main.java.util.GeneralConstants;
 import twitter4j.Status;
-import twitter4j.User;
 
 public class DataTransformer {
 
@@ -30,28 +28,16 @@ public class DataTransformer {
 		List<TweetWrapper> tweetsWrapper = new ArrayList<>();
 		for (Status status : tweets) {
 			TweetWrapper tweetWrapper = new TweetWrapper();
-			tweetWrapper.setId(status.getId());
+			tweetWrapper.setTweetId(status.getId());
 			tweetWrapper.setTweetMessage(status.getText());
 			if (status.getGeoLocation() != null) {
 				tweetWrapper.setLatitude(String.valueOf(status.getGeoLocation().getLatitude()));
 				tweetWrapper.setLongitude(String.valueOf(status.getGeoLocation().getLongitude()));
 			}
 			tweetWrapper.setObservationDate(status.getCreatedAt());
-			tweetWrapper.setUser(fromTwitterUserToWrapper(status.getUser()));
 			tweetsWrapper.add(tweetWrapper);
 		}
 		return tweetsWrapper;
-	}
-
-	private static TwitterUserWrapper fromTwitterUserToWrapper(User user) {
-		TwitterUserWrapper userWrapper = new TwitterUserWrapper();
-		userWrapper.setEmail(user.getEmail());
-		userWrapper.setId(String.valueOf(user.getId()));
-		userWrapper.setLocation(user.getLocation());
-		userWrapper.setUsername(user.getName());
-		userWrapper.setScreenName(user.getScreenName());
-		userWrapper.setUrl(user.getURL());
-		return userWrapper;
 	}
 
 	// TODO make separate methods
