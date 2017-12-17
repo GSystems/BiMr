@@ -7,7 +7,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
-import main.java.bfcl.MapFacade;
+import main.java.bfcl.TweetFacade;
 
 /**
  * @author GLK
@@ -19,19 +19,19 @@ public class ApplicationBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	private transient MapFacade mapFacade;
+	private transient TweetFacade tweetFacade;
 
 	@PostConstruct
 	public void init() {
-		mapFacade.twitterApiCallScheduled();
+		tweetFacade.twitterApiCallScheduled();
 	}
 
-	public MapFacade getMapFacade() {
-		return mapFacade;
+	public TweetFacade getTweetFacade() {
+		return tweetFacade;
 	}
 
-	public void setMapFacade(MapFacade mapFacade) {
-		this.mapFacade = mapFacade;
+	public void setTweetFacade(TweetFacade tweetFacade) {
+		this.tweetFacade = tweetFacade;
 	}
 
 }

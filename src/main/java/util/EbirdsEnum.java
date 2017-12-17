@@ -17,7 +17,7 @@ public enum EbirdsEnum {
 	RECENT_OBSERVATIONS_OF_SPECIES_AT_HOTSPOTS("http://ebird.org/ws1.1/data/obs/hotspot_spp/recent?r=L99381&r=L104031&sci=larus%20delawarensis&back=5&maxResults=500&detail=simple&locale=en_US&fmt=json&includeProvisional=true"),
 	RECENT_OBSERVATIONS_OF_SPECIES_AT_LOCATIONS("http://ebird.org/ws1.1/data/obs/loc_spp/recent?r=L99381&r=L104031&sci=larus%20delawarensisback=5&maxResults=500&detail=simple&locale=en_US&fmt=json&includeProvisional=true"),
 	RECENT_OBSERVATIONS_OF_SPECIES_IN_REGION("http://ebird.org/ws1.1/data/obs/region_spp/recent?rtype=subnational1&r=US-NV&sci=larus%20delawarensis&back=5&maxResults=500&locale=en_US&fmt=json&includeProvisional=true");
-	
+
 	private String code;
 
 	EbirdsEnum(String code) {
