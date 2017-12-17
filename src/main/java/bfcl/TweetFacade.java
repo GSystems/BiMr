@@ -2,7 +2,6 @@ package main.java.bfcl;
 
 import java.util.List;
 
-import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import main.java.bfcl.dto.TweetDTO;
 import main.java.bfcl.dto.TwitterRequestDTO;
 
@@ -18,7 +17,7 @@ public interface TweetFacade {
 	 * @param pipeline
 	 * @return
 	 */
-	void retrieveTweetsFromApi(TwitterRequestDTO request, StanfordCoreNLP pipeline);
+	void retrieveTweetsFromApi(TwitterRequestDTO request);
 
 	/**
 	 * Insert a list of tweets into database
@@ -40,7 +39,7 @@ public interface TweetFacade {
 	 * 
 	 * @param pipeline
 	 */
-	void twitterApiCallScheduled(StanfordCoreNLP pipeline);
+	void twitterApiCallScheduled();
 
 	/**
 	 * Retrieve the most recent tweet id from the database
