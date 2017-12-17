@@ -2,7 +2,6 @@ package main.java.bf;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import java.util.logging.Logger;
 
 import javax.ejb.Schedule;
@@ -38,20 +37,16 @@ public class TweetFacadeBean implements TweetFacade {
 	private TweetRepo repo;
 
 	@Override
-	public void retrieveTweetsFromApi(TwitterRequestDTO request) {
+	public void retrieveTweetsFromApi(TwitterRequestDTO request, StanfordCoreNLP pipeline) {
 		TwitterResponseDTO response = MapTransformer
 				.fromTwitterResponseToDTO(repo.retrieveTweets(MapTransformer.twitterRequestFromDTO(request)));
 		if (!response.getTweets().isEmpty()) {
-			persistTweets(filterTweets(response.getTweets()));
+			persistTweets(filterTweets(response.getTweets(), pipeline));
 		}
 	}
 
-	private List<TweetDTO> filterTweets(List<TweetDTO> tweets) {
+	private List<TweetDTO> filterTweets(List<TweetDTO> tweets, StanfordCoreNLP pipeline) {
 		List<TweetDTO> filteredTweets = new ArrayList<>();
-		Properties props = new Properties();
-		props.put(StandfordEnum.PROPS_KEY.getCode(), StandfordEnum.PROPS_VALUE.getCode());
-//		props.put(StandfordEnum.NER_MODEL_KEY.getCode(), StandfordEnum.NER_MODEL_VALUE.getCode());
-		StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
 		for (TweetDTO tweet : tweets) {
 			Annotation document = new Annotation(tweet.getTweetMessage());
 			// run all Annotators on this text
@@ -97,9 +92,9 @@ public class TweetFacadeBean implements TweetFacade {
 
 	@Override
 	@Schedule(second = "*", minute = "*/15", hour = "*", persistent = false)
-	public void twitterApiCallScheduled() {
+	public void twitterApiCallScheduled(StanfordCoreNLP pipeline) {
 		TwitterRequestDTO request = createRequest();
-		retrieveTweetsFromApi(request);
+		retrieveTweetsFromApi(request, pipeline);
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package main.java.bfcl;
 
 import java.util.List;
 
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import main.java.bfcl.dto.TweetDTO;
 import main.java.bfcl.dto.TwitterRequestDTO;
 
@@ -14,9 +15,10 @@ public interface TweetFacade {
 	 * Retrieves tweets from twitter api and persist them into database
 	 * 
 	 * @param request
+	 * @param pipeline
 	 * @return
 	 */
-	void retrieveTweetsFromApi(TwitterRequestDTO request);
+	void retrieveTweetsFromApi(TwitterRequestDTO request, StanfordCoreNLP pipeline);
 
 	/**
 	 * Insert a list of tweets into database
@@ -36,8 +38,9 @@ public interface TweetFacade {
 	 * Retrieve tweets from API automatically by calling retrieveTweetsFromApi
 	 * method at every 15 minutes
 	 * 
+	 * @param pipeline
 	 */
-	void twitterApiCallScheduled();
+	void twitterApiCallScheduled(StanfordCoreNLP pipeline);
 
 	/**
 	 * Retrieve the most recent tweet id from the database

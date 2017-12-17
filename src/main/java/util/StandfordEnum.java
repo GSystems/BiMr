@@ -4,9 +4,7 @@ public enum StandfordEnum {
 
 	LOCATION("location"),
 	PROPS_KEY("annotators"),
-	PROPS_VALUE("tokenize, ssplit, pos, lemma, ner, parse, dcoref"),
-	NER_MODEL_KEY("ner.model"),
-	NER_MODEL_VALUE("resources/standford/english.all.3class.distsim.crf.ser.gz");
+	PROPS_VALUE("tokenize, ssplit, ner");
 
 	private String code;
 
