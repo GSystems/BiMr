@@ -59,4 +59,12 @@ public class MapBean implements Serializable {
 		this.tweetFacade = tweetFacade;
 	}
 
+	public MapModel getMapModel() {
+		return mapModel;
+	}
+
+	public void setMapModel(MapModel mapModel) {
+		this.mapModel = mapModel;
+	}
+
 }
