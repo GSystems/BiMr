@@ -44,7 +44,7 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 		Twitter twitter = new TwitterFactory(configurationBuilder.build()).getInstance();
 
 		Query query = new Query(hashtag);
-		query.setSinceId(sinceId);
+//		query.setSinceId(sinceId);
 		QueryResult result = null;
 		try {
 			result = twitter.search(query);

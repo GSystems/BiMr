@@ -34,14 +34,6 @@ public interface TweetFacade {
 	List<TweetDTO> retrieveTweetsFromDB();
 
 	/**
-	 * Retrieve tweets from API automatically by calling retrieveTweetsFromApi
-	 * method at every 15 minutes
-	 * 
-	 * @param pipeline
-	 */
-	void twitterApiCallScheduled();
-
-	/**
 	 * Retrieve the most recent tweet id from the database
 	 * 
 	 */

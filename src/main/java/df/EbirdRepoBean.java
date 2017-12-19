@@ -1,5 +1,8 @@
 package main.java.df;
 
+import java.util.concurrent.Future;
+
+import javax.ejb.AsyncResult;
 import javax.inject.Inject;
 
 import main.java.df.mapper.EbirdMapper;
@@ -14,10 +17,10 @@ public class EbirdRepoBean implements EbirdRepo {
 	private EbirdsServiceClient ebirdsService;
 
 	@Override
-	public EBirdResponse retrieveEBirdData(EBirdRequest request) {
+	public Future<EBirdResponse> retrieveEBirdData(EBirdRequest request) {
 		ebirdsService = new EbirdsServiceClientBean();
-		return EbirdMapper.toEbirdsResponseFromWrapper(
-				ebirdsService.retrieveEBirdData(EbirdMapper.fromEBirdRequestToWrapper(request)));
+		return new AsyncResult<>(EbirdMapper.toEbirdsResponseFromWrapper(
+				ebirdsService.retrieveEBirdData(EbirdMapper.fromEBirdRequestToWrapper(request))));
 	}
 
 }

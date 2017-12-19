@@ -1,6 +1,7 @@
 package main.java.df;
 
 import java.util.List;
+import java.util.concurrent.Future;
 
 import main.java.df.model.Tweet;
 import main.java.df.model.TwitterRequest;
@@ -14,7 +15,7 @@ public interface TweetRepo {
 	 * @param request
 	 * @return
 	 */
-	TwitterResponse retrieveTweets(TwitterRequest request);
+	Future<TwitterResponse> retrieveTweets(TwitterRequest request);
 
 	/**
 	 * Insert a list of tweets into database
@@ -28,12 +29,12 @@ public interface TweetRepo {
 	 *
 	 * @return
 	 */
-	List<Tweet> retrieveTweetsFromDB();
+	Future<List<Tweet>> retrieveTweetsFromDB();
 
 	/**
 	 * Retrieve the most recent tweet id from the database
 	 * 
 	 */
-	Long retrieveLastTweetId();
+	Future<List<Long>> retrieveLastTweetId();
 
 }
