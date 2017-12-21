@@ -96,7 +96,7 @@ public class TweetFacadeBean implements TweetFacade {
 	}
 
 	@Override
-	@Schedule(second = "*", minute = "*/15", hour = "*", persistent = false)
+	@Schedule(second = "*", minute = "15", hour = "*", persistent = false)
 	public void twitterApiCallScheduled() {
 		TwitterRequestDTO request = createRequest();
 		retrieveTweetsFromApi(request);
@@ -111,7 +111,7 @@ public class TweetFacadeBean implements TweetFacade {
 		return new TwitterRequestDTO(TwitterEnum.BIRDMIGRATION.getCode(), repo.retrieveLastTweetId());
 	}
 
-	@Override
+	@Override 
 	public List<TweetDTO> retrieveTweetsFromDB() {
 		return MapTransformer.fromTweetsToDTO(repo.retrieveTweetsFromDB());
 	}
