@@ -95,7 +95,7 @@ public class TweetFacadeBean implements TweetFacade {
 	}
 
 	@Override
-	@Schedule(second = "*", minute = "15", hour = "*", persistent = false)
+	@Schedule(second = "*", minute = "*/15", hour = "*", persistent = false)
 	public void twitterApiCallScheduled() {
 		TwitterRequestDTO request = createRequest();
 		retrieveTweetsFromApi(request);
