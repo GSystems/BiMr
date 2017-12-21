@@ -26,6 +26,6 @@ public interface TwitterDAO extends BaseDAO<TweetEntity, Long> {
 	 * Retrieve the most recent tweet id from the database
 	 * 
 	 */
-	Long retrieveLastTweetId();
+	List<Long> retrieveLastTweetId();
 
 }

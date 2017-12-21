@@ -1,7 +1,9 @@
 package main.java.df;
 
 import java.util.List;
+import java.util.concurrent.Future;
 
+import javax.ejb.AsyncResult;
 import javax.inject.Inject;
 
 import main.java.df.mapper.TweetMapper;
@@ -20,10 +22,10 @@ public class TweetRepoBean implements TweetRepo {
 	private TwitterDAO twitterDAO;
 
 	@Override
-	public TwitterResponse retrieveTweets(TwitterRequest request) {
+	public Future<TwitterResponse> retrieveTweets(TwitterRequest request) {
 		twitterService = new TwitterServiceClientBean();
-		return TweetMapper.toTwitterResponseFromWrapper(
-				twitterService.retrieveTweets(TweetMapper.fromTwitterRequestToWrapper(request)));
+		return new AsyncResult<>(TweetMapper.toTwitterResponseFromWrapper(
+				twitterService.retrieveTweets(TweetMapper.fromTwitterRequestToWrapper(request))));
 	}
 
 	@Override
@@ -32,13 +34,13 @@ public class TweetRepoBean implements TweetRepo {
 	}
 
 	@Override
-	public List<Tweet> retrieveTweetsFromDB() {
-		return TweetMapper.toTweetListFromEntity(twitterDAO.findAllTweets());
+	public Future<List<Tweet>> retrieveTweetsFromDB() {
+		return new AsyncResult<>(TweetMapper.toTweetListFromEntity(twitterDAO.findAllTweets()));
 	}
 
 	@Override
-	public Long retrieveLastTweetId() {
-		return twitterDAO.retrieveLastTweetId();
+	public Future<List<Long>> retrieveLastTweetId() {
+		return new AsyncResult<>(twitterDAO.retrieveLastTweetId());
 	}
 
 }

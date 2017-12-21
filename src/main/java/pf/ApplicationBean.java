@@ -4,37 +4,36 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.Singleton;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
-import main.java.bfcl.TweetFacade;
+import main.java.bfcl.GlobalFacade;
 
 /**
  * @author GLK
  */
 @ManagedBean(eager = true)
 @ApplicationScoped
+@Singleton
 public class ApplicationBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	private transient TweetFacade tweetFacade;
+	private transient GlobalFacade globalFacade;
 
 	@PostConstruct
 	public void init() {
-//		Properties props = new Properties();
-//		props.put(StandfordEnum.PROPS_KEY.getCode(), StandfordEnum.PROPS_VALUE.getCode());
-//		StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
-		tweetFacade.twitterApiCallScheduled();
+		globalFacade.twitterApiCallScheduled();
 	}
 
-	public TweetFacade getTweetFacade() {
-		return tweetFacade;
+	public GlobalFacade getGlobalFacade() {
+		return globalFacade;
 	}
 
-	public void setTweetFacade(TweetFacade tweetFacade) {
-		this.tweetFacade = tweetFacade;
+	public void setGlobalFacade(GlobalFacade globalFacade) {
+		this.globalFacade = globalFacade;
 	}
 
 }

@@ -10,6 +10,7 @@ import main.java.bfcl.EbirdFacade;
 import main.java.bfcl.dto.EBirdRequestDTO;
 import main.java.bfcl.dto.EBirdResponseDTO;
 import main.java.df.EbirdRepo;
+import main.java.util.AsyncUtils;
 
 /**
  * @author GLK
@@ -23,8 +24,8 @@ public class EbirdFacadeBean implements EbirdFacade {
 
 	@Override
 	public EBirdResponseDTO retrieveEBirdData(EBirdRequestDTO request) {
-		return MapTransformer
-				.fromEBirdResponseToDTO(repo.retrieveEBirdData(MapTransformer.toEbirdRequestFromDTO(request)));
+		return MapTransformer.fromEBirdResponseToDTO(AsyncUtils
+				.getResultFromAsyncTask(repo.retrieveEBirdData(MapTransformer.toEbirdRequestFromDTO(request))));
 	}
 
 }

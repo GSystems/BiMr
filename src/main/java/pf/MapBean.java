@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import main.java.bfcl.EbirdFacade;
 import main.java.bfcl.TweetFacade;
@@ -14,7 +14,7 @@ import main.java.bfcl.TweetFacade;
  * @author GLK
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class MapBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -22,7 +22,7 @@ public class MapBean implements Serializable {
 	private transient MapModel mapModel;
 
 	@EJB
-	private transient EbirdFacade mapFacade;
+	private transient EbirdFacade ebirdFacade;
 
 	@EJB
 	private transient TweetFacade tweetFacade;
@@ -43,12 +43,12 @@ public class MapBean implements Serializable {
 	// }
 	// }
 
-	public EbirdFacade getMapFacade() {
-		return mapFacade;
+	public EbirdFacade getEbirdFacade() {
+		return ebirdFacade;
 	}
 
-	public void setMapFacade(EbirdFacade mapFacade) {
-		this.mapFacade = mapFacade;
+	public void setEbirdFacade(EbirdFacade ebirdFacade) {
+		this.ebirdFacade = ebirdFacade;
 	}
 
 	public TweetFacade getTweetFacade() {

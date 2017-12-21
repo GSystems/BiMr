@@ -5,10 +5,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import javax.ejb.Schedule;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
@@ -22,14 +19,14 @@ import main.java.bfcl.dto.TweetDTO;
 import main.java.bfcl.dto.TwitterRequestDTO;
 import main.java.bfcl.dto.TwitterResponseDTO;
 import main.java.df.TweetRepo;
+import main.java.util.AsyncUtils;
+import main.java.util.GeneralConstants;
 import main.java.util.StandfordEnum;
-import main.java.util.TwitterEnum;
 
 /**
  * @author GLK
  */
 @Stateless
-@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class TweetFacadeBean implements TweetFacade {
 
 	private static final Logger log = Logger.getLogger(TweetFacadeBean.class.getName());
@@ -39,11 +36,13 @@ public class TweetFacadeBean implements TweetFacade {
 
 	@Override
 	public void retrieveTweetsFromApi(TwitterRequestDTO request) {
-		TwitterResponseDTO response = MapTransformer
-				.fromTwitterResponseToDTO(repo.retrieveTweets(MapTransformer.twitterRequestFromDTO(request)));
+		TwitterResponseDTO response = MapTransformer.fromTwitterResponseToDTO(
+				AsyncUtils.getResultFromAsyncTask(repo.retrieveTweets(MapTransformer.twitterRequestFromDTO(request))));
 		if (!response.getTweets().isEmpty()) {
-//			persistTweets(filterTweets(response.getTweets()));
-			persistTweets(response.getTweets());
+			persistTweets(filterTweets(response.getTweets()));
+			// persistTweets(response.getTweets());
+		} else {
+			log.info("No data from Twitter API");
 		}
 	}
 
@@ -104,16 +103,17 @@ public class TweetFacadeBean implements TweetFacade {
 
 	@Override
 	public Long retrieveLastTweetId() {
-		return repo.retrieveLastTweetId();
-	}
-
-	private TwitterRequestDTO createRequest() {
-		return new TwitterRequestDTO(TwitterEnum.BIRDMIGRATION.getCode(), repo.retrieveLastTweetId());
+		List<Long> sinceIds = AsyncUtils.getResultFromAsyncTask(repo.retrieveLastTweetId());
+		Long sinceId = GeneralConstants.DEFAULT_SINCE_ID;
+		if(sinceIds.get(0) != null) {
+			sinceId = sinceIds.get(0);
+		}
+		return sinceId;
 	}
 
 	@Override 
 	public List<TweetDTO> retrieveTweetsFromDB() {
-		return MapTransformer.fromTweetsToDTO(repo.retrieveTweetsFromDB());
+		return MapTransformer.fromTweetsToDTO(AsyncUtils.getResultFromAsyncTask(repo.retrieveTweetsFromDB()));
 	}
 
 }

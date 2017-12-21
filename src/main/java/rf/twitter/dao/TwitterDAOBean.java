@@ -6,7 +6,6 @@ import javax.persistence.Query;
 
 import main.java.rf.BaseDAOBean;
 import main.java.rf.twitter.entity.TweetEntity;
-import main.java.util.GeneralConstants;
 
 /**
  * @author GLK
@@ -27,13 +26,9 @@ public class TwitterDAOBean extends BaseDAOBean<TweetEntity, Long> implements Tw
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Long retrieveLastTweetId() {
+	public List<Long> retrieveLastTweetId() {
 		Query query = getEntityManager().createNamedQuery(TweetEntity.FIND_LAST_TWEET_ID);
-		List<Long> result = query.getResultList();
-		if (result.get(0) == null) {
-			return GeneralConstants.DEFAULT_SINCE_ID;
-		}
-		return result.get(0);
+		return query.getResultList();
 	}
 
 }
