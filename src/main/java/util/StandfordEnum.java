@@ -2,7 +2,7 @@ package main.java.util;
 
 public enum StandfordEnum {
 
-	LOCATION("location"),
+	LOCATION("LOCATION"),
 	PROPS_KEY("annotators"),
 	PROPS_VALUE("tokenize, ssplit, pos, lemma, ner"),
 	NER_MODEL_KEY("ner.model"),

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.inject.Inject;
@@ -31,9 +32,17 @@ import main.java.util.TwitterEnum;
 public class ScheduleFacadeBean implements ScheduleFacade {
 
 	private static final Logger log = Logger.getLogger(ScheduleFacadeBean.class.getName());
+	private static Integer count;
+	private static StanfordCoreNLP pipeline;;
 
 	@Inject
 	private TweetRepo repo;
+
+	@PostConstruct
+	public void init() {
+		count = 0;
+		initializePipeline();
+	}
 
 	@Schedule(second = "*", minute = "*/15", hour = "*", persistent = false)
 	public void twitterApiCallScheduled() {
@@ -64,11 +73,6 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 
 	private List<TweetDTO> filterTweets(List<TweetDTO> tweets) {
 		List<TweetDTO> filteredTweets = new ArrayList<>();
-		Properties props = new Properties();
-		props.put(StandfordEnum.PROPS_KEY.getCode(), StandfordEnum.PROPS_VALUE.getCode());
-		props.put(StandfordEnum.NER_MODEL_KEY.getCode(), StandfordEnum.NER_MODEL_VALUE.getCode());
-		StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
-		log.info("here");
 		for (TweetDTO tweet : tweets) {
 			Annotation document = new Annotation(tweet.getTweetMessage());
 			// run all Annotators on this text
@@ -90,22 +94,18 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 			// traversing the words in the current sentence
 			// a CoreLabel is a CoreMap with additional token-specific methods
 			for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
-				// this is the text of the token
-				// String word =
-				// token.get(CoreAnnotations.TextAnnotation.class);
-				// this is the POS tag of the token
-				// String pos =
-				// token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
 				// this is the NER label of the token
 				String ne = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
 
 				if (ne.equals(StandfordEnum.LOCATION.getCode())) {
+					// this is the text of the token
+					String word = token.get(CoreAnnotations.TextAnnotation.class);
+					// this is the POS tag of the token
+					String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+					String text = String.format("Print: word: [%s] pos: [%s] ne: [%s]", word, pos, ne);
+					log.info(text);
 					return true;
 				}
-				// String text = String.format("Print: word: [%s] pos: [%s] ne:
-				// [%s]", word, pos, ne);
-				String text = String.format("Print: ne: [%s]", ne);
-				log.info(text);
 			}
 		}
 		return false;
@@ -117,10 +117,48 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 	}
 
 	private TwitterRequestDTO createRequest() {
-		return new TwitterRequestDTO(TwitterEnum.BIRDMIGRATION.getCode(), retrieveLastTweetId());
+		String hashtag;
+		switch (count) {
+		case 1:
+			hashtag = TwitterEnum.BIRDSMIGRATION.getCode();
+			break;
+		case 2:
+			hashtag = TwitterEnum.BIRDMIG.getCode();
+			break;
+		case 3:
+			hashtag = TwitterEnum.BIRDSMIG.getCode();
+			break;
+		case 4:
+			hashtag = TwitterEnum.ORNITHOLOGY.getCode();
+			break;
+		case 5:
+			hashtag = TwitterEnum.BIRD.getCode();
+			break;
+		case 6:
+			hashtag = TwitterEnum.BIRDS.getCode();
+			break;
+		case 7:
+			hashtag = TwitterEnum.BIRDING.getCode();
+			break;
+		default:
+			hashtag = TwitterEnum.BIRDMIGRATION.getCode();
+		}
+		count++;
+		if (count > GeneralConstants.MAX_NUMBER_HASHTAGS) {
+			count = 0;
+		}
+		return new TwitterRequestDTO(hashtag, retrieveLastTweetId());
 	}
 
-	private TwitterResponseDTO mockTweets() {
+	private static void initializePipeline() {
+		Properties props = new Properties();
+		props.put(StandfordEnum.PROPS_KEY.getCode(), StandfordEnum.PROPS_VALUE.getCode());
+		props.put(StandfordEnum.NER_MODEL_KEY.getCode(), StandfordEnum.NER_MODEL_VALUE.getCode());
+		pipeline = new StanfordCoreNLP(props);
+	}
+
+	@SuppressWarnings("unused")
+	private TwitterResponseDTO generateTweets() {
 		TwitterResponseDTO response = new TwitterResponseDTO();
 		List<TweetDTO> tweets = new ArrayList<>();
 		TweetDTO tweet1 = new TweetDTO();
