@@ -95,13 +95,6 @@ public class TweetFacadeBean implements TweetFacade {
 	}
 
 	@Override
-	@Schedule(second = "*", minute = "*/15", hour = "*", persistent = false)
-	public void twitterApiCallScheduled() {
-		TwitterRequestDTO request = createRequest();
-		retrieveTweetsFromApi(request);
-	}
-
-	@Override
 	public Long retrieveLastTweetId() {
 		List<Long> sinceIds = AsyncUtils.getResultFromAsyncTask(repo.retrieveLastTweetId());
 		Long sinceId = GeneralConstants.DEFAULT_SINCE_ID;
