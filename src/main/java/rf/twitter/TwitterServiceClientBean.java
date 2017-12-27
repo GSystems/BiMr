@@ -26,7 +26,6 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 
 	@Override
 	public TwitterResponseWrapper retrieveTweets(TwitterRequestWrapper request) {
-
 		TwitterResponseWrapper response = new TwitterResponseWrapper();
 		List<TweetWrapper> tweets = new ArrayList<>();
 		String hashtag = request.getHashtag();
@@ -44,7 +43,7 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 		Twitter twitter = new TwitterFactory(configurationBuilder.build()).getInstance();
 
 		Query query = new Query(hashtag);
-//		query.setSinceId(sinceId);
+		query.setSinceId(sinceId);
 		QueryResult result = null;
 		try {
 			result = twitter.search(query);

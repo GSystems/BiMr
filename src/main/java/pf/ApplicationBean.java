@@ -8,7 +8,7 @@ import javax.ejb.Singleton;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
-import main.java.bfcl.GlobalFacade;
+import main.java.bfcl.ScheduleFacade;
 
 /**
  * @author GLK
@@ -21,18 +21,18 @@ public class ApplicationBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	private transient GlobalFacade globalFacade;
+	private transient ScheduleFacade globalFacade;
 
 	@PostConstruct
 	public void init() {
 		globalFacade.twitterApiCallScheduled();
 	}
 
-	public GlobalFacade getGlobalFacade() {
+	public ScheduleFacade getGlobalFacade() {
 		return globalFacade;
 	}
 
-	public void setGlobalFacade(GlobalFacade globalFacade) {
+	public void setGlobalFacade(ScheduleFacade globalFacade) {
 		this.globalFacade = globalFacade;
 	}
 
