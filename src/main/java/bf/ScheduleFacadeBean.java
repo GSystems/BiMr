@@ -57,7 +57,6 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 				AsyncUtils.getResultFromAsyncTask(repo.retrieveTweets(MapTransformer.twitterRequestFromDTO(request))));
 		if (!response.getTweets().isEmpty()) {
 			persistTweets(filterTweets(response.getTweets()));
-			persistTweets(response.getTweets());
 		} else {
 			log.info("No data from Twitter API");
 		}
