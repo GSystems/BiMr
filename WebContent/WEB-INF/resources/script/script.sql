@@ -1,6 +1,13 @@
 GRANT ALL PRIVILEGES ON BIMR.* TO bimruser@localhost;
 
-DROP TABLE `tweets`;
+# get the duplicates
+select * from tweets
+where tweetMessage in
+(select tweetMessage
+	from tweets
+	group by tweetMessage
+	having count(*) > 1
+);
 
 CREATE TABLE tweets (
 	id bigint(100) NOT NULL AUTO_INCREMENT,
@@ -9,6 +16,14 @@ CREATE TABLE tweets (
 	latitude varchar(50),
 	longitude varchar(50),
 	observationDate date,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE species (
+	id bigint(100) NOT NULL AUTO_INCREMENT,
+	species varchar(100),
+	genus varchar(100),
+	family varchar(100),
 	PRIMARY KEY(id)
 );
 

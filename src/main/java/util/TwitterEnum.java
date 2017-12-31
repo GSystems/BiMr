@@ -13,7 +13,7 @@ public enum TwitterEnum {
 	BIRD("#bird"),
 	BIRDS("#birds"),
 	BIRDING("#birding"),
-	RETWEET("RT"),
+	BIRDMIGRATING("#birdmigrating"),
 	CONSUMER_KEY("jsJnEdd07JSdW46jfAhhYrKBG"),
 	CONSUMER_SECRET("aERQTUoMvOYvgpv7Uof19ix9ESBJp0Lvi0T69h5lTkYHRnS6pt"),
 	ACCESS_TOKEN("4831081090-3KETssKWWNdFnfagOtnQGDSvUitx7dHS1dkUE16"),
