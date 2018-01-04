@@ -111,7 +111,7 @@ RemoteSystemsTempFiles/.project
 .settings/org.eclipse.wst.common.project.facet.core.xml
 .settings/org.eclipse.wst.common.project.facet.core.prefs.xml
 WebContent/map.xhtml
-src/com/gsys/bimr/pf/MapModel.java
+src/com/gsys/bimr/bimr.pf/MapModel.java
 *.prefs
 .settings/org.eclipse.m2e.core.prefs
 /.settings/
