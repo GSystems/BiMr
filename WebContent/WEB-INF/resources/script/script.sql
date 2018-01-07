@@ -1,12 +1,12 @@
 GRANT ALL PRIVILEGES ON BIMR.* TO bimruser@localhost;
 
 # get the duplicates
-select * from tweets
-where tweetMessage in
-(select tweetMessage
-	from tweets
-	group by tweetMessage
-	having count(*) > 1
+SELECT * FROM tweets
+WHERE tweetMessage IN
+(SELECT tweetMessage
+	FROM tweets
+	GROUP BY tweetMessage
+	HAVING count(*) > 1
 );
 
 CREATE TABLE tweets (

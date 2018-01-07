@@ -1,5 +1,6 @@
 package main.java.bf;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +11,9 @@ import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.inject.Inject;
 
+import edu.stanford.nlp.classify.LinearClassifier;
+import edu.stanford.nlp.ie.crf.CRFClassifier;
+import edu.stanford.nlp.io.IOUtils;
 import org.jboss.logging.Logger;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
@@ -25,7 +29,7 @@ import main.java.bfcl.dto.TwitterResponseDTO;
 import main.java.df.TweetRepo;
 import main.java.util.AsyncUtils;
 import main.java.util.GeneralConstants;
-import main.java.util.StandfordEnum;
+import main.java.util.StanfordEnum;
 import main.java.util.TwitterEnum;
 
 @Singleton
@@ -65,7 +69,7 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 		TwitterResponseDTO response = MapTransformer.fromTwitterResponseToDTO(
 				AsyncUtils.getResultFromAsyncTask(repo.retrieveTweets(MapTransformer.twitterRequestFromDTO(request))));
 		if (!response.getTweets().isEmpty()) {
-			persistTweets(filterTweets(response.getTweets()));
+			persistTweets(response.getTweets());
 		} else {
 			log.info("No data from Twitter API");
 		}
@@ -97,7 +101,7 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 				// this is the NER label of the token
 				String ne = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
 
-				if (ne.equals(StandfordEnum.LOCATION.getCode())) {
+				if (ne.equals(StanfordEnum.LOCATION.getCode())) {
 					// this is the text of the token
 					String word = token.get(CoreAnnotations.TextAnnotation.class);
 					// this is the POS tag of the token
@@ -152,8 +156,9 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 
 	private static void initializePipeline() {
 		Properties props = new Properties();
-		props.put(StandfordEnum.PROPS_KEY.getCode(), StandfordEnum.PROPS_VALUE.getCode());
-		props.put(StandfordEnum.NER_MODEL_KEY.getCode(), StandfordEnum.NER_MODEL_VALUE.getCode());
+		props.put(StanfordEnum.PROPS_KEY.getCode(), StanfordEnum.PROPS_VALUE.getCode());
+		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_3CLASS_MODEL_VALUE.getCode());
+		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_BISP_MODEL_VALUE.getCode());
 		pipeline = new StanfordCoreNLP(props);
 	}
 
