@@ -16,7 +16,7 @@ function initMap(){
       });
 
 	var script = document.createElement('script');
-	script.src = "resources/javascript/geo.js";
+	script.src = "WEB-INF/resources/javascript/geo.js";
 	document.getElementsByTagName('head')[0].appendChild(script); 
 
     map.data.setStyle(function(feature) {
@@ -30,13 +30,11 @@ function initMap(){
 }
 
 sliderDiv.onchange = function(){
-
-	
 	switch(this.value){
 		case '1':
 			console.log(this.value);
 			clearCensusData();
-			getJSON('resources/geoJSON/dataBirds1.json', function(err, data) {
+			getJSON('WEB-INF/resources/geoJSON/dataBirds1.json', function(err, data) {
 				if (err !== null)
 					alert('Something went wrong: ' + err);
 				else {
@@ -48,7 +46,7 @@ sliderDiv.onchange = function(){
 		case '2':
 			console.log(this.value);
 			clearCensusData();
-			getJSON('resources/geoJSON/dataBirds.json', function(err, data) {
+			getJSON('WEB-INF/resources/geoJSON/dataBirds.json', function(err, data) {
 				if (err !== null)
 					alert('Something went wrong: ' + err);
 				else {
