@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import edu.stanford.nlp.classify.LinearClassifier;
 import edu.stanford.nlp.ie.crf.CRFClassifier;
 import edu.stanford.nlp.io.IOUtils;
+import main.java.bfcl.dto.HotspotDTO;
 import org.jboss.logging.Logger;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
@@ -78,11 +79,17 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 	private List<TweetDTO> filterTweets(List<TweetDTO> tweets) {
 		List<TweetDTO> filteredTweets = new ArrayList<>();
 		for (TweetDTO tweet : tweets) {
+			Boolean hasLocation = false;
+			if (tweet.getLatitude() != null) {
+				hasLocation = true;
+			}
 			Annotation document = new Annotation(tweet.getTweetMessage());
 			// run all Annotators on this text
 			pipeline.annotate(document);
-			if (parseText(document)) {
+			HotspotDTO hotspot = parseTweet(document);
+			if (hotspot != null) {
 				filteredTweets.add(tweet);
+
 			}
 		}
 		return filteredTweets;
@@ -91,7 +98,9 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 	/**
 	 * parse every sentence from the tweet and annotate it
 	 */
-	private boolean parseText(Annotation document) {
+	private HotspotDTO parseTweet(Annotation document) {
+		HotspotDTO hotspot = new HotspotDTO();
+		Boolean bispFlag = false;
 		List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
 
 		for (CoreMap sentence : sentences) {
@@ -102,17 +111,32 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 				String ne = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
 
 				if (ne.equals(StanfordEnum.LOCATION.getCode())) {
-					// this is the text of the token
-					String word = token.get(CoreAnnotations.TextAnnotation.class);
-					// this is the POS tag of the token
-					String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-					String text = String.format("Print: word: [%s] pos: [%s] ne: [%s]", word, pos, ne);
-					log.info(text);
-					return true;
+					hotspot.setLocationName(ne);
+				} else if (ne.equals(StanfordEnum.BISP.getCode())) {
+					hotspot.setBirdSpecies(ne);
+					bispFlag = true;
+				} else if (ne.equals(StanfordEnum.NUMBER.getCode())) {
+					// TODO check the case when the number is a string like "two"
+					// what happens if the number is not related to the howMany variable?
+					hotspot.setHowMany(Integer.valueOf(ne));
 				}
+
+				// this is the text of the token
+				String word = token.get(CoreAnnotations.TextAnnotation.class);
+				// this is the POS tag of the token
+				String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+				String text = String.format("Print: word: [%s] pos: [%s] ne: [%s]", word, pos, ne);
+				log.info(text);
 			}
 		}
-		return false;
+		if (bispFlag) {
+			return hotspot;
+		}
+		return null;
+	}
+
+	private void createRdfModel() {
+
 	}
 
 	@Override

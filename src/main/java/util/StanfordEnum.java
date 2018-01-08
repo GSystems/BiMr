@@ -3,6 +3,8 @@ package main.java.util;
 public enum StanfordEnum {
 
 	LOCATION("LOCATION"),
+	BISP("BISP"),
+	NUMBER("NUMBER"),
 	PROPS_KEY("annotators"),
 	PROPS_VALUE("tokenize, ssplit, pos, lemma, ner"),
 	NER_MODEL_KEY("ner.model"),
