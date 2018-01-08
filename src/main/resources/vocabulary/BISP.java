@@ -10,6 +10,8 @@ public class BISP {
     private static final Model m = ModelFactory.createDefaultModel();
     public static final Resource LOCATION;
     public static final Resource TWEET;
+    public static final Resource PERSON;
+    public static final Resource HOTSPOT;
     public static final Property geo;
     public static final Property longitude;
     public static final Property latitude;
@@ -18,9 +20,14 @@ public class BISP {
     public static final Property name;
     public static final Property author;
     public static final Property text;
-    public static final Property date;
+    public static final Property observationDate;
     public static final Property language;
     public static final Property id;
+    public static final Property email;
+    public static final Property accountName;
+    public static final Property bisp;
+    public static final Property howMany;
+    public static final Property link;
 
     public BISP() {
     }
@@ -30,8 +37,10 @@ public class BISP {
     }
 
     static {
-        LOCATION = m.createResource("http://xmlns.com/bisp/location#");
-        TWEET = m.createResource("http://xmlns.com/bisp/tweet#");
+        LOCATION = m.createResource("http://xmlns.com/bisp/LOCATION#");
+        TWEET = m.createResource("http://xmlns.com/bisp/TWEET#");
+        PERSON = m.createResource("http://xmlns.com/bisp/PERSON#");
+        HOTSPOT = m.createResource("http://xmlns.com/bisp/HOTSPOT#");
         geo = m.createProperty(uri, "geo");
         longitude = m.createProperty(uri, "longitude");
         latitude = m.createProperty(uri, "latitude");
@@ -40,9 +49,13 @@ public class BISP {
         name = m.createProperty(uri, "name");
         author = m.createProperty(uri, "author");
         text = m.createProperty(uri, "text");
-        date = m.createProperty(uri, "date");
+        observationDate = m.createProperty(uri, "observationDate");
         language = m.createProperty(uri, "language");
         id = m.createProperty(uri, "id");
+        email = m.createProperty(uri, "email");
+        accountName = m.createProperty(uri, "accountName");
+        bisp = m.createProperty(uri, "bisp");
+        howMany = m.createProperty(uri, "howMany");
+        link = m.createProperty(uri, "link");
     }
 }
-
