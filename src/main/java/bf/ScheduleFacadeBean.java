@@ -141,11 +141,10 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 		twitterRepo.insertTweets(MapTransformer.toTweetsFromDTO(tweets));
 	}
 
-	private static void initializePipeline() {
+	private void initializePipeline() {
 		Properties props = new Properties();
 		props.put(StanfordEnum.PROPS_KEY.getCode(), StanfordEnum.PROPS_VALUE.getCode());
-//		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_3CLASS_MODEL_VALUE.getCode());
-//		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_BISP_MODEL_VALUE.getCode());
+		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_BISP_MODEL_VALUE.getCode());
 		pipeline = new StanfordCoreNLP(props);
 	}
 

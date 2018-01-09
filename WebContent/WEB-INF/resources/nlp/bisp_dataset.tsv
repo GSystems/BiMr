@@ -29,8 +29,8 @@ https://t.co/ttUIy6Prl6	LINK
 |	O
 #BirdMigration	O
 https://t.co/aI8WgTbszf	LINK
-Yellow	BISP
-throaded	BISP
+Yellow	O
+throaded	O
 warbler	BISP
 Setophaga	BISP
 dominica	BISP
@@ -768,7 +768,7 @@ grosbeak	BISP
 ...	O
 https://t.co/glymH1RF9x	LINK
 A	O
-mother	SEX
+mother	O
 peacock	BISP
 and	O
 her	O
@@ -919,7 +919,7 @@ and	O
 https://t.co/2gpncVpMEp	LINK
 Tufted	BISP
 Duck	BISP
-yesterday	O
+yesterday	TIME
 at	O
 Langford	LOC
 Lakes	LOC
@@ -1357,7 +1357,7 @@ Byndoor	LOC
 ...	O
 https://t.co/dGZgnMRrQ2	LINK
 Spotted	O
-today	O
+today	TIME
 among	O
 the	O
 mistletoe	O
@@ -1407,11 +1407,11 @@ scandiacus	BISP
 White	O
 Co.	O
 ,	O
-Indiana	O
+Indiana	LOC
 on	O
-28	O
-December	O
-2017	O
+28	DATE
+December	DATE
+2017	DATE
 .	O
 #naturephotography	O
 ...	O
@@ -1665,7 +1665,7 @@ here	O
 https://t.co/q9cINGcuLm	LINK
 No	O
 lifers	O
-today	O
+today	TIME
 ,	O
 but	O
 we	O
@@ -1682,7 +1682,7 @@ Knot	BISP
 seen	O
 here	O
 between	O
-two	O
+two	NUMB
 Bar-tailed	BISP
 Godwit	BISP
 ...	O
@@ -1812,7 +1812,7 @@ morning	O
 Birding	O
 from	O
 inside	O
-today	O
+today	TIME
 !	O
 #Chickadees	BISP
 are	O
@@ -2037,7 +2037,7 @@ pause	O
 mid	O
 yoga	O
 session	O
-yesterday	O
+yesterday	TIME
 when	O
 I	O
 realised	O
@@ -2099,8 +2099,8 @@ hawk	BISP
 in	O
 the	O
 snow	O
-this	O
-morning	O
+this	TIME
+morning	TIME
 .	O
 #birds	O
 #birding	O
@@ -2422,7 +2422,7 @@ https://t.co/aSWLQKQwQe	LINK
 https://t.co/3DY6gjLsfd	LINK
 #Snow	O
 #birding	O
-today	O
+today	TIME
 .	O
 The	O
 cold	O
@@ -2589,10 +2589,10 @@ https://t.co/CvTEesfljV	LINK
 #audubon	O
 ...	O
 https://t.co/lMzMEwcYqU	LINK
-#perruche	O
-#parakeet	O
+#perruche	BISP
+#parakeet	BISP
 #budgie	O
-#india	O
+#india	LOC
 #tamilnadu	O
 #bird	O
 #pondicherry	O
@@ -3263,7 +3263,7 @@ T	O
 out	O
 of	O
 me	O
-today	O
+today	TIME
 .	O
 Saw	O
 him	O
@@ -3620,7 +3620,7 @@ afternoon	TIME
 #norfolk	O
 https://t.co/7vcpQknOso	LINK
 Excitement	O
-today	O
+today	TIME
 as	O
 this	O
 absolutely	O
@@ -3911,7 +3911,7 @@ great	O
 pictures	O
 of	O
 Clarice	O
-today	O
+today	TIME
 at	O
 the	O
 feeder	O
@@ -3929,7 +3929,7 @@ Z	O
 park	O
 activities	O
 for	O
-today	O
+today	TIME
 are	O
 #Birding	O
 and	O
@@ -4064,7 +4064,7 @@ Woodpecker	BISP
 on	O
 my	O
 patio	O
-today	O
+today	TIME
 .	O
 #birds	O
 #birding	O
@@ -4763,7 +4763,7 @@ sunset	O
 .	O
 #nature	O
 #wildlife	O
-#morning	TIME
+#morning	O
 #newyear	O
 #birding	O
 @Natures_Voice	O
@@ -4773,7 +4773,7 @@ https://t.co/HuSRgkFm5K	LINK
 Another	O
 #lifer	O
 from	O
-yesterday	O
+yesterday	TIME
 's	O
 outing	O
 to	O
@@ -5113,7 +5113,7 @@ ta	O
 take	O
 it	O
 slow	O
-today	O
+today	TIME
 ...	O
 need	O
 help	O
@@ -5894,7 +5894,7 @@ Helfrich	PERS
 #photography	O
 #bird	O
 #wildlife	O
-#NorthAmerican	LOC
+#NorthAmerican	BISP
 #sandhillcrane	BISP
 ...	O
 https://t.co/oc2mkLSjyH	LINK
@@ -6066,7 +6066,7 @@ is	O
 strutting	O
 his	O
 stuff	O
-today	O
+today	TIME
 ,	O
 seeing	O
 as	O
@@ -6170,7 +6170,7 @@ https://t.co/1lFlr7Mct3	LINK
 Robin	BISP
 popped	O
 in	O
-today	O
+today	TIME
 .	O
 #Robin	BISP
 #birds	O
@@ -6379,7 +6379,7 @@ mou	O
 ...	O
 https://t.co/3uwdDj4CIY	LINK
 RT	RTWT
-@BeadXS	ATUH
+@BeadXS	AUTH
 :	O
 Realistic	O
 Owl	BISP
@@ -6574,7 +6574,7 @@ pen	O
 .	O
 ...	O
 https://t.co/jjOkcv4lP7	LINK
-RT	RTTWT
+RT	RTWT
 @ByChauvin	AUTH
 :	O
 Seagulls	BISP
@@ -7120,7 +7120,7 @@ Made	O
 a	O
 little	O
 friend	O
-today	O
+today	TIME
 at	O
 #Glynllifon	LOC
 #Robin	BISP
@@ -7888,7 +7888,7 @@ a	O
 cover	O
 up	O
 from	O
-today	O
+today	TIME
 .	O
 #bird	O
 #hummingbird	BISP
@@ -7908,7 +7908,7 @@ folks	O
 !!	O
 #bird	O
 #watercolour	O
-#nuthatch	nuthatch
+#nuthatch	BISP
 #nature	O
 https://t.co/aKrP3hpvbq	LINK
 Male	SEX
@@ -7958,7 +7958,7 @@ in	O
 Ontario	LOC
 ,	O
 Canada	LOC
-just	TIME
+just	O
 after	TIME
 dawn	TIME
 .	O
@@ -8057,15 +8057,15 @@ a	O
 branch	O
 #bird	O
 #ArtForSale	O
-#Snow	BISP
-#Snowy	BISP
+#Snow	O
+#Snowy	O
 #winter	O
 #CLS	O
 https://t.co/zod…	LINK
 Mute	BISP
 #Swan	BISP
 at	O
-#HuntingtonBeach	O
+#HuntingtonBeach	LOC
 Central	LOC
 Park	LOC
 ,	O
@@ -8368,8 +8368,8 @@ Singing	O
 Blue	BISP
 Tit	BISP
 @rspbconwy	O
-this	O
-morning	O
+this	TIME
+morning	TIME
 .	O
 @Natures_Voice	O
 @BirdWatchingMag	O
@@ -8557,7 +8557,7 @@ on	O
 the	O
 niger/nyjer	O
 seed	O
-today	O
+today	TIME
 .	O
 #birding	O
 #Lincolnshire	O
@@ -8717,7 +8717,7 @@ creature	O
 braving	O
 the	O
 rain	O
-today	O
+today	TIME
 in	O
 #Bristol	LOC
 .	O
@@ -8772,7 +8772,7 @@ in	O
 in	O
 Colombo	LOC
 5	O
-today	O
+today	TIME
 .	O
 An	O
 Indian	BISP
@@ -9073,8 +9073,8 @@ cardinals	BISP
 in	O
 our	O
 yard	O
-this	O
-morning	O
+this	TIME
+morning	TIME
 !	O
 ?	O
 -LRB-	O
@@ -9091,7 +9091,7 @@ RT	RTWT
 Really	O
 cold	O
 day	O
-yesterday	O
+yesterday	TIME
 @Natures_Voice	O
 Pulbrough	O
 Brooks	O
