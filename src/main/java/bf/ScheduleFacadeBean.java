@@ -147,29 +147,38 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 	private TwitterRequestDTO createRequest() {
 		String hashtag;
 		switch (count) {
-		case 1:
-			hashtag = TwitterEnum.BIRDSMIGRATION.getCode();
-			break;
-		case 2:
-			hashtag = TwitterEnum.BIRDMIG.getCode();
-			break;
-		case 3:
-			hashtag = TwitterEnum.BIRDSMIG.getCode();
-			break;
-		case 4:
-			hashtag = TwitterEnum.ORNITHOLOGY.getCode();
-			break;
-		case 5:
-			hashtag = TwitterEnum.BIRD.getCode();
-			break;
-		case 6:
-			hashtag = TwitterEnum.BIRDS.getCode();
-			break;
-		case 7:
-			hashtag = TwitterEnum.BIRDING.getCode();
-			break;
-		default:
-			hashtag = TwitterEnum.BIRDMIGRATION.getCode();
+			case 1:
+				hashtag = TwitterEnum.BIRDSMIGRATION.getCode();
+				break;
+			case 2:
+				hashtag = TwitterEnum.BIRDMIG.getCode();
+				break;
+			case 3:
+				hashtag = TwitterEnum.BIRDSMIG.getCode();
+				break;
+			case 4:
+				hashtag = TwitterEnum.ORNITHOLOGY.getCode();
+				break;
+			case 5:
+				hashtag = TwitterEnum.BIRD.getCode();
+				break;
+			case 6:
+				hashtag = TwitterEnum.BIRDS.getCode();
+				break;
+			case 7:
+				hashtag = TwitterEnum.BIRDING.getCode();
+				break;
+			case 8:
+				hashtag = TwitterEnum.BIRDMIGRATING.getCode();
+				break;
+			case 9:
+				hashtag = TwitterEnum.BIRDWATCHING.getCode();
+				break;
+			case 10:
+				hashtag = TwitterEnum.BIRD_WATCHING.getCode();
+				break;
+			default:
+				hashtag = TwitterEnum.BIRDMIGRATION.getCode();
 		}
 		count++;
 		if (count > GeneralConstants.MAX_NUMBER_HASHTAGS) {
@@ -182,7 +191,7 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 		Properties props = new Properties();
 		props.put(StanfordEnum.PROPS_KEY.getCode(), StanfordEnum.PROPS_VALUE.getCode());
 		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_3CLASS_MODEL_VALUE.getCode());
-		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_BISP_MODEL_VALUE.getCode());
+//		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_BISP_MODEL_VALUE.getCode());
 		pipeline = new StanfordCoreNLP(props);
 	}
 
