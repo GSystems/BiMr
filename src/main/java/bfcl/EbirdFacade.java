@@ -1,7 +1,7 @@
 package main.java.bfcl;
 
-import main.java.bfcl.dto.EBirdRequestDTO;
-import main.java.bfcl.dto.EBirdResponseDTO;
+import main.java.bfcl.dto.EbirdRequestDTO;
+import main.java.bfcl.dto.EbirdResponseDTO;
 
 /**
  * @author GLK
@@ -9,11 +9,10 @@ import main.java.bfcl.dto.EBirdResponseDTO;
 public interface EbirdFacade {
 
 	/**
-	 * Retrieve data from eBirds API
-	 * 
+	 * Retrieves data from ebird API v1.1 and persists them into database
+	 *
 	 * @param request
-	 * @return
 	 */
-	EBirdResponseDTO retrieveEBirdData(EBirdRequestDTO request);
+	EbirdResponseDTO retrieveEbirdDataFromApi(EbirdRequestDTO request);
 
 }

@@ -1,7 +1,7 @@
 package main.java.rf.ebird;
 
-import main.java.rf.ebird.wrapper.EBirdRequestWrapper;
-import main.java.rf.ebird.wrapper.EBirdResponseWrapper;
+import main.java.rf.ebird.wrapper.EbirdRequestWrapper;
+import main.java.rf.ebird.wrapper.EbirdResponseWrapper;
 
 /**
  * @author Rares
@@ -9,6 +9,6 @@ import main.java.rf.ebird.wrapper.EBirdResponseWrapper;
 
 public interface EbirdsServiceClient {
 
-	EBirdResponseWrapper retrieveEBirdData(EBirdRequestWrapper request);
+	EbirdResponseWrapper retrieveEBirdData(EbirdRequestWrapper request);
 	
 }

@@ -24,7 +24,7 @@ public class TweetEntity implements Serializable {
 	private static final long serialVersionUID = -6863014092565181817L;
 
 	public static final String FIND_LAST_TWEET_ID = "TweetEntity.findLastTweetId";
-	protected static final String FIND_LAST_TWEET_ID_QRY = "SELECT MAX(te.tweetId) FROM TweetEntity te";
+	protected static final String FIND_LAST_TWEET_ID_QRY = "SELECT MIN(te.tweetId) FROM TweetEntity te";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

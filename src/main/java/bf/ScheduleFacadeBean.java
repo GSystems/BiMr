@@ -1,6 +1,5 @@
 package main.java.bf;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,9 +10,6 @@ import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.inject.Inject;
 
-import edu.stanford.nlp.classify.LinearClassifier;
-import edu.stanford.nlp.ie.crf.CRFClassifier;
-import edu.stanford.nlp.io.IOUtils;
 import main.java.bfcl.dto.*;
 import org.jboss.logging.Logger;
 
@@ -36,14 +32,13 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 
 	private static final Logger log = Logger.getLogger(ScheduleFacadeBean.class.getName());
 	private static Integer count;
-	private static StanfordCoreNLP pipeline;;
+	private static StanfordCoreNLP pipeline;
 
 	@Inject
-	private TweetRepo twitterRepo;
-	
-	@Inject
-	private EbirdRepo ebirdRepo;
-	private TweetRepo repo;
+    private TweetRepo twitterRepo;
+
+    @Inject
+    private EbirdRepo ebirdRepo;
 
 	@PostConstruct
 	public void init() {
@@ -73,36 +68,35 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 				AsyncUtils.getResultFromAsyncTask(twitterRepo.retrieveTweets(MapTransformer.twitterRequestFromDTO(request))));
 		if (!response.getTweets().isEmpty()) {
 			persistTweets(response.getTweets());
+			filterTweets(response.getTweets());
 		} else {
 			log.info("No data from Twitter API");
 		}
 	}
 
-	private List<TweetDTO> filterTweets(List<TweetDTO> tweets) {
+	private void filterTweets(List<TweetDTO> tweets) {
 		List<TweetDTO> filteredTweets = new ArrayList<>();
 		for (TweetDTO tweet : tweets) {
-			Boolean hasLocation = false;
-			if (tweet.getLatitude() != null) {
-				hasLocation = true;
-			}
 			Annotation document = new Annotation(tweet.getTweetMessage());
 			// run all Annotators on this text
 			pipeline.annotate(document);
-			HotspotDTO hotspot = parseTweet(document);
-			if (hotspot != null) {
-				filteredTweets.add(tweet);
-
-			}
+			HotspotDTO hotspot = parseTweet(document, tweet.getTweetId());
+            if (hotspot.getBirdSpecies() != null &&
+                    hotspot.getLatitude() != null || hotspot.getLocationName() != null) {
+                filteredTweets.add(tweet);
+            }
 		}
-		return filteredTweets;
+		if (!filteredTweets.isEmpty()) {
+			createRdfModel(filteredTweets);
+		}
 	}
 
 	/**
 	 * parse every sentence from the tweet and annotate it
 	 */
-	private HotspotDTO parseTweet(Annotation document) {
+	private HotspotDTO parseTweet(Annotation document, Long tweetId) {
 		HotspotDTO hotspot = new HotspotDTO();
-		Boolean bispFlag = false;
+		hotspot.setInformationSourceId(tweetId.toString());
 		List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
 
 		for (CoreMap sentence : sentences) {
@@ -110,40 +104,49 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 			// a CoreLabel is a CoreMap with additional token-specific methods
 			for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
 				// this is the NER label of the token
-				String ne = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
+				String namedEntity = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
 
-				if (ne.equals(StanfordEnum.LOCATION.getCode())) {
-					hotspot.setLocationName(ne);
-				} else if (ne.equals(StanfordEnum.BISP.getCode())) {
-					hotspot.setBirdSpecies(ne);
-					bispFlag = true;
-				} else if (ne.equals(StanfordEnum.NUMBER.getCode())) {
-					// TODO check the case when the number is a string like "two"
-					// what happens if the number is not related to the howMany variable?
-					hotspot.setHowMany(Integer.valueOf(ne));
-				}
+				hotspot = extractSensitiveInfoFromTweet(namedEntity, hotspot);
 
 				// this is the text of the token
 				String word = token.get(CoreAnnotations.TextAnnotation.class);
 				// this is the POS tag of the token
 				String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-				String text = String.format("Print: word: [%s] pos: [%s] ne: [%s]", word, pos, ne);
+				String text = String.format("Print: word: [%s] pos: [%s] ne: [%s]", word, pos, namedEntity);
 				log.info(text);
 			}
 		}
-		if (bispFlag) {
-			return hotspot;
-		}
-		return null;
+		return hotspot;
 	}
 
-	private void createRdfModel() {
+	private HotspotDTO extractSensitiveInfoFromTweet(String namedEntity, HotspotDTO hotspot) {
+		if (namedEntity.equals(StanfordEnum.LOCATION.getCode())) {
+			hotspot.setLocationName(namedEntity);
+		} else if (namedEntity.equals(StanfordEnum.BISP.getCode())) {
+			hotspot.setBirdSpecies(namedEntity);
+		} else if (namedEntity.equals(StanfordEnum.NUMBER.getCode())) {
+			hotspot.setHowMany(namedEntity);
+		} else if (namedEntity.equals(StanfordEnum.DATE.getCode())) {
+		    hotspot.setObservationDate(namedEntity);
+        }
+		return hotspot;
+	}
+
+	private void createRdfModel(List<TweetDTO> filteredTweets) {
 
 	}
 
 	@Override
 	public void persistTweets(List<TweetDTO> tweets) {
 		twitterRepo.insertTweets(MapTransformer.toTweetsFromDTO(tweets));
+	}
+
+	private static void initializePipeline() {
+		Properties props = new Properties();
+		props.put(StanfordEnum.PROPS_KEY.getCode(), StanfordEnum.PROPS_VALUE.getCode());
+//		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_3CLASS_MODEL_VALUE.getCode());
+//		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_BISP_MODEL_VALUE.getCode());
+		pipeline = new StanfordCoreNLP(props);
 	}
 
 	private TwitterRequestDTO createRequest() {
@@ -189,14 +192,6 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 		return new TwitterRequestDTO(hashtag, retrieveLastTweetId());
 	}
 
-	private static void initializePipeline() {
-		Properties props = new Properties();
-		props.put(StanfordEnum.PROPS_KEY.getCode(), StanfordEnum.PROPS_VALUE.getCode());
-		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_3CLASS_MODEL_VALUE.getCode());
-//		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_BISP_MODEL_VALUE.getCode());
-		pipeline = new StanfordCoreNLP(props);
-	}
-
 	@SuppressWarnings("unused")
 	private TwitterResponseDTO generateTweets() {
 		TwitterResponseDTO response = new TwitterResponseDTO();
@@ -232,15 +227,8 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 	}
 
 	@Override
-	public void retrieveEbirdDataFromApi(EBirdRequestDTO request) {
+	public void persistEbirdData(List<EbirdDataDTO> ebirds) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void persistEbirdData(List<EBirdDataDTO> ebirds) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

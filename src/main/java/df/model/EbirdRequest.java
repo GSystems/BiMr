@@ -1,7 +1,7 @@
-package main.java.rf.ebird.wrapper;
+package main.java.df.model;
 
-public class EBirdRequestWrapper {
-
+public class EbirdRequest {
+	
 	private String requestUriPattern;
 
 	public String getRequestUriPattern() {

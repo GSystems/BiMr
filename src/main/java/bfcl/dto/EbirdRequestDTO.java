@@ -1,6 +1,6 @@
-package main.java.df.model;
+package main.java.bfcl.dto;
 
-public class EBirdRequest {
+public class EbirdRequestDTO {
 	
 	private String requestUriPattern;
 
@@ -11,5 +11,5 @@ public class EBirdRequest {
 	public void setRequestUriPattern(String requestUriPattern) {
 		this.requestUriPattern = requestUriPattern;
 	}
-	
+
 }

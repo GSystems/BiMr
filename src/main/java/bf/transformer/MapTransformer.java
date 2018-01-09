@@ -3,15 +3,10 @@ package main.java.bf.transformer;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.bfcl.dto.EBirdDataDTO;
-import main.java.bfcl.dto.EBirdRequestDTO;
-import main.java.bfcl.dto.EBirdResponseDTO;
-import main.java.bfcl.dto.TweetDTO;
-import main.java.bfcl.dto.TwitterRequestDTO;
-import main.java.bfcl.dto.TwitterResponseDTO;
-import main.java.df.model.EBirdData;
-import main.java.df.model.EBirdRequest;
-import main.java.df.model.EBirdResponse;
+import main.java.bfcl.dto.*;
+import main.java.df.model.EbirdData;
+import main.java.df.model.EbirdRequest;
+import main.java.df.model.EbirdResponse;
 import main.java.df.model.Tweet;
 import main.java.df.model.TwitterRequest;
 import main.java.df.model.TwitterResponse;
@@ -66,22 +61,22 @@ public class MapTransformer {
 		return tweets;
 	}
 
-	public static EBirdRequest toEbirdRequestFromDTO(EBirdRequestDTO requestDTO) {
-		EBirdRequest request = new EBirdRequest();
+	public static EbirdRequest toEbirdRequestFromDTO(EbirdRequestDTO requestDTO) {
+		EbirdRequest request = new EbirdRequest();
 		request.setRequestUriPattern(requestDTO.getRequestUriPattern());
 		return request;
 	}
 
-	public static EBirdResponseDTO fromEBirdResponseToDTO(EBirdResponse response) {
-		EBirdResponseDTO responseDTO = new EBirdResponseDTO();
+	public static EbirdResponseDTO fromEBirdResponseToDTO(EbirdResponse response) {
+		EbirdResponseDTO responseDTO = new EbirdResponseDTO();
 		responseDTO.setEbirdData(fromEBirdDataWrapperToDTO(response.getEbirdData()));
 		return responseDTO;
 	}
 
-	private static List<EBirdDataDTO> fromEBirdDataWrapperToDTO(List<EBirdData> ebirdData) {
-		List<EBirdDataDTO> ebirdDataDTO = new ArrayList<>();
-		for (EBirdData currentData : ebirdData) {
-			EBirdDataDTO ebirdDTO = new EBirdDataDTO();
+	private static List<EbirdDataDTO> fromEBirdDataWrapperToDTO(List<EbirdData> ebirdData) {
+		List<EbirdDataDTO> ebirdDataDTO = new ArrayList<>();
+		for (EbirdData currentData : ebirdData) {
+			EbirdDataDTO ebirdDTO = new EbirdDataDTO();
 			ebirdDTO.setCommonName(currentData.getCommonName());
 			ebirdDTO.setCountryName(currentData.getCountryName());
 			ebirdDTO.setLatitude(currentData.getLatitude());

@@ -1,8 +1,7 @@
 package main.java.bfcl.dto;
 
-import java.util.Date;
-
 public class HotspotDTO {
+    private String informationSourceId;
 	private String birdSpecies;
 	private String locationName;
 	private String country;
@@ -10,8 +9,16 @@ public class HotspotDTO {
 	private String locality;
 	private String latitude;
 	private String longitude;
-	private Integer howMany;
-	private Date observationDate;
+	private String howMany;
+	private String observationDate;
+
+    public String getInformationSourceId() {
+        return informationSourceId;
+    }
+
+    public void setInformationSourceId(String informationSourceId) {
+        this.informationSourceId = informationSourceId;
+    }
 
 	public String getBirdSpecies() {
 		return birdSpecies;
@@ -69,19 +76,20 @@ public class HotspotDTO {
 		this.longitude = longitude;
 	}
 
-	public Integer getHowMany() {
+	public String getHowMany() {
 		return howMany;
 	}
 
-	public void setHowMany(Integer howMany) {
+	public void setHowMany(String howMany) {
 		this.howMany = howMany;
 	}
 
-	public Date getObservationDate() {
+	public String getObservationDate() {
 		return observationDate;
 	}
 
-	public void setObservationDate(Date observationDate) {
+	public void setObservationDate(String observationDate) {
 		this.observationDate = observationDate;
 	}
+
 }

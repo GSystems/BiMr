@@ -6,22 +6,22 @@ import static org.mockito.Mockito.*;
 import org.junit.Test;
 
 import main.java.rf.ebird.EbirdsServiceClientBean;
-import main.java.rf.ebird.wrapper.EBirdRequestWrapper;
-import main.java.rf.ebird.wrapper.EBirdResponseWrapper;
+import main.java.rf.ebird.wrapper.EbirdRequestWrapper;
+import main.java.rf.ebird.wrapper.EbirdResponseWrapper;
 
 public class EbirdsServiceClientBeanTest {
 
 	@Test
 	public void testRetrieveEbirdData() {
 
-		EBirdRequestWrapper request = new EBirdRequestWrapper();
+		EbirdRequestWrapper request = new EbirdRequestWrapper();
 		
 		request.setRequestUriPattern(
 				"mockedUri");
 
 		EbirdsServiceClientBean client = mock(EbirdsServiceClientBean.class);
 
-		EBirdResponseWrapper response = mock(EBirdResponseWrapper.class);
+		EbirdResponseWrapper response = mock(EbirdResponseWrapper.class);
 		
 		when(client.retrieveEBirdData(request)).thenReturn(response);
 

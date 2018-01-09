@@ -1,13 +1,8 @@
-package main.java.df.model;
+package main.java.bfcl.dto;
 
 import java.util.Date;
 
-/**
- * @author Rares
- */
-
-public class EBirdData {
-
+public class EbirdDataDTO {
 	private String userDisplayName;
 	private String commonName;
 	private String scientificName;
@@ -89,5 +84,4 @@ public class EBirdData {
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
-
 }

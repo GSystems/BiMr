@@ -7,8 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.logging.Logger;
 
-import main.java.rf.ebird.wrapper.EBirdRequestWrapper;
-import main.java.rf.ebird.wrapper.EBirdResponseWrapper;
+import main.java.rf.ebird.wrapper.EbirdRequestWrapper;
+import main.java.rf.ebird.wrapper.EbirdResponseWrapper;
 import main.java.rf.transformer.DataTransformer;
 
 public class EbirdsServiceClientBean implements EbirdsServiceClient {
@@ -16,9 +16,9 @@ public class EbirdsServiceClientBean implements EbirdsServiceClient {
 	public static final Logger log = Logger.getLogger(EbirdsServiceClientBean.class.getName());
 
 	@Override
-	public EBirdResponseWrapper retrieveEBirdData(EBirdRequestWrapper request) {
+	public EbirdResponseWrapper retrieveEBirdData(EbirdRequestWrapper request) {
 
-		EBirdResponseWrapper response = new EBirdResponseWrapper();
+		EbirdResponseWrapper response = new EbirdResponseWrapper();
 
 		try {
 			// prep connection + settings

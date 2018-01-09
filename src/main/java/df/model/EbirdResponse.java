@@ -6,16 +6,16 @@ import java.util.List;
  * @author Rares
  */
 
-public class EBirdResponse {
+public class EbirdResponse {
 	
-	private List<EBirdData> ebirdData;
+	private List<EbirdData> ebirdData;
 
-	public List<EBirdData> getEbirdData() {
+	public List<EbirdData> getEbirdData() {
 		return ebirdData;
 	}
 
 	// TODO change the methods name
-	public void setEbirdData(List<EBirdData> ebirdData) {
+	public void setEbirdData(List<EbirdData> ebirdData) {
 		this.ebirdData = ebirdData;
 	}
 	

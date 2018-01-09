@@ -1,7 +1,7 @@
-package main.java.bfcl.dto;
+package main.java.rf.ebird.wrapper;
 
-public class EBirdRequestDTO {
-	
+public class EbirdRequestWrapper {
+
 	private String requestUriPattern;
 
 	public String getRequestUriPattern() {
@@ -11,5 +11,5 @@ public class EBirdRequestDTO {
 	public void setRequestUriPattern(String requestUriPattern) {
 		this.requestUriPattern = requestUriPattern;
 	}
-
+	
 }
