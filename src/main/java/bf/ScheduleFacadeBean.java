@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import edu.stanford.nlp.classify.LinearClassifier;
 import edu.stanford.nlp.ie.crf.CRFClassifier;
 import edu.stanford.nlp.io.IOUtils;
+import main.java.bfcl.dto.*;
 import org.jboss.logging.Logger;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
@@ -23,9 +24,7 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
 import main.java.bf.transformer.MapTransformer;
 import main.java.bfcl.ScheduleFacade;
-import main.java.bfcl.dto.TweetDTO;
-import main.java.bfcl.dto.TwitterRequestDTO;
-import main.java.bfcl.dto.TwitterResponseDTO;
+import main.java.df.EbirdRepo;
 import main.java.df.TweetRepo;
 import main.java.util.AsyncUtils;
 import main.java.util.GeneralConstants;
@@ -40,6 +39,10 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 	private static StanfordCoreNLP pipeline;;
 
 	@Inject
+	private TweetRepo twitterRepo;
+	
+	@Inject
+	private EbirdRepo ebirdRepo;
 	private TweetRepo repo;
 
 	@PostConstruct
@@ -56,7 +59,7 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 
 	@Override
 	public Long retrieveLastTweetId() {
-		List<Long> sinceIds = AsyncUtils.getResultFromAsyncTask(repo.retrieveLastTweetId());
+		List<Long> sinceIds = AsyncUtils.getResultFromAsyncTask(twitterRepo.retrieveLastTweetId());
 		Long sinceId = GeneralConstants.DEFAULT_SINCE_ID;
 		if (sinceIds.get(0) != null) {
 			sinceId = sinceIds.get(0);
@@ -67,7 +70,7 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 	@Override
 	public void retrieveTweetsFromApi(TwitterRequestDTO request) {
 		TwitterResponseDTO response = MapTransformer.fromTwitterResponseToDTO(
-				AsyncUtils.getResultFromAsyncTask(repo.retrieveTweets(MapTransformer.twitterRequestFromDTO(request))));
+				AsyncUtils.getResultFromAsyncTask(twitterRepo.retrieveTweets(MapTransformer.twitterRequestFromDTO(request))));
 		if (!response.getTweets().isEmpty()) {
 			persistTweets(response.getTweets());
 		} else {
@@ -78,11 +81,17 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 	private List<TweetDTO> filterTweets(List<TweetDTO> tweets) {
 		List<TweetDTO> filteredTweets = new ArrayList<>();
 		for (TweetDTO tweet : tweets) {
+			Boolean hasLocation = false;
+			if (tweet.getLatitude() != null) {
+				hasLocation = true;
+			}
 			Annotation document = new Annotation(tweet.getTweetMessage());
 			// run all Annotators on this text
 			pipeline.annotate(document);
-			if (parseText(document)) {
+			HotspotDTO hotspot = parseTweet(document);
+			if (hotspot != null) {
 				filteredTweets.add(tweet);
+
 			}
 		}
 		return filteredTweets;
@@ -91,7 +100,9 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 	/**
 	 * parse every sentence from the tweet and annotate it
 	 */
-	private boolean parseText(Annotation document) {
+	private HotspotDTO parseTweet(Annotation document) {
+		HotspotDTO hotspot = new HotspotDTO();
+		Boolean bispFlag = false;
 		List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
 
 		for (CoreMap sentence : sentences) {
@@ -102,50 +113,74 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 				String ne = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
 
 				if (ne.equals(StanfordEnum.LOCATION.getCode())) {
-					// this is the text of the token
-					String word = token.get(CoreAnnotations.TextAnnotation.class);
-					// this is the POS tag of the token
-					String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-					String text = String.format("Print: word: [%s] pos: [%s] ne: [%s]", word, pos, ne);
-					log.info(text);
-					return true;
+					hotspot.setLocationName(ne);
+				} else if (ne.equals(StanfordEnum.BISP.getCode())) {
+					hotspot.setBirdSpecies(ne);
+					bispFlag = true;
+				} else if (ne.equals(StanfordEnum.NUMBER.getCode())) {
+					// TODO check the case when the number is a string like "two"
+					// what happens if the number is not related to the howMany variable?
+					hotspot.setHowMany(Integer.valueOf(ne));
 				}
+
+				// this is the text of the token
+				String word = token.get(CoreAnnotations.TextAnnotation.class);
+				// this is the POS tag of the token
+				String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+				String text = String.format("Print: word: [%s] pos: [%s] ne: [%s]", word, pos, ne);
+				log.info(text);
 			}
 		}
-		return false;
+		if (bispFlag) {
+			return hotspot;
+		}
+		return null;
+	}
+
+	private void createRdfModel() {
+
 	}
 
 	@Override
 	public void persistTweets(List<TweetDTO> tweets) {
-		repo.insertTweets(MapTransformer.toTweetsFromDTO(tweets));
+		twitterRepo.insertTweets(MapTransformer.toTweetsFromDTO(tweets));
 	}
 
 	private TwitterRequestDTO createRequest() {
 		String hashtag;
 		switch (count) {
-		case 1:
-			hashtag = TwitterEnum.BIRDSMIGRATION.getCode();
-			break;
-		case 2:
-			hashtag = TwitterEnum.BIRDMIG.getCode();
-			break;
-		case 3:
-			hashtag = TwitterEnum.BIRDSMIG.getCode();
-			break;
-		case 4:
-			hashtag = TwitterEnum.ORNITHOLOGY.getCode();
-			break;
-		case 5:
-			hashtag = TwitterEnum.BIRD.getCode();
-			break;
-		case 6:
-			hashtag = TwitterEnum.BIRDS.getCode();
-			break;
-		case 7:
-			hashtag = TwitterEnum.BIRDING.getCode();
-			break;
-		default:
-			hashtag = TwitterEnum.BIRDMIGRATION.getCode();
+			case 1:
+				hashtag = TwitterEnum.BIRDSMIGRATION.getCode();
+				break;
+			case 2:
+				hashtag = TwitterEnum.BIRDMIG.getCode();
+				break;
+			case 3:
+				hashtag = TwitterEnum.BIRDSMIG.getCode();
+				break;
+			case 4:
+				hashtag = TwitterEnum.ORNITHOLOGY.getCode();
+				break;
+			case 5:
+				hashtag = TwitterEnum.BIRD.getCode();
+				break;
+			case 6:
+				hashtag = TwitterEnum.BIRDS.getCode();
+				break;
+			case 7:
+				hashtag = TwitterEnum.BIRDING.getCode();
+				break;
+			case 8:
+				hashtag = TwitterEnum.BIRDMIGRATING.getCode();
+				break;
+			case 9:
+				hashtag = TwitterEnum.BIRDWATCHING.getCode();
+				break;
+			case 10:
+				hashtag = TwitterEnum.BIRD_WATCHING.getCode();
+				break;
+			default:
+				hashtag = TwitterEnum.BIRDMIGRATION.getCode();
 		}
 		count++;
 		if (count > GeneralConstants.MAX_NUMBER_HASHTAGS) {
@@ -158,7 +193,7 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 		Properties props = new Properties();
 		props.put(StanfordEnum.PROPS_KEY.getCode(), StanfordEnum.PROPS_VALUE.getCode());
 		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_3CLASS_MODEL_VALUE.getCode());
-		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_BISP_MODEL_VALUE.getCode());
+//		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_BISP_MODEL_VALUE.getCode());
 		pipeline = new StanfordCoreNLP(props);
 	}
 
@@ -194,6 +229,18 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 
 		response.setTweets(tweets);
 		return response;
+	}
+
+	@Override
+	public void retrieveEbirdDataFromApi(EBirdRequestDTO request) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void persistEbirdData(List<EBirdDataDTO> ebirds) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
