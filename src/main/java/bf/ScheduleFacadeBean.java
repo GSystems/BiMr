@@ -24,12 +24,9 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
 import main.java.bf.transformer.MapTransformer;
 import main.java.bfcl.ScheduleFacade;
-import main.java.bfcl.dto.EBirdDataDTO;
-import main.java.bfcl.dto.EBirdRequestDTO;
 import main.java.bfcl.dto.TweetDTO;
 import main.java.bfcl.dto.TwitterRequestDTO;
 import main.java.bfcl.dto.TwitterResponseDTO;
-import main.java.df.EbirdRepo;
 import main.java.df.TweetRepo;
 import main.java.util.AsyncUtils;
 import main.java.util.GeneralConstants;
@@ -41,13 +38,10 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 
 	private static final Logger log = Logger.getLogger(ScheduleFacadeBean.class.getName());
 	private static Integer count;
-	private static StanfordCoreNLP pipeline;
+	private static StanfordCoreNLP pipeline;;
 
 	@Inject
-	private TweetRepo twitterRepo;
-	
-	@Inject
-	private EbirdRepo ebirdRepo;
+	private TweetRepo repo;
 
 	@PostConstruct
 	public void init() {
@@ -63,7 +57,7 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 
 	@Override
 	public Long retrieveLastTweetId() {
-		List<Long> sinceIds = AsyncUtils.getResultFromAsyncTask(twitterRepo.retrieveLastTweetId());
+		List<Long> sinceIds = AsyncUtils.getResultFromAsyncTask(repo.retrieveLastTweetId());
 		Long sinceId = GeneralConstants.DEFAULT_SINCE_ID;
 		if (sinceIds.get(0) != null) {
 			sinceId = sinceIds.get(0);
@@ -74,7 +68,7 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 	@Override
 	public void retrieveTweetsFromApi(TwitterRequestDTO request) {
 		TwitterResponseDTO response = MapTransformer.fromTwitterResponseToDTO(
-				AsyncUtils.getResultFromAsyncTask(twitterRepo.retrieveTweets(MapTransformer.twitterRequestFromDTO(request))));
+				AsyncUtils.getResultFromAsyncTask(repo.retrieveTweets(MapTransformer.twitterRequestFromDTO(request))));
 		if (!response.getTweets().isEmpty()) {
 			persistTweets(response.getTweets());
 		} else {
@@ -147,7 +141,7 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 
 	@Override
 	public void persistTweets(List<TweetDTO> tweets) {
-		twitterRepo.insertTweets(MapTransformer.toTweetsFromDTO(tweets));
+		repo.insertTweets(MapTransformer.toTweetsFromDTO(tweets));
 	}
 
 	private TwitterRequestDTO createRequest() {
@@ -233,18 +227,6 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 
 		response.setTweets(tweets);
 		return response;
-	}
-
-	@Override
-	public void retrieveEbirdDataFromApi(EBirdRequestDTO request) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void persistEbirdData(List<EBirdDataDTO> ebirds) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
