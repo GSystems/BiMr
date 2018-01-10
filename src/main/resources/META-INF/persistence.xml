@@ -8,7 +8,7 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>java:/CoreDS</jta-data-source>
 
-		<class>main.java.rf.twitter.entity.TweetEntity</class>
+		<class>main.java.bimr.rf.twitter.entity.TweetEntity</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 
 		<properties>
