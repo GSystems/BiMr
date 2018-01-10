@@ -25,8 +25,7 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 
 	private static final Logger log = Logger.getLogger(TwitterServiceClientBean.class.getName());
 
-	@Override
-	public TwitterResponseWrapper retrieveTweets(TwitterRequestWrapper request) {
+	@Override public TwitterResponseWrapper retrieveTweets(TwitterRequestWrapper request) {
 		TwitterResponseWrapper response = new TwitterResponseWrapper();
 		List<TweetWrapper> tweets = new ArrayList<>();
 		String hashtag = request.getHashtag();

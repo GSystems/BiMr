@@ -1,7 +1,7 @@
 package main.java.bfcl.dto;
 
 public class HotspotDTO {
-    private String informationSourceId;
+	private String informationSourceId;
 	private String birdSpecies;
 	private String locationName;
 	private String country;
@@ -12,13 +12,13 @@ public class HotspotDTO {
 	private String howMany;
 	private String observationDate;
 
-    public String getInformationSourceId() {
-        return informationSourceId;
-    }
+	public String getInformationSourceId() {
+		return informationSourceId;
+	}
 
-    public void setInformationSourceId(String informationSourceId) {
-        this.informationSourceId = informationSourceId;
-    }
+	public void setInformationSourceId(String informationSourceId) {
+		this.informationSourceId = informationSourceId;
+	}
 
 	public String getBirdSpecies() {
 		return birdSpecies;

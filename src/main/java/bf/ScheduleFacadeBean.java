@@ -64,8 +64,8 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 
 	@Override
 	public void retrieveTweetsFromApi(TwitterRequestDTO request) {
-		TwitterResponseDTO response = MapTransformer.fromTwitterResponseToDTO(
-				AsyncUtils.getResultFromAsyncTask(twitterRepo.retrieveTweets(MapTransformer.twitterRequestFromDTO(request))));
+		TwitterResponseDTO response = MapTransformer.fromTwitterResponseToDTO(AsyncUtils
+				.getResultFromAsyncTask(twitterRepo.retrieveTweets(MapTransformer.twitterRequestFromDTO(request))));
 		if (!response.getTweets().isEmpty()) {
 			persistTweets(response.getTweets());
 			filterTweets(response.getTweets());
@@ -81,10 +81,10 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 			// run all Annotators on this text
 			pipeline.annotate(document);
 			HotspotDTO hotspot = parseTweet(document, tweet.getTweetId());
-            if (hotspot.getBirdSpecies() != null &&
-                    hotspot.getLatitude() != null || hotspot.getLocationName() != null) {
-                filteredTweets.add(tweet);
-            }
+			if (hotspot.getBirdSpecies() != null && hotspot.getLatitude() != null
+					|| hotspot.getLocationName() != null) {
+				filteredTweets.add(tweet);
+			}
 		}
 		if (!filteredTweets.isEmpty()) {
 			createRdfModel(filteredTweets);
@@ -108,12 +108,15 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 
 				hotspot = extractSensitiveInfoFromTweet(namedEntity, hotspot);
 
-				// this is the text of the token
-				String word = token.get(CoreAnnotations.TextAnnotation.class);
-				// this is the POS tag of the token
-				String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-				String text = String.format("Print: word: [%s] pos: [%s] ne: [%s]", word, pos, namedEntity);
-				log.info(text);
+				//TODO remove this block after in the final version
+				if (hotspot.getBirdSpecies() != null || hotspot.getLocationName() != null) {
+					// this is the text of the token
+					String word = token.get(CoreAnnotations.TextAnnotation.class);
+					// this is the POS tag of the token
+					String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+					String text = String.format("Print: word: [%s] pos: [%s] ne: [%s]", word, pos, namedEntity);
+					log.info(text);
+				}
 			}
 		}
 		return hotspot;
@@ -127,8 +130,8 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 		} else if (namedEntity.equals(StanfordEnum.NUMBER.getCode())) {
 			hotspot.setHowMany(namedEntity);
 		} else if (namedEntity.equals(StanfordEnum.DATE.getCode())) {
-		    hotspot.setObservationDate(namedEntity);
-        }
+			hotspot.setObservationDate(namedEntity);
+		}
 		return hotspot;
 	}
 

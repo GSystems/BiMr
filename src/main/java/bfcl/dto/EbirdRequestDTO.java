@@ -1,7 +1,7 @@
 package main.java.bfcl.dto;
 
 public class EbirdRequestDTO {
-	
+
 	private String requestUriPattern;
 
 	public String getRequestUriPattern() {

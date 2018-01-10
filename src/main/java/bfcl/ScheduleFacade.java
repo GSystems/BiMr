@@ -15,31 +15,29 @@ public interface ScheduleFacade {
 
 	/**
 	 * Retrieves tweets from twitter api and persist them into database
-	 * 
+	 *
 	 * @param request
-	 * @param pipeline
 	 * @return
 	 */
 	void retrieveTweetsFromApi(TwitterRequestDTO request);
 
 	/**
 	 * Retrieve the most recent tweet id from the database
-	 * 
 	 */
 	Long retrieveLastTweetId();
 
 	/**
 	 * Insert a list of tweets into database
-	 * 
+	 *
 	 * @param tweets
 	 */
 	void persistTweets(List<TweetDTO> tweets);
 
 	/**
 	 * Insert a list of ebird data into the database
-	 * 
+	 *
 	 * @param ebirds
 	 */
 	void persistEbirdData(List<EbirdDataDTO> ebirds);
-	
+
 }
