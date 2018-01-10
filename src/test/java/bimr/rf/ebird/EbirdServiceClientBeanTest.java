@@ -8,7 +8,7 @@ import org.junit.Test;
 import bimr.rf.ebird.wrapper.EbirdRequestWrapper;
 import bimr.rf.ebird.wrapper.EbirdResponseWrapper;
 
-public class EbirdsServiceClientBeanTest {
+public class EbirdServiceClientBeanTest {
 
 	@Test
 	public void testRetrieveEbirdData() {
@@ -18,7 +18,7 @@ public class EbirdsServiceClientBeanTest {
 		request.setRequestUriPattern(
 				"mockedUri");
 
-		EbirdsServiceClientBean client = mock(EbirdsServiceClientBean.class);
+		EbirdServiceClientBean client = mock(EbirdServiceClientBean.class);
 
 		EbirdResponseWrapper response = mock(EbirdResponseWrapper.class);
 		

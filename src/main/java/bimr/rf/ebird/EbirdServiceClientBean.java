@@ -7,14 +7,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.logging.Logger;
 
-import bimr.rf.ebird.EbirdsServiceClient;
 import bimr.rf.ebird.wrapper.EbirdRequestWrapper;
 import bimr.rf.ebird.wrapper.EbirdResponseWrapper;
 import bimr.rf.transformer.DataTransformer;
 
-public class EbirdsServiceClientBean implements EbirdsServiceClient {
+public class EbirdServiceClientBean implements EbirdServiceClient {
 
-	public static final Logger log = Logger.getLogger(EbirdsServiceClientBean.class.getName());
+	public static final Logger log = Logger.getLogger(EbirdServiceClientBean.class.getName());
 
 	@Override
 	public EbirdResponseWrapper retrieveEBirdData(EbirdRequestWrapper request) {

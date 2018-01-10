@@ -6,7 +6,7 @@ import bimr.bfcl.dto.EbirdDataDTO;
 import bimr.bfcl.dto.TweetDTO;
 import bimr.bfcl.dto.TwitterRequestDTO;
 
-public interface ScheduleFacade {
+public interface TwitterScheduleFacade {
 
 	/**
 	 * Retrieve tweets at every 15 minutes

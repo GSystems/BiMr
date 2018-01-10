@@ -19,8 +19,7 @@ import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
 import bimr.bf.transformer.MapTransformer;
-import bimr.bfcl.ScheduleFacade;
-import bimr.df.EbirdRepo;
+import bimr.bfcl.TwitterScheduleFacade;
 import bimr.df.TweetRepo;
 import bimr.util.AsyncUtils;
 import bimr.util.GeneralConstants;
@@ -28,22 +27,19 @@ import bimr.util.StanfordEnum;
 import bimr.util.TwitterEnum;
 
 @Singleton
-public class ScheduleFacadeBean implements ScheduleFacade {
+public class TwitterScheduleFacadeBean implements TwitterScheduleFacade {
 
-	private static final Logger log = Logger.getLogger(ScheduleFacadeBean.class.getName());
+	private static final Logger log = Logger.getLogger(TwitterScheduleFacadeBean.class.getName());
 	private static Integer count;
 	private static StanfordCoreNLP pipeline;
 
 	@Inject
     private TweetRepo twitterRepo;
 
-    @Inject
-    private EbirdRepo ebirdRepo;
-
 	@PostConstruct
 	public void init() {
 		count = 0;
-		initializePipeline();
+//		initializePipeline();
 	}
 
 	@Schedule(second = "*", minute = "*/15", hour = "*", persistent = false)
@@ -79,7 +75,7 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 		for (TweetDTO tweet : tweets) {
 			Annotation document = new Annotation(tweet.getTweetMessage());
 			// run all Annotators on this text
-			pipeline.annotate(document);
+//			pipeline.annotate(document);
 			HotspotDTO hotspot = parseTweet(document, tweet.getTweetId());
 			if (hotspot.getBirdSpecies() != null && hotspot.getLatitude() != null
 					|| hotspot.getLocationName() != null) {

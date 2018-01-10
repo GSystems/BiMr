@@ -36,36 +36,6 @@ public class MapBean implements Serializable {
 		mapModel.setTweets(tweetFacade.retrieveTweetsFromDB());
 	}
 
-	public void retrieveEbirdNotableObservationsInRegion() {
-		EbirdRequestDTO request = new EbirdRequestDTO();
-		request.setRequestUriPattern(EbirdsEnum.RECENT_NOTABLE_OBSERVATIONS_IN_REGION.name());
-		mapModel.setEbirdData(ebirdFacade.retrieveEbirdDataFromApi(request).getEbirdData());
-	}
-	
-	public void retrieveEbirdNearbyNotableObservations() {
-		EbirdRequestDTO request = new EbirdRequestDTO();
-		request.setRequestUriPattern(EbirdsEnum.RECENT_NEARBY_NOTABLE_OBSERVATIONS.name());
-		mapModel.setEbirdData(ebirdFacade.retrieveEbirdDataFromApi(request).getEbirdData());
-	}
-	
-	public void retrieveEbirdNotableObservationsAtHotspots() {
-		EbirdRequestDTO request = new EbirdRequestDTO();
-		request.setRequestUriPattern(EbirdsEnum.RECENT_NOTABLE_OBSERVATIONS_AT_HOTSPOTS.name());
-		mapModel.setEbirdData(ebirdFacade.retrieveEbirdDataFromApi(request).getEbirdData());
-	}
-	
-	public void retrieveEbirdObservationsOfSpeciesAtHotspots() {
-		EbirdRequestDTO request = new EbirdRequestDTO();
-		request.setRequestUriPattern(EbirdsEnum.RECENT_OBSERVATIONS_OF_SPECIES_AT_HOTSPOTS.name());
-		mapModel.setEbirdData(ebirdFacade.retrieveEbirdDataFromApi(request).getEbirdData());
-	}
-	
-	public void retrieveEbirdHotspotSightingsSummary() {
-		EbirdRequestDTO request = new EbirdRequestDTO();
-		request.setRequestUriPattern(EbirdsEnum.HOTSPOT_SIGHTINGS_SUMMARY_API_REQUEST_URI.name());
-		mapModel.setEbirdData(ebirdFacade.retrieveEbirdDataFromApi(request).getEbirdData());
-	}
-
 	public EbirdFacade getEbirdFacade() {
 		return ebirdFacade;
 	}

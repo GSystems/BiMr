@@ -11,6 +11,9 @@ import bimr.df.model.Tweet;
 import bimr.df.model.TwitterRequest;
 import bimr.df.model.TwitterResponse;
 
+/**
+ * @author GLK
+ */
 public class MapTransformer {
 
 	private MapTransformer() {
@@ -91,4 +94,23 @@ public class MapTransformer {
 		return ebirdDataDTO;
 	}
 
+	public static EbirdResponse toEbirdResponseFromDTO(EbirdResponseDTO responseDTO) {
+		EbirdResponse response = new EbirdResponse();
+		List<EbirdData> ebirdDataList = new ArrayList<>();
+		for(EbirdDataDTO ebirdDataDTO : responseDTO.getEbirdData()) {
+			EbirdData ebirdData = new EbirdData();
+			ebirdData.setCommonName(ebirdDataDTO.getCommonName());
+			ebirdData.setCountryName(ebirdDataDTO.getCountryName());
+			ebirdData.setLatitude(ebirdDataDTO.getLatitude());
+			ebirdData.setLocalityName(ebirdDataDTO.getLocalityName());
+			ebirdData.setLongitude(ebirdDataDTO.getLongitude());
+			ebirdData.setObservationDate(ebirdDataDTO.getObservationDate());
+			ebirdData.setScientificName(ebirdDataDTO.getScientificName());
+			ebirdData.setStateName(ebirdDataDTO.getStateName());
+			ebirdData.setUserDisplayName(ebirdDataDTO.getUserDisplayName());
+			ebirdDataList.add(ebirdData);
+		}
+		response.setEbirdData(ebirdDataList);
+		return response;
+	}
 }

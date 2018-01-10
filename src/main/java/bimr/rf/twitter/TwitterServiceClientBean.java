@@ -60,6 +60,8 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 		Twitter twitter = new TwitterFactory(configurationBuilder.build()).getInstance();
 
 		Query query = new Query(hashtag);
+		query.setLang("en");
+		query.setMaxId(lastId);
 		Integer numberOfTweets = GeneralConstants.MAX_NUMBER_OF_TWEETS;
 		List<Status> tweets = new ArrayList<>();
 		QueryResult result = null;
@@ -72,11 +74,7 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 			}
 			try {
 				result = twitter.search(query);
-				for (Status t : result.getTweets()) {
-					if (!t.isRetweet()) {
-						tweets.add(t);
-					}
-				}
+				tweets.addAll(result.getTweets());
 				for (Status t : tweets) {
 					if (t.getId() < lastId) {
 						lastId = t.getId();
