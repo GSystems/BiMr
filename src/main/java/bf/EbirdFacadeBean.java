@@ -7,8 +7,8 @@ import javax.inject.Inject;
 
 import main.java.bf.transformer.MapTransformer;
 import main.java.bfcl.EbirdFacade;
-import main.java.bfcl.dto.EBirdRequestDTO;
-import main.java.bfcl.dto.EBirdResponseDTO;
+import main.java.bfcl.dto.EbirdRequestDTO;
+import main.java.bfcl.dto.EbirdResponseDTO;
 import main.java.df.EbirdRepo;
 import main.java.util.AsyncUtils;
 
@@ -23,7 +23,7 @@ public class EbirdFacadeBean implements EbirdFacade {
 	private EbirdRepo repo;
 
 	@Override
-	public EBirdResponseDTO retrieveEBirdData(EBirdRequestDTO request) {
+	public EbirdResponseDTO retrieveEbirdDataFromApi(EbirdRequestDTO request) {
 		return MapTransformer.fromEBirdResponseToDTO(AsyncUtils
 				.getResultFromAsyncTask(repo.retrieveEBirdData(MapTransformer.toEbirdRequestFromDTO(request))));
 	}

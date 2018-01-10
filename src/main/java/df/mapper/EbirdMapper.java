@@ -3,18 +3,18 @@ package main.java.df.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.df.model.EBirdData;
-import main.java.df.model.EBirdRequest;
-import main.java.df.model.EBirdResponse;
-import main.java.rf.ebird.wrapper.EBirdDataWrapper;
-import main.java.rf.ebird.wrapper.EBirdRequestWrapper;
-import main.java.rf.ebird.wrapper.EBirdResponseWrapper;
+import main.java.df.model.EbirdData;
+import main.java.df.model.EbirdRequest;
+import main.java.df.model.EbirdResponse;
+import main.java.rf.ebird.wrapper.EbirdDataWrapper;
+import main.java.rf.ebird.wrapper.EbirdRequestWrapper;
+import main.java.rf.ebird.wrapper.EbirdResponseWrapper;
 
 public class EbirdMapper {
 
-	public static EBirdResponse toEbirdsResponseFromWrapper(EBirdResponseWrapper responseWrapper) {
-		EBirdResponse response = new EBirdResponse();
-		List<EBirdData> data = new ArrayList<>();
+	public static EbirdResponse toEbirdsResponseFromWrapper(EbirdResponseWrapper responseWrapper) {
+		EbirdResponse response = new EbirdResponse();
+		List<EbirdData> data = new ArrayList<>();
 		if (responseWrapper.getEbirdData() != null) {
 			data = toEbirdDataFromWrapper(responseWrapper.getEbirdData());
 		}
@@ -22,10 +22,10 @@ public class EbirdMapper {
 		return response;
 	}
 
-	private static List<EBirdData> toEbirdDataFromWrapper(List<EBirdDataWrapper> ebirdsData) {
-		List<EBirdData> ebirds = new ArrayList<>();
-		for (EBirdDataWrapper ebirdWrapper : ebirdsData) {
-			EBirdData ebird = new EBirdData();
+	private static List<EbirdData> toEbirdDataFromWrapper(List<EbirdDataWrapper> ebirdsData) {
+		List<EbirdData> ebirds = new ArrayList<>();
+		for (EbirdDataWrapper ebirdWrapper : ebirdsData) {
+			EbirdData ebird = new EbirdData();
 			ebird.setCommonName(ebirdWrapper.getCommonName());
 			ebird.setCountryName(ebirdWrapper.getCountryName());
 			ebird.setLatitude(ebirdWrapper.getLatitude());
@@ -40,8 +40,8 @@ public class EbirdMapper {
 		return ebirds;
 	}
 
-	public static EBirdRequestWrapper fromEBirdRequestToWrapper(EBirdRequest request) {
-		EBirdRequestWrapper requestWrapper = new EBirdRequestWrapper();
+	public static EbirdRequestWrapper fromEBirdRequestToWrapper(EbirdRequest request) {
+		EbirdRequestWrapper requestWrapper = new EbirdRequestWrapper();
 		requestWrapper.setRequestUriPattern(request.getRequestUriPattern());
 		return requestWrapper;
 	}

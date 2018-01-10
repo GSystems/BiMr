@@ -8,6 +8,7 @@ import main.java.rf.transformer.DataTransformer;
 import main.java.rf.twitter.wrapper.TweetWrapper;
 import main.java.rf.twitter.wrapper.TwitterRequestWrapper;
 import main.java.rf.twitter.wrapper.TwitterResponseWrapper;
+import main.java.util.GeneralConstants;
 import main.java.util.TwitterEnum;
 import twitter4j.Query;
 import twitter4j.QueryResult;
@@ -31,7 +32,7 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 		String hashtag = request.getHashtag();
 		Long lastId = request.getLastTweetId();
 		if (hashtag != null && !hashtag.equals("")) {
-			tweets.addAll(DataTransformer.fromTwitterApiResponseToWrapper(retrieveTweetsFromApi(hashtag, lastId)));
+			tweets.addAll(DataTransformer.fromTwitterApiResponseToWrapper(retrieveTweetsLastId(hashtag, lastId)));
 		}
 		response.setTweets(tweets);
 		return response;
@@ -51,6 +52,43 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 			tweets.addAll(result.getTweets());
 		} catch (TwitterException e) {
 			log.severe("Couldn't connect: " + e);
+		}
+		return tweets;
+	}
+
+	private List<Status> retrieveTweetsLastId(String hashtag, Long lastId) {
+		ConfigurationBuilder configurationBuilder = credentialsSetup();
+		Twitter twitter = new TwitterFactory(configurationBuilder.build()).getInstance();
+
+		Query query = new Query(hashtag);
+		Integer numberOfTweets = GeneralConstants.MAX_NUMBER_OF_TWEETS;
+		List<Status> tweets = new ArrayList<>();
+		QueryResult result = null;
+
+		while (tweets.size() < numberOfTweets) {
+			if (numberOfTweets - tweets.size() > GeneralConstants.MAX_NUMBER_OF_TWEETS) {
+				query.setCount(GeneralConstants.MAX_NUMBER_OF_TWEETS);
+			} else {
+				query.setCount(numberOfTweets - tweets.size());
+			}
+			try {
+				result = twitter.search(query);
+				for (Status t : result.getTweets()) {
+					if (!t.isRetweet()) {
+						tweets.add(t);
+					}
+				}
+				for (Status t : tweets) {
+					if (t.getId() < lastId) {
+						lastId = t.getId();
+					}
+				}
+			} catch (TwitterException e) {
+				log.severe("Couldn't connect: " + e);
+				break;
+			} finally {
+				query.setMaxId(lastId - 1);
+			}
 		}
 		return tweets;
 	}

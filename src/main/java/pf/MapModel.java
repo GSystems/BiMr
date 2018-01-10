@@ -2,7 +2,7 @@ package main.java.pf;
 
 import java.util.List;
 
-import main.java.bfcl.dto.EBirdDataDTO;
+import main.java.bfcl.dto.EbirdDataDTO;
 import main.java.bfcl.dto.TweetDTO;
 
 /**
@@ -13,13 +13,13 @@ import main.java.bfcl.dto.TweetDTO;
 public class MapModel {
 
 	private List<TweetDTO> tweets;
-	private List<EBirdDataDTO> ebirdData;
+	private List<EbirdDataDTO> ebirdData;
 
-	public List<EBirdDataDTO> getEbirdData() {
+	public List<EbirdDataDTO> getEbirdData() {
 		return ebirdData;
 	}
 
-	public void setEbirdData(List<EBirdDataDTO> ebirdData) {
+	public void setEbirdData(List<EbirdDataDTO> ebirdData) {
 		this.ebirdData = ebirdData;
 	}
 
