@@ -145,10 +145,19 @@ public class ScheduleFacadeBean implements ScheduleFacade {
 	}
 
 	private void initializePipeline() {
+		loadFile(StanfordEnum.NER_BISP_MODEL_VALUE.getCode());
 		Properties props = new Properties();
 		props.put(StanfordEnum.PROPS_KEY.getCode(), StanfordEnum.PROPS_VALUE.getCode());
 		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_BISP_MODEL_VALUE.getCode());
 		pipeline = new StanfordCoreNLP(props);
+	}
+
+	private void loadFile(String fileName) {
+		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		if (classLoader == null) {
+			classLoader = this.getClass().getClassLoader();
+		}
+		classLoader.getResource(fileName);
 	}
 
 	private TwitterRequestDTO createRequest() {
