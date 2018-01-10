@@ -9,6 +9,9 @@ import javax.faces.bean.ViewScoped;
 
 import bimr.bfcl.EbirdFacade;
 import bimr.bfcl.TweetFacade;
+import bimr.bfcl.dto.EbirdRequestDTO;
+import bimr.rf.ebird.wrapper.EbirdRequestWrapper;
+import bimr.util.EbirdsEnum;
 
 /**
  * @author GLK
@@ -33,15 +36,35 @@ public class MapBean implements Serializable {
 		mapModel.setTweets(tweetFacade.retrieveTweetsFromDB());
 	}
 
-	// TODO solve this errors
-	// public void retrieveEbirdApiData() {
-	// for (String EBIRDS_API_REQUEST_URI:
-	// GeneralConstants.EBIRDS_API_REQUEST_URIS){
-	// EBirdRequestDTO request = new EBirdRequestDTO();
-	// request.setRequestUriPattern(EBIRDS_API_REQUEST_URI);
-	// mapModel.setEbirdData(mapFacade.retrieveEBirdData(request).getEbirdData());
-	// }
-	// }
+	public void retrieveEbirdNotableObservationsInRegion() {
+		EbirdRequestDTO request = new EbirdRequestDTO();
+		request.setRequestUriPattern(EbirdsEnum.RECENT_NOTABLE_OBSERVATIONS_IN_REGION.name());
+		mapModel.setEbirdData(ebirdFacade.retrieveEbirdDataFromApi(request).getEbirdData());
+	}
+	
+	public void retrieveEbirdNearbyNotableObservations() {
+		EbirdRequestDTO request = new EbirdRequestDTO();
+		request.setRequestUriPattern(EbirdsEnum.RECENT_NEARBY_NOTABLE_OBSERVATIONS.name());
+		mapModel.setEbirdData(ebirdFacade.retrieveEbirdDataFromApi(request).getEbirdData());
+	}
+	
+	public void retrieveEbirdNotableObservationsAtHotspots() {
+		EbirdRequestDTO request = new EbirdRequestDTO();
+		request.setRequestUriPattern(EbirdsEnum.RECENT_NOTABLE_OBSERVATIONS_AT_HOTSPOTS.name());
+		mapModel.setEbirdData(ebirdFacade.retrieveEbirdDataFromApi(request).getEbirdData());
+	}
+	
+	public void retrieveEbirdObservationsOfSpeciesAtHotspots() {
+		EbirdRequestDTO request = new EbirdRequestDTO();
+		request.setRequestUriPattern(EbirdsEnum.RECENT_OBSERVATIONS_OF_SPECIES_AT_HOTSPOTS.name());
+		mapModel.setEbirdData(ebirdFacade.retrieveEbirdDataFromApi(request).getEbirdData());
+	}
+	
+	public void retrieveEbirdHotspotSightingsSummary() {
+		EbirdRequestDTO request = new EbirdRequestDTO();
+		request.setRequestUriPattern(EbirdsEnum.HOTSPOT_SIGHTINGS_SUMMARY_API_REQUEST_URI.name());
+		mapModel.setEbirdData(ebirdFacade.retrieveEbirdDataFromApi(request).getEbirdData());
+	}
 
 	public EbirdFacade getEbirdFacade() {
 		return ebirdFacade;
