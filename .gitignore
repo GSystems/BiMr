@@ -1,11 +1,7 @@
-.DS_Store
 /Servers/
 /target/
-/.apt_generated/
-/.classpath
-.factorypath
-.classpath
-.sonarlint/
+/.idea/
+
 *.pb
 *.tis
 *.fdx
@@ -30,9 +26,3 @@
 *.tii
 *.prefs
 *.iml
-RemoteSystemsTempFiles/.project
-/.settings/
-/bin/
-docs/
-/.idea/
-.metadata/
