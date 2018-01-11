@@ -145,15 +145,6 @@
 
 	<build>
 		<finalName>bimr</finalName>
-		<!--<pluginManagement>-->
-		<!--<plugins>-->
-		<!--<plugin>-->
-		<!--<groupId>org.wildfly.plugins</groupId>-->
-		<!--<artifactId>wildfly-maven-plugin</artifactId>-->
-		<!--<version>1.2.1.Final</version>-->
-		<!--</plugin>-->
-		<!--</plugins>-->
-		<!--</pluginManagement>-->
 		<plugins>
 			<plugin>
 				<groupId>org.wildfly.plugins</groupId>
@@ -164,6 +155,45 @@
 						<goals>
 							<goal>deploy</goal>
 						</goals>
+					</execution>
+					<execution>
+						<id>add-datasource</id>
+						<phase>package</phase>
+						<goals>
+							<goal>add-resource</goal>
+						</goals>
+						<configuration>
+							<force>true</force>
+							<address>subsystem=datasources,data-source=java:/CoreDS</address>
+							<resources>
+								<resource>
+									<properties>
+										<jndi-name>java:/CoreDS</jndi-name>
+										<enabled>true</enabled>
+										<connection-url>jdbc:mysql://localhost:3306/BIMR</connection-url>
+										<driver-class>com.mysql.cj.jdbc.Driver</driver-class>
+										<driver-name>mysql</driver-name>
+										<user-name>bimruser</user-name>
+										<password>bimrpassword</password>
+									</properties>
+									<!--<datasources>-->
+										<!--<datasource jndi-name="java:/CoreDS" pool-name="CoreDS" enabled="true" use-java-context="true">-->
+											<!--<connection-url>jdbc:mysql://localhost:3306/BIMR</connection-url>-->
+											<!--<driver>mysql</driver>-->
+											<!--<security>-->
+												<!--<user-name>bimruser</user-name>-->
+												<!--<password>bimrpassword</password>-->
+											<!--</security>-->
+										<!--</datasource>-->
+										<!--<drivers>-->
+											<!--<driver name="mysql" module="com.mysql">-->
+												<!--<xa-datasource-class>com.mysql.cj.jdbc.Driver</xa-datasource-class>-->
+											<!--</driver>-->
+										<!--</drivers>-->
+									<!--</datasources>-->
+								</resource>
+							</resources>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
