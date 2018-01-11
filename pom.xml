@@ -38,66 +38,6 @@
             <!--</plugin>-->
 		<!--</plugins>-->
 	<!--</build>-->
-	<build>
-		<finalName>bimr</finalName>
-		<!--<pluginManagement>-->
-			<!--<plugins>-->
-				<!--<plugin>-->
-					<!--<groupId>org.wildfly.plugins</groupId>-->
-					<!--<artifactId>wildfly-maven-plugin</artifactId>-->
-					<!--<version>1.2.1.Final</version>-->
-				<!--</plugin>-->
-			<!--</plugins>-->
-		<!--</pluginManagement>-->
-		<plugins>
-			<plugin>
-				<groupId>org.wildfly.plugins</groupId>
-				<artifactId>wildfly-maven-plugin</artifactId>
-				<version>1.2.1.Final</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>deploy</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>3.2.0</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<configuration>
-							<webXml>..../WEB-INF/web.xml</webXml>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>prepare-agent</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-		</plugins>
-	</build>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -202,4 +142,66 @@
 			<type>pom</type>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<finalName>bimr</finalName>
+		<!--<pluginManagement>-->
+		<!--<plugins>-->
+		<!--<plugin>-->
+		<!--<groupId>org.wildfly.plugins</groupId>-->
+		<!--<artifactId>wildfly-maven-plugin</artifactId>-->
+		<!--<version>1.2.1.Final</version>-->
+		<!--</plugin>-->
+		<!--</plugins>-->
+		<!--</pluginManagement>-->
+		<plugins>
+			<plugin>
+				<groupId>org.wildfly.plugins</groupId>
+				<artifactId>wildfly-maven-plugin</artifactId>
+				<version>1.2.1.Final</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<configuration>
+							<webXml>..../WEB-INF/web.xml</webXml>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
