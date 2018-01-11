@@ -6,4 +6,5 @@ package bimr.bfcl;
 public interface EbirdScheduleFacade {
 
 
+    void ebirdApiCallScheduled();
 }

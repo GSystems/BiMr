@@ -5,13 +5,13 @@ import java.util.Date;
 /**
  * @author GLK
  */
-public class TwitterRequestDTO {
+public class TweetRequestDTO {
 
 	private String hashtag;
 	private Long lastTweetId;
 	private Date untilDate;
 
-	public TwitterRequestDTO(String hashtag, Long lastTweetId, Date untilDate) {
+	public TweetRequestDTO(String hashtag, Long lastTweetId, Date untilDate) {
 		this.hashtag = hashtag;
 		this.lastTweetId = lastTweetId;
 		this.untilDate = untilDate;

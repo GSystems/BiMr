@@ -13,6 +13,9 @@ import bimr.rf.ebird.wrapper.EbirdResponseWrapper;
 
 public class EbirdMapper {
 
+	private EbirdMapper() {
+	}
+
 	public static EbirdResponse toEbirdsResponseFromWrapper(EbirdResponseWrapper responseWrapper) {
 		EbirdResponse response = new EbirdResponse();
 		List<EbirdData> data = new ArrayList<>();
@@ -34,7 +37,7 @@ public class EbirdMapper {
 		ebirdData.setScientificName(ebirdDataWrapper.getScientificName());
 		ebirdData.setStateName(ebirdDataWrapper.getStateName());
 		ebirdData.setUserDisplayName(ebirdDataWrapper.getUserDisplayName());
-		return  ebirdData;
+		return ebirdData;
 	}
 
 	public static EbirdRequestWrapper fromEbirdRequestToWrapper(EbirdRequest request) {

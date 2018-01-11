@@ -19,12 +19,12 @@ public class MapTransformer {
 	private MapTransformer() {
 	}
 
-	public static TwitterRequest twitterRequestFromDTO(TwitterRequestDTO requestDTO) {
+	public static TwitterRequest twitterRequestFromDTO(TweetRequestDTO requestDTO) {
 		return new TwitterRequest(requestDTO.getHashtag(), requestDTO.getLastTweetId(), requestDTO.getUntilDate());
 	}
 
-	public static TwitterResponseDTO fromTwitterResponseToDTO(TwitterResponse response) {
-		TwitterResponseDTO responseDTO = new TwitterResponseDTO();
+	public static TweetResponseDTO fromTwitterResponseToDTO(TwitterResponse response) {
+		TweetResponseDTO responseDTO = new TweetResponseDTO();
 		responseDTO.setTweets(fromTweetsToDTO(response.getTweets()));
 		return responseDTO;
 	}

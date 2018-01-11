@@ -29,7 +29,7 @@ public class EbirdServiceClientBean implements EbirdServiceClient {
 
 			// reading response from API
 
-			StringBuffer content = new StringBuffer();
+			StringBuilder content = new StringBuilder();
 
 			try (BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
 				String line;

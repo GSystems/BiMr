@@ -24,41 +24,38 @@ public class EbirdFacadeBean implements EbirdFacade {
 	private EbirdRepo repo;
 
 	@Override
-	public void retrieveEbirdDataFromApi(EbirdRequestDTO request) {
-		EbirdResponseDTO response = MapTransformer.fromEBirdResponseToDTO(AsyncUtils
-				.getResultFromAsyncTask(repo.retrieveEBirdData(MapTransformer.toEbirdRequestFromDTO(request))));
-		if (response != null) {
-			persistData(response);
-		}
-	}
-
-	private void persistData(EbirdResponseDTO response) {
+	public void persistEbirdData(EbirdResponseDTO response) {
 		repo.insertEbirdData(MapTransformer.toEbirdResponseFromDTO(response).getEbirdData());
 	}
 
 	@Override
-	public void retrieveEbirdNotableObservationsInRegion() {
-		retrieveEbirdDataFromApi(getRequest(EbirdsEnum.RECENT_NOTABLE_OBSERVATIONS_IN_REGION.name()));
+	public EbirdResponseDTO retrieveEbirdNotableObservationsInRegion() {
+		return retrieveEbirdDataFromApi(getRequest(EbirdsEnum.RECENT_NOTABLE_OBSERVATIONS_IN_REGION.name()));
 	}
 
 	@Override
-	public void retrieveEbirdNearbyNotableObservations() {
-		retrieveEbirdDataFromApi(getRequest(EbirdsEnum.RECENT_NEARBY_NOTABLE_OBSERVATIONS.name()));
+	public EbirdResponseDTO retrieveEbirdNearbyNotableObservations() {
+		return retrieveEbirdDataFromApi(getRequest(EbirdsEnum.RECENT_NEARBY_NOTABLE_OBSERVATIONS.name()));
 	}
 
 	@Override
-	public void retrieveEbirdNotableObservationsAtHotspots() {
-		retrieveEbirdDataFromApi(getRequest(EbirdsEnum.RECENT_NOTABLE_OBSERVATIONS_AT_HOTSPOTS.name()));
+	public EbirdResponseDTO retrieveEbirdNotableObservationsAtHotspots() {
+		return retrieveEbirdDataFromApi(getRequest(EbirdsEnum.RECENT_NOTABLE_OBSERVATIONS_AT_HOTSPOTS.name()));
 	}
 
 	@Override
-	public void retrieveEbirdObservationsOfSpeciesAtHotspots() {
-		retrieveEbirdDataFromApi(getRequest(EbirdsEnum.RECENT_OBSERVATIONS_OF_SPECIES_AT_HOTSPOTS.name()));
+	public EbirdResponseDTO retrieveEbirdObservationsOfSpeciesAtHotspots() {
+		return retrieveEbirdDataFromApi(getRequest(EbirdsEnum.RECENT_OBSERVATIONS_OF_SPECIES_AT_HOTSPOTS.name()));
 	}
 
 	@Override
-	public void retrieveEbirdHotspotSightingsSummary() {
-		retrieveEbirdDataFromApi(getRequest(EbirdsEnum.HOTSPOT_SIGHTINGS_SUMMARY_API_REQUEST_URI.name()));
+	public EbirdResponseDTO retrieveEbirdHotspotSightingsSummary() {
+		return retrieveEbirdDataFromApi(getRequest(EbirdsEnum.HOTSPOT_SIGHTINGS_SUMMARY_API_REQUEST_URI.name()));
+	}
+
+	private EbirdResponseDTO retrieveEbirdDataFromApi(EbirdRequestDTO request) {
+		return MapTransformer.fromEBirdResponseToDTO(AsyncUtils
+				.getResultFromAsyncTask(repo.retrieveEBirdData(MapTransformer.toEbirdRequestFromDTO(request))));
 	}
 
 	private EbirdRequestDTO getRequest(String uri) {
@@ -66,5 +63,4 @@ public class EbirdFacadeBean implements EbirdFacade {
 		request.setRequestUriPattern(uri);
 		return request;
 	}
-
 }

@@ -9,9 +9,6 @@ import javax.faces.bean.ViewScoped;
 
 import bimr.bfcl.EbirdFacade;
 import bimr.bfcl.TweetFacade;
-import bimr.bfcl.dto.EbirdRequestDTO;
-import bimr.rf.ebird.wrapper.EbirdRequestWrapper;
-import bimr.util.EbirdsEnum;
 
 /**
  * @author GLK

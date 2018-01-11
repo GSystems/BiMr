@@ -8,6 +8,8 @@ import bimr.df.model.Tweet;
 import bimr.df.model.TwitterRequest;
 import bimr.df.model.TwitterResponse;
 
+import javax.ejb.LocalBean;
+
 public interface TweetRepo {
 
 	/**

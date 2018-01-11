@@ -37,6 +37,7 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 		return response;
 	}
 
+	// TODO remove this
 	private List<Status> retrieveTweetsFromApi(String hashtag, Long sinceId) {
 		List<Status> tweets = new ArrayList<>();
 		ConfigurationBuilder configurationBuilder = credentialsSetup();
@@ -55,6 +56,7 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 		return tweets;
 	}
 
+	// TODO remove this
 	private List<Status> callTwitterApi(String hashtag, Long lastId, Date untilDate) {
 		ConfigurationBuilder configurationBuilder = credentialsSetup();
 		Twitter twitter = new TwitterFactory(configurationBuilder.build()).getInstance();
@@ -89,6 +91,7 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 		return tweets;
 	}
 
+	// TODO remove this
 	private List<Status> getOlderTweets(String hashtag, Long lastId, Date untilDate) {
 		List<Status> tweets = new ArrayList<>();
 		ConfigurationBuilder configurationBuilder = credentialsSetup();

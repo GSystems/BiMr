@@ -8,7 +8,8 @@ import javax.ejb.Singleton;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
-import bimr.bfcl.TwitterScheduleFacade;
+import bimr.bfcl.EbirdScheduleFacade;
+import bimr.bfcl.TweetScheduleFacade;
 
 /**
  * @author GLK
@@ -21,19 +22,30 @@ public class ApplicationBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	private transient TwitterScheduleFacade globalFacade;
+	private transient TweetScheduleFacade tweetScheduleFacade;
+
+	@EJB
+	private transient EbirdScheduleFacade ebirdScheduleFacade;
 
 	@PostConstruct
 	public void init() {
-		globalFacade.twitterApiCallScheduled();
+		tweetScheduleFacade.twitterApiCallScheduled();
+		ebirdScheduleFacade.ebirdApiCallScheduled();
 	}
 
-	public TwitterScheduleFacade getGlobalFacade() {
-		return globalFacade;
+	public TweetScheduleFacade getTweetScheduleFacade() {
+		return tweetScheduleFacade;
 	}
 
-	public void setGlobalFacade(TwitterScheduleFacade globalFacade) {
-		this.globalFacade = globalFacade;
+	public void setTweetScheduleFacade(TweetScheduleFacade tweetScheduleFacade) {
+		this.tweetScheduleFacade = tweetScheduleFacade;
 	}
 
+	public EbirdScheduleFacade getEbirdScheduleFacade() {
+		return ebirdScheduleFacade;
+	}
+
+	public void setEbirdScheduleFacade(EbirdScheduleFacade ebirdScheduleFacade) {
+		this.ebirdScheduleFacade = ebirdScheduleFacade;
+	}
 }

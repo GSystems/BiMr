@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * @author GLK
  */
-public class TwitterResponseDTO {
+public class TweetResponseDTO {
 
 	private List<TweetDTO> tweets;
 
