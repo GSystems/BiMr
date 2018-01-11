@@ -20,7 +20,7 @@ public class MapTransformer {
 	}
 
 	public static TwitterRequest twitterRequestFromDTO(TwitterRequestDTO requestDTO) {
-		return new TwitterRequest(requestDTO.getHashtag(), requestDTO.getLastTweetId());
+		return new TwitterRequest(requestDTO.getHashtag(), requestDTO.getLastTweetId(), requestDTO.getUntilDate());
 	}
 
 	public static TwitterResponseDTO fromTwitterResponseToDTO(TwitterResponse response) {
@@ -97,7 +97,7 @@ public class MapTransformer {
 	public static EbirdResponse toEbirdResponseFromDTO(EbirdResponseDTO responseDTO) {
 		EbirdResponse response = new EbirdResponse();
 		List<EbirdData> ebirdDataList = new ArrayList<>();
-		for(EbirdDataDTO ebirdDataDTO : responseDTO.getEbirdData()) {
+		for (EbirdDataDTO ebirdDataDTO : responseDTO.getEbirdData()) {
 			EbirdData ebirdData = new EbirdData();
 			ebirdData.setCommonName(ebirdDataDTO.getCommonName());
 			ebirdData.setCountryName(ebirdDataDTO.getCountryName());

@@ -1,6 +1,8 @@
 package bimr.rf.twitter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -25,14 +27,12 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 
 	private static final Logger log = Logger.getLogger(TwitterServiceClientBean.class.getName());
 
-	@Override public TwitterResponseWrapper retrieveTweets(TwitterRequestWrapper request) {
+	@Override
+	public TwitterResponseWrapper retrieveTweets(TwitterRequestWrapper request) {
 		TwitterResponseWrapper response = new TwitterResponseWrapper();
 		List<TweetWrapper> tweets = new ArrayList<>();
-		String hashtag = request.getHashtag();
-		Long lastId = request.getLastTweetId();
-		if (hashtag != null && !hashtag.equals("")) {
-			tweets.addAll(DataTransformer.fromTwitterApiResponseToWrapper(retrieveTweetsLastId(hashtag, lastId)));
-		}
+		tweets.addAll(DataTransformer.fromTwitterApiResponseToWrapper(
+				getOlderTweets(request.getHashtag(), request.getLastTweetId(), request.getUntilDate())));
 		response.setTweets(tweets);
 		return response;
 	}
@@ -55,13 +55,14 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 		return tweets;
 	}
 
-	private List<Status> retrieveTweetsLastId(String hashtag, Long lastId) {
+	private List<Status> callTwitterApi(String hashtag, Long lastId, Date untilDate) {
 		ConfigurationBuilder configurationBuilder = credentialsSetup();
 		Twitter twitter = new TwitterFactory(configurationBuilder.build()).getInstance();
 
 		Query query = new Query(hashtag);
 		query.setLang("en");
-		query.setMaxId(lastId);
+		//		query.maxId(lastId);
+		query.until(untilDate.toString());
 		Integer numberOfTweets = GeneralConstants.MAX_NUMBER_OF_TWEETS;
 		List<Status> tweets = new ArrayList<>();
 		QueryResult result = null;
@@ -75,17 +76,35 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 			try {
 				result = twitter.search(query);
 				tweets.addAll(result.getTweets());
-				for (Status t : tweets) {
+				for (Status t : tweets)
 					if (t.getId() < lastId) {
 						lastId = t.getId();
 					}
-				}
-			} catch (TwitterException e) {
-				log.severe("Couldn't connect: " + e);
+			} catch (TwitterException te) {
+				log.severe("Couldn't connect: " + te);
 				break;
-			} finally {
-				query.setMaxId(lastId - 1);
 			}
+			query.setMaxId(lastId - 1);
+		}
+		return tweets;
+	}
+
+	private List<Status> getOlderTweets(String hashtag, Long lastId, Date untilDate) {
+		List<Status> tweets = new ArrayList<>();
+		ConfigurationBuilder configurationBuilder = credentialsSetup();
+		Twitter twitter = new TwitterFactory(configurationBuilder.build()).getInstance();
+
+		String date = new SimpleDateFormat("yyyy-MM-dd").format(untilDate);
+		Query query = new Query(hashtag);
+//		query.maxId(lastId);
+		query.until(date);
+		query.setLang("en");
+		QueryResult result = null;
+		try {
+			result = twitter.search(query);
+			tweets.addAll(result.getTweets());
+		} catch (TwitterException e) {
+			log.severe("Couldn't connect: " + e);
 		}
 		return tweets;
 	}

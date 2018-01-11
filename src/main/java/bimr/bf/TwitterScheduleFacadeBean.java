@@ -1,5 +1,8 @@
 package bimr.bf;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -64,10 +67,19 @@ public class TwitterScheduleFacadeBean implements TwitterScheduleFacade {
 				.getResultFromAsyncTask(twitterRepo.retrieveTweets(MapTransformer.twitterRequestFromDTO(request))));
 		if (!response.getTweets().isEmpty()) {
 			persistTweets(response.getTweets());
-			filterTweets(response.getTweets());
+//			filterTweets(response.getTweets());
 		} else {
 			log.info("No data from Twitter API");
 		}
+	}
+
+	private Date retrieveMinDateOfTweets() {
+		List<Date> dateList = AsyncUtils.getResultFromAsyncTask(twitterRepo.retrieveMinDate());
+		Date date = new Date();
+		if(dateList.get(0) != null) {
+			date = dateList.get(0);
+		}
+		return date;
 	}
 
 	private void filterTweets(List<TweetDTO> tweets) {
@@ -196,7 +208,7 @@ public class TwitterScheduleFacadeBean implements TwitterScheduleFacade {
 		if (count > GeneralConstants.MAX_NUMBER_HASHTAGS) {
 			count = 0;
 		}
-		return new TwitterRequestDTO(hashtag, retrieveLastTweetId());
+		return new TwitterRequestDTO(hashtag, retrieveLastTweetId(), retrieveMinDateOfTweets());
 	}
 
 	@SuppressWarnings("unused")

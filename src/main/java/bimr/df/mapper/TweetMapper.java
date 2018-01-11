@@ -20,7 +20,7 @@ public class TweetMapper {
 	}
 
 	public static TwitterRequestWrapper fromTwitterRequestToWrapper(TwitterRequest request) {
-		return new TwitterRequestWrapper(request.getHashtag(), request.getLastTweetId());
+		return new TwitterRequestWrapper(request.getHashtag(), request.getLastTweetId(), request.getUntilDate());
 	}
 
 	public static TwitterResponse toTwitterResponseFromWrapper(TwitterResponseWrapper responseWrapper) {

@@ -1,5 +1,6 @@
 package bimr.df;
 
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Future;
 
@@ -37,4 +38,5 @@ public interface TweetRepo {
 	 */
 	Future<List<Long>> retrieveLastTweetId();
 
+	Future<List<Date>> retrieveMinDate();
 }
