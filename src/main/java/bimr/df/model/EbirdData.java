@@ -11,7 +11,7 @@ public class EbirdData {
 	private String userDisplayName;
 	private String scientificName;
 	private String localityName;
-	private Date observationDate;
+	private String observationDate;
 	private Double latitude;
 	private Double longitude;
 
@@ -39,11 +39,11 @@ public class EbirdData {
 		this.localityName = localityName;
 	}
 
-	public Date getObservationDate() {
+	public String getObservationDate() {
 		return observationDate;
 	}
 
-	public void setObservationDate(Date observationDate) {
+	public void setObservationDate(String observationDate) {
 		this.observationDate = observationDate;
 	}
 

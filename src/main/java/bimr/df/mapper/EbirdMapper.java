@@ -1,13 +1,5 @@
 package bimr.df.mapper;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
 import bimr.df.model.EbirdData;
 import bimr.df.model.EbirdRequest;
 import bimr.df.model.EbirdResponse;
@@ -15,6 +7,12 @@ import bimr.rf.ebird.entity.EbirdDataEntity;
 import bimr.rf.ebird.wrapper.EbirdDataWrapper;
 import bimr.rf.ebird.wrapper.EbirdRequestWrapper;
 import bimr.rf.ebird.wrapper.EbirdResponseWrapper;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class EbirdMapper {
 
@@ -43,37 +41,17 @@ public class EbirdMapper {
 		return ebirdData;
 	}
 
-	private static Date extractDate(Date observationDate) {
-		String dateStr = observationDate.toString();
-		// Sun Jul 10 00:00:00 EET 12
-		DateFormat readFormat = new SimpleDateFormat("E MMM dd HH:mm:ss Z yy");
-
-		DateFormat writeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private static String convertDate(Date observationDate) {
+		SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(observationDate.getTime());
+		String stringDate = simpleFormat.format(calendar.getTime());
+		StringBuilder stringBuilder = new StringBuilder(stringDate);
 		Date date = null;
-		try {
-			date = writeFormat.parse(dateStr);
-		} catch (ParseException e) {
-			e.printStackTrace();
+		if (stringBuilder.charAt(0) == '0') {
+			stringBuilder.insert(0, '2');
 		}
-		return date;
-	}
-
-	private static Date convertDate(Date date) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		DateFormat writeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String formatedDate =
-				cal.get(Calendar.YEAR) + "-" + cal.get(Calendar.DATE) + "-" + (cal.get(Calendar.MONTH) + 1);
-		Date newFormat = null;
-		try {
-			newFormat = writeFormat.parse(formatedDate);
-			if (newFormat.toString().startsWith("00")) {
-
-			}
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return newFormat;
+		return stringBuilder.toString();
 	}
 
 	public static EbirdRequestWrapper fromEbirdRequestToWrapper(EbirdRequest request) {

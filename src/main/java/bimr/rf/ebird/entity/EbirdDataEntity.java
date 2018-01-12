@@ -18,7 +18,7 @@ public class EbirdDataEntity implements Serializable {
 	private String userDisplayName;
 	private String commonName;
 	private String scientificName;
-	private Date observationDate;
+	private String observationDate;
 	private Double latitude;
 	private Double longitude;
 
@@ -54,11 +54,11 @@ public class EbirdDataEntity implements Serializable {
 		this.scientificName = scientificName;
 	}
 
-	public Date getObservationDate() {
+	public String getObservationDate() {
 		return observationDate;
 	}
 
-	public void setObservationDate(Date observationDate) {
+	public void setObservationDate(String observationDate) {
 		this.observationDate = observationDate;
 	}
 
