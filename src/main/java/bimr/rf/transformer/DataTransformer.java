@@ -63,7 +63,6 @@ public class DataTransformer {
 			jsonObject = (JSONObject) i.next();
 			EbirdDataWrapper ebirdWrapper = new EbirdDataWrapper();
 			ebirdWrapper.setLatitude((Double) jsonObject.get("lat"));
-			ebirdWrapper.setLocalityName((String) jsonObject.get("locName"));
 			ebirdWrapper.setLongitude((Double) jsonObject.get("lng"));
 			try {
 				ebirdWrapper.setObservationDate((Date) formatter.parse((String) jsonObject.get("obsDt")));

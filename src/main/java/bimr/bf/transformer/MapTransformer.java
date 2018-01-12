@@ -78,19 +78,19 @@ public class MapTransformer {
 		return responseDTO;
 	}
 
-	private static List<EbirdDataDTO> fromEbirdDataListToDTO(List<EbirdData> ebirdData) {
-		List<EbirdDataDTO> ebirdDataDTO = new ArrayList<>();
-		for (EbirdData currentData : ebirdData) {
+	private static List<EbirdDataDTO> fromEbirdDataListToDTO(List<EbirdData> ebirdDataList) {
+		List<EbirdDataDTO> ebirdDataListDTO = new ArrayList<>();
+		for (EbirdData ebirdData : ebirdDataList) {
 			EbirdDataDTO ebirdDTO = new EbirdDataDTO();
-			ebirdDTO.setLatitude(currentData.getLatitude());
-			ebirdDTO.setLocalityName(currentData.getLocalityName());
-			ebirdDTO.setLongitude(currentData.getLongitude());
-			ebirdDTO.setObservationDate(currentData.getObservationDate());
-			ebirdDTO.setScientificName(currentData.getScientificName());
-			ebirdDTO.setUserDisplayName(currentData.getUserDisplayName());
-			ebirdDataDTO.add(ebirdDTO);
+			ebirdDTO.setId(ebirdData.getId());
+			ebirdDTO.setLatitude(ebirdData.getLatitude());
+			ebirdDTO.setLongitude(ebirdData.getLongitude());
+			ebirdDTO.setObservationDate(ebirdData.getObservationDate());
+			ebirdDTO.setScientificName(ebirdData.getScientificName());
+			ebirdDTO.setUserDisplayName(ebirdData.getUserDisplayName());
+			ebirdDataListDTO.add(ebirdDTO);
 		}
-		return ebirdDataDTO;
+		return ebirdDataListDTO;
 	}
 
 	public static EbirdResponse toEbirdResponseFromDTO(EbirdResponseDTO responseDTO) {
@@ -98,8 +98,8 @@ public class MapTransformer {
 		List<EbirdData> ebirdDataList = new ArrayList<>();
 		for (EbirdDataDTO ebirdDataDTO : responseDTO.getEbirdData()) {
 			EbirdData ebirdData = new EbirdData();
+			ebirdData.setId(ebirdDataDTO.getId());
 			ebirdData.setLatitude(ebirdDataDTO.getLatitude());
-			ebirdData.setLocalityName(ebirdDataDTO.getLocalityName());
 			ebirdData.setLongitude(ebirdDataDTO.getLongitude());
 			ebirdData.setObservationDate(ebirdDataDTO.getObservationDate());
 			ebirdData.setScientificName(ebirdDataDTO.getScientificName());

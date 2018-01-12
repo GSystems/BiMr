@@ -34,7 +34,7 @@ public class EbirdMapper {
 	private static EbirdData toEbirdDataFromWrapper(EbirdDataWrapper ebirdDataWrapper) {
 		EbirdData ebirdData = new EbirdData();
 		ebirdData.setLatitude(ebirdDataWrapper.getLatitude());
-		ebirdData.setLocalityName(ebirdDataWrapper.getLocalityName());
+		ebirdData.setCommonName(ebirdDataWrapper.getCommonName());
 		ebirdData.setLongitude(ebirdDataWrapper.getLongitude());
 		ebirdData.setScientificName(ebirdDataWrapper.getScientificName());
 		ebirdData.setObservationDate(convertDate(ebirdDataWrapper.getObservationDate()));
@@ -49,7 +49,7 @@ public class EbirdMapper {
 		StringBuilder stringBuilder = new StringBuilder(stringDate);
 		Date date = null;
 		if (stringBuilder.charAt(0) == '0') {
-			stringBuilder.insert(0, '2');
+			stringBuilder.replace(0, 1, "2");
 		}
 		return stringBuilder.toString();
 	}
@@ -76,5 +76,25 @@ public class EbirdMapper {
 		ebirdDataEntity.setScientificName(ebirdData.getScientificName());
 		ebirdDataEntity.setUserDisplayName(ebirdData.getUserDisplayName());
 		return ebirdDataEntity;
+	}
+
+	public static List<EbirdData> toEbirdDataListFromEntity(List<EbirdDataEntity> ebirdDataEntities) {
+		List<EbirdData> ebirdDataList = new ArrayList<>();
+		for (EbirdDataEntity ebirdDataEntity : ebirdDataEntities) {
+			EbirdData ebirdData = toEbirdDataFromEntity(ebirdDataEntity);
+			ebirdDataList.add(ebirdData);
+		}
+		return ebirdDataList;
+	}
+
+	private static EbirdData toEbirdDataFromEntity(EbirdDataEntity ebirdDataEntity) {
+		EbirdData ebirdData = new EbirdData();
+		ebirdData.setUserDisplayName(ebirdDataEntity.getUserDisplayName());
+		ebirdData.setScientificName(ebirdDataEntity.getScientificName());
+		ebirdData.setLongitude(ebirdDataEntity.getLongitude());
+		ebirdData.setLatitude(ebirdDataEntity.getLatitude());
+		ebirdData.setObservationDate(ebirdDataEntity.getObservationDate());
+		ebirdData.setId(ebirdDataEntity.getId());
+		return ebirdData;
 	}
 }

@@ -34,8 +34,7 @@ public class EbirdRepoBean implements EbirdRepo {
 
 	@Override
 	public Future<List<EbirdData>> retrieveEbirdDataFromDb() {
-		// TODO Auto-generated method stub
-		return null;
+		return new AsyncResult<>(EbirdMapper.toEbirdDataListFromEntity(ebirdDAO.findAllEbirdData()));
 	}
 
 }

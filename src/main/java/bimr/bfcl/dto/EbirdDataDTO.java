@@ -1,14 +1,21 @@
 package bimr.bfcl.dto;
 
-import java.util.Date;
-
 public class EbirdDataDTO {
+	private Long id;
 	private String userDisplayName;
 	private String scientificName;
 	private String localityName;
 	private String observationDate;
 	private Double latitude;
 	private Double longitude;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getUserDisplayName() {
 		return userDisplayName;
