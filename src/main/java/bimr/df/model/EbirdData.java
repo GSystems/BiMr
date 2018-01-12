@@ -9,10 +9,7 @@ import java.util.Date;
 public class EbirdData {
 
 	private String userDisplayName;
-	private String commonName;
 	private String scientificName;
-	private String countryName;
-	private String stateName;
 	private String localityName;
 	private Date observationDate;
 	private Double latitude;
@@ -26,36 +23,12 @@ public class EbirdData {
 		this.userDisplayName = userDisplayName;
 	}
 
-	public String getCommonName() {
-		return commonName;
-	}
-
-	public void setCommonName(String commonName) {
-		this.commonName = commonName;
-	}
-
 	public String getScientificName() {
 		return scientificName;
 	}
 
 	public void setScientificName(String scientificName) {
 		this.scientificName = scientificName;
-	}
-
-	public String getCountryName() {
-		return countryName;
-	}
-
-	public void setCountryName(String countryName) {
-		this.countryName = countryName;
-	}
-
-	public String getStateName() {
-		return stateName;
-	}
-
-	public void setStateName(String stateName) {
-		this.stateName = stateName;
 	}
 
 	public String getLocalityName() {

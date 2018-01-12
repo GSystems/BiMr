@@ -22,7 +22,7 @@ public class EbirdServiceClientBeanTest {
 
 		EbirdResponseWrapper response = mock(EbirdResponseWrapper.class);
 		
-		when(client.retrieveEBirdData(request)).thenReturn(response);
+		when(client.retrieveEbirdData(request)).thenReturn(response);
 
 		assertNotNull(response);
 		assertNotNull(response.getEbirdData());

@@ -15,7 +15,7 @@ public interface EbirdRepo {
 	 * @param requests
 	 * @return
 	 */
-	Future<EbirdResponse> retrieveEBirdData(EbirdRequest requests);
+	Future<EbirdResponse> retrieveEbirdData(EbirdRequest requests);
 
 	/**
 	 * Insert a list of Ebird API data into the database

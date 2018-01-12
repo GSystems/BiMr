@@ -30,32 +30,32 @@ public class EbirdFacadeBean implements EbirdFacade {
 
 	@Override
 	public EbirdResponseDTO retrieveEbirdNotableObservationsInRegion() {
-		return retrieveEbirdDataFromApi(getRequest(EbirdsEnum.RECENT_NOTABLE_OBSERVATIONS_IN_REGION.name()));
+		return retrieveEbirdDataFromApi(getRequest(EbirdsEnum.RECENT_NOTABLE_OBSERVATIONS_IN_REGION.getCode()));
 	}
 
 	@Override
 	public EbirdResponseDTO retrieveEbirdNearbyNotableObservations() {
-		return retrieveEbirdDataFromApi(getRequest(EbirdsEnum.RECENT_NEARBY_NOTABLE_OBSERVATIONS.name()));
+		return retrieveEbirdDataFromApi(getRequest(EbirdsEnum.RECENT_NEARBY_NOTABLE_OBSERVATIONS.getCode()));
 	}
 
 	@Override
 	public EbirdResponseDTO retrieveEbirdNotableObservationsAtHotspots() {
-		return retrieveEbirdDataFromApi(getRequest(EbirdsEnum.RECENT_NOTABLE_OBSERVATIONS_AT_HOTSPOTS.name()));
+		return retrieveEbirdDataFromApi(getRequest(EbirdsEnum.RECENT_NOTABLE_OBSERVATIONS_AT_HOTSPOTS.getCode()));
 	}
 
 	@Override
 	public EbirdResponseDTO retrieveEbirdObservationsOfSpeciesAtHotspots() {
-		return retrieveEbirdDataFromApi(getRequest(EbirdsEnum.RECENT_OBSERVATIONS_OF_SPECIES_AT_HOTSPOTS.name()));
+		return retrieveEbirdDataFromApi(getRequest(EbirdsEnum.RECENT_OBSERVATIONS_OF_SPECIES_AT_HOTSPOTS.getCode()));
 	}
 
 	@Override
 	public EbirdResponseDTO retrieveEbirdHotspotSightingsSummary() {
-		return retrieveEbirdDataFromApi(getRequest(EbirdsEnum.HOTSPOT_SIGHTINGS_SUMMARY_API_REQUEST_URI.name()));
+		return retrieveEbirdDataFromApi(getRequest(EbirdsEnum.HOTSPOT_SIGHTINGS_SUMMARY_API_REQUEST_URI.getCode()));
 	}
 
 	private EbirdResponseDTO retrieveEbirdDataFromApi(EbirdRequestDTO request) {
-		return MapTransformer.fromEBirdResponseToDTO(AsyncUtils
-				.getResultFromAsyncTask(repo.retrieveEBirdData(MapTransformer.toEbirdRequestFromDTO(request))));
+		return MapTransformer.fromEbirdResponseToDTO(AsyncUtils
+				.getResultFromAsyncTask(repo.retrieveEbirdData(MapTransformer.toEbirdRequestFromDTO(request))));
 	}
 
 	private EbirdRequestDTO getRequest(String uri) {

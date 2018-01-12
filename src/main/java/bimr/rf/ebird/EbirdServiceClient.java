@@ -9,6 +9,6 @@ import bimr.rf.ebird.wrapper.EbirdResponseWrapper;
 
 public interface EbirdServiceClient {
 
-	EbirdResponseWrapper retrieveEBirdData(EbirdRequestWrapper request);
+	EbirdResponseWrapper retrieveEbirdData(EbirdRequestWrapper request);
 	
 }

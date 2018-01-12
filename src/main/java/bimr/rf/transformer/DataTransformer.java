@@ -62,8 +62,6 @@ public class DataTransformer {
 		while (i.hasNext()) {
 			jsonObject = (JSONObject) i.next();
 			EbirdDataWrapper ebirdWrapper = new EbirdDataWrapper();
-			ebirdWrapper.setCommonName((String) jsonObject.get("comName"));
-			ebirdWrapper.setCountryName((String) jsonObject.get("countryName"));
 			ebirdWrapper.setLatitude((Double) jsonObject.get("lat"));
 			ebirdWrapper.setLocalityName((String) jsonObject.get("locName"));
 			ebirdWrapper.setLongitude((Double) jsonObject.get("lng"));
@@ -73,7 +71,6 @@ public class DataTransformer {
 				log.info(e.getMessage());
 			}
 			ebirdWrapper.setScientificName((String) jsonObject.get("sciName"));
-			ebirdWrapper.setStateName((String) jsonObject.get("subnational1Name"));
 			ebirdWrapper.setUserDisplayName((String) jsonObject.get("userDisplayName"));
 			ebirdsWrapper.add(ebirdWrapper);
 		}

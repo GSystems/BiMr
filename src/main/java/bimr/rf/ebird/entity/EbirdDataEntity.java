@@ -18,9 +18,6 @@ public class EbirdDataEntity implements Serializable {
 	private String userDisplayName;
 	private String commonName;
 	private String scientificName;
-	private String countryName;
-	private String stateName;
-	private String localityName;
 	private Date observationDate;
 	private Double latitude;
 	private Double longitude;
@@ -55,30 +52,6 @@ public class EbirdDataEntity implements Serializable {
 
 	public void setScientificName(String scientificName) {
 		this.scientificName = scientificName;
-	}
-
-	public String getCountryName() {
-		return countryName;
-	}
-
-	public void setCountryName(String countryName) {
-		this.countryName = countryName;
-	}
-
-	public String getStateName() {
-		return stateName;
-	}
-
-	public void setStateName(String stateName) {
-		this.stateName = stateName;
-	}
-
-	public String getLocalityName() {
-		return localityName;
-	}
-
-	public void setLocalityName(String localityName) {
-		this.localityName = localityName;
 	}
 
 	public Date getObservationDate() {

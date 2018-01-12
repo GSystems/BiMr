@@ -16,7 +16,7 @@ public class EbirdServiceClientBean implements EbirdServiceClient {
 	public static final Logger log = Logger.getLogger(EbirdServiceClientBean.class.getName());
 
 	@Override
-	public EbirdResponseWrapper retrieveEBirdData(EbirdRequestWrapper request) {
+	public EbirdResponseWrapper retrieveEbirdData(EbirdRequestWrapper request) {
 
 		EbirdResponseWrapper response = new EbirdResponseWrapper();
 

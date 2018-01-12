@@ -1,6 +1,11 @@
 package bimr.df.mapper;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import bimr.df.model.EbirdData;
@@ -19,25 +24,56 @@ public class EbirdMapper {
 	public static EbirdResponse toEbirdsResponseFromWrapper(EbirdResponseWrapper responseWrapper) {
 		EbirdResponse response = new EbirdResponse();
 		List<EbirdData> data = new ArrayList<>();
-		for (EbirdDataWrapper ebirdDataWrapper : responseWrapper.getEbirdData()) {
-			data.add(toEbirdDataFromWrapper(ebirdDataWrapper));
+		if (responseWrapper.getEbirdData() != null) {
+			for (EbirdDataWrapper ebirdDataWrapper : responseWrapper.getEbirdData()) {
+				data.add(toEbirdDataFromWrapper(ebirdDataWrapper));
+			}
+			response.setEbirdData(data);
 		}
-		response.setEbirdData(data);
 		return response;
 	}
 
 	private static EbirdData toEbirdDataFromWrapper(EbirdDataWrapper ebirdDataWrapper) {
 		EbirdData ebirdData = new EbirdData();
-		ebirdData.setCommonName(ebirdDataWrapper.getCommonName());
-		ebirdData.setCountryName(ebirdDataWrapper.getCountryName());
 		ebirdData.setLatitude(ebirdDataWrapper.getLatitude());
 		ebirdData.setLocalityName(ebirdDataWrapper.getLocalityName());
 		ebirdData.setLongitude(ebirdDataWrapper.getLongitude());
-		ebirdData.setObservationDate(ebirdDataWrapper.getObservationDate());
 		ebirdData.setScientificName(ebirdDataWrapper.getScientificName());
-		ebirdData.setStateName(ebirdDataWrapper.getStateName());
-		ebirdData.setUserDisplayName(ebirdDataWrapper.getUserDisplayName());
+		ebirdData.setObservationDate(convertDate(ebirdDataWrapper.getObservationDate()));
 		return ebirdData;
+	}
+
+	private static Date extractDate(Date observationDate) {
+		String dateStr = observationDate.toString();
+		// Sun Jul 10 00:00:00 EET 12
+		DateFormat readFormat = new SimpleDateFormat("E MMM dd HH:mm:ss Z yy");
+
+		DateFormat writeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = null;
+		try {
+			date = writeFormat.parse(dateStr);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return date;
+	}
+
+	private static Date convertDate(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		DateFormat writeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String formatedDate =
+				cal.get(Calendar.YEAR) + "-" + cal.get(Calendar.DATE) + "-" + (cal.get(Calendar.MONTH) + 1);
+		Date newFormat = null;
+		try {
+			newFormat = writeFormat.parse(formatedDate);
+			if (newFormat.toString().startsWith("00")) {
+
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return newFormat;
 	}
 
 	public static EbirdRequestWrapper fromEbirdRequestToWrapper(EbirdRequest request) {
@@ -56,14 +92,10 @@ public class EbirdMapper {
 
 	private static EbirdDataEntity fromEbirdDataToEntity(EbirdData ebirdData) {
 		EbirdDataEntity ebirdDataEntity = new EbirdDataEntity();
-		ebirdDataEntity.setCommonName(ebirdData.getCommonName());
-		ebirdDataEntity.setCountryName(ebirdData.getCountryName());
 		ebirdDataEntity.setLatitude(ebirdData.getLatitude());
-		ebirdDataEntity.setLocalityName(ebirdData.getLocalityName());
 		ebirdDataEntity.setLongitude(ebirdData.getLongitude());
 		ebirdDataEntity.setObservationDate(ebirdData.getObservationDate());
 		ebirdDataEntity.setScientificName(ebirdData.getScientificName());
-		ebirdDataEntity.setStateName(ebirdData.getStateName());
 		ebirdDataEntity.setUserDisplayName(ebirdData.getUserDisplayName());
 		return ebirdDataEntity;
 	}

@@ -70,24 +70,23 @@ public class MapTransformer {
 		return request;
 	}
 
-	public static EbirdResponseDTO fromEBirdResponseToDTO(EbirdResponse response) {
+	public static EbirdResponseDTO fromEbirdResponseToDTO(EbirdResponse response) {
 		EbirdResponseDTO responseDTO = new EbirdResponseDTO();
-		responseDTO.setEbirdData(fromEBirdDataWrapperToDTO(response.getEbirdData()));
+		if (response.getEbirdData() != null) {
+			responseDTO.setEbirdData(fromEbirdDataListToDTO(response.getEbirdData()));
+		}
 		return responseDTO;
 	}
 
-	private static List<EbirdDataDTO> fromEBirdDataWrapperToDTO(List<EbirdData> ebirdData) {
+	private static List<EbirdDataDTO> fromEbirdDataListToDTO(List<EbirdData> ebirdData) {
 		List<EbirdDataDTO> ebirdDataDTO = new ArrayList<>();
 		for (EbirdData currentData : ebirdData) {
 			EbirdDataDTO ebirdDTO = new EbirdDataDTO();
-			ebirdDTO.setCommonName(currentData.getCommonName());
-			ebirdDTO.setCountryName(currentData.getCountryName());
 			ebirdDTO.setLatitude(currentData.getLatitude());
 			ebirdDTO.setLocalityName(currentData.getLocalityName());
 			ebirdDTO.setLongitude(currentData.getLongitude());
 			ebirdDTO.setObservationDate(currentData.getObservationDate());
 			ebirdDTO.setScientificName(currentData.getScientificName());
-			ebirdDTO.setStateName(currentData.getStateName());
 			ebirdDTO.setUserDisplayName(currentData.getUserDisplayName());
 			ebirdDataDTO.add(ebirdDTO);
 		}
@@ -99,14 +98,11 @@ public class MapTransformer {
 		List<EbirdData> ebirdDataList = new ArrayList<>();
 		for (EbirdDataDTO ebirdDataDTO : responseDTO.getEbirdData()) {
 			EbirdData ebirdData = new EbirdData();
-			ebirdData.setCommonName(ebirdDataDTO.getCommonName());
-			ebirdData.setCountryName(ebirdDataDTO.getCountryName());
 			ebirdData.setLatitude(ebirdDataDTO.getLatitude());
 			ebirdData.setLocalityName(ebirdDataDTO.getLocalityName());
 			ebirdData.setLongitude(ebirdDataDTO.getLongitude());
 			ebirdData.setObservationDate(ebirdDataDTO.getObservationDate());
 			ebirdData.setScientificName(ebirdDataDTO.getScientificName());
-			ebirdData.setStateName(ebirdDataDTO.getStateName());
 			ebirdData.setUserDisplayName(ebirdDataDTO.getUserDisplayName());
 			ebirdDataList.add(ebirdData);
 		}
