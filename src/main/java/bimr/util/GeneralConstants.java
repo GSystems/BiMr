@@ -12,5 +12,7 @@ public class GeneralConstants {
 	public static final String DATE_FORMAT = "dd-MM-yyyy";
 	public static final Long DEFAULT_SINCE_ID = 931486142918250496l;
 	public static final Integer MAX_NUMBER_HASHTAGS = 10;
+	public static final String TWITTER_SOURCE = "twt";
+	public static final String EN_LANGUAGE = "en";
 
 }

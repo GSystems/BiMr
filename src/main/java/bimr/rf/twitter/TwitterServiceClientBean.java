@@ -32,12 +32,11 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 		TwitterResponseWrapper response = new TwitterResponseWrapper();
 		List<TweetWrapper> tweets = new ArrayList<>();
 		tweets.addAll(DataTransformer.fromTwitterApiResponseToWrapper(
-				getOlderTweets(request.getHashtag(), request.getLastTweetId(), request.getUntilDate())));
+				retrieveTweetsFromApi(request.getHashtag(), request.getLastTweetId())));
 		response.setTweets(tweets);
 		return response;
 	}
 
-	// TODO remove this
 	private List<Status> retrieveTweetsFromApi(String hashtag, Long sinceId) {
 		List<Status> tweets = new ArrayList<>();
 		ConfigurationBuilder configurationBuilder = credentialsSetup();
@@ -99,8 +98,8 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 
 		String date = new SimpleDateFormat("yyyy-MM-dd").format(untilDate);
 		Query query = new Query(hashtag);
-//		query.maxId(lastId);
-		query.until(date);
+		query.maxId(lastId);
+//		query.until(date);
 		query.setLang("en");
 		QueryResult result = null;
 		try {

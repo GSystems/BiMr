@@ -17,6 +17,11 @@ public class TweetRequestDTO {
 		this.untilDate = untilDate;
 	}
 
+	public TweetRequestDTO(String hashtag, Long lastTweetId) {
+		this.hashtag = hashtag;
+		this.lastTweetId = lastTweetId;
+	}
+
 	public String getHashtag() {
 		return hashtag;
 	}

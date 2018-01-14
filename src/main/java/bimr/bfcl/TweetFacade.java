@@ -3,6 +3,7 @@ package bimr.bfcl;
 import java.util.Date;
 import java.util.List;
 
+import bimr.bfcl.dto.HotspotDTO;
 import bimr.bfcl.dto.TweetDTO;
 import bimr.bfcl.dto.TweetRequestDTO;
 import bimr.bfcl.dto.TweetResponseDTO;
@@ -43,4 +44,6 @@ public interface TweetFacade {
      * Retrieve the MIN Date from the database
      */
     Date retrieveMinDateOfTweets();
+
+	void createRdfModel(List<HotspotDTO> filteredTweets);
 }

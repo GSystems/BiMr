@@ -11,6 +11,9 @@ public class HotspotDTO {
 	private String longitude;
 	private String howMany;
 	private String observationDate;
+	private String tweetMessage;
+	private String tweetId;
+	private UserDTO user;
 
 	public String getInformationSourceId() {
 		return informationSourceId;
@@ -92,4 +95,27 @@ public class HotspotDTO {
 		this.observationDate = observationDate;
 	}
 
+	public String getTweetMessage() {
+		return tweetMessage;
+	}
+
+	public void setTweetMessage(String tweetMessage) {
+		this.tweetMessage = tweetMessage;
+	}
+
+	public String getTweetId() {
+		return tweetId;
+	}
+
+	public void setTweetId(String tweetId) {
+		this.tweetId = tweetId;
+	}
+
+	public UserDTO getUser() {
+		return user;
+	}
+
+	public void setUser(UserDTO user) {
+		this.user = user;
+	}
 }

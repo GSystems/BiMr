@@ -10,6 +10,7 @@ import bimr.df.model.EbirdResponse;
 import bimr.df.model.Tweet;
 import bimr.df.model.TwitterRequest;
 import bimr.df.model.TwitterResponse;
+import org.apache.jena.rdf.model.Resource;
 
 /**
  * @author GLK
@@ -108,5 +109,17 @@ public class MapTransformer {
 		}
 		response.setEbirdData(ebirdDataList);
 		return response;
+	}
+
+	public static HotspotDTO toHotspotDTOFromTweetDTO(TweetDTO tweetDTO) {
+		HotspotDTO hotspotDTO = new HotspotDTO();
+		hotspotDTO.setLatitude(tweetDTO.getLatitude());
+		hotspotDTO.setLongitude(tweetDTO.getLongitude());
+		//TODO save date instead of string
+		hotspotDTO.setObservationDate(tweetDTO.getObservationDate().toString());
+		hotspotDTO.setTweetMessage(tweetDTO.getTweetMessage());
+		//TODO save integer instead of string
+		hotspotDTO.setTweetId(tweetDTO.getId().toString());
+		return hotspotDTO;
 	}
 }

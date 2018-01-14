@@ -1,20 +1,26 @@
 package bimr.bf;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import bimr.bf.transformer.MapTransformer;
 import bimr.bfcl.TweetFacade;
+import bimr.bfcl.dto.HotspotDTO;
 import bimr.bfcl.dto.TweetDTO;
 import bimr.bfcl.dto.TweetRequestDTO;
 import bimr.bfcl.dto.TweetResponseDTO;
 import bimr.df.TweetRepo;
 import bimr.util.AsyncUtils;
 import bimr.util.GeneralConstants;
+import bimr.util.RdfEnum;
+import bimr.util.rdf.ontology.Bisp;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Property;
+import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.sparql.vocabulary.FOAF;
 
 /**
  * @author GLK
@@ -59,6 +65,79 @@ public class TweetFacadeBean implements TweetFacade {
 			date = dateList.get(0);
 		}
 		return date;
+	}
+
+	@Override
+	public void createRdfModel(List<HotspotDTO> tweets) {
+		Model model = ModelFactory.createDefaultModel();
+
+		for (HotspotDTO hotspotDTO : tweets) {
+
+			Resource hotspotResource = model.createResource(RdfEnum.URI.getCode() + "1");
+
+//			Map<Map<Resource, String>, Map<Property, String>> propertiesForResource = new HashMap<>();
+
+			Map<Property, String> generalProperties = new HashMap<>();
+			generalProperties.put(Bisp.informationSourceId, GeneralConstants.TWITTER_SOURCE);
+			generalProperties.put(Bisp.birdSpecies, hotspotDTO.getBirdSpecies());
+			generalProperties.put(Bisp.observationDate, hotspotDTO.getObservationDate());
+			if (hotspotDTO.getHowMany() != null) {
+				generalProperties.put(Bisp.howMany, hotspotDTO.getHowMany());
+			}
+
+			Map<Property, String> locationProperties = new HashMap<>();
+			locationProperties.put(Bisp.latitude, hotspotDTO.getLatitude());
+			locationProperties.put(Bisp.longitude, hotspotDTO.getLongitude());
+
+			Map<Property, String> tweetProperties = new HashMap<>();
+			tweetProperties.put(Bisp.id, hotspotDTO.getTweetId());
+			tweetProperties.put(Bisp.language, GeneralConstants.EN_LANGUAGE);
+			tweetProperties.put(Bisp.text, hotspotDTO.getTweetMessage());
+
+			Map<Property, String> userProperties = new HashMap<>();
+			userProperties.put(FOAF.accountName, hotspotDTO.getUser().getScreenName());
+			userProperties.put(FOAF.name, hotspotDTO.getUser().getName());
+//			userProperties.put(FOAF., hotspotDTO.getUser().getId());
+//			userProperties.put(FOAF. , hotspotDTO.getUser().getEmail());
+//			userProperties.put(FOAF. , hotspotDTO.getUser().getLocation());
+
+			hotspotResource = addProperties(generalProperties, hotspotResource);
+
+//			hotspotResource.addProperty(Bisp.informationSourceId, GeneralConstants.TWITTER_SOURCE)
+//					.addProperty(Bisp.birdSpecies, hotspotDTO.getBirdSpecies())
+//					.addProperty(Bisp.howMany, hotspotDTO.getHowMany())
+//					.addProperty(Bisp.observationDate, hotspotDTO.getHowMany()).addProperty(
+//					Bisp.location, model.createResource("http://xmlns.com/bisp/location")
+//							.addProperty(Bisp.latitude, hotspotDTO.getLatitude())
+//							.addProperty(Bisp.longitude, hotspotDTO.getLongitude()))
+//					.addProperty(Bisp.informationSourceId, "twitter")
+//					.addProperty(Bisp.tweet,
+//					model.createResource(RdfEnum.URI.getCode() + "tweet")
+//							.addProperty(Bisp.id, hotspotDTO.getTweetId())
+//							.addProperty(Bisp.author, "@SomeUSer")
+//							.addProperty(Bisp.language, GeneralConstants.EN_LANGUAGE)
+//							.addProperty(Bisp.text, hotspotDTO.getTweetMessage())
+//							.addProperty(Bisp.link, "")
+//							.addProperty(Bisp.user,
+//			 						model.createResource(RdfEnum.URI.getCode() + "tweet#user")
+//											.addProperty(FOAF.accountName, "Lester Daniel")
+//											.addProperty(FOAF.name, "Lester Daniel")
+//											.addProperty(FOAF.firstName, "Lester")
+//											.addProperty(FOAF.lastName, "Daniel")
+//											.addProperty(FOAF.gender, "M")));
+
+			model.setNsPrefix("location", "http://xmlns.com/bisp/location#");
+			model.setNsPrefix("hotspot", "http://xmlns.com/bisp/");
+			model.setNsPrefix("tweet", "http://xmlns.com/bisp/tweet#");
+			model.setNsPrefix("geo", "http://xmlns.com/bisp/geo#");
+			model.setNsPrefix("foaf", "http://xmlns.com/foaf/0.1/");
+			model.write(System.out, "N-TRIPLES");
+		}
+	}
+
+	private Resource addProperties(Map<Property, String> properties, Resource resource) {
+//		resource.addProperty()
+		return resource;
 	}
 
 	private TweetResponseDTO generateTweets() {

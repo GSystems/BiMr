@@ -23,7 +23,7 @@ public class TweetEntity implements Serializable {
 
 	public static final String FIND_LAST_TWEET_ID = "TweetEntity.findLastTweetId";
 	public static final String FIND_MIN_DATE = "TweetEntity.findMinDate";
-	protected static final String FIND_LAST_TWEET_ID_QRY = "SELECT MIN(te.tweetId) FROM TweetEntity te";
+	protected static final String FIND_LAST_TWEET_ID_QRY = "SELECT MAX(te.tweetId) FROM TweetEntity te";
 	protected static final String FIND_MIN_DATE_QRY = "SELECT MIN(te.observationDate) FROM TweetEntity te";
 
 	@Id

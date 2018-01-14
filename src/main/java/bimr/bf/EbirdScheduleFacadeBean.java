@@ -11,15 +11,13 @@ import javax.ejb.*;
  */
 
 @Singleton
-//@ConcurrencyManagement(ConcurrencyManagementType.BEAN)
-@Lock(LockType.READ)
 public class EbirdScheduleFacadeBean implements EbirdScheduleFacade {
 
 	@EJB
 	private EbirdFacade ebirdFacade;
 
 	@Override
-	@Schedule(second = "*", minute = "*", hour = "*/1", persistent = false)
+//	@Schedule(second = "*", minute = "*", hour = "*/1", persistent = false)
 	public void ebirdApiCallScheduled() {
 //		checkForSave(ebirdFacade.retrieveEbirdHotspotSightingsSummary());
 		checkForSave(ebirdFacade.retrieveEbirdNearbyNotableObservations());
