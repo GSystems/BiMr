@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bird Migration</title>
+	<link rel="stylesheet" type="text/css" href="WEB-INF/resources/css/worldMap.css"/>
+  </head>
+  <body>
+    <div id="slider-container">
+      <input type="range" min="1" max="100" value="1" class="slider" id="myRange" oninput="slideStart()">
+    </div>
+		<div id="map"></div>
+		
+		<div id="controls" class="nicebox">
+		  <div id="legend">
+		    <div id="census-min">12.12.2017</div>
+		    	<input type="range" min="1" max="10" value="1" class="slider" id="slider"></input>
+		    <div id="census-max">1.01.2018</div>
+		  </div>
+		</div>
+		<div id="data-box" class="nicebox">
+		  <label id="data-label" for="data-value"></label>
+		  <span id="data-value"></span>
+		</div>
+    <div id="button">
+      <button id="button">Start</button>
+    </div>
+    <script src="WEB-INF/resources/js/worldMap.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrWpn26iI3ke8uAToJcj0b6tVGsavoqJs&callback=initMap">
+    </script>
+  </body>
+</html>
+
+<!--
+AIzaSyBrWpn26iI3ke8uAToJcj0b6tVGsavoqJs
+ -->
