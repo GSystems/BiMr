@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project Name="BiMrStress" ProductVersion="15.0.0" Perspective="com.appperfect.loadtester.ui.LoadTesterPerspective">
+	<ProjectLocation KEY="ProjectLocation">D:\Facultate\MSD1\TA-IP\Project\BiMrStress\</ProjectLocation>
+	<TargetSettings ProjectType="0">
+	</TargetSettings>
+	<NotificationSettings SendNotification="false" SendOnTestFail="false" SendEmailNotification="false" SendAttachment="false" SendCustomNotification="false" SendMsgAsArgument="false">
+		<ProductType ID="Load Tester">
+			<Format><![CDATA[Project Name: $PROJECT_NAME$. Duration: $PROJECT_DURATION$.
+Status: $PROJECT_STATUS$.]]></Format>
+		</ProductType>
+	</NotificationSettings>
+	<Product id="com.appperfect.loadtester.readerwriter" />
+</Project>
