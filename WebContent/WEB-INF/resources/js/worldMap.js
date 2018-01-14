@@ -1,159 +1,159 @@
-/**
- * 
- */
-
 var map;
-var heatmap;
-var sliderDiv = document.getElementById("slider");
+var url = "http://localhost/BiMr/WEB-INF/resources/locations/";
+var allInfoWindows = [];
 
-
-function initMap(){
-
+function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 6,
-        center: {lat: 37.775, lng: -122.434},
+        zoom: 2,
+        center: {lat: -33.865427, lng: 151.196123},
         mapTypeId: 'terrain'
-      });
-
-	var script = document.createElement('script');
-	script.src = "WEB-INF/resources/javascript/geo.js";
-	document.getElementsByTagName('head')[0].appendChild(script); 
-
-    map.data.setStyle(function(feature) {
-        var nrBirds = feature.getProperty('nrBirds'); 
-        return {
-          icon: getCircle(nrBirds)
-        };
     });
-    
-	
+
+    initData(1);
 }
-
-sliderDiv.onchange = function(){
-	switch(this.value){
-		case '1':
-			console.log(this.value);
-			clearCensusData();
-			getJSON('WEB-INF/resources/geoJSON/dataBirds1.json', function(err, data) {
-				if (err !== null)
-					alert('Something went wrong: ' + err);
-				else {
-					console.log(data);
-					map.data.addGeoJson(data);
-				}
-			});
-			break;
-		case '2':
-			console.log(this.value);
-			clearCensusData();
-			getJSON('WEB-INF/resources/geoJSON/dataBirds.json', function(err, data) {
-				if (err !== null)
-					alert('Something went wrong: ' + err);
-				else {
-					console.log(data);
-					map.data.addGeoJson(data);
-				}
-			});
-			break;
-		default:
-			break;
-	}
-
-}
-
-function getJSON(url, callback){
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET',"http://localhost:8080/BiMr/"+ url, true);
-    console.log("http://localhost:8080/BiMr/" + url);
-    xhr.responseType = 'json';
-    xhr.onload = function() {
-      var status = xhr.status;
-      if (status === 200) {
-        callback(null, xhr.response);
-      } else {
-        callback(status, xhr.response);
-      }
-    };
-    xhr.send();
-}
-
-
-function clearCensusData() {
-	map.data.forEach(function(feature) {
-	    map.data.remove(feature);
-	});
-  }
 
 function getCircle(magnitude) {
     return {
         path: google.maps.SymbolPath.CIRCLE,
         fillColor: 'red',
         fillOpacity: .9,
-        scale: Math.pow(2, magnitude),
+        scale: Math.pow(2, magnitude) / 4,
         strokeColor: 'red',
         strokeWeight: .5
     };
 }
 
-function eqfeed_callback(results) {
-	console.log("Loading Data");
-   	map.data.addGeoJson(results);
+function slideStart(){
+    var value = document.getElementById("slider").value;
+    clearWindowInfo();
+    clearMap();
+    initData(value);
 }
 
-function getData(){
-	
-	var birds = [
-		{
-		 coord:{lat: 36.0369429, lng: -115.0544178},
-		 name: 'American Tree Sparrow'
-		},
-	    {
-	     coord:{lat: 39.500583,  lng: -119.80673},
-		 name: 'American Tree Sparrow'
-		},
-	    {coord:{lat: 39.4908565, lng: -119.7410685},
-	 	 name: 'American Tree Sparrow'},
-	    {coord:{lat: 36.3249025, lng: -115.266594},
-	  	 name: 'American Tree Sparrow'},
-	    {coord:{lat: 36.0877316, lng: -114.9838436},
-	 	 name: 'American Tree Sparrow'},
-	    {coord:{lat: 39.5383369, lng: -119.8350906},
-	 	 name: 'American Tree Sparrow'},
-	    {coord:{lat: 36.0749791, lng: -115.0021416},
-	 	 name: 'American Tree Sparrow'},
-	    {coord:{lat: 39.3871964, lng: -119.8268473},
-	 	 name: 'American Tree Sparrow'},
-	    {coord:{lat: 36.0749791, lng: -115.0021416},
-	 	 name: 'American Tree Sparrow'},
-	    {coord:{lat: 36.438797,  lng: -115.359566},
-	 	 name: 'American Tree Sparrow'},
-	    {coord:{lat: 36.3249025, lng: -115.266594},
-	 	 name: 'American Tree Sparrow'},
-	    {coord:{lat: 39.5348915, lng: -119.7295699},
-	 	 name: 'American Tree Sparrow'},
-	    {coord:{lat: 39.5375943, lng: -119.8156735},
-	 	 name: 'American Tree Sparrow'},
-	    {coord:{lat: 39.5348915, lng: -119.7295699},
-	 	 name: 'American Tree Sparrow'},
-	    {coord:{lat: 39.5208387, lng: 145.137978},
-	 	 name: 'American Tree Sparrow'},
-	    {coord:{lat: 37.819616,  lng: -119.831905},
-	 	 name: 'American Tree Sparrow'},
-	    {coord:{lat: 39.500583,  lng: -119.80673},
-	     name: 'American Tree Sparrow'},
-	    {coord:{lat: 39.4908565, lng: -119.7410685},
-	     name: 'American Tree Sparrow'},
-	    {coord:{lat: 36.0749791, lng: -115.0021416},
-	     name: 'American Tree Sparrow'},
-	    {coord:{lat: 39.5470076, lng: -119.8303968},
-	     name:'American Tree Sparrow'},
-	    {coord:{lat: 36.1006947, lng: -115.022462},
-	     name: 'American Tree Sparrow'},
-	    {coord:{lat: 36.0749791, lng: -115.0021416},
-	     name: 'American Tree Sparrow'},
-	    {coord:{lat: 39.5348915, lng: -119.7295699},
-	     name: 'American Tree Sparrow'}
-	];
-	
-	return birds;
+function initAction(){
+    var currentValue = document.getElementById("slider").value;
+    if(currentValue != 1){
+        clearMap();
+        document.getElementById("slider").value = 1;
+    }
 }
+
+function loadJson(path,callback){
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', path, true);
+    xobj.onreadystatechange = function () {
+        if(xobj.readyState == 4 && xobj.status == "200"){
+            callback(xobj.responseText);
+        }
+    };
+    xobj.send(null);
+}
+
+function clearMap(){
+    map.data.forEach(function(feature){
+        map.data.remove(feature);
+    })
+}
+
+function clearWindowInfo(){
+    allInfoWindows.forEach(function(element){
+        element.close();
+    })
+}
+
+function initWindowInfo(){
+
+    var contentString = '<div id="content">'+
+    '<div id="siteNotice">'+
+    '</div>'+
+    '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+    '<div id="bodyContent">'+
+    '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+    'sandstone rock formation in the southern part of the '+
+    'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+    'south west of the nearest large town, Alice Springs; 450&#160;km '+
+    '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+    'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+    'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+    'Aboriginal people of the area. It has many springs, waterholes, '+
+    'rock caves and ancient paintings. Uluru is listed as a World '+
+    'Heritage Site.</p>'+
+    '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+    'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+    '(last visited June 22, 2009).</p>'+
+    '</div>'+
+    '</div>';
+
+    var infowindow = new google.maps.InfoWindow();
+    allInfoWindows.push(infowindow);
+
+    map.data.addListener('click', function(event){
+        if(infowindow)
+            infowindow.close();
+        var content = contentString;
+        infowindow.setContent(content);
+        infowindow.setPosition(event.feature.getGeometry().get());
+        infowindow.setOptions({ pixelOffset: new google.maps.Size(0, -20)});
+        infowindow.open(map);
+
+    })
+
+    google.maps.event.addListener(infowindow,'closeclick',function(){
+        console.log("closeclick event");
+        clearWindowInfo();
+    });
+}
+
+function initData(value)
+{
+    loadJson(url + "data" + value + ".json", function(data){
+        if(data !== null) {
+            map.data.addGeoJson(JSON.parse(data))
+        }
+        else
+            console.log("Error");
+    });
+
+    map.data.setStyle(function(feature) {
+        var magnitude = feature.getProperty('number');
+        var iconProperty = feature.getProperty('icon');
+        if(iconProperty == undefined){
+            return {
+                icon: getCircle(magnitude)
+            };
+        } else {
+            return {
+                icon: feature.getProperty('icon')
+            };
+        }
+    });
+
+    initWindowInfo();
+
+}
+
+function startAction(){
+    value = document.getElementById("slider").value;
+    console.log("iteration:" + value);
+    if(value >= 11)
+        return;
+    clearMap();
+    clearWindowInfo();
+    initData(value);
+    document.getElementById("slider").value++;
+    console.log("new value:" + document.getElementById("slider").value);
+}
+
+document.getElementById("button").addEventListener("click", function(){
+    initAction();
+    var timesRun = 0;
+    var intervalId = setInterval(function(){
+        timesRun++;
+        if(timesRun === 10)
+            clearInterval(intervalId);
+        startAction();
+    } , 1000);
+});
+
+
