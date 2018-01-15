@@ -1,17 +1,23 @@
-package bimr.df.model;
+package bimr.rf.ebird.entity;
 
+import bimr.util.GeneralConstants;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author Rares
- */
+@Entity
+@Table(schema = GeneralConstants.SCHEMA, name = "ebird")
+public class EbirdDataEntity implements Serializable {
 
-public class EbirdData {
+	private static final long serialVersionUID = -6863014092565181817L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String userDisplayName;
-	private String scientificName;
 	private String commonName;
+	private String scientificName;
 	private String observationDate;
 	private Double latitude;
 	private Double longitude;
@@ -32,20 +38,20 @@ public class EbirdData {
 		this.userDisplayName = userDisplayName;
 	}
 
-	public String getScientificName() {
-		return scientificName;
-	}
-
-	public void setScientificName(String scientificName) {
-		this.scientificName = scientificName;
-	}
-
 	public String getCommonName() {
 		return commonName;
 	}
 
 	public void setCommonName(String commonName) {
 		this.commonName = commonName;
+	}
+
+	public String getScientificName() {
+		return scientificName;
+	}
+
+	public void setScientificName(String scientificName) {
+		this.scientificName = scientificName;
 	}
 
 	public String getObservationDate() {
@@ -71,5 +77,4 @@ public class EbirdData {
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
-
 }

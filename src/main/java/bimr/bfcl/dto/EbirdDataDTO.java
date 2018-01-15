@@ -1,17 +1,21 @@
 package bimr.bfcl.dto;
 
-import java.util.Date;
-
 public class EbirdDataDTO {
+	private Long id;
 	private String userDisplayName;
-	private String commonName;
 	private String scientificName;
-	private String countryName;
-	private String stateName;
 	private String localityName;
-	private Date observationDate;
+	private String observationDate;
 	private Double latitude;
 	private Double longitude;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getUserDisplayName() {
 		return userDisplayName;
@@ -19,14 +23,6 @@ public class EbirdDataDTO {
 
 	public void setUserDisplayName(String userDisplayName) {
 		this.userDisplayName = userDisplayName;
-	}
-
-	public String getCommonName() {
-		return commonName;
-	}
-
-	public void setCommonName(String commonName) {
-		this.commonName = commonName;
 	}
 
 	public String getScientificName() {
@@ -37,22 +33,6 @@ public class EbirdDataDTO {
 		this.scientificName = scientificName;
 	}
 
-	public String getCountryName() {
-		return countryName;
-	}
-
-	public void setCountryName(String countryName) {
-		this.countryName = countryName;
-	}
-
-	public String getStateName() {
-		return stateName;
-	}
-
-	public void setStateName(String stateName) {
-		this.stateName = stateName;
-	}
-
 	public String getLocalityName() {
 		return localityName;
 	}
@@ -61,11 +41,11 @@ public class EbirdDataDTO {
 		this.localityName = localityName;
 	}
 
-	public Date getObservationDate() {
+	public String getObservationDate() {
 		return observationDate;
 	}
 
-	public void setObservationDate(Date observationDate) {
+	public void setObservationDate(String observationDate) {
 		this.observationDate = observationDate;
 	}
 

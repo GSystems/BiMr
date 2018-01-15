@@ -8,11 +8,8 @@ import java.util.Date;
 
 public class EbirdDataWrapper {
 	private String userDisplayName;
-	private String commonName;
 	private String scientificName;
-	private String countryName;
-	private String stateName;
-	private String localityName;
+	private String commonName;
 	private Date observationDate;
 	private Double latitude;
 	private Double longitude;
@@ -25,14 +22,6 @@ public class EbirdDataWrapper {
 		this.userDisplayName = userDisplayName;
 	}
 
-	public String getCommonName() {
-		return commonName;
-	}
-
-	public void setCommonName(String commonName) {
-		this.commonName = commonName;
-	}
-
 	public String getScientificName() {
 		return scientificName;
 	}
@@ -41,28 +30,12 @@ public class EbirdDataWrapper {
 		this.scientificName = scientificName;
 	}
 
-	public String getCountryName() {
-		return countryName;
+	public String getCommonName() {
+		return commonName;
 	}
 
-	public void setCountryName(String countryName) {
-		this.countryName = countryName;
-	}
-
-	public String getStateName() {
-		return stateName;
-	}
-
-	public void setStateName(String stateName) {
-		this.stateName = stateName;
-	}
-
-	public String getLocalityName() {
-		return localityName;
-	}
-
-	public void setLocalityName(String localityName) {
-		this.localityName = localityName;
+	public void setCommonName(String commonName) {
+		this.commonName = commonName;
 	}
 
 	public Date getObservationDate() {

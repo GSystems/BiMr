@@ -1,20 +1,25 @@
-package bimr.df.model;
+package bimr.bfcl.dto;
 
 import java.util.Date;
 
 /**
  * @author GLK
  */
-public class TwitterRequest {
+public class TweetRequestDTO {
 
 	private String hashtag;
 	private Long lastTweetId;
 	private Date untilDate;
 
-	public TwitterRequest(String hashtag, Long lastTweetId, Date untilDate) {
+	public TweetRequestDTO(String hashtag, Long lastTweetId, Date untilDate) {
 		this.hashtag = hashtag;
 		this.lastTweetId = lastTweetId;
 		this.untilDate = untilDate;
+	}
+
+	public TweetRequestDTO(String hashtag, Long lastTweetId) {
+		this.hashtag = hashtag;
+		this.lastTweetId = lastTweetId;
 	}
 
 	public String getHashtag() {

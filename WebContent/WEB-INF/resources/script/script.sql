@@ -19,6 +19,17 @@ CREATE TABLE tweets (
 	PRIMARY KEY(id)
 );
 
+CREATE TABLE ebird (
+	id bigint(100) NOT NULL AUTO_INCREMENT,
+	commonName VARCHAR(100),
+	scientificName VARCHAR(100),
+	longitude DECIMAL(50,10),
+    latitude DECIMAL(50,10),
+    countryName VARCHAR(100),
+	observationDate date,
+	PRIMARY KEY(id)
+);
+
 CREATE TABLE species (
 	id bigint(100) NOT NULL AUTO_INCREMENT,
 	species varchar(100),

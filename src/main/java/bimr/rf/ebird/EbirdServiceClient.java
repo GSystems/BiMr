@@ -7,8 +7,8 @@ import bimr.rf.ebird.wrapper.EbirdResponseWrapper;
  * @author Rares
  */
 
-public interface EbirdsServiceClient {
+public interface EbirdServiceClient {
 
-	EbirdResponseWrapper retrieveEBirdData(EbirdRequestWrapper request);
+	EbirdResponseWrapper retrieveEbirdData(EbirdRequestWrapper request);
 	
 }

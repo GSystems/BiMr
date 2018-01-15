@@ -34,7 +34,7 @@ public class BaseDAOBean<T, K extends Serializable> implements BaseDAO<T, K> {
 
 	@Override
 	public void delete(K id) {
-
+		// TODO implement this
 	}
 
 	@Override
@@ -55,6 +55,7 @@ public class BaseDAOBean<T, K extends Serializable> implements BaseDAO<T, K> {
 
 	@Override
 	public void flush() {
+		// TODO implement this
 	}
 
 }

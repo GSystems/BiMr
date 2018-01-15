@@ -1,5 +1,6 @@
 package bimr.rf.twitter.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import bimr.rf.BaseDAO;
@@ -28,4 +29,5 @@ public interface TwitterDAO extends BaseDAO<TweetEntity, Long> {
 	 */
 	List<Long> retrieveLastTweetId();
 
+	List<Date> retrieveMinDate();
 }

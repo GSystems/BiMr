@@ -3,7 +3,7 @@ package bimr.util;
 public enum StanfordEnum {
 
 	LOCATION("LOC"),
-	BISP("BISP"),
+	BISP("Bisp"),
 	NUMBER("NUMB"),
 	TIME("TIME"),
 	DATE("DATE"),

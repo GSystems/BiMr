@@ -10,18 +10,22 @@ import bimr.df.model.EbirdResponse;
 import bimr.df.model.Tweet;
 import bimr.df.model.TwitterRequest;
 import bimr.df.model.TwitterResponse;
+import org.apache.jena.rdf.model.Resource;
 
+/**
+ * @author GLK
+ */
 public class MapTransformer {
 
 	private MapTransformer() {
 	}
 
-	public static TwitterRequest twitterRequestFromDTO(TwitterRequestDTO requestDTO) {
-		return new TwitterRequest(requestDTO.getHashtag(), requestDTO.getLastTweetId());
+	public static TwitterRequest twitterRequestFromDTO(TweetRequestDTO requestDTO) {
+		return new TwitterRequest(requestDTO.getHashtag(), requestDTO.getLastTweetId(), requestDTO.getUntilDate());
 	}
 
-	public static TwitterResponseDTO fromTwitterResponseToDTO(TwitterResponse response) {
-		TwitterResponseDTO responseDTO = new TwitterResponseDTO();
+	public static TweetResponseDTO fromTwitterResponseToDTO(TwitterResponse response) {
+		TweetResponseDTO responseDTO = new TweetResponseDTO();
 		responseDTO.setTweets(fromTweetsToDTO(response.getTweets()));
 		return responseDTO;
 	}
@@ -67,28 +71,55 @@ public class MapTransformer {
 		return request;
 	}
 
-	public static EbirdResponseDTO fromEBirdResponseToDTO(EbirdResponse response) {
+	public static EbirdResponseDTO fromEbirdResponseToDTO(EbirdResponse response) {
 		EbirdResponseDTO responseDTO = new EbirdResponseDTO();
-		responseDTO.setEbirdData(fromEBirdDataWrapperToDTO(response.getEbirdData()));
+		if (response.getEbirdData() != null) {
+			responseDTO.setEbirdData(fromEbirdDataListToDTO(response.getEbirdData()));
+		}
 		return responseDTO;
 	}
 
-	private static List<EbirdDataDTO> fromEBirdDataWrapperToDTO(List<EbirdData> ebirdData) {
-		List<EbirdDataDTO> ebirdDataDTO = new ArrayList<>();
-		for (EbirdData currentData : ebirdData) {
+	private static List<EbirdDataDTO> fromEbirdDataListToDTO(List<EbirdData> ebirdDataList) {
+		List<EbirdDataDTO> ebirdDataListDTO = new ArrayList<>();
+		for (EbirdData ebirdData : ebirdDataList) {
 			EbirdDataDTO ebirdDTO = new EbirdDataDTO();
-			ebirdDTO.setCommonName(currentData.getCommonName());
-			ebirdDTO.setCountryName(currentData.getCountryName());
-			ebirdDTO.setLatitude(currentData.getLatitude());
-			ebirdDTO.setLocalityName(currentData.getLocalityName());
-			ebirdDTO.setLongitude(currentData.getLongitude());
-			ebirdDTO.setObservationDate(currentData.getObservationDate());
-			ebirdDTO.setScientificName(currentData.getScientificName());
-			ebirdDTO.setStateName(currentData.getStateName());
-			ebirdDTO.setUserDisplayName(currentData.getUserDisplayName());
-			ebirdDataDTO.add(ebirdDTO);
+			ebirdDTO.setId(ebirdData.getId());
+			ebirdDTO.setLatitude(ebirdData.getLatitude());
+			ebirdDTO.setLongitude(ebirdData.getLongitude());
+			ebirdDTO.setObservationDate(ebirdData.getObservationDate());
+			ebirdDTO.setScientificName(ebirdData.getScientificName());
+			ebirdDTO.setUserDisplayName(ebirdData.getUserDisplayName());
+			ebirdDataListDTO.add(ebirdDTO);
 		}
-		return ebirdDataDTO;
+		return ebirdDataListDTO;
 	}
 
+	public static EbirdResponse toEbirdResponseFromDTO(EbirdResponseDTO responseDTO) {
+		EbirdResponse response = new EbirdResponse();
+		List<EbirdData> ebirdDataList = new ArrayList<>();
+		for (EbirdDataDTO ebirdDataDTO : responseDTO.getEbirdData()) {
+			EbirdData ebirdData = new EbirdData();
+			ebirdData.setId(ebirdDataDTO.getId());
+			ebirdData.setLatitude(ebirdDataDTO.getLatitude());
+			ebirdData.setLongitude(ebirdDataDTO.getLongitude());
+			ebirdData.setObservationDate(ebirdDataDTO.getObservationDate());
+			ebirdData.setScientificName(ebirdDataDTO.getScientificName());
+			ebirdData.setUserDisplayName(ebirdDataDTO.getUserDisplayName());
+			ebirdDataList.add(ebirdData);
+		}
+		response.setEbirdData(ebirdDataList);
+		return response;
+	}
+
+	public static HotspotDTO toHotspotDTOFromTweetDTO(TweetDTO tweetDTO) {
+		HotspotDTO hotspotDTO = new HotspotDTO();
+		hotspotDTO.setLatitude(tweetDTO.getLatitude());
+		hotspotDTO.setLongitude(tweetDTO.getLongitude());
+		//TODO save date instead of string
+		hotspotDTO.setObservationDate(tweetDTO.getObservationDate().toString());
+		hotspotDTO.setTweetMessage(tweetDTO.getTweetMessage());
+		//TODO save integer instead of string
+		hotspotDTO.setTweetId(tweetDTO.getId().toString());
+		return hotspotDTO;
+	}
 }
