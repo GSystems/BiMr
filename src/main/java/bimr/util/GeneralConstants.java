@@ -14,5 +14,6 @@ public class GeneralConstants {
 	public static final Integer MAX_NUMBER_HASHTAGS = 10;
 	public static final String TWITTER_SOURCE = "twt";
 	public static final String EN_LANGUAGE = "en";
+	public static final String UTF8 = "UTF-8";
 
 }

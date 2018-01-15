@@ -1,6 +1,7 @@
 package bimr.bf;
 
 import bimr.bf.transformer.MapTransformer;
+import bimr.bfcl.RdfFacade;
 import bimr.bfcl.TweetFacade;
 import bimr.bfcl.TweetScheduleFacade;
 import bimr.bfcl.dto.HotspotDTO;
@@ -34,6 +35,9 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 
 	@Inject
 	TweetFacade tweetFacade;
+
+	@Inject
+	RdfFacade rdfFacade;
 
 	@PostConstruct
 	public static void init() {
@@ -74,7 +78,7 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 			}
 		}
 		if (!filteredTweets.isEmpty()) {
-			tweetFacade.createRdfModel(filteredTweets);
+			rdfFacade.generateRdfModel(filteredTweets);
 		}
 	}
 

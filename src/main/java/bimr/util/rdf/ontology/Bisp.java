@@ -14,6 +14,7 @@ public class Bisp {
 	public static final Property tweet;
 	public static final Property longitude;
 	public static final Property latitude;
+	public static final Property name;
 	public static final Property country;
 	public static final Property city;
 	public static final Property author;
@@ -40,6 +41,7 @@ public class Bisp {
 		tweet = m.createProperty(URI, "tweet");
 		longitude = m.createProperty(URI, "location#" + "longitude");
 		latitude = m.createProperty(URI, "location#" + "latitude");
+		name = m.createProperty(URI, "location#" + "name");
 		country = m.createProperty(URI, "location#" + "country");
 		city = m.createProperty(URI, "location#" + "city");
 		author = m.createProperty(URI, "tweet#" + "author");

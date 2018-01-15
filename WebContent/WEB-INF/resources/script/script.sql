@@ -24,8 +24,8 @@ CREATE TABLE ebird (
 	commonName VARCHAR(100),
 	scientificName VARCHAR(100),
 	longitude DECIMAL(50,10),
-  latitude DECIMAL(50,10),
-  countryName VARCHAR(100),
+    latitude DECIMAL(50,10),
+    countryName VARCHAR(100),
 	observationDate date,
 	PRIMARY KEY(id)
 );
