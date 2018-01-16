@@ -35,9 +35,9 @@ public class Bisp {
 	}
 
 	static {
-		HOTSPOT = m.createResource("http://xmlns.com/bisp/");
-		location = m.createProperty("http://xmlns.com/bisp/location");
-		user = m.createProperty(URI, "tweet#" + "user");
+		HOTSPOT = m.createResource(URI);
+		location = m.createProperty(URI + "location");
+		user = m.createProperty(URI,"user");
 		tweet = m.createProperty(URI, "tweet");
 		longitude = m.createProperty(URI, "location#" + "longitude");
 		latitude = m.createProperty(URI, "location#" + "latitude");

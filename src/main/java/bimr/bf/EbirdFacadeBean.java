@@ -54,8 +54,7 @@ public class EbirdFacadeBean implements EbirdFacade {
 	}
 
 	private EbirdResponseDTO retrieveEbirdDataFromApi(EbirdRequestDTO request) {
-		return MapTransformer.fromEbirdResponseToDTO(AsyncUtils
-				.getResultFromAsyncTask(repo.retrieveEbirdData(MapTransformer.toEbirdRequestFromDTO(request))));
+		return MapTransformer.fromEbirdResponseToDTO(repo.retrieveEbirdData(MapTransformer.toEbirdRequestFromDTO(request)));
 	}
 
 	private EbirdRequestDTO getRequest(String uri) {

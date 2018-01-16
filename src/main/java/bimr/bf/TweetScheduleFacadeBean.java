@@ -19,48 +19,42 @@ import edu.stanford.nlp.util.CoreMap;
 import org.jboss.logging.Logger;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Schedule;
-import javax.ejb.Singleton;
-import javax.inject.Inject;
+import javax.ejb.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 @Singleton
+@Startup
 public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 
 	private static final Logger log = Logger.getLogger(TweetScheduleFacadeBean.class.getName());
 	private static Integer count;
 	private static StanfordCoreNLP pipeline;
 
-	@Inject
+	@EJB
 	TweetFacade tweetFacade;
 
-	@Inject
+	@EJB
 	RdfFacade rdfFacade;
 
 	@PostConstruct
-	public static void init() {
+	public void init() {
 		count = 0;
 		// initializePipeline();
 	}
 
-//	https://stackoverflow.com/questions/14402068/ejb-schedule-wait-until-method-completed#14414499
 	@Override
-	@Schedule(second = "*", minute = "*/15", hour = "*", persistent = false)
+	@Schedule(minute = "*/15", hour = "*", persistent = false)
+	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public void twitterApiCallScheduled() {
-			TweetResponseDTO response = tweetFacade.retrieveTweetsFromApi(createRequest());
-			try {
-				Thread.sleep(20000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			if (!response.getTweets().isEmpty()) {
-				tweetFacade.persistTweets(response.getTweets());
-				//			filterTweets(response.getTweets());
-			} else {
-				log.info("No data from Twitter API");
-			}
+		TweetResponseDTO response = tweetFacade.retrieveTweetsFromApi(createRequest());
+		if (!response.getTweets().isEmpty()) {
+			tweetFacade.persistTweets(response.getTweets());
+			//			filterTweets(response.getTweets());
+		} else {
+			log.info("No data from Twitter API");
+		}
 	}
 
 	private void filterTweets(List<TweetDTO> tweets) {

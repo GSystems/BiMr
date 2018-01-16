@@ -11,13 +11,13 @@ import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.vocabulary.FOAF;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import javax.ejb.Singleton;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Singleton
 public class RdfFacadeBean implements RdfFacade {
 
 	@Override
@@ -27,11 +27,8 @@ public class RdfFacadeBean implements RdfFacade {
 		for (HotspotDTO hotspotDTO : tweets) {
 
 			Map<Property, String> generalProperties = addGeneralProperties(hotspotDTO);
-
 			Map<Property, String> locationProperties = addLocationProperties(hotspotDTO);
-
 			Map<Property, String> tweetProperties = addTweetProperties(hotspotDTO);
-
 			Map<Property, String> userProperties = addUserProperties(hotspotDTO);
 
 			Resource hotspotResource = model.createResource(RdfEnum.BASE_URI.getCode() + "hotspot1");
@@ -57,14 +54,13 @@ public class RdfFacadeBean implements RdfFacade {
 	}
 
 	private void writeRdfModelInFile(Model model) {
-		model.write(System.out, "N-TRIPLES");
+		model.write(System.out, RdfEnum.TURTLE_FORMAT.getCode());
 		try {
-			PrintWriter writer = new PrintWriter(RdfEnum.FILENAME.getCode(), GeneralConstants.UTF8);
+			PrintWriter writer = new PrintWriter(new FileOutputStream(new File(RdfEnum.FILENAME.getCode()), true));
+			//			PrintWriter writer = new PrintWriter(RdfEnum.FILENAME.getCode(), GeneralConstants.UTF8);
 			model.write(writer, RdfEnum.RDF_XML_FORMAT.getCode());
 			writer.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 	}
@@ -73,7 +69,6 @@ public class RdfFacadeBean implements RdfFacade {
 		model.setNsPrefix("location", "http://xmlns.com/bisp/location#");
 		model.setNsPrefix("hotspot", "http://xmlns.com/bisp/");
 		model.setNsPrefix("tweet", "http://xmlns.com/bisp/tweet#");
-		model.setNsPrefix("geo", "http://xmlns.com/bisp/geo#");
 		model.setNsPrefix("foaf", "http://xmlns.com/foaf/0.1/");
 	}
 
@@ -109,7 +104,7 @@ public class RdfFacadeBean implements RdfFacade {
 
 	private Map<Property, String> addGeneralProperties(HotspotDTO hotspotDTO) {
 		Map<Property, String> generalProperties = new HashMap<>();
-		generalProperties.put(Bisp.informationSourceId, GeneralConstants.TWITTER_SOURCE);
+		generalProperties.put(Bisp.informationSourceId, hotspotDTO.getInformationSourceId());
 		generalProperties.put(Bisp.birdSpecies, hotspotDTO.getBirdSpecies());
 		generalProperties.put(Bisp.observationDate, hotspotDTO.getObservationDate());
 		if (hotspotDTO.getHowMany() != null) {

@@ -23,10 +23,10 @@ public class TweetRepoBean implements TweetRepo {
 	private TwitterDAO twitterDAO;
 
 	@Override
-	public Future<TwitterResponse> retrieveTweets(TwitterRequest request) {
+	public TwitterResponse retrieveTweets(TwitterRequest request) {
 		twitterService = new TwitterServiceClientBean();
-		return new AsyncResult<>(TweetMapper.toTwitterResponseFromWrapper(
-				twitterService.retrieveTweets(TweetMapper.fromTwitterRequestToWrapper(request))));
+		return TweetMapper.toTwitterResponseFromWrapper(
+				twitterService.retrieveTweets(TweetMapper.fromTwitterRequestToWrapper(request)));
 	}
 
 	@Override

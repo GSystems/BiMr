@@ -9,7 +9,10 @@ import bimr.df.TweetRepo;
 import bimr.util.AsyncUtils;
 import bimr.util.GeneralConstants;
 
+import javax.ejb.Singleton;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import java.util.*;
 
@@ -17,6 +20,7 @@ import java.util.*;
  * @author GLK
  */
 @Stateless
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class TweetFacadeBean implements TweetFacade {
 
 	@Inject
@@ -29,8 +33,7 @@ public class TweetFacadeBean implements TweetFacade {
 
 	@Override
 	public TweetResponseDTO retrieveTweetsFromApi(TweetRequestDTO request) {
-		return MapTransformer.fromTwitterResponseToDTO(AsyncUtils
-				.getResultFromAsyncTask(tweetRepo.retrieveTweets(MapTransformer.twitterRequestFromDTO(request))));
+		return MapTransformer.fromTwitterResponseToDTO(tweetRepo.retrieveTweets(MapTransformer.twitterRequestFromDTO(request)));
 	}
 
 	@Override
