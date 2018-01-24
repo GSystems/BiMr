@@ -9,7 +9,6 @@ import bimr.df.TweetRepo;
 import bimr.util.AsyncUtils;
 import bimr.util.GeneralConstants;
 
-import javax.ejb.Singleton;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;

@@ -2,13 +2,14 @@ package bimr.util;
 
 public enum RdfEnum {
 
-	BASE_URI("http://xmlns.com/"),
 	FILENAME("hotspots.rdf"),
 	RDF_XML_FORMAT("RDF/XML-ABBREV"),
 	TURTLE_FORMAT("N-TRIPLES"),
-	LOCATION_URI("location"),
-	TWEET_URI("tweet"),
-	USER_URI("user");
+	BASE_URI("http://xmlns.com/bisp/"),
+	LOCATION_URI("http://xmlns.com/bisp/location#"),
+	TWEET_URI("http://xmlns.com/bisp/tweet#"),
+	USER_URI("http://xmlns.com/bisp/user#"),
+	OBSERVATION_URI("http://xmlns.com/bisp/observation#");
 
 	private String code;
 

@@ -4,13 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bimr.bfcl.dto.*;
-import bimr.df.model.EbirdData;
-import bimr.df.model.EbirdRequest;
-import bimr.df.model.EbirdResponse;
-import bimr.df.model.Tweet;
-import bimr.df.model.TwitterRequest;
-import bimr.df.model.TwitterResponse;
-import org.apache.jena.rdf.model.Resource;
+import bimr.df.model.*;
 
 /**
  * @author GLK
@@ -47,7 +41,19 @@ public class MapTransformer {
 		tweetDTO.setLongitude(tweet.getLongitude());
 		tweetDTO.setObservationDate(tweet.getObservationDate());
 		tweetDTO.setTweetMessage(tweet.getTweetMessage());
+		tweetDTO.setUser(fromTwitterUserToDTO(tweet.getUser()));
 		return tweetDTO;
+	}
+
+	private static TwitterUserDTO fromTwitterUserToDTO(TwitterUser user) {
+		TwitterUserDTO userDTO = new TwitterUserDTO();
+		userDTO.setEmail(user.getEmail());
+		userDTO.setId(String.valueOf(user.getId()));
+		userDTO.setIsGeoEnabled(String.valueOf(user.isGeoEnabled()));
+		userDTO.setLocation(user.getLocation());
+		userDTO.setName(user.getName());
+		userDTO.setScreenName(user.getScreenName());
+		return userDTO;
 	}
 
 	public static List<Tweet> toTweetsFromDTO(List<TweetDTO> tweetsDTO) {

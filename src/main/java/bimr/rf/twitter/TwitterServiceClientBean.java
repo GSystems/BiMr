@@ -44,69 +44,13 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 
 		Query query = new Query(hashtag);
 		query.setSinceId(sinceId);
-		query.setLang("en");
-		QueryResult result = null;
+		query.setLang(GeneralConstants.EN_LANGUAGE);
+		QueryResult result;
 		try {
 			result = twitter.search(query);
 			tweets.addAll(result.getTweets());
 		} catch (TwitterException e) {
-			log.severe("Couldn't connect: " + e);
-		}
-		return tweets;
-	}
-
-	// TODO remove this
-	private List<Status> callTwitterApi(String hashtag, Long lastId, Date untilDate) {
-		ConfigurationBuilder configurationBuilder = credentialsSetup();
-		Twitter twitter = new TwitterFactory(configurationBuilder.build()).getInstance();
-
-		Query query = new Query(hashtag);
-		query.setLang("en");
-		//		query.maxId(lastId);
-		query.until(untilDate.toString());
-		Integer numberOfTweets = GeneralConstants.MAX_NUMBER_OF_TWEETS;
-		List<Status> tweets = new ArrayList<>();
-		QueryResult result = null;
-
-		while (tweets.size() < numberOfTweets) {
-			if (numberOfTweets - tweets.size() > GeneralConstants.MAX_NUMBER_OF_TWEETS) {
-				query.setCount(GeneralConstants.MAX_NUMBER_OF_TWEETS);
-			} else {
-				query.setCount(numberOfTweets - tweets.size());
-			}
-			try {
-				result = twitter.search(query);
-				tweets.addAll(result.getTweets());
-				for (Status t : tweets)
-					if (t.getId() < lastId) {
-						lastId = t.getId();
-					}
-			} catch (TwitterException te) {
-				log.severe("Couldn't connect: " + te);
-				break;
-			}
-			query.setMaxId(lastId - 1);
-		}
-		return tweets;
-	}
-
-	// TODO remove this
-	private List<Status> getOlderTweets(String hashtag, Long lastId, Date untilDate) {
-		List<Status> tweets = new ArrayList<>();
-		ConfigurationBuilder configurationBuilder = credentialsSetup();
-		Twitter twitter = new TwitterFactory(configurationBuilder.build()).getInstance();
-
-		String date = new SimpleDateFormat("yyyy-MM-dd").format(untilDate);
-		Query query = new Query(hashtag);
-		query.maxId(lastId);
-//		query.until(date);
-		query.setLang("en");
-		QueryResult result = null;
-		try {
-			result = twitter.search(query);
-			tweets.addAll(result.getTweets());
-		} catch (TwitterException e) {
-			log.severe("Couldn't connect: " + e);
+			log.severe("Couldn't connect to TwitterAPI: " + e);
 		}
 		return tweets;
 	}

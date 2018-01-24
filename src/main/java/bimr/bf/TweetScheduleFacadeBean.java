@@ -58,7 +58,7 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 	}
 
 	private void filterTweets(List<TweetDTO> tweets) {
-		List<HotspotDTO> filteredTweets = new ArrayList<>();
+		List<HotspotDTO> hotspots = new ArrayList<>();
 		for (TweetDTO tweet : tweets) {
 			Annotation document = new Annotation(tweet.getTweetMessage());
 			// run all Annotators on this text
@@ -68,11 +68,11 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 			hotspot.setLongitude(tweet.getLongitude());
 			if (hotspot.getBirdSpecies() != null && tweet.getLatitude() != null
 					|| hotspot.getLocationName() != null) {
-				filteredTweets.add(MapTransformer.toHotspotDTOFromTweetDTO(tweet));
+				hotspots.add(MapTransformer.toHotspotDTOFromTweetDTO(tweet));
 			}
 		}
-		if (!filteredTweets.isEmpty()) {
-			rdfFacade.generateRdfModel(filteredTweets);
+		if (!hotspots.isEmpty()) {
+			rdfFacade.generateRdfModel(hotspots);
 		}
 	}
 
@@ -105,31 +105,35 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 				hotspot.setObservationDate(freshHotspot.getObservationDate());
 				hotspot.setLocationName(freshHotspot.getLocationName());
 
-				//TODO remove this block in the final version
-				if (hotspot.getBirdSpecies() != null || hotspot.getLocationName() != null) {
-					// this is the text of the token
-					String word = token.get(CoreAnnotations.TextAnnotation.class);
-					// this is the POS tag of the token
-					String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-					String text = String.format("Print: word: [%s] pos: [%s] ne: [%s]", word, pos, namedEntity);
-					log.info(text);
-				}
+				//TODO remove this method in the final version
+				logInfo(token, namedEntity);
 			}
 		}
 		return hotspot;
 	}
 
+	private void logInfo(CoreLabel token, String namedEntity) {
+		// this is the text of the token
+		String word = token.get(CoreAnnotations.TextAnnotation.class);
+		// this is the POS tag of the token
+		String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+		String text = String.format("Print: word: [%s] pos: [%s] ne: [%s]", word, pos, namedEntity);
+		log.info(text);
+	}
+
 	private HotspotDTO extractSensitiveInfoFromTweet(String namedEntity) {
 		HotspotDTO hotspot = new HotspotDTO();
+		List<String> birdSpecies = new ArrayList<>();
 		if (namedEntity.equals(StanfordEnum.LOCATION.getCode())) {
 			hotspot.setLocationName(namedEntity);
 		} else if (namedEntity.equals(StanfordEnum.BISP.getCode())) {
-			hotspot.setBirdSpecies(namedEntity);
+			birdSpecies.add(namedEntity);
 		} else if (namedEntity.equals(StanfordEnum.NUMBER.getCode())) {
 			hotspot.setHowMany(namedEntity);
 		} else if (namedEntity.equals(StanfordEnum.DATE.getCode())) {
 			hotspot.setObservationDate(namedEntity);
 		}
+		hotspot.setBirdSpecies(birdSpecies);
 		return hotspot;
 	}
 
