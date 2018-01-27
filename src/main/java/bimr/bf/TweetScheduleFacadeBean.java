@@ -1,7 +1,7 @@
 package bimr.bf;
 
 import bimr.bf.transformer.MapTransformer;
-import bimr.bfcl.RdfFacade;
+import bimr.bfcl.RdfModelFacade;
 import bimr.bfcl.TweetFacade;
 import bimr.bfcl.TweetScheduleFacade;
 import bimr.bfcl.dto.HotspotDTO;
@@ -24,23 +24,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-@Singleton
 @Startup
+@Singleton
 public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 
 	private static final Logger log = Logger.getLogger(TweetScheduleFacadeBean.class.getName());
-	private static Integer count;
+	private static Integer hashtagIterator;
 	private static StanfordCoreNLP pipeline;
 
 	@EJB
 	TweetFacade tweetFacade;
 
-	@EJB
-	RdfFacade rdfFacade;
+	@EJB RdfModelFacade rdfFacade;
 
 	@PostConstruct
 	public void init() {
-		count = 0;
+		hashtagIterator = 0;
 		// initializePipeline();
 	}
 
@@ -139,7 +138,7 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 
 	private TweetRequestDTO createRequest() {
 		String hashtag;
-		switch (count) {
+		switch (hashtagIterator) {
 		case 1:
 			hashtag = TwitterEnum.BIRDSMIGRATION.getCode();
 			break;
@@ -173,9 +172,9 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 		default:
 			hashtag = TwitterEnum.BIRDMIGRATION.getCode();
 		}
-		count++;
-		if (count > GeneralConstants.MAX_NUMBER_HASHTAGS) {
-			count = 0;
+		hashtagIterator++;
+		if (hashtagIterator > GeneralConstants.MAX_NUMBER_HASHTAGS) {
+			hashtagIterator = 0;
 		}
 		return new TweetRequestDTO(hashtag, tweetFacade.retrieveLastTweetId());
 	}

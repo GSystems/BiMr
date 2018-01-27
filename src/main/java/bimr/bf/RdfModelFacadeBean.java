@@ -1,34 +1,71 @@
 package bimr.bf;
 
-import bimr.bfcl.RdfFacade;
+import bimr.bfcl.RdfModelFacade;
 import bimr.bfcl.dto.HotspotDTO;
 import bimr.util.GeneralConstants;
 import bimr.util.RdfEnum;
 import bimr.util.rdf.ontology.Bisp;
+import org.apache.jena.query.Dataset;
+import org.apache.jena.query.ReadWrite;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.tdb.TDBFactory;
+import org.apache.jena.util.FileManager;
 import org.apache.jena.vocabulary.VCARD;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 
+@Startup
 @Singleton
-public class RdfFacadeBean implements RdfFacade {
+public class RdfModelFacadeBean implements RdfModelFacade {
+
+	private Dataset dataset;
+
+	@PostConstruct
+	public void init() {
+		dataset = TDBFactory.createDataset(RdfEnum.DIRECTORY_NAME.getCode());
+	}
+
+	@PreDestroy
+	public void cleanup() {
+		dataset.close();
+	}
 
 	@Override
 	public void generateRdfModel(List<HotspotDTO> hotspots) {
 		int id = 0;
 		for (HotspotDTO hotspotDTO : hotspots) {
-			Model model = ModelFactory.createDefaultModel();
+			Model model = dataset.getDefaultModel();
 			createResources(model, hotspotDTO, id);
 			id++;
 			writeRdfModelInFile(model);
+			persistModel(model);
+			model.close();
 		}
+	}
+
+	@Override
+	public void persistModel(Model model) {
+		dataset.begin(ReadWrite.WRITE);
+		model.commit();
+		dataset.commit();
+		dataset.end();
+	}
+
+	private Model getModel() {
+		// open write transaction
+		dataset.begin(ReadWrite.WRITE);
+		Model model = dataset.getDefaultModel();
+		return model;
 	}
 
 	private void createResources(Model model, HotspotDTO hotspotDTO, int id) {
