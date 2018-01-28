@@ -75,7 +75,7 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 		}
 	}
 
-	private static void initializePipeline() {
+	private void initializePipeline() {
 		Properties props = new Properties();
 		props.put(StanfordEnum.PROPS_KEY.getCode(), StanfordEnum.PROPS_VALUE.getCode());
 		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_BISP_MODEL_VALUE.getCode());
