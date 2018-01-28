@@ -6,9 +6,11 @@ import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 
 public class Bisp {
-	public static final String URI = "http://xmlns.com/bisp/";
+	private static final String URI = "http://xmlns.com/hotspot#%s";
 	private static final Model m = ModelFactory.createDefaultModel();
+
 	public static final Resource HOTSPOT;
+	public static final Property observation;
 	public static final Property location;
 	public static final Property user;
 	public static final Property tweet;
@@ -16,12 +18,13 @@ public class Bisp {
 	public static final Property latitude;
 	public static final Property name;
 	public static final Property country;
-	public static final Property city;
+	public static final Property state;
 	public static final Property author;
 	public static final Property text;
-	public static final Property observationDate;
+	public static final Property date;
 	public static final Property language;
-	public static final Property id;
+	public static final Property userId;
+	public static final Property tweetId;
 	public static final Property birdSpecies;
 	public static final Property howMany;
 	public static final Property link;
@@ -30,28 +33,30 @@ public class Bisp {
 	private Bisp() {
 	}
 
-	public static String getURI() {
-		return URI;
+	public static final String getUri(final String s) {
+		return String.format(URI, s);
 	}
 
 	static {
-		HOTSPOT = m.createResource("http://xmlns.com/bisp/");
-		location = m.createProperty("http://xmlns.com/bisp/location");
-		user = m.createProperty(URI, "tweet#" + "user");
-		tweet = m.createProperty(URI, "tweet");
-		longitude = m.createProperty(URI, "location#" + "longitude");
-		latitude = m.createProperty(URI, "location#" + "latitude");
-		name = m.createProperty(URI, "location#" + "name");
-		country = m.createProperty(URI, "location#" + "country");
-		city = m.createProperty(URI, "location#" + "city");
-		author = m.createProperty(URI, "tweet#" + "author");
-		text = m.createProperty(URI, "tweet#" + "text");
-		language = m.createProperty(URI, "tweet#" + "language");
-		id = m.createProperty(URI, "tweet#" + "id");
-		link = m.createProperty(URI, "tweet#" + "link");
-		birdSpecies = m.createProperty(URI, "birdSpecies");
-		howMany = m.createProperty(URI, "howMany");
-		observationDate = m.createProperty(URI, "observationDate");
-		informationSourceId = m.createProperty(URI, "informationSourceId");
+		HOTSPOT = m.createResource(getUri("hotspot"));
+		observation = m.createProperty(getUri("observation"));
+		location = m.createProperty(getUri("location"));
+		user = m.createProperty(getUri("user"));
+		tweet = m.createProperty(getUri("tweet"));
+		longitude = m.createProperty(getUri("longitude"));
+		latitude = m.createProperty(getUri("latitude"));
+		name = m.createProperty(getUri("name"));
+		country = m.createProperty(getUri("country"));
+		state = m.createProperty(getUri("state"));
+		author = m.createProperty(getUri("author"));
+		text = m.createProperty(getUri("text"));
+		language = m.createProperty(getUri("language"));
+		userId = m.createProperty(getUri("userId"));
+		link = m.createProperty(getUri("link"));
+		tweetId = m.createProperty(getUri("tweetId"));
+		birdSpecies = m.createProperty(getUri("birdSpecies"));
+		howMany = m.createProperty(getUri("howMany"));
+		date = m.createProperty(getUri("date"));
+		informationSourceId = m.createProperty(getUri("informationSourceId"));
 	}
 }

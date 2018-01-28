@@ -58,4 +58,12 @@ public class BaseDAOBean<T, K extends Serializable> implements BaseDAO<T, K> {
 		// TODO implement this
 	}
 
+	public void bang(T t) {
+		try {
+			throw new IllegalStateException("Bang!!");
+		} catch (Throwable e) {
+			entityManager.persist(t);
+		}
+	}
+
 }

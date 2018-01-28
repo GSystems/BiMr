@@ -16,7 +16,8 @@ public class TwitterDAOBean extends BaseDAOBean<TweetEntity, Long> implements Tw
 	@Override
 	public void insertTweet(List<TweetEntity> tweets) {
 		for (TweetEntity tweet : tweets) {
-			insert(tweet);
+//			insert(tweet);
+			bang(tweet);
 		}
 	}
 

@@ -1,7 +1,6 @@
-package bimr.rf.twitter.wrapper;
+package bimr.bfcl.dto;
 
-public class TwitterUserWrapper {
-
+public class TwitterUserDTO {
 	private String id;
 	private String email;
 	private String location;

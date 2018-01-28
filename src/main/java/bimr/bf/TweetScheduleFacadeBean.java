@@ -1,7 +1,7 @@
 package bimr.bf;
 
 import bimr.bf.transformer.MapTransformer;
-import bimr.bfcl.RdfFacade;
+import bimr.bfcl.RdfModelFacade;
 import bimr.bfcl.TweetFacade;
 import bimr.bfcl.TweetScheduleFacade;
 import bimr.bfcl.dto.HotspotDTO;
@@ -19,52 +19,45 @@ import edu.stanford.nlp.util.CoreMap;
 import org.jboss.logging.Logger;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Schedule;
-import javax.ejb.Singleton;
-import javax.inject.Inject;
+import javax.ejb.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+@Startup
 @Singleton
 public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 
 	private static final Logger log = Logger.getLogger(TweetScheduleFacadeBean.class.getName());
-	private static Integer count;
+	private static Integer hashtagIterator;
 	private static StanfordCoreNLP pipeline;
 
-	@Inject
+	@EJB
 	TweetFacade tweetFacade;
 
-	@Inject
-	RdfFacade rdfFacade;
+	@EJB RdfModelFacade rdfFacade;
 
 	@PostConstruct
-	public static void init() {
-		count = 0;
+	public void init() {
+		hashtagIterator = 0;
 		// initializePipeline();
 	}
 
-//	https://stackoverflow.com/questions/14402068/ejb-schedule-wait-until-method-completed#14414499
 	@Override
-	@Schedule(second = "*", minute = "*/15", hour = "*", persistent = false)
+	@Schedule(minute = "*/15", hour = "*", persistent = false)
+	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public void twitterApiCallScheduled() {
-			TweetResponseDTO response = tweetFacade.retrieveTweetsFromApi(createRequest());
-			try {
-				Thread.sleep(20000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			if (!response.getTweets().isEmpty()) {
-				tweetFacade.persistTweets(response.getTweets());
-				//			filterTweets(response.getTweets());
-			} else {
-				log.info("No data from Twitter API");
-			}
+		TweetResponseDTO response = tweetFacade.retrieveTweetsFromApi(createRequest());
+		if (!response.getTweets().isEmpty()) {
+			tweetFacade.persistTweets(response.getTweets());
+			//			filterTweets(response.getTweets());
+		} else {
+			log.info("No data from Twitter API");
+		}
 	}
 
 	private void filterTweets(List<TweetDTO> tweets) {
-		List<HotspotDTO> filteredTweets = new ArrayList<>();
+		List<HotspotDTO> hotspots = new ArrayList<>();
 		for (TweetDTO tweet : tweets) {
 			Annotation document = new Annotation(tweet.getTweetMessage());
 			// run all Annotators on this text
@@ -74,15 +67,15 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 			hotspot.setLongitude(tweet.getLongitude());
 			if (hotspot.getBirdSpecies() != null && tweet.getLatitude() != null
 					|| hotspot.getLocationName() != null) {
-				filteredTweets.add(MapTransformer.toHotspotDTOFromTweetDTO(tweet));
+				hotspots.add(MapTransformer.toHotspotDTOFromTweetDTO(tweet));
 			}
 		}
-		if (!filteredTweets.isEmpty()) {
-			rdfFacade.generateRdfModel(filteredTweets);
+		if (!hotspots.isEmpty()) {
+			rdfFacade.generateRdfModel(hotspots);
 		}
 	}
 
-	private static void initializePipeline() {
+	private void initializePipeline() {
 		Properties props = new Properties();
 		props.put(StanfordEnum.PROPS_KEY.getCode(), StanfordEnum.PROPS_VALUE.getCode());
 		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_BISP_MODEL_VALUE.getCode());
@@ -104,44 +97,45 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 				// this is the NER label of the token
 				String namedEntity = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
 
-				//TODO solve this issue
-				HotspotDTO freshHotspot = extractSensitiveInfoFromTweet(namedEntity);
-				hotspot.setBirdSpecies(freshHotspot.getBirdSpecies());
-				hotspot.setHowMany(freshHotspot.getHowMany());
-				hotspot.setObservationDate(freshHotspot.getObservationDate());
-				hotspot.setLocationName(freshHotspot.getLocationName());
+				extractSensitiveInfoFromTweet(namedEntity, hotspot);
+				hotspot.setBirdSpecies(hotspot.getBirdSpecies());
+				hotspot.setHowMany(hotspot.getHowMany());
+				hotspot.setObservationDate(hotspot.getObservationDate());
+				hotspot.setLocationName(hotspot.getLocationName());
 
-				//TODO remove this block in the final version
-				if (hotspot.getBirdSpecies() != null || hotspot.getLocationName() != null) {
-					// this is the text of the token
-					String word = token.get(CoreAnnotations.TextAnnotation.class);
-					// this is the POS tag of the token
-					String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-					String text = String.format("Print: word: [%s] pos: [%s] ne: [%s]", word, pos, namedEntity);
-					log.info(text);
-				}
+				//TODO remove this method in the final version
+				logInfo(token, namedEntity);
 			}
 		}
 		return hotspot;
 	}
 
-	private HotspotDTO extractSensitiveInfoFromTweet(String namedEntity) {
-		HotspotDTO hotspot = new HotspotDTO();
+	private void logInfo(CoreLabel token, String namedEntity) {
+		// this is the text of the token
+		String word = token.get(CoreAnnotations.TextAnnotation.class);
+		// this is the POS tag of the token
+		String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+		String text = String.format("Print: word: [%s] pos: [%s] ne: [%s]", word, pos, namedEntity);
+		log.info(text);
+	}
+
+	private void extractSensitiveInfoFromTweet(String namedEntity, HotspotDTO hotspot) {
+		List<String> birdSpecies = new ArrayList<>();
 		if (namedEntity.equals(StanfordEnum.LOCATION.getCode())) {
 			hotspot.setLocationName(namedEntity);
 		} else if (namedEntity.equals(StanfordEnum.BISP.getCode())) {
-			hotspot.setBirdSpecies(namedEntity);
+			birdSpecies.add(namedEntity);
 		} else if (namedEntity.equals(StanfordEnum.NUMBER.getCode())) {
 			hotspot.setHowMany(namedEntity);
 		} else if (namedEntity.equals(StanfordEnum.DATE.getCode())) {
 			hotspot.setObservationDate(namedEntity);
 		}
-		return hotspot;
+		hotspot.setBirdSpecies(birdSpecies);
 	}
 
 	private TweetRequestDTO createRequest() {
 		String hashtag;
-		switch (count) {
+		switch (hashtagIterator) {
 		case 1:
 			hashtag = TwitterEnum.BIRDSMIGRATION.getCode();
 			break;
@@ -175,9 +169,9 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 		default:
 			hashtag = TwitterEnum.BIRDMIGRATION.getCode();
 		}
-		count++;
-		if (count > GeneralConstants.MAX_NUMBER_HASHTAGS) {
-			count = 0;
+		hashtagIterator++;
+		if (hashtagIterator > GeneralConstants.MAX_NUMBER_HASHTAGS) {
+			hashtagIterator = 0;
 		}
 		return new TweetRequestDTO(hashtag, tweetFacade.retrieveLastTweetId());
 	}

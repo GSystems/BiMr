@@ -99,20 +99,16 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.jena</groupId>
-			<artifactId>jena-core</artifactId>
-			<version>3.6.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.jena</groupId>
-			<artifactId>jena-arq</artifactId>
-			<version>3.6.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.wildfly</groupId>
-			<artifactId>wildfly-ejb-client-bom</artifactId>
-			<version>11.0.0.Final</version>
+			<artifactId>apache-jena-libs</artifactId>
 			<type>pom</type>
+			<version>3.6.0</version>
 		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.wildfly</groupId>-->
+			<!--<artifactId>wildfly-ejb-client-bom</artifactId>-->
+			<!--<version>11.0.0.Final</version>-->
+			<!--<type>pom</type>-->
+		<!--</dependency>-->
 	</dependencies>
 
 	<build>

@@ -1,6 +1,6 @@
-package bimr.bfcl.dto;
+package bimr.df.model;
 
-public class UserDTO {
+public class TwitterUser {
 	private String id;
 	private String email;
 	private String location;
@@ -40,7 +40,7 @@ public class UserDTO {
 		this.screenName = screenName;
 	}
 
-	public String getIsGeoEnabled() {
+	public String isGeoEnabled() {
 		return isGeoEnabled;
 	}
 
