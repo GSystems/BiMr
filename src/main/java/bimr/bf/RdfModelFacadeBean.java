@@ -575,5 +575,4 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 
 		return migrationTweets;
 	}
-
 }
