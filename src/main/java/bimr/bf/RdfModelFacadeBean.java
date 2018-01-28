@@ -180,8 +180,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO11.setLongitude("-105.70");
 		tweetDTO11.setUser(new TwitterUserDTO(){{setName("Arnold Sheppard");}});
 		tweetDTO11.setTweetId(11L);
-		tweetDTO11.setTweetMessage("Swainson hawk");
-		tweetDTO11.setObservationDate(getDateFromString("2017-12-13"));
+		tweetDTO11.setTweetMessage("Young hawk looking down at me");
+		tweetDTO11.setObservationDate(new Date("2017-12-13"));
 		migrationTweets.add(tweetDTO11);
 
 		TweetDTO tweetDTO12 = new TweetDTO();
@@ -190,8 +190,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO12.setLongitude("-105.60");
 		tweetDTO12.setUser(new TwitterUserDTO(){{setName("John Wick");}});
 		tweetDTO12.setTweetId(12L);
-		tweetDTO12.setTweetMessage("Swainson hawk");
-		tweetDTO12.setObservationDate(getDateFromString("2017-12-13"));
+		tweetDTO12.setTweetMessage("You've never seen a hawk do this!");
+		tweetDTO12.setObservationDate(new Date("2017-12-13"));
 		migrationTweets.add(tweetDTO12);
 
 		TweetDTO tweetDTO13 = new TweetDTO();
@@ -200,8 +200,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO13.setLongitude("-108.49");
 		tweetDTO13.setUser(new TwitterUserDTO(){{setName("Tobey Marshall");}});
 		tweetDTO13.setTweetId(13L);
-		tweetDTO13.setTweetMessage("Swainson hawk");
-		tweetDTO13.setObservationDate(getDateFromString("2017-12-14"));
+		tweetDTO13.setTweetMessage("You guys! This hawk scared the S**T out of me today. Saw him nearby");
+		tweetDTO13.setObservationDate(new Date("2017-12-14"));
 		migrationTweets.add(tweetDTO13);
 
 		TweetDTO tweetDTO14 = new TweetDTO();
@@ -210,8 +210,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO14.setLongitude("-110.33");
 		tweetDTO14.setUser(new TwitterUserDTO(){{setName("Dino Brewster");}});
 		tweetDTO14.setTweetId(14L);
-		tweetDTO14.setTweetMessage("Swainson hawk");
-		tweetDTO14.setObservationDate(getDateFromString("2017-12-15"));
+		tweetDTO14.setTweetMessage("Young hawk claming for food.");
+		tweetDTO14.setObservationDate(new Date("2017-12-15"));
 		migrationTweets.add(tweetDTO14);
 
 		TweetDTO tweetDTO15 = new TweetDTO();
@@ -220,8 +220,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO15.setLongitude("-109.14");
 		tweetDTO15.setUser(new TwitterUserDTO(){{setName("Tego Calderon");}});
 		tweetDTO15.setTweetId(15L);
-		tweetDTO15.setTweetMessage("Swainson hawk");
-		tweetDTO15.setObservationDate(getDateFromString("2017-12-16"));
+		tweetDTO15.setTweetMessage("The hawks need our help. Easy winter feeding?");
+		tweetDTO15.setObservationDate(new Date("2017-12-16"));
 		migrationTweets.add(tweetDTO15);
 
 		TweetDTO tweetDTO16 = new TweetDTO();
@@ -230,8 +230,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO16.setLongitude("-107.78");
 		tweetDTO16.setUser(new TwitterUserDTO(){{setName("Arturo Braga");}});
 		tweetDTO16.setTweetId(16L);
-		tweetDTO16.setTweetMessage("Swainson hawk");
-		tweetDTO16.setObservationDate(getDateFromString("2017-12-17"));
+		tweetDTO16.setTweetMessage("World's strangest birds - hawk");
+		tweetDTO16.setObservationDate(new Date("2017-12-17"));
 		migrationTweets.add(tweetDTO16);
 
 		TweetDTO tweetDTO17 = new TweetDTO();
@@ -240,8 +240,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO17.setLongitude("-109.05");
 		tweetDTO17.setUser(new TwitterUserDTO(){{setName("Roberto Soldado");}});
 		tweetDTO17.setTweetId(17L);
-		tweetDTO17.setTweetMessage("Swainson hawk");
-		tweetDTO17.setObservationDate(getDateFromString("2017-12-17"));
+		tweetDTO17.setTweetMessage("The resident hawk has been enjoying playing around in the snow");
+		tweetDTO17.setObservationDate(new Date("2017-12-17"));
 		migrationTweets.add(tweetDTO17);
 
 		TweetDTO tweetDTO18 = new TweetDTO();
@@ -250,8 +250,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO18.setLongitude("-109.09");
 		tweetDTO18.setUser(new TwitterUserDTO(){{setName("Julio Fonseca");}});
 		tweetDTO18.setTweetId(18L);
-		tweetDTO18.setTweetMessage("Swainson hawk");
-		tweetDTO18.setObservationDate(getDateFromString("2017-12-18"));
+		tweetDTO18.setTweetMessage("Wintering - hawk return");
+		tweetDTO18.setObservationDate(new Date("2017-12-18"));
 		migrationTweets.add(tweetDTO18);
 
 		TweetDTO tweetDTO19 = new TweetDTO();
@@ -260,8 +260,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO19.setLongitude("-111.30");
 		tweetDTO19.setUser(new TwitterUserDTO(){{setName("Hernan Reyes");}});
 		tweetDTO19.setTweetId(19L);
-		tweetDTO19.setTweetMessage("Swainson hawk");
-		tweetDTO19.setObservationDate(getDateFromString("2017-12-20"));
+		tweetDTO19.setTweetMessage("Some birds of paradise are the hawk");
+		tweetDTO19.setObservationDate(new Date("2017-12-20"));
 		migrationTweets.add(tweetDTO19);
 
 		TweetDTO tweetDTO110 = new TweetDTO();
@@ -270,8 +270,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO110.setLongitude("-109.90");
 		tweetDTO110.setUser(new TwitterUserDTO(){{setName("Elena Neves");}});
 		tweetDTO110.setTweetId(110L);
-		tweetDTO110.setTweetMessage("Swainson hawk");
-		tweetDTO110.setObservationDate(getDateFromString("2017-12-21"));
+		tweetDTO110.setTweetMessage("What kinda bird is that? It is a hawk, right?");
+		tweetDTO110.setObservationDate(new Date("2017-12-21"));
 		migrationTweets.add(tweetDTO110);
 
 
@@ -281,8 +281,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO21.setLongitude("-74.73");
 		tweetDTO21.setUser(new TwitterUserDTO(){{setName("Chris Smalling");}});
 		tweetDTO21.setTweetId(21L);
-		tweetDTO21.setTweetMessage("Osprey");
-		tweetDTO21.setObservationDate(getDateFromString("2017-10-24"));
+		tweetDTO21.setTweetMessage("What is like to fly along side a flock of Osprey?");
+		tweetDTO21.setObservationDate(new Date("2017-10-24"));
 		migrationTweets.add(tweetDTO21);
 
 		TweetDTO tweetDTO22 = new TweetDTO();
@@ -291,8 +291,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO22.setLongitude("-75.76");
 		tweetDTO22.setUser(new TwitterUserDTO(){{setName("Ross Barkley");}});
 		tweetDTO22.setTweetId(22L);
-		tweetDTO22.setTweetMessage("Osprey");
-		tweetDTO22.setObservationDate(getDateFromString("2017-10-25"));
+		tweetDTO22.setTweetMessage("White-throated Osprey going the distance");
+		tweetDTO22.setObservationDate(new Date("2017-10-25"));
 		migrationTweets.add(tweetDTO22);
 
 		TweetDTO tweetDTO23 = new TweetDTO();
@@ -301,8 +301,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO23.setLongitude("-75.25");
 		tweetDTO23.setUser(new TwitterUserDTO(){{setName("Chris Bridges");}});
 		tweetDTO23.setTweetId(23L);
-		tweetDTO23.setTweetMessage("Osprey");
-		tweetDTO23.setObservationDate(getDateFromString("2017-10-26"));
+		tweetDTO23.setTweetMessage("Why these Osprey carry flames in their beaks");
+		tweetDTO23.setObservationDate(new Date("2017-10-26"));
 		migrationTweets.add(tweetDTO23);
 
 		TweetDTO tweetDTO24 = new TweetDTO();
@@ -311,8 +311,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO24.setLongitude("-74.58");
 		tweetDTO24.setUser(new TwitterUserDTO(){{setName("Jim Waters");}});
 		tweetDTO24.setTweetId(24L);
-		tweetDTO24.setTweetMessage("Osprey");
-		tweetDTO24.setObservationDate(getDateFromString("2017-10-26"));
+		tweetDTO24.setTweetMessage("Wild Osprey nesting spot");
+		tweetDTO24.setObservationDate(new Date("2017-10-26"));
 		migrationTweets.add(tweetDTO24);
 
 		TweetDTO tweetDTO25 = new TweetDTO();
@@ -321,8 +321,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO25.setLongitude("-77.24");
 		tweetDTO25.setUser(new TwitterUserDTO(){{setName("Gary Silverton");}});
 		tweetDTO25.setTweetId(25L);
-		tweetDTO25.setTweetMessage("Osprey");
-		tweetDTO25.setObservationDate(getDateFromString("2017-10-27"));
+		tweetDTO25.setTweetMessage("What a hoot! Just look at this Osprey!");
+		tweetDTO25.setObservationDate(new Date("2017-10-27"));
 		migrationTweets.add(tweetDTO25);
 
 		TweetDTO tweetDTO26 = new TweetDTO();
@@ -331,8 +331,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO26.setLongitude("-77.81");
 		tweetDTO26.setUser(new TwitterUserDTO(){{setName("Jamie Vardy");}});
 		tweetDTO26.setTweetId(26L);
-		tweetDTO26.setTweetMessage("Osprey");
-		tweetDTO26.setObservationDate(getDateFromString("2017-10-29"));
+		tweetDTO26.setTweetMessage("Whopper Osprey at Washington outskirts today");
+		tweetDTO26.setObservationDate(new Date("2017-10-29"));
 		migrationTweets.add(tweetDTO26);
 
 		TweetDTO tweetDTO27 = new TweetDTO();
@@ -341,8 +341,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO27.setLongitude("-77.07");
 		tweetDTO27.setUser(new TwitterUserDTO(){{setName("Owen Hargreaves");}});
 		tweetDTO27.setTweetId(27L);
-		tweetDTO27.setTweetMessage("Osprey");
-		tweetDTO27.setObservationDate(getDateFromString("2017-10-30"));
+		tweetDTO27.setTweetMessage("What a cutie!!! Do you have a favorite Osprey pic?");
+		tweetDTO27.setObservationDate(new Date("2017-10-30"));
 		migrationTweets.add(tweetDTO27);
 
 		TweetDTO tweetDTO28 = new TweetDTO();
@@ -351,8 +351,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO28.setLongitude("-80.05");
 		tweetDTO28.setUser(new TwitterUserDTO(){{setName("Andy Anderson");}});
 		tweetDTO28.setTweetId(28L);
-		tweetDTO28.setTweetMessage("Osprey");
-		tweetDTO28.setObservationDate(getDateFromString("2017-10-31"));
+		tweetDTO28.setTweetMessage("We are officially off to track down a Osprey!");
+		tweetDTO28.setObservationDate(new Date("2017-10-31"));
 		migrationTweets.add(tweetDTO28);
 
 		TweetDTO tweetDTO29 = new TweetDTO();
@@ -361,8 +361,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO29.setLongitude("-83.50");
 		tweetDTO29.setUser(new TwitterUserDTO(){{setName("David Duchovny");}});
 		tweetDTO29.setTweetId(29L);
-		tweetDTO29.setTweetMessage("Osprey");
-		tweetDTO29.setObservationDate(getDateFromString("2017-11-01"));
+		tweetDTO29.setTweetMessage("Look at this! Just found a flock of Osprey");
+		tweetDTO29.setObservationDate(new Date("2017-11-01"));
 		migrationTweets.add(tweetDTO29);
 
 		TweetDTO tweetDTO210 = new TweetDTO();
@@ -371,8 +371,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO210.setLongitude("-82.47");
 		tweetDTO210.setUser(new TwitterUserDTO(){{setName("Cody Walker");}});
 		tweetDTO210.setTweetId(210L);
-		tweetDTO210.setTweetMessage("Osprey");
-		tweetDTO210.setObservationDate(getDateFromString("2017-11-02"));
+		tweetDTO210.setTweetMessage("Usually don't see this guy so active - Osprey");
+		tweetDTO210.setObservationDate(new Date("2017-11-02"));
 		migrationTweets.add(tweetDTO210);
 
 
@@ -382,8 +382,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO31.setLongitude("7.17");
 		tweetDTO31.setUser(new TwitterUserDTO(){{setName("Ankjell Karlof");}});
 		tweetDTO31.setTweetId(31L);
-		tweetDTO31.setTweetMessage("Bank Swallow");
-		tweetDTO31.setObservationDate(getDateFromString("2018-01-03"));
+		tweetDTO31.setTweetMessage("Urbanized Eagle loitering in front of a KFC");
+		tweetDTO31.setObservationDate(new Date("2018-01-03"));
 		migrationTweets.add(tweetDTO31);
 
 		TweetDTO tweetDTO32 = new TweetDTO();
@@ -392,8 +392,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO32.setLongitude("12.81");
 		tweetDTO32.setUser(new TwitterUserDTO(){{setName("Markus Berg");}});
 		tweetDTO32.setTweetId(32L);
-		tweetDTO32.setTweetMessage("Bank Swallow");
-		tweetDTO32.setObservationDate(getDateFromString("2018-01-05"));
+		tweetDTO32.setTweetMessage("Eagle Friday! This pair of eagles are our observation today.");
+		tweetDTO32.setObservationDate(new Date("2018-01-05"));
 		migrationTweets.add(tweetDTO32);
 
 		TweetDTO tweetDTO33 = new TweetDTO();
@@ -402,8 +402,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO33.setLongitude("11.87");
 		tweetDTO33.setUser(new TwitterUserDTO(){{setName("Christian Eriksen");}});
 		tweetDTO33.setTweetId(33L);
-		tweetDTO33.setTweetMessage("Bank Swallow");
-		tweetDTO33.setObservationDate(getDateFromString("2018-01-06"));
+		tweetDTO33.setTweetMessage("Where do our Eagle come from and go to?");
+		tweetDTO33.setObservationDate(new Date("2018-01-06"));
 		migrationTweets.add(tweetDTO33);
 
 		TweetDTO tweetDTO34 = new TweetDTO();
@@ -412,8 +412,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO34.setLongitude("8.11");
 		tweetDTO34.setUser(new TwitterUserDTO(){{setName("Robert Adler");}});
 		tweetDTO34.setTweetId(34L);
-		tweetDTO34.setTweetMessage("Bank Swallow");
-		tweetDTO34.setObservationDate(getDateFromString("2018-01-08"));
+		tweetDTO34.setTweetMessage("Tweety pie the cute Eagle being showered with love???");
+		tweetDTO34.setObservationDate(new Date("2018-01-08"));
 		migrationTweets.add(tweetDTO34);
 
 		TweetDTO tweetDTO35 = new TweetDTO();
@@ -422,8 +422,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO35.setLongitude("-5.91");
 		tweetDTO35.setUser(new TwitterUserDTO(){{setName("Lasse Schone");}});
 		tweetDTO35.setTweetId(35L);
-		tweetDTO35.setTweetMessage("Bank Swallow");
-		tweetDTO35.setObservationDate(getDateFromString("2018-01-09"));
+		tweetDTO35.setTweetMessage("Tufted Eagle spotted");
+		tweetDTO35.setObservationDate(new Date("2018-01-09"));
 		migrationTweets.add(tweetDTO35);
 
 		TweetDTO tweetDTO36 = new TweetDTO();
@@ -432,8 +432,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO36.setLongitude("5.08");
 		tweetDTO36.setUser(new TwitterUserDTO(){{setName("Axel Witsel");}});
 		tweetDTO36.setTweetId(36L);
-		tweetDTO36.setTweetMessage("Bank Swallow");
-		tweetDTO36.setObservationDate(getDateFromString("2018-01-09"));
+		tweetDTO36.setTweetMessage("Tricolored eagle Eagle outskirts of the city");
+		tweetDTO36.setObservationDate(new Date("2018-01-09"));
 		migrationTweets.add(tweetDTO36);
 
 		TweetDTO tweetDTO37 = new TweetDTO();
@@ -442,8 +442,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO37.setLongitude("4.76");
 		tweetDTO37.setUser(new TwitterUserDTO(){{setName("Alexandre Lacazette");}});
 		tweetDTO37.setTweetId(37L);
-		tweetDTO37.setTweetMessage("Bank Swallow");
-		tweetDTO37.setObservationDate(getDateFromString("2018-01-11"));
+		tweetDTO37.setTweetMessage("Tourism sector to promote Eagle as niche market");
+		tweetDTO37.setObservationDate(new Date("2018-01-11"));
 		migrationTweets.add(tweetDTO37);
 
 		TweetDTO tweetDTO38 = new TweetDTO();
@@ -452,8 +452,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO38.setLongitude("0.48");
 		tweetDTO38.setUser(new TwitterUserDTO(){{setName("Hugo Lloris");}});
 		tweetDTO38.setTweetId(38L);
-		tweetDTO38.setTweetMessage("Bank Swallow");
-		tweetDTO38.setObservationDate(getDateFromString("2018-01-12"));
+		tweetDTO38.setTweetMessage("Tiny Eagles try to get something to eat in my backyard");
+		tweetDTO38.setObservationDate(new Date("2018-01-12"));
 		migrationTweets.add(tweetDTO38);
 
 		TweetDTO tweetDTO39 = new TweetDTO();
@@ -462,8 +462,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO39.setLongitude("-4.53");
 		tweetDTO39.setUser(new TwitterUserDTO(){{setName("David Silva");}});
 		tweetDTO39.setTweetId(39L);
-		tweetDTO39.setTweetMessage("Bank Swallow");
-		tweetDTO39.setObservationDate(getDateFromString("2018-01-14"));
+		tweetDTO39.setTweetMessage("Through the lens: Eagles sighted!");
+		tweetDTO39.setObservationDate(new Date("2018-01-14"));
 		migrationTweets.add(tweetDTO39);
 
 		TweetDTO tweetDTO310 = new TweetDTO();
@@ -472,8 +472,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO310.setLongitude("-8.81");
 		tweetDTO310.setUser(new TwitterUserDTO(){{setName("Andre Gomes");}});
 		tweetDTO310.setTweetId(310L);
-		tweetDTO310.setTweetMessage("Bank Swallow");
-		tweetDTO310.setObservationDate(getDateFromString("2018-01-16"));
+		tweetDTO310.setTweetMessage("This red-tailed Eagle is so well camouflaged that I came within 6 feet of it before seeing it");
+		tweetDTO310.setObservationDate(new Date("2018-01-16"));
 		migrationTweets.add(tweetDTO310);
 
 
@@ -483,8 +483,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO41.setLongitude("39.36");
 		tweetDTO41.setUser(new TwitterUserDTO(){{setName("Andrey Kokorin");}});
 		tweetDTO41.setTweetId(41L);
-		tweetDTO41.setTweetMessage("Sandhill Crane");
-		tweetDTO41.setObservationDate(getDateFromString("2018-01-06"));
+		tweetDTO41.setTweetMessage("This Killdeer had quite a bit to say to us this morning.");
+		tweetDTO41.setObservationDate(new Date("2018-01-06"));
 		migrationTweets.add(tweetDTO41);
 
 		TweetDTO tweetDTO42 = new TweetDTO();
@@ -493,8 +493,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO42.setLongitude("34.13");
 		tweetDTO42.setUser(new TwitterUserDTO(){{setName("Alan Dzagoev");}});
 		tweetDTO42.setTweetId(42L);
-		tweetDTO42.setTweetMessage("Sandhill Crane");
-		tweetDTO42.setObservationDate(getDateFromString("2018-01-07"));
+		tweetDTO42.setTweetMessage("This is one of the  4 subspecies of the spectacular Killdeer!");
+		tweetDTO42.setObservationDate(new Date("2018-01-07"));
 		migrationTweets.add(tweetDTO42);
 
 		TweetDTO tweetDTO43 = new TweetDTO();
@@ -503,8 +503,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO43.setLongitude("31.10");
 		tweetDTO43.setUser(new TwitterUserDTO(){{setName("Sergei Gurenko");}});
 		tweetDTO43.setTweetId(43L);
-		tweetDTO43.setTweetMessage("Sandhill Crane");
-		tweetDTO43.setObservationDate(getDateFromString("2018-01-08"));
+		tweetDTO43.setTweetMessage("This adorable Killdeer was making the most of a very overcast day");
+		tweetDTO43.setObservationDate(new Date("2018-01-08"));
 		migrationTweets.add(tweetDTO43);
 
 		TweetDTO tweetDTO44 = new TweetDTO();
@@ -513,8 +513,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO44.setLongitude("27.76");
 		tweetDTO44.setUser(new TwitterUserDTO(){{setName("Andryi Shevchenko");}});
 		tweetDTO44.setTweetId(44L);
-		tweetDTO44.setTweetMessage("Sandhill Crane");
-		tweetDTO44.setObservationDate(getDateFromString("2018-01-09"));
+		tweetDTO44.setTweetMessage("Think Killdeer watching is something only hardened people enjoy?");
+		tweetDTO44.setObservationDate(new Date("2018-01-09"));
 		migrationTweets.add(tweetDTO44);
 
 		TweetDTO tweetDTO45 = new TweetDTO();
@@ -523,8 +523,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO45.setLongitude("27.28");
 		tweetDTO45.setUser(new TwitterUserDTO(){{setName("Alexandru Mocanu");}});
 		tweetDTO45.setTweetId(45L);
-		tweetDTO45.setTweetMessage("Sandhill Crane");
-		tweetDTO45.setObservationDate(getDateFromString("2018-01-11"));
+		tweetDTO45.setTweetMessage("The trees filled with little Killdeers");
+		tweetDTO45.setObservationDate(new Date("2018-01-11"));
 		migrationTweets.add(tweetDTO45);
 
 		TweetDTO tweetDTO46 = new TweetDTO();
@@ -533,8 +533,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO46.setLongitude("26.23");
 		tweetDTO46.setUser(new TwitterUserDTO(){{setName("Ioan Petrescu");}});
 		tweetDTO46.setTweetId(46L);
-		tweetDTO46.setTweetMessage("Sandhill Crane");
-		tweetDTO46.setObservationDate(getDateFromString("2018-01-11"));
+		tweetDTO46.setTweetMessage("The winter months are a perfect time to keep an eye out for beautiful Killdeer");
+		tweetDTO46.setObservationDate(new Date("2018-01-11"));
 		migrationTweets.add(tweetDTO46);
 
 		TweetDTO tweetDTO47 = new TweetDTO();
@@ -543,8 +543,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO47.setLongitude("22.15");
 		tweetDTO47.setUser(new TwitterUserDTO(){{setName("Sokratis Papastathopoulos");}});
 		tweetDTO47.setTweetId(47L);
-		tweetDTO47.setTweetMessage("Sandhill Crane");
-		tweetDTO47.setObservationDate(getDateFromString("2018-01-14"));
+		tweetDTO47.setTweetMessage("The Killdeer found one of the only open water spaces today in this crack");
+		tweetDTO47.setObservationDate(new Date("2018-01-14"));
 		migrationTweets.add(tweetDTO47);
 
 		TweetDTO tweetDTO48 = new TweetDTO();
@@ -553,8 +553,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO48.setLongitude("26.01");
 		tweetDTO48.setUser(new TwitterUserDTO(){{setName("Asim Ramses");}});
 		tweetDTO48.setTweetId(48L);
-		tweetDTO48.setTweetMessage("Sandhill Crane");
-		tweetDTO48.setObservationDate(getDateFromString("2018-01-16"));
+		tweetDTO48.setTweetMessage("The other day I spent a long time chasing Killdeer around");
+		tweetDTO48.setObservationDate(new Date("2018-01-16"));
 		migrationTweets.add(tweetDTO48);
 
 		TweetDTO tweetDTO49 = new TweetDTO();
@@ -563,8 +563,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO49.setLongitude("35.21");
 		tweetDTO49.setUser(new TwitterUserDTO(){{setName("Bakri Bashir");}});
 		tweetDTO49.setTweetId(49L);
-		tweetDTO49.setTweetMessage("Sandhill Crane");
-		tweetDTO49.setObservationDate(getDateFromString("2018-01-17"));
+		tweetDTO49.setTweetMessage("The colourful Killdeer of this earth astound me");
+		tweetDTO49.setObservationDate(new Date("2018-01-17"));
 		migrationTweets.add(tweetDTO49);
 
 		TweetDTO tweetDTO410 = new TweetDTO();
@@ -573,8 +573,8 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 		tweetDTO410.setLongitude("40.43");
 		tweetDTO410.setUser(new TwitterUserDTO(){{setName("Jemal Tassew");}});
 		tweetDTO410.setTweetId(410L);
-		tweetDTO410.setTweetMessage("Sandhill Crane");
-		tweetDTO410.setObservationDate(getDateFromString("2018-01-19"));
+		tweetDTO410.setTweetMessage("The Killdeers are busy chasing each other today.");
+		tweetDTO410.setObservationDate(new Date("2018-01-19"));
 		migrationTweets.add(tweetDTO410);
 
 		return migrationTweets;
