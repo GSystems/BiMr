@@ -75,7 +75,7 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 		}
 	}
 
-	private static void initializePipeline() {
+	private void initializePipeline() {
 		Properties props = new Properties();
 		props.put(StanfordEnum.PROPS_KEY.getCode(), StanfordEnum.PROPS_VALUE.getCode());
 		props.put(StanfordEnum.NER_MODEL_KEY.getCode(), StanfordEnum.NER_BISP_MODEL_VALUE.getCode());
@@ -97,12 +97,11 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 				// this is the NER label of the token
 				String namedEntity = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
 
-				//TODO solve this issue
-				HotspotDTO freshHotspot = extractSensitiveInfoFromTweet(namedEntity);
-				hotspot.setBirdSpecies(freshHotspot.getBirdSpecies());
-				hotspot.setHowMany(freshHotspot.getHowMany());
-				hotspot.setObservationDate(freshHotspot.getObservationDate());
-				hotspot.setLocationName(freshHotspot.getLocationName());
+				extractSensitiveInfoFromTweet(namedEntity, hotspot);
+				hotspot.setBirdSpecies(hotspot.getBirdSpecies());
+				hotspot.setHowMany(hotspot.getHowMany());
+				hotspot.setObservationDate(hotspot.getObservationDate());
+				hotspot.setLocationName(hotspot.getLocationName());
 
 				//TODO remove this method in the final version
 				logInfo(token, namedEntity);
@@ -120,8 +119,7 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 		log.info(text);
 	}
 
-	private HotspotDTO extractSensitiveInfoFromTweet(String namedEntity) {
-		HotspotDTO hotspot = new HotspotDTO();
+	private void extractSensitiveInfoFromTweet(String namedEntity, HotspotDTO hotspot) {
 		List<String> birdSpecies = new ArrayList<>();
 		if (namedEntity.equals(StanfordEnum.LOCATION.getCode())) {
 			hotspot.setLocationName(namedEntity);
@@ -133,7 +131,6 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 			hotspot.setObservationDate(namedEntity);
 		}
 		hotspot.setBirdSpecies(birdSpecies);
-		return hotspot;
 	}
 
 	private TweetRequestDTO createRequest() {

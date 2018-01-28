@@ -125,7 +125,7 @@ public class MapTransformer {
 		hotspotDTO.setObservationDate(tweetDTO.getObservationDate().toString());
 		hotspotDTO.setTweetMessage(tweetDTO.getTweetMessage());
 		//TODO save integer instead of string
-		hotspotDTO.setTweetId(tweetDTO.getId().toString());
+		hotspotDTO.setTweetId(tweetDTO.getTweetId().toString());
 		return hotspotDTO;
 	}
 }
