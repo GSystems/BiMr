@@ -160,410 +160,449 @@ public class RdfModelFacadeBean implements RdfModelFacade {
 
 	public List<HotspotDTO> mockMigrationData() {
 		List<HotspotDTO> migrationTweets = new ArrayList<>();
-		HotspotDTO hotspotDTO = new HotspotDTO();
 		
+		HotspotDTO hotspotDTO11 = new HotspotDTO();
 		// #1.1
-		hotspotDTO.setLatitude("38.44");
-		hotspotDTO.setLongitude("-105.70");
-		hotspotDTO.setHowMany("18");
-		hotspotDTO.setAuthor("Phil Jones");
-		hotspotDTO.setState("Colorado");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
-		hotspotDTO.setObservationDate("2017-12-13");
-		migrationTweets.add(hotspotDTO);
+		hotspotDTO11.setLatitude("38.44");
+		hotspotDTO11.setLongitude("-105.70");
+		hotspotDTO11.setHowMany("18");
+		hotspotDTO11.setAuthor("Phil Jones");
+		hotspotDTO11.setState("Colorado");
+		hotspotDTO11.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
+		hotspotDTO11.setObservationDate("2017-12-13");
+		migrationTweets.add(hotspotDTO11);
 		
+		HotspotDTO hotspotDTO12 = new HotspotDTO();
 		// #1.2
-		hotspotDTO.setLatitude("37.26");
-		hotspotDTO.setLongitude("-105.60");
-		hotspotDTO.setHowMany("18");
-		hotspotDTO.setAuthor("John Wick");
-		hotspotDTO.setState("Colorado");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
-		hotspotDTO.setObservationDate("2017-12-13");
-		migrationTweets.add(hotspotDTO);
+		hotspotDTO12.setLatitude("37.26");
+		hotspotDTO12.setLongitude("-105.60");
+		hotspotDTO12.setHowMany("18");
+		hotspotDTO12.setAuthor("John Wick");
+		hotspotDTO12.setState("Colorado");
+		hotspotDTO12.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
+		hotspotDTO12.setObservationDate("2017-12-13");
+		migrationTweets.add(hotspotDTO12);
 		
+		HotspotDTO hotspotDTO13 = new HotspotDTO();
 		// #1.3
-		hotspotDTO.setLatitude("36.31");
-		hotspotDTO.setLongitude("-108.49");
-		hotspotDTO.setHowMany("22");
-		hotspotDTO.setAuthor("Tobey Marshall");
-		hotspotDTO.setState("New Mexico");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
-		hotspotDTO.setObservationDate("2017-12-14");
-		migrationTweets.add(hotspotDTO);
+		hotspotDTO13.setLatitude("36.31");
+		hotspotDTO13.setLongitude("-108.49");
+		hotspotDTO13.setHowMany("22");
+		hotspotDTO13.setAuthor("Tobey Marshall");
+		hotspotDTO13.setState("New Mexico");
+		hotspotDTO13.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
+		hotspotDTO13.setObservationDate("2017-12-14");
+		migrationTweets.add(hotspotDTO13);
 		
+		HotspotDTO hotspotDTO14 = new HotspotDTO();
 		// #1.4
-		hotspotDTO.setLatitude("32.60");
-		hotspotDTO.setLongitude("-110.33");
-		hotspotDTO.setHowMany("24");
-		hotspotDTO.setAuthor("Dino Brewster");
-		hotspotDTO.setState("Arizona");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
-		hotspotDTO.setObservationDate("2017-12-15");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO14.setLatitude("32.60");
+		hotspotDTO14.setLongitude("-110.33");
+		hotspotDTO14.setHowMany("24");
+		hotspotDTO14.setAuthor("Dino Brewster");
+		hotspotDTO14.setState("Arizona");
+		hotspotDTO14.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
+		hotspotDTO14.setObservationDate("2017-12-15");
+		migrationTweets.add(hotspotDTO14);
+
+		HotspotDTO hotspotDTO15 = new HotspotDTO();
 		// #1.5
-		hotspotDTO.setLatitude("30.45");
-		hotspotDTO.setLongitude("-109.14");
-		hotspotDTO.setHowMany("25");
-		hotspotDTO.setAuthor("Tego Calderon");
-		hotspotDTO.setState("Sonora");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
-		hotspotDTO.setObservationDate("2017-12-16");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO15.setLatitude("30.45");
+		hotspotDTO15.setLongitude("-109.14");
+		hotspotDTO15.setHowMany("25");
+		hotspotDTO15.setAuthor("Tego Calderon");
+		hotspotDTO15.setState("Sonora");
+		hotspotDTO15.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
+		hotspotDTO15.setObservationDate("2017-12-16");
+		migrationTweets.add(hotspotDTO15);
+
+		HotspotDTO hotspotDTO16 = new HotspotDTO();
 		// #1.6
-		hotspotDTO.setLatitude("28.67");
-		hotspotDTO.setLongitude("-107.78");
-		hotspotDTO.setHowMany("23");
-		hotspotDTO.setAuthor("Arturo Braga");
-		hotspotDTO.setState("Chihuahua");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
-		hotspotDTO.setObservationDate("2017-12-17");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO16.setLatitude("28.67");
+		hotspotDTO16.setLongitude("-107.78");
+		hotspotDTO16.setHowMany("23");
+		hotspotDTO16.setAuthor("Arturo Braga");
+		hotspotDTO16.setState("Chihuahua");
+		hotspotDTO16.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
+		hotspotDTO16.setObservationDate("2017-12-17");
+		migrationTweets.add(hotspotDTO16);
+
+		HotspotDTO hotspotDTO17 = new HotspotDTO();
 		// #1.7
-		hotspotDTO.setLatitude("26.76");
-		hotspotDTO.setLongitude("-109.05");
-		hotspotDTO.setHowMany("23");
-		hotspotDTO.setAuthor("Roberto Soldado");
-		hotspotDTO.setState("Sonora");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
-		hotspotDTO.setObservationDate("2017-12-17");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO17.setLatitude("26.76");
+		hotspotDTO17.setLongitude("-109.05");
+		hotspotDTO17.setHowMany("23");
+		hotspotDTO17.setAuthor("Roberto Soldado");
+		hotspotDTO17.setState("Sonora");
+		hotspotDTO17.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
+		hotspotDTO17.setObservationDate("2017-12-17");
+		migrationTweets.add(hotspotDTO17);
+
+		HotspotDTO hotspotDTO18 = new HotspotDTO();
 		// #1.8
-		hotspotDTO.setLatitude("25.80");
-		hotspotDTO.setLongitude("-109.09");
-		hotspotDTO.setHowMany("21");
-		hotspotDTO.setAuthor("Julio Fonseca");
-		hotspotDTO.setState("Sinaloa");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
-		hotspotDTO.setObservationDate("2017-12-18");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO18.setLatitude("25.80");
+		hotspotDTO18.setLongitude("-109.09");
+		hotspotDTO18.setHowMany("21");
+		hotspotDTO18.setAuthor("Julio Fonseca");
+		hotspotDTO18.setState("Sinaloa");
+		hotspotDTO18.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
+		hotspotDTO18.setObservationDate("2017-12-18");
+		migrationTweets.add(hotspotDTO18);
+
+		HotspotDTO hotspotDTO19 = new HotspotDTO();
 		// #1.9
-		hotspotDTO.setLatitude("24.53");
-		hotspotDTO.setLongitude("-111.30");
-		hotspotDTO.setHowMany("20");
-		hotspotDTO.setAuthor("Hernan Reyes");
-		hotspotDTO.setState("Baja California Sur");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
-		hotspotDTO.setObservationDate("2017-12-20");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO19.setLatitude("24.53");
+		hotspotDTO19.setLongitude("-111.30");
+		hotspotDTO19.setHowMany("20");
+		hotspotDTO19.setAuthor("Hernan Reyes");
+		hotspotDTO19.setState("Baja California Sur");
+		hotspotDTO19.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
+		hotspotDTO19.setObservationDate("2017-12-20");
+		migrationTweets.add(hotspotDTO19);
+
+		HotspotDTO hotspotDTO110 = new HotspotDTO();
 		// #1.10
-		hotspotDTO.setLatitude("23.52");
-		hotspotDTO.setLongitude("-109.90");
-		hotspotDTO.setHowMany("20");
-		hotspotDTO.setAuthor("Elena Neves");
-		hotspotDTO.setState("Baja California Sur");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
-		hotspotDTO.setObservationDate("2017-12-21");
-		migrationTweets.add(hotspotDTO);
+		hotspotDTO110.setLatitude("23.52");
+		hotspotDTO110.setLongitude("-109.90");
+		hotspotDTO110.setHowMany("20");
+		hotspotDTO110.setAuthor("Elena Neves");
+		hotspotDTO110.setState("Baja California Sur");
+		hotspotDTO110.setBirdSpecies(new ArrayList<String>(Arrays.asList("Swainson hawk")));
+		hotspotDTO110.setObservationDate("2017-12-21");
+		migrationTweets.add(hotspotDTO110);
 		
-		
+
+		HotspotDTO hotspotDTO21 = new HotspotDTO();
 		// #2.1
-		hotspotDTO.setLatitude("47.27");
-		hotspotDTO.setLongitude("-74.73");
-		hotspotDTO.setHowMany("10");
-		hotspotDTO.setAuthor("Chris Smalling");
-		hotspotDTO.setState("Quebec");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
-		hotspotDTO.setObservationDate("2017-10-24");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO21.setLatitude("47.27");
+		hotspotDTO21.setLongitude("-74.73");
+		hotspotDTO21.setHowMany("10");
+		hotspotDTO21.setAuthor("Chris Smalling");
+		hotspotDTO21.setState("Quebec");
+		hotspotDTO21.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
+		hotspotDTO21.setObservationDate("2017-10-24");
+		migrationTweets.add(hotspotDTO21);
+
+		HotspotDTO hotspotDTO22 = new HotspotDTO();
 		// #2.2
-		hotspotDTO.setLatitude("45.74");
-		hotspotDTO.setLongitude("-75.76");
-		hotspotDTO.setHowMany("12");
-		hotspotDTO.setAuthor("Ross Barkley");
-		hotspotDTO.setState("Quebec");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
-		hotspotDTO.setObservationDate("2017-10-25");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO22.setLatitude("45.74");
+		hotspotDTO22.setLongitude("-75.76");
+		hotspotDTO22.setHowMany("12");
+		hotspotDTO22.setAuthor("Ross Barkley");
+		hotspotDTO22.setState("Quebec");
+		hotspotDTO22.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
+		hotspotDTO22.setObservationDate("2017-10-25");
+		migrationTweets.add(hotspotDTO22);
+
+		HotspotDTO hotspotDTO23 = new HotspotDTO();
 		// #2.3
-		hotspotDTO.setLatitude("43.85");
-		hotspotDTO.setLongitude("-75.25");
-		hotspotDTO.setHowMany("11");
-		hotspotDTO.setAuthor("Chris Bridges");
-		hotspotDTO.setState("New York");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
-		hotspotDTO.setObservationDate("2017-10-26");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO23.setLatitude("43.85");
+		hotspotDTO23.setLongitude("-75.25");
+		hotspotDTO23.setHowMany("11");
+		hotspotDTO23.setAuthor("Chris Bridges");
+		hotspotDTO23.setState("New York");
+		hotspotDTO23.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
+		hotspotDTO23.setObservationDate("2017-10-26");
+		migrationTweets.add(hotspotDTO23);
+
+		HotspotDTO hotspotDTO24 = new HotspotDTO();
 		// #2.4
-		hotspotDTO.setLatitude("42.40");
-		hotspotDTO.setLongitude("-74.58");
-		hotspotDTO.setHowMany("14");
-		hotspotDTO.setAuthor("Jim Waters");
-		hotspotDTO.setState("New York");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
-		hotspotDTO.setObservationDate("2017-10-26");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO24.setLatitude("42.40");
+		hotspotDTO24.setLongitude("-74.58");
+		hotspotDTO24.setHowMany("14");
+		hotspotDTO24.setAuthor("Jim Waters");
+		hotspotDTO24.setState("New York");
+		hotspotDTO24.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
+		hotspotDTO24.setObservationDate("2017-10-26");
+		migrationTweets.add(hotspotDTO24);
+
+		HotspotDTO hotspotDTO25 = new HotspotDTO();
 		// #2.5
-		hotspotDTO.setLatitude("40.29");
-		hotspotDTO.setLongitude("-77.24");
-		hotspotDTO.setHowMany("12");
-		hotspotDTO.setAuthor("Gary Silverton");
-		hotspotDTO.setState("Pennsylvania");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
-		hotspotDTO.setObservationDate("2017-10-27");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO25.setLatitude("40.29");
+		hotspotDTO25.setLongitude("-77.24");
+		hotspotDTO25.setHowMany("12");
+		hotspotDTO25.setAuthor("Gary Silverton");
+		hotspotDTO25.setState("Pennsylvania");
+		hotspotDTO25.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
+		hotspotDTO25.setObservationDate("2017-10-27");
+		migrationTweets.add(hotspotDTO25);
+
+		HotspotDTO hotspotDTO26 = new HotspotDTO();
 		// #2.6
-		hotspotDTO.setLatitude("38.37");
-		hotspotDTO.setLongitude("-77.81");
-		hotspotDTO.setHowMany("15");
-		hotspotDTO.setAuthor("Jamie Vardy");
-		hotspotDTO.setState("Virginia");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
-		hotspotDTO.setObservationDate("2017-10-29");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO26.setLatitude("38.37");
+		hotspotDTO26.setLongitude("-77.81");
+		hotspotDTO26.setHowMany("15");
+		hotspotDTO26.setAuthor("Jamie Vardy");
+		hotspotDTO26.setState("Virginia");
+		hotspotDTO26.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
+		hotspotDTO26.setObservationDate("2017-10-29");
+		migrationTweets.add(hotspotDTO26);
+
+		HotspotDTO hotspotDTO27 = new HotspotDTO();
 		// #2.7
-		hotspotDTO.setLatitude("36.06");
-		hotspotDTO.setLongitude("-77.07");
-		hotspotDTO.setHowMany("10");
-		hotspotDTO.setAuthor("Owen Hargreaves");
-		hotspotDTO.setState("North Carolina");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
-		hotspotDTO.setObservationDate("2017-10-30");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO27.setLatitude("36.06");
+		hotspotDTO27.setLongitude("-77.07");
+		hotspotDTO27.setHowMany("10");
+		hotspotDTO27.setAuthor("Owen Hargreaves");
+		hotspotDTO27.setState("North Carolina");
+		hotspotDTO27.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
+		hotspotDTO27.setObservationDate("2017-10-30");
+		migrationTweets.add(hotspotDTO27);
+
+		HotspotDTO hotspotDTO28 = new HotspotDTO();
 		// #2.8
-		hotspotDTO.setLatitude("32.95");
-		hotspotDTO.setLongitude("-80.05");
-		hotspotDTO.setHowMany("17");
-		hotspotDTO.setAuthor("Andy Anderson");
-		hotspotDTO.setState("South Carolina");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
-		hotspotDTO.setObservationDate("2017-10-31");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO28.setLatitude("32.95");
+		hotspotDTO28.setLongitude("-80.05");
+		hotspotDTO28.setHowMany("17");
+		hotspotDTO28.setAuthor("Andy Anderson");
+		hotspotDTO28.setState("South Carolina");
+		hotspotDTO28.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
+		hotspotDTO28.setObservationDate("2017-10-31");
+		migrationTweets.add(hotspotDTO28);
+
+		HotspotDTO hotspotDTO29 = new HotspotDTO();
 		// #2.9
-		hotspotDTO.setLatitude("30.81");
-		hotspotDTO.setLongitude("-83.50");
-		hotspotDTO.setHowMany("16");
-		hotspotDTO.setAuthor("David Duchovny");
-		hotspotDTO.setState("Georgia");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
-		hotspotDTO.setObservationDate("2017-11-01");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO29.setLatitude("30.81");
+		hotspotDTO29.setLongitude("-83.50");
+		hotspotDTO29.setHowMany("16");
+		hotspotDTO29.setAuthor("David Duchovny");
+		hotspotDTO29.setState("Georgia");
+		hotspotDTO29.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
+		hotspotDTO29.setObservationDate("2017-11-01");
+		migrationTweets.add(hotspotDTO29);
+
+		HotspotDTO hotspotDTO210 = new HotspotDTO();
 		// #2.10
-		hotspotDTO.setLatitude("27.51");
-		hotspotDTO.setLongitude("-82.47");
-		hotspotDTO.setHowMany("16");
-		hotspotDTO.setAuthor("Cody Walker");
-		hotspotDTO.setState("Florida");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
-		hotspotDTO.setObservationDate("2017-11-02");
-		migrationTweets.add(hotspotDTO);
+		hotspotDTO210.setLatitude("27.51");
+		hotspotDTO210.setLongitude("-82.47");
+		hotspotDTO210.setHowMany("16");
+		hotspotDTO210.setAuthor("Cody Walker");
+		hotspotDTO210.setState("Florida");
+		hotspotDTO210.setBirdSpecies(new ArrayList<String>(Arrays.asList("Osprey")));
+		hotspotDTO210.setObservationDate("2017-11-02");
+		migrationTweets.add(hotspotDTO210);
 		
-		
+
+		HotspotDTO hotspotDTO31 = new HotspotDTO();
 		// #3.1
-		hotspotDTO.setLatitude("58.68");
-		hotspotDTO.setLongitude("7.17");
-		hotspotDTO.setHowMany("28");
-		hotspotDTO.setAuthor("Ankjell Karlof");
-		hotspotDTO.setCountry("Norway");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
-		hotspotDTO.setObservationDate("2018-01-03");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO31.setLatitude("58.68");
+		hotspotDTO31.setLongitude("7.17");
+		hotspotDTO31.setHowMany("28");
+		hotspotDTO31.setAuthor("Ankjell Karlof");
+		hotspotDTO31.setCountry("Norway");
+		hotspotDTO31.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
+		hotspotDTO31.setObservationDate("2018-01-03");
+		migrationTweets.add(hotspotDTO31);
+
+		HotspotDTO hotspotDTO32 = new HotspotDTO();
 		// #3.2
-		hotspotDTO.setLatitude("57.52");
-		hotspotDTO.setLongitude("12.81");
-		hotspotDTO.setHowMany("27");
-		hotspotDTO.setAuthor("Markus Berg");
-		hotspotDTO.setCountry("Sweden");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
-		hotspotDTO.setObservationDate("2018-01-05");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO32.setLatitude("57.52");
+		hotspotDTO32.setLongitude("12.81");
+		hotspotDTO32.setHowMany("27");
+		hotspotDTO32.setAuthor("Markus Berg");
+		hotspotDTO32.setCountry("Sweden");
+		hotspotDTO32.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
+		hotspotDTO32.setObservationDate("2018-01-05");
+		migrationTweets.add(hotspotDTO32);
+
+		HotspotDTO hotspotDTO33 = new HotspotDTO();
 		// #3.3
-		hotspotDTO.setLatitude("55.14");
-		hotspotDTO.setLongitude("11.87");
-		hotspotDTO.setHowMany("28");
-		hotspotDTO.setAuthor("Christian Eriksen");
-		hotspotDTO.setCountry("Denmark");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
-		hotspotDTO.setObservationDate("2018-01-06");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO33.setLatitude("55.14");
+		hotspotDTO33.setLongitude("11.87");
+		hotspotDTO33.setHowMany("28");
+		hotspotDTO33.setAuthor("Christian Eriksen");
+		hotspotDTO33.setCountry("Denmark");
+		hotspotDTO33.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
+		hotspotDTO33.setObservationDate("2018-01-06");
+		migrationTweets.add(hotspotDTO33);
+
+		HotspotDTO hotspotDTO34 = new HotspotDTO();
 		// #3.4
-		hotspotDTO.setLatitude("52.87");
-		hotspotDTO.setLongitude("8.11");
-		hotspotDTO.setHowMany("29");
-		hotspotDTO.setAuthor("Robert Adler");
-		hotspotDTO.setCountry("Germany");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
-		hotspotDTO.setObservationDate("2018-01-08");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO34.setLatitude("52.87");
+		hotspotDTO34.setLongitude("8.11");
+		hotspotDTO34.setHowMany("29");
+		hotspotDTO34.setAuthor("Robert Adler");
+		hotspotDTO34.setCountry("Germany");
+		hotspotDTO34.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
+		hotspotDTO34.setObservationDate("2018-01-08");
+		migrationTweets.add(hotspotDTO34);
+
+		HotspotDTO hotspotDTO35 = new HotspotDTO();
 		// #3.5
-		hotspotDTO.setLatitude("50.87");
-		hotspotDTO.setLongitude("-5.91");
-		hotspotDTO.setHowMany("26");
-		hotspotDTO.setAuthor("Lasse Schone");
-		hotspotDTO.setCountry("Netherlands");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
-		hotspotDTO.setObservationDate("2018-01-09");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO35.setLatitude("50.87");
+		hotspotDTO35.setLongitude("-5.91");
+		hotspotDTO35.setHowMany("26");
+		hotspotDTO35.setAuthor("Lasse Schone");
+		hotspotDTO35.setCountry("Netherlands");
+		hotspotDTO35.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
+		hotspotDTO35.setObservationDate("2018-01-09");
+		migrationTweets.add(hotspotDTO35);
+
+		HotspotDTO hotspotDTO36 = new HotspotDTO();
 		// #3.6
-		hotspotDTO.setLatitude("50.08");
-		hotspotDTO.setLongitude("5.08");
-		hotspotDTO.setHowMany("26");
-		hotspotDTO.setAuthor("Axel Witsel");
-		hotspotDTO.setCountry("Belgium");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
-		hotspotDTO.setObservationDate("2018-01-09");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO36.setLatitude("50.08");
+		hotspotDTO36.setLongitude("5.08");
+		hotspotDTO36.setHowMany("26");
+		hotspotDTO36.setAuthor("Axel Witsel");
+		hotspotDTO36.setCountry("Belgium");
+		hotspotDTO36.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
+		hotspotDTO36.setObservationDate("2018-01-09");
+		migrationTweets.add(hotspotDTO36);
+
+		HotspotDTO hotspotDTO37 = new HotspotDTO();
 		// #3.7
-		hotspotDTO.setLatitude("48.44");
-		hotspotDTO.setLongitude("4.76");
-		hotspotDTO.setHowMany("24");
-		hotspotDTO.setAuthor("Alexandre Lacazette");
-		hotspotDTO.setCountry("France");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
-		hotspotDTO.setObservationDate("2018-01-11");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO37.setLatitude("48.44");
+		hotspotDTO37.setLongitude("4.76");
+		hotspotDTO37.setHowMany("24");
+		hotspotDTO37.setAuthor("Alexandre Lacazette");
+		hotspotDTO37.setCountry("France");
+		hotspotDTO37.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
+		hotspotDTO37.setObservationDate("2018-01-11");
+		migrationTweets.add(hotspotDTO37);
+
+		HotspotDTO hotspotDTO38 = new HotspotDTO();
 		// #3.8
-		hotspotDTO.setLatitude("45.44");
-		hotspotDTO.setLongitude("0.48");
-		hotspotDTO.setHowMany("25");
-		hotspotDTO.setAuthor("Hugo Lloris");
-		hotspotDTO.setCountry("France");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
-		hotspotDTO.setObservationDate("2018-01-12");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO38.setLatitude("45.44");
+		hotspotDTO38.setLongitude("0.48");
+		hotspotDTO38.setHowMany("25");
+		hotspotDTO38.setAuthor("Hugo Lloris");
+		hotspotDTO38.setCountry("France");
+		hotspotDTO38.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
+		hotspotDTO38.setObservationDate("2018-01-12");
+		migrationTweets.add(hotspotDTO38);
+
+		HotspotDTO hotspotDTO39 = new HotspotDTO();
 		// #3.9
-		hotspotDTO.setLatitude("42.66");
-		hotspotDTO.setLongitude("-4.53");
-		hotspotDTO.setHowMany("25");
-		hotspotDTO.setAuthor("David Silva");
-		hotspotDTO.setCountry("Spain");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
-		hotspotDTO.setObservationDate("2018-01-14");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO39.setLatitude("42.66");
+		hotspotDTO39.setLongitude("-4.53");
+		hotspotDTO39.setHowMany("25");
+		hotspotDTO39.setAuthor("David Silva");
+		hotspotDTO39.setCountry("Spain");
+		hotspotDTO39.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
+		hotspotDTO39.setObservationDate("2018-01-14");
+		migrationTweets.add(hotspotDTO39);
+
+		HotspotDTO hotspotDTO310 = new HotspotDTO();
 		// #3.10
-		hotspotDTO.setLatitude("39.68");
-		hotspotDTO.setLongitude("-8.81");
-		hotspotDTO.setHowMany("22");
-		hotspotDTO.setAuthor("Andre Gomes");
-		hotspotDTO.setCountry("Portugal");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
-		hotspotDTO.setObservationDate("2018-01-16");
-		migrationTweets.add(hotspotDTO);
+		hotspotDTO310.setLatitude("39.68");
+		hotspotDTO310.setLongitude("-8.81");
+		hotspotDTO310.setHowMany("22");
+		hotspotDTO310.setAuthor("Andre Gomes");
+		hotspotDTO310.setCountry("Portugal");
+		hotspotDTO310.setBirdSpecies(new ArrayList<String>(Arrays.asList("Bank Swallow")));
+		hotspotDTO310.setObservationDate("2018-01-16");
+		migrationTweets.add(hotspotDTO310);
 		
-		
+
+		HotspotDTO hotspotDTO41 = new HotspotDTO();
 		// #4.1
-		hotspotDTO.setLatitude("59.54");
-		hotspotDTO.setLongitude("39.36");
-		hotspotDTO.setHowMany("25");
-		hotspotDTO.setAuthor("Andrey Kokorin");
-		hotspotDTO.setCountry("Russia");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
-		hotspotDTO.setObservationDate("2018-01-06");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO41.setLatitude("59.54");
+		hotspotDTO41.setLongitude("39.36");
+		hotspotDTO41.setHowMany("25");
+		hotspotDTO41.setAuthor("Andrey Kokorin");
+		hotspotDTO41.setCountry("Russia");
+		hotspotDTO41.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
+		hotspotDTO41.setObservationDate("2018-01-06");
+		migrationTweets.add(hotspotDTO41);
+
+		HotspotDTO hotspotDTO42 = new HotspotDTO();
 		// #4.2
-		hotspotDTO.setLatitude("56.21");
-		hotspotDTO.setLongitude("34.13");
-		hotspotDTO.setHowMany("26");
-		hotspotDTO.setAuthor("Alan Dzagoev");
-		hotspotDTO.setCountry("Russia");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
-		hotspotDTO.setObservationDate("2018-01-07");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO42.setLatitude("56.21");
+		hotspotDTO42.setLongitude("34.13");
+		hotspotDTO42.setHowMany("26");
+		hotspotDTO42.setAuthor("Alan Dzagoev");
+		hotspotDTO42.setCountry("Russia");
+		hotspotDTO42.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
+		hotspotDTO42.setObservationDate("2018-01-07");
+		migrationTweets.add(hotspotDTO42);
+
+		HotspotDTO hotspotDTO43 = new HotspotDTO();
 		// #4.3
-		hotspotDTO.setLatitude("53.44");
-		hotspotDTO.setLongitude("31.10");
-		hotspotDTO.setHowMany("30");
-		hotspotDTO.setAuthor("Sergei Gurenko");
-		hotspotDTO.setCountry("Belarus");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
-		hotspotDTO.setObservationDate("2018-01-08");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO43.setLatitude("53.44");
+		hotspotDTO43.setLongitude("31.10");
+		hotspotDTO43.setHowMany("30");
+		hotspotDTO43.setAuthor("Sergei Gurenko");
+		hotspotDTO43.setCountry("Belarus");
+		hotspotDTO43.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
+		hotspotDTO43.setObservationDate("2018-01-08");
+		migrationTweets.add(hotspotDTO43);
+
+		HotspotDTO hotspotDTO44 = new HotspotDTO();
 		// #4.4
-		hotspotDTO.setLatitude("50.54");
-		hotspotDTO.setLongitude("27.76");
-		hotspotDTO.setHowMany("32");
-		hotspotDTO.setAuthor("Andryi Shevchenko");
-		hotspotDTO.setCountry("Ukraine");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
-		hotspotDTO.setObservationDate("2018-01-09");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO44.setLatitude("50.54");
+		hotspotDTO44.setLongitude("27.76");
+		hotspotDTO44.setHowMany("32");
+		hotspotDTO44.setAuthor("Andryi Shevchenko");
+		hotspotDTO44.setCountry("Ukraine");
+		hotspotDTO44.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
+		hotspotDTO44.setObservationDate("2018-01-09");
+		migrationTweets.add(hotspotDTO44);
+
+		HotspotDTO hotspotDTO45 = new HotspotDTO();
 		// #4.5
-		hotspotDTO.setLatitude("47.20");
-		hotspotDTO.setLongitude("27.28");
-		hotspotDTO.setHowMany("32");
-		hotspotDTO.setAuthor("Alexandru Mocanu");
-		hotspotDTO.setCountry("Romania");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
-		hotspotDTO.setObservationDate("2018-01-11");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO45.setLatitude("47.20");
+		hotspotDTO45.setLongitude("27.28");
+		hotspotDTO45.setHowMany("32");
+		hotspotDTO45.setAuthor("Alexandru Mocanu");
+		hotspotDTO45.setCountry("Romania");
+		hotspotDTO45.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
+		hotspotDTO45.setObservationDate("2018-01-11");
+		migrationTweets.add(hotspotDTO45);
+
+		HotspotDTO hotspotDTO46 = new HotspotDTO();
 		// #4.6
-		hotspotDTO.setLatitude("44.40");
-		hotspotDTO.setLongitude("26.23");
-		hotspotDTO.setHowMany("32");
-		hotspotDTO.setAuthor("Ioan Petrescu");
-		hotspotDTO.setCountry("Romania");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
-		hotspotDTO.setObservationDate("2018-01-11");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO46.setLatitude("44.40");
+		hotspotDTO46.setLongitude("26.23");
+		hotspotDTO46.setHowMany("32");
+		hotspotDTO46.setAuthor("Ioan Petrescu");
+		hotspotDTO46.setCountry("Romania");
+		hotspotDTO46.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
+		hotspotDTO46.setObservationDate("2018-01-11");
+		migrationTweets.add(hotspotDTO46);
+
+		HotspotDTO hotspotDTO47 = new HotspotDTO();
 		// #4.7
-		hotspotDTO.setLatitude("37.80");
-		hotspotDTO.setLongitude("22.15");
-		hotspotDTO.setHowMany("35");
-		hotspotDTO.setAuthor("Sokratis Papastathopoulos");
-		hotspotDTO.setCountry("Greece");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
-		hotspotDTO.setObservationDate("2018-01-14");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO47.setLatitude("37.80");
+		hotspotDTO47.setLongitude("22.15");
+		hotspotDTO47.setHowMany("35");
+		hotspotDTO47.setAuthor("Sokratis Papastathopoulos");
+		hotspotDTO47.setCountry("Greece");
+		hotspotDTO47.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
+		hotspotDTO47.setObservationDate("2018-01-14");
+		migrationTweets.add(hotspotDTO47);
+
+		HotspotDTO hotspotDTO48 = new HotspotDTO();
 		// #4.8
-		hotspotDTO.setLatitude("30.05");
-		hotspotDTO.setLongitude("26.01");
-		hotspotDTO.setHowMany("33");
-		hotspotDTO.setAuthor("Asim Ramses");
-		hotspotDTO.setCountry("Egypt");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
-		hotspotDTO.setObservationDate("2018-01-16");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO48.setLatitude("30.05");
+		hotspotDTO48.setLongitude("26.01");
+		hotspotDTO48.setHowMany("33");
+		hotspotDTO48.setAuthor("Asim Ramses");
+		hotspotDTO48.setCountry("Egypt");
+		hotspotDTO48.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
+		hotspotDTO48.setObservationDate("2018-01-16");
+		migrationTweets.add(hotspotDTO48);
+
+		HotspotDTO hotspotDTO49 = new HotspotDTO();
 		// #4.9
-		hotspotDTO.setLatitude("20.75");
-		hotspotDTO.setLongitude("35.21");
-		hotspotDTO.setHowMany("28");
-		hotspotDTO.setAuthor("Bakri Bashir");
-		hotspotDTO.setCountry("Sudan");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
-		hotspotDTO.setObservationDate("2018-01-17");
-		migrationTweets.add(hotspotDTO);
-		
+		hotspotDTO49.setLatitude("20.75");
+		hotspotDTO49.setLongitude("35.21");
+		hotspotDTO49.setHowMany("28");
+		hotspotDTO49.setAuthor("Bakri Bashir");
+		hotspotDTO49.setCountry("Sudan");
+		hotspotDTO49.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
+		hotspotDTO49.setObservationDate("2018-01-17");
+		migrationTweets.add(hotspotDTO49);
+
+		HotspotDTO hotspotDTO410 = new HotspotDTO();
 		// #4.10
-		hotspotDTO.setLatitude("13.15");
-		hotspotDTO.setLongitude("40.43");
-		hotspotDTO.setHowMany("24");
-		hotspotDTO.setAuthor("Jemal Tassew");
-		hotspotDTO.setCountry("Ethiopia");
-		hotspotDTO.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
-		hotspotDTO.setObservationDate("2018-01-19");
-		migrationTweets.add(hotspotDTO);
+		hotspotDTO410.setLatitude("13.15");
+		hotspotDTO410.setLongitude("40.43");
+		hotspotDTO410.setHowMany("24");
+		hotspotDTO410.setAuthor("Jemal Tassew");
+		hotspotDTO410.setCountry("Ethiopia");
+		hotspotDTO410.setBirdSpecies(new ArrayList<String>(Arrays.asList("Sandhill crane")));
+		hotspotDTO410.setObservationDate("2018-01-19");
+		migrationTweets.add(hotspotDTO410);
 		
 		return migrationTweets;
 	}
