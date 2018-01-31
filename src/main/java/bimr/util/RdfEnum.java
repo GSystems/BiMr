@@ -2,8 +2,6 @@ package bimr.util;
 
 public enum RdfEnum {
 
-	FILENAME("hotspots.rdf"),
-	DIRECTORY_NAME("database/dataset1"),
 	RDF_XML_FORMAT("RDF/XML-ABBREV"),
 	TURTLE_FORMAT("N-TRIPLES"),
 	HOTSPOT("hotspot"),

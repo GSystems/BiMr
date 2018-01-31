@@ -41,7 +41,9 @@ public class MapTransformer {
 		tweetDTO.setLongitude(tweet.getLongitude());
 		tweetDTO.setObservationDate(tweet.getObservationDate());
 		tweetDTO.setTweetMessage(tweet.getTweetMessage());
-		tweetDTO.setUser(fromTwitterUserToDTO(tweet.getUser()));
+		if (tweet.getUser() != null) {
+			tweetDTO.setUser(fromTwitterUserToDTO(tweet.getUser()));
+		}
 		return tweetDTO;
 	}
 
@@ -117,15 +119,14 @@ public class MapTransformer {
 		return response;
 	}
 
-	public static HotspotDTO toHotspotDTOFromTweetDTO(TweetDTO tweetDTO) {
-		HotspotDTO hotspotDTO = new HotspotDTO();
-		hotspotDTO.setLatitude(tweetDTO.getLatitude());
-		hotspotDTO.setLongitude(tweetDTO.getLongitude());
+	public static HotspotDTO addInfoFromTweetToHotspot(TweetDTO tweetDTO, HotspotDTO hotspot) {
 		//TODO save date instead of string
-		hotspotDTO.setObservationDate(tweetDTO.getObservationDate().toString());
-		hotspotDTO.setTweetMessage(tweetDTO.getTweetMessage());
+		hotspot.setObservationDate(tweetDTO.getObservationDate().toString());
+		hotspot.setTweetMessage(tweetDTO.getTweetMessage());
 		//TODO save integer instead of string
-		hotspotDTO.setTweetId(tweetDTO.getTweetId().toString());
-		return hotspotDTO;
+		hotspot.setTweetId(tweetDTO.getTweetId().toString());
+		hotspot.setInformationSourceId("twitter");
+		hotspot.setUser(tweetDTO.getUser());
+		return hotspot;
 	}
 }
