@@ -10,30 +10,31 @@ import bimr.df.mapper.EbirdMapper;
 import bimr.df.model.EbirdData;
 import bimr.df.model.EbirdRequest;
 import bimr.df.model.EbirdResponse;
-import bimr.rf.ebird.EbirdsServiceClient;
-import bimr.rf.ebird.EbirdsServiceClientBean;
+import bimr.rf.ebird.EbirdServiceClient;
+import bimr.rf.ebird.dao.EbirdDAO;
 
 public class EbirdRepoBean implements EbirdRepo {
 
 	@Inject
-	private EbirdsServiceClient ebirdsService;
+	private EbirdServiceClient ebirdsService;
+
+	@Inject
+	private EbirdDAO ebirdDAO;
 
 	@Override
-	public Future<EbirdResponse> retrieveEBirdData(EbirdRequest request) {
-		ebirdsService = new EbirdsServiceClientBean();
-		return new AsyncResult<>(EbirdMapper.toEbirdsResponseFromWrapper(
-				ebirdsService.retrieveEBirdData(EbirdMapper.fromEBirdRequestToWrapper(request))));
+	public EbirdResponse retrieveEbirdData(EbirdRequest request) {
+		return EbirdMapper.toEbirdsResponseFromWrapper(
+				ebirdsService.retrieveEbirdData(EbirdMapper.fromEbirdRequestToWrapper(request)));
 	}
 
 	@Override
-	public void insertEbirdData(List<EbirdData> ebirds) {
-		
+	public void insertEbirdData(List<EbirdData> ebirdDataList) {
+		ebirdDAO.insertDataList(EbirdMapper.fromEbirdDataListToEntity(ebirdDataList));
 	}
 
 	@Override
 	public Future<List<EbirdData>> retrieveEbirdDataFromDb() {
-		// TODO Auto-generated method stub
-		return null;
+		return new AsyncResult<>(EbirdMapper.toEbirdDataListFromEntity(ebirdDAO.findAllEbirdData()));
 	}
 
 }

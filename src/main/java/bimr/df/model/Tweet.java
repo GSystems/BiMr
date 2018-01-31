@@ -13,6 +13,7 @@ public class Tweet {
 	private String latitude;
 	private String longitude;
 	private Date observationDate;
+	private TwitterUser user;
 
 	public Long getId() {
 		return id;
@@ -62,4 +63,11 @@ public class Tweet {
 		this.observationDate = observationDate;
 	}
 
+	public TwitterUser getUser() {
+		return user;
+	}
+
+	public void setUser(TwitterUser user) {
+		this.user = user;
+	}
 }

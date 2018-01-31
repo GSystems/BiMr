@@ -4,24 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bimr.bfcl.dto.*;
-import bimr.df.model.EbirdData;
-import bimr.df.model.EbirdRequest;
-import bimr.df.model.EbirdResponse;
-import bimr.df.model.Tweet;
-import bimr.df.model.TwitterRequest;
-import bimr.df.model.TwitterResponse;
+import bimr.df.model.*;
 
+/**
+ * @author GLK
+ */
 public class MapTransformer {
 
 	private MapTransformer() {
 	}
 
-	public static TwitterRequest twitterRequestFromDTO(TwitterRequestDTO requestDTO) {
-		return new TwitterRequest(requestDTO.getHashtag(), requestDTO.getLastTweetId());
+	public static TwitterRequest twitterRequestFromDTO(TweetRequestDTO requestDTO) {
+		return new TwitterRequest(requestDTO.getHashtag(), requestDTO.getLastTweetId(), requestDTO.getUntilDate());
 	}
 
-	public static TwitterResponseDTO fromTwitterResponseToDTO(TwitterResponse response) {
-		TwitterResponseDTO responseDTO = new TwitterResponseDTO();
+	public static TweetResponseDTO fromTwitterResponseToDTO(TwitterResponse response) {
+		TweetResponseDTO responseDTO = new TweetResponseDTO();
 		responseDTO.setTweets(fromTweetsToDTO(response.getTweets()));
 		return responseDTO;
 	}
@@ -43,7 +41,21 @@ public class MapTransformer {
 		tweetDTO.setLongitude(tweet.getLongitude());
 		tweetDTO.setObservationDate(tweet.getObservationDate());
 		tweetDTO.setTweetMessage(tweet.getTweetMessage());
+		if (tweet.getUser() != null) {
+			tweetDTO.setUser(fromTwitterUserToDTO(tweet.getUser()));
+		}
 		return tweetDTO;
+	}
+
+	private static TwitterUserDTO fromTwitterUserToDTO(TwitterUser user) {
+		TwitterUserDTO userDTO = new TwitterUserDTO();
+		userDTO.setEmail(user.getEmail());
+		userDTO.setId(String.valueOf(user.getId()));
+		userDTO.setIsGeoEnabled(String.valueOf(user.isGeoEnabled()));
+		userDTO.setLocation(user.getLocation());
+		userDTO.setName(user.getName());
+		userDTO.setScreenName(user.getScreenName());
+		return userDTO;
 	}
 
 	public static List<Tweet> toTweetsFromDTO(List<TweetDTO> tweetsDTO) {
@@ -67,28 +79,54 @@ public class MapTransformer {
 		return request;
 	}
 
-	public static EbirdResponseDTO fromEBirdResponseToDTO(EbirdResponse response) {
+	public static EbirdResponseDTO fromEbirdResponseToDTO(EbirdResponse response) {
 		EbirdResponseDTO responseDTO = new EbirdResponseDTO();
-		responseDTO.setEbirdData(fromEBirdDataWrapperToDTO(response.getEbirdData()));
+		if (response.getEbirdData() != null) {
+			responseDTO.setEbirdData(fromEbirdDataListToDTO(response.getEbirdData()));
+		}
 		return responseDTO;
 	}
 
-	private static List<EbirdDataDTO> fromEBirdDataWrapperToDTO(List<EbirdData> ebirdData) {
-		List<EbirdDataDTO> ebirdDataDTO = new ArrayList<>();
-		for (EbirdData currentData : ebirdData) {
+	private static List<EbirdDataDTO> fromEbirdDataListToDTO(List<EbirdData> ebirdDataList) {
+		List<EbirdDataDTO> ebirdDataListDTO = new ArrayList<>();
+		for (EbirdData ebirdData : ebirdDataList) {
 			EbirdDataDTO ebirdDTO = new EbirdDataDTO();
-			ebirdDTO.setCommonName(currentData.getCommonName());
-			ebirdDTO.setCountryName(currentData.getCountryName());
-			ebirdDTO.setLatitude(currentData.getLatitude());
-			ebirdDTO.setLocalityName(currentData.getLocalityName());
-			ebirdDTO.setLongitude(currentData.getLongitude());
-			ebirdDTO.setObservationDate(currentData.getObservationDate());
-			ebirdDTO.setScientificName(currentData.getScientificName());
-			ebirdDTO.setStateName(currentData.getStateName());
-			ebirdDTO.setUserDisplayName(currentData.getUserDisplayName());
-			ebirdDataDTO.add(ebirdDTO);
+			ebirdDTO.setId(ebirdData.getId());
+			ebirdDTO.setLatitude(ebirdData.getLatitude());
+			ebirdDTO.setLongitude(ebirdData.getLongitude());
+			ebirdDTO.setObservationDate(ebirdData.getObservationDate());
+			ebirdDTO.setScientificName(ebirdData.getScientificName());
+			ebirdDTO.setUserDisplayName(ebirdData.getUserDisplayName());
+			ebirdDataListDTO.add(ebirdDTO);
 		}
-		return ebirdDataDTO;
+		return ebirdDataListDTO;
 	}
 
+	public static EbirdResponse toEbirdResponseFromDTO(EbirdResponseDTO responseDTO) {
+		EbirdResponse response = new EbirdResponse();
+		List<EbirdData> ebirdDataList = new ArrayList<>();
+		for (EbirdDataDTO ebirdDataDTO : responseDTO.getEbirdData()) {
+			EbirdData ebirdData = new EbirdData();
+			ebirdData.setId(ebirdDataDTO.getId());
+			ebirdData.setLatitude(ebirdDataDTO.getLatitude());
+			ebirdData.setLongitude(ebirdDataDTO.getLongitude());
+			ebirdData.setObservationDate(ebirdDataDTO.getObservationDate());
+			ebirdData.setScientificName(ebirdDataDTO.getScientificName());
+			ebirdData.setUserDisplayName(ebirdDataDTO.getUserDisplayName());
+			ebirdDataList.add(ebirdData);
+		}
+		response.setEbirdData(ebirdDataList);
+		return response;
+	}
+
+	public static HotspotDTO addInfoFromTweetToHotspot(TweetDTO tweetDTO, HotspotDTO hotspot) {
+		//TODO save date instead of string
+		hotspot.setObservationDate(tweetDTO.getObservationDate().toString());
+		hotspot.setTweetMessage(tweetDTO.getTweetMessage());
+		//TODO save integer instead of string
+		hotspot.setTweetId(tweetDTO.getTweetId().toString());
+		hotspot.setInformationSourceId("twitter");
+		hotspot.setUser(tweetDTO.getUser());
+		return hotspot;
+	}
 }

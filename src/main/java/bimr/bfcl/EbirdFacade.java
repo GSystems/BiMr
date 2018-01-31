@@ -1,6 +1,5 @@
 package bimr.bfcl;
 
-import bimr.bfcl.dto.EbirdRequestDTO;
 import bimr.bfcl.dto.EbirdResponseDTO;
 
 /**
@@ -9,10 +8,19 @@ import bimr.bfcl.dto.EbirdResponseDTO;
 public interface EbirdFacade {
 
 	/**
-	 * Retrieves data from ebird API v1.1 and persists them into database
+	 * Insert a list of ebird data into the database
 	 *
-	 * @param request
+	 * @param response
 	 */
-	EbirdResponseDTO retrieveEbirdDataFromApi(EbirdRequestDTO request);
+	void persistEbirdData(EbirdResponseDTO response);
 
+	EbirdResponseDTO retrieveEbirdNotableObservationsInRegion();
+
+	EbirdResponseDTO retrieveEbirdNearbyNotableObservations();
+
+	EbirdResponseDTO retrieveEbirdNotableObservationsAtHotspots();
+
+	EbirdResponseDTO retrieveEbirdObservationsOfSpeciesAtHotspots();
+
+	EbirdResponseDTO retrieveEbirdHotspotSightingsSummary();
 }

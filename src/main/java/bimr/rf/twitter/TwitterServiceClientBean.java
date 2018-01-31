@@ -1,6 +1,8 @@
 package bimr.rf.twitter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -25,14 +27,12 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 
 	private static final Logger log = Logger.getLogger(TwitterServiceClientBean.class.getName());
 
-	@Override public TwitterResponseWrapper retrieveTweets(TwitterRequestWrapper request) {
+	@Override
+	public TwitterResponseWrapper retrieveTweets(TwitterRequestWrapper request) {
 		TwitterResponseWrapper response = new TwitterResponseWrapper();
 		List<TweetWrapper> tweets = new ArrayList<>();
-		String hashtag = request.getHashtag();
-		Long lastId = request.getLastTweetId();
-		if (hashtag != null && !hashtag.equals("")) {
-			tweets.addAll(DataTransformer.fromTwitterApiResponseToWrapper(retrieveTweetsLastId(hashtag, lastId)));
-		}
+		tweets.addAll(DataTransformer.fromTwitterApiResponseToWrapper(
+				retrieveTweetsFromApi(request.getHashtag(), request.getLastTweetId())));
 		response.setTweets(tweets);
 		return response;
 	}
@@ -44,50 +44,13 @@ public class TwitterServiceClientBean implements TwitterServiceClient {
 
 		Query query = new Query(hashtag);
 		query.setSinceId(sinceId);
-		query.setLang("en");
-		QueryResult result = null;
+		query.setLang(GeneralConstants.EN_LANGUAGE);
+		QueryResult result;
 		try {
 			result = twitter.search(query);
 			tweets.addAll(result.getTweets());
 		} catch (TwitterException e) {
-			log.severe("Couldn't connect: " + e);
-		}
-		return tweets;
-	}
-
-	private List<Status> retrieveTweetsLastId(String hashtag, Long lastId) {
-		ConfigurationBuilder configurationBuilder = credentialsSetup();
-		Twitter twitter = new TwitterFactory(configurationBuilder.build()).getInstance();
-
-		Query query = new Query(hashtag);
-		Integer numberOfTweets = GeneralConstants.MAX_NUMBER_OF_TWEETS;
-		List<Status> tweets = new ArrayList<>();
-		QueryResult result = null;
-
-		while (tweets.size() < numberOfTweets) {
-			if (numberOfTweets - tweets.size() > GeneralConstants.MAX_NUMBER_OF_TWEETS) {
-				query.setCount(GeneralConstants.MAX_NUMBER_OF_TWEETS);
-			} else {
-				query.setCount(numberOfTweets - tweets.size());
-			}
-			try {
-				result = twitter.search(query);
-				for (Status t : result.getTweets()) {
-					if (!t.isRetweet()) {
-						tweets.add(t);
-					}
-				}
-				for (Status t : tweets) {
-					if (t.getId() < lastId) {
-						lastId = t.getId();
-					}
-				}
-			} catch (TwitterException e) {
-				log.severe("Couldn't connect: " + e);
-				break;
-			} finally {
-				query.setMaxId(lastId - 1);
-			}
+			log.severe("Couldn't connect to TwitterAPI: " + e);
 		}
 		return tweets;
 	}

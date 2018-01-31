@@ -4,33 +4,10 @@
 /.idea/
 /.metadata/
 /.settings/
+/bin/
 
 
 # extensions
-
-*.pb
-*.tis
-*.fdx
-*.fnm
-*.frq
-*.version
-*.index
-*.resources
-*.prx
-*.gen
-*.fdt
-*.container
-*.setup
-*.target
-*.ser
-*.properties
-*.mark
-*.lock
-*.dat
-*.zip
-*.nrm
-*.tii
-*.prefs
 *.iml
 
 

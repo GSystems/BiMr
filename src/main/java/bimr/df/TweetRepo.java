@@ -1,11 +1,14 @@
 package bimr.df;
 
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Future;
 
 import bimr.df.model.Tweet;
 import bimr.df.model.TwitterRequest;
 import bimr.df.model.TwitterResponse;
+
+import javax.ejb.LocalBean;
 
 public interface TweetRepo {
 
@@ -15,7 +18,7 @@ public interface TweetRepo {
 	 * @param request
 	 * @return
 	 */
-	Future<TwitterResponse> retrieveTweets(TwitterRequest request);
+	TwitterResponse retrieveTweets(TwitterRequest request);
 
 	/**
 	 * Insert a list of tweets into database
@@ -37,4 +40,5 @@ public interface TweetRepo {
 	 */
 	Future<List<Long>> retrieveLastTweetId();
 
+	Future<List<Date>> retrieveMinDate();
 }

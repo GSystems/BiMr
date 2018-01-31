@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
+import bimr.rf.twitter.wrapper.TwitterUserWrapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -35,9 +36,21 @@ public class DataTransformer {
 				tweetWrapper.setLongitude(String.valueOf(status.getGeoLocation().getLongitude()));
 			}
 			tweetWrapper.setObservationDate(status.getCreatedAt());
+			tweetWrapper.setUser(fromUserApiToWrapper(status));
 			tweetsWrapper.add(tweetWrapper);
 		}
 		return tweetsWrapper;
+	}
+
+	private static TwitterUserWrapper fromUserApiToWrapper(Status status) {
+		TwitterUserWrapper user = new TwitterUserWrapper();
+		user.setEmail(status.getUser().getEmail());
+		user.setId(String.valueOf(status.getUser().getId()));
+		user.setIsGeoEnabled(String.valueOf(status.getUser().isGeoEnabled()));
+		user.setLocation(status.getUser().getLocation());
+		user.setName(status.getUser().getName());
+		user.setScreenName(status.getUser().getScreenName());
+		return user;
 	}
 
 	// TODO make separate methods
@@ -62,10 +75,7 @@ public class DataTransformer {
 		while (i.hasNext()) {
 			jsonObject = (JSONObject) i.next();
 			EbirdDataWrapper ebirdWrapper = new EbirdDataWrapper();
-			ebirdWrapper.setCommonName((String) jsonObject.get("comName"));
-			ebirdWrapper.setCountryName((String) jsonObject.get("countryName"));
 			ebirdWrapper.setLatitude((Double) jsonObject.get("lat"));
-			ebirdWrapper.setLocalityName((String) jsonObject.get("locName"));
 			ebirdWrapper.setLongitude((Double) jsonObject.get("lng"));
 			try {
 				ebirdWrapper.setObservationDate((Date) formatter.parse((String) jsonObject.get("obsDt")));
@@ -73,7 +83,6 @@ public class DataTransformer {
 				log.info(e.getMessage());
 			}
 			ebirdWrapper.setScientificName((String) jsonObject.get("sciName"));
-			ebirdWrapper.setStateName((String) jsonObject.get("subnational1Name"));
 			ebirdWrapper.setUserDisplayName((String) jsonObject.get("userDisplayName"));
 			ebirdsWrapper.add(ebirdWrapper);
 		}

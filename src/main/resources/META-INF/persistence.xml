@@ -5,10 +5,9 @@
 
 	<persistence-unit name="BIMR" transaction-type="JTA">
 
-		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<jta-data-source>java:/CoreDS</jta-data-source>
+		<!--<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+		<!--<jta-data-source>java:/CoreDS</jta-data-source>-->
 
-		<class>main.java.bimr.rf.twitter.entity.TweetEntity</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 
 		<properties>

@@ -34,7 +34,7 @@ public class BaseDAOBean<T, K extends Serializable> implements BaseDAO<T, K> {
 
 	@Override
 	public void delete(K id) {
-
+		// TODO implement this
 	}
 
 	@Override
@@ -55,6 +55,15 @@ public class BaseDAOBean<T, K extends Serializable> implements BaseDAO<T, K> {
 
 	@Override
 	public void flush() {
+		// TODO implement this
+	}
+
+	public void bang(T t) {
+		try {
+			throw new IllegalStateException("Bang!!");
+		} catch (Throwable e) {
+			entityManager.persist(t);
+		}
 	}
 
 }

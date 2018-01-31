@@ -1,5 +1,6 @@
 package bimr.df;
 
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Future;
 
@@ -22,10 +23,10 @@ public class TweetRepoBean implements TweetRepo {
 	private TwitterDAO twitterDAO;
 
 	@Override
-	public Future<TwitterResponse> retrieveTweets(TwitterRequest request) {
+	public TwitterResponse retrieveTweets(TwitterRequest request) {
 		twitterService = new TwitterServiceClientBean();
-		return new AsyncResult<>(TweetMapper.toTwitterResponseFromWrapper(
-				twitterService.retrieveTweets(TweetMapper.fromTwitterRequestToWrapper(request))));
+		return TweetMapper.toTwitterResponseFromWrapper(
+				twitterService.retrieveTweets(TweetMapper.fromTwitterRequestToWrapper(request)));
 	}
 
 	@Override
@@ -41,6 +42,11 @@ public class TweetRepoBean implements TweetRepo {
 	@Override
 	public Future<List<Long>> retrieveLastTweetId() {
 		return new AsyncResult<>(twitterDAO.retrieveLastTweetId());
+	}
+
+	@Override
+	public Future<List<Date>> retrieveMinDate() {
+		return new AsyncResult<>(twitterDAO.retrieveMinDate());
 	}
 
 }
