@@ -18,7 +18,7 @@ public interface TweetRepo {
 	 * @param request
 	 * @return
 	 */
-	Future<TwitterResponse> retrieveTweets(TwitterRequest request);
+	TwitterResponse retrieveTweets(TwitterRequest request);
 
 	/**
 	 * Insert a list of tweets into database

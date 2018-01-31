@@ -12,6 +12,7 @@ public class TweetWrapper {
 	private String latitude;
 	private String longitude;
 	private Date observationDate;
+	private TwitterUserWrapper user;
 
 	public Long getTweetId() {
 		return tweetId;
@@ -53,4 +54,11 @@ public class TweetWrapper {
 		this.observationDate = observationDate;
 	}
 
+	public TwitterUserWrapper getUser() {
+		return user;
+	}
+
+	public void setUser(TwitterUserWrapper user) {
+		this.user = user;
+	}
 }

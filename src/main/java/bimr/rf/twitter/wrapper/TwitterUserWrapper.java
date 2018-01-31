@@ -3,11 +3,11 @@ package bimr.rf.twitter.wrapper;
 public class TwitterUserWrapper {
 
 	private String id;
-	private String username;
-	private String screenName;
 	private String email;
 	private String location;
-	private String url;
+	private String screenName;
+	private String isGeoEnabled;
+	private String name;
 
 	public String getId() {
 		return id;
@@ -15,22 +15,6 @@ public class TwitterUserWrapper {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getScreenName() {
-		return screenName;
-	}
-
-	public void setScreenName(String screenName) {
-		this.screenName = screenName;
 	}
 
 	public String getEmail() {
@@ -49,12 +33,27 @@ public class TwitterUserWrapper {
 		this.location = location;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getScreenName() {
+		return screenName;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setScreenName(String screenName) {
+		this.screenName = screenName;
 	}
 
+	public String isGeoEnabled() {
+		return isGeoEnabled;
+	}
+
+	public void setIsGeoEnabled(String isGeoEnabled) {
+		this.isGeoEnabled = isGeoEnabled;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

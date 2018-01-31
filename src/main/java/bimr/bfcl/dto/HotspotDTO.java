@@ -1,8 +1,10 @@
 package bimr.bfcl.dto;
 
+import java.util.List;
+
 public class HotspotDTO {
 	private String informationSourceId;
-	private String birdSpecies;
+	private List<String> birdSpecies;
 	private String locationName;
 	private String country;
 	private String state;
@@ -13,7 +15,9 @@ public class HotspotDTO {
 	private String observationDate;
 	private String tweetMessage;
 	private String tweetId;
-	private UserDTO user;
+	private String link;
+	private String author;
+	private TwitterUserDTO user;
 
 	public String getInformationSourceId() {
 		return informationSourceId;
@@ -23,11 +27,11 @@ public class HotspotDTO {
 		this.informationSourceId = informationSourceId;
 	}
 
-	public String getBirdSpecies() {
+	public List<String> getBirdSpecies() {
 		return birdSpecies;
 	}
 
-	public void setBirdSpecies(String birdSpecies) {
+	public void setBirdSpecies(List<String> birdSpecies) {
 		this.birdSpecies = birdSpecies;
 	}
 
@@ -111,11 +115,27 @@ public class HotspotDTO {
 		this.tweetId = tweetId;
 	}
 
-	public UserDTO getUser() {
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public TwitterUserDTO getUser() {
 		return user;
 	}
 
-	public void setUser(UserDTO user) {
+	public void setUser(TwitterUserDTO user) {
 		this.user = user;
 	}
 }

@@ -4,13 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bimr.bfcl.dto.*;
-import bimr.df.model.EbirdData;
-import bimr.df.model.EbirdRequest;
-import bimr.df.model.EbirdResponse;
-import bimr.df.model.Tweet;
-import bimr.df.model.TwitterRequest;
-import bimr.df.model.TwitterResponse;
-import org.apache.jena.rdf.model.Resource;
+import bimr.df.model.*;
 
 /**
  * @author GLK
@@ -47,7 +41,21 @@ public class MapTransformer {
 		tweetDTO.setLongitude(tweet.getLongitude());
 		tweetDTO.setObservationDate(tweet.getObservationDate());
 		tweetDTO.setTweetMessage(tweet.getTweetMessage());
+		if (tweet.getUser() != null) {
+			tweetDTO.setUser(fromTwitterUserToDTO(tweet.getUser()));
+		}
 		return tweetDTO;
+	}
+
+	private static TwitterUserDTO fromTwitterUserToDTO(TwitterUser user) {
+		TwitterUserDTO userDTO = new TwitterUserDTO();
+		userDTO.setEmail(user.getEmail());
+		userDTO.setId(String.valueOf(user.getId()));
+		userDTO.setIsGeoEnabled(String.valueOf(user.isGeoEnabled()));
+		userDTO.setLocation(user.getLocation());
+		userDTO.setName(user.getName());
+		userDTO.setScreenName(user.getScreenName());
+		return userDTO;
 	}
 
 	public static List<Tweet> toTweetsFromDTO(List<TweetDTO> tweetsDTO) {
@@ -111,15 +119,14 @@ public class MapTransformer {
 		return response;
 	}
 
-	public static HotspotDTO toHotspotDTOFromTweetDTO(TweetDTO tweetDTO) {
-		HotspotDTO hotspotDTO = new HotspotDTO();
-		hotspotDTO.setLatitude(tweetDTO.getLatitude());
-		hotspotDTO.setLongitude(tweetDTO.getLongitude());
+	public static HotspotDTO addInfoFromTweetToHotspot(TweetDTO tweetDTO, HotspotDTO hotspot) {
 		//TODO save date instead of string
-		hotspotDTO.setObservationDate(tweetDTO.getObservationDate().toString());
-		hotspotDTO.setTweetMessage(tweetDTO.getTweetMessage());
+		hotspot.setObservationDate(tweetDTO.getObservationDate().toString());
+		hotspot.setTweetMessage(tweetDTO.getTweetMessage());
 		//TODO save integer instead of string
-		hotspotDTO.setTweetId(tweetDTO.getId().toString());
-		return hotspotDTO;
+		hotspot.setTweetId(tweetDTO.getTweetId().toString());
+		hotspot.setInformationSourceId("twitter");
+		hotspot.setUser(tweetDTO.getUser());
+		return hotspot;
 	}
 }

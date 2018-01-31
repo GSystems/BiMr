@@ -22,9 +22,9 @@ public class EbirdRepoBean implements EbirdRepo {
 	private EbirdDAO ebirdDAO;
 
 	@Override
-	public Future<EbirdResponse> retrieveEbirdData(EbirdRequest request) {
-		return new AsyncResult<>(EbirdMapper.toEbirdsResponseFromWrapper(
-				ebirdsService.retrieveEbirdData(EbirdMapper.fromEbirdRequestToWrapper(request))));
+	public EbirdResponse retrieveEbirdData(EbirdRequest request) {
+		return EbirdMapper.toEbirdsResponseFromWrapper(
+				ebirdsService.retrieveEbirdData(EbirdMapper.fromEbirdRequestToWrapper(request)));
 	}
 
 	@Override

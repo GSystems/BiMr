@@ -4,20 +4,24 @@ import bimr.bfcl.EbirdFacade;
 import bimr.bfcl.EbirdScheduleFacade;
 import bimr.bfcl.dto.EbirdResponseDTO;
 
-import javax.ejb.*;
+import javax.ejb.EJB;
+import javax.ejb.Schedule;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 
 /**
  * @author GLK
  */
 
 @Singleton
+@Startup
 public class EbirdScheduleFacadeBean implements EbirdScheduleFacade {
 
 	@EJB
 	private EbirdFacade ebirdFacade;
 
 	@Override
-//	@Schedule(second = "*", minute = "*", hour = "*/1", persistent = false)
+//	@Schedule(minute = "*/10", hour = "*", persistent = false)
 	public void ebirdApiCallScheduled() {
 //		checkForSave(ebirdFacade.retrieveEbirdHotspotSightingsSummary());
 		checkForSave(ebirdFacade.retrieveEbirdNearbyNotableObservations());
@@ -27,7 +31,7 @@ public class EbirdScheduleFacadeBean implements EbirdScheduleFacade {
 	}
 
 	private void checkForSave(EbirdResponseDTO response) {
-		if (response != null) {
+		if (!response.getEbirdData().isEmpty()) {
 			ebirdFacade.persistEbirdData(response);
 		}
 	}

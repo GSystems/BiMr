@@ -6,10 +6,12 @@ import java.util.List;
 import bimr.df.model.Tweet;
 import bimr.df.model.TwitterRequest;
 import bimr.df.model.TwitterResponse;
+import bimr.df.model.TwitterUser;
 import bimr.rf.twitter.entity.TweetEntity;
 import bimr.rf.twitter.wrapper.TweetWrapper;
 import bimr.rf.twitter.wrapper.TwitterRequestWrapper;
 import bimr.rf.twitter.wrapper.TwitterResponseWrapper;
+import bimr.rf.twitter.wrapper.TwitterUserWrapper;
 
 /**
  * @author GLK
@@ -44,7 +46,19 @@ public class TweetMapper {
 		tweet.setLongitude(tweetWrapper.getLongitude());
 		tweet.setObservationDate(tweetWrapper.getObservationDate());
 		tweet.setTweetMessage(tweetWrapper.getTweetMessage());
+		tweet.setUser(toTwitterUserFromWrapper(tweetWrapper.getUser()));
 		return tweet;
+	}
+
+	private static TwitterUser toTwitterUserFromWrapper(TwitterUserWrapper userWrapper) {
+		TwitterUser user = new TwitterUser();
+		user.setEmail(userWrapper.getEmail());
+		user.setId(String.valueOf(userWrapper.getId()));
+		user.setIsGeoEnabled(String.valueOf(userWrapper.isGeoEnabled()));
+		user.setLocation(userWrapper.getLocation());
+		user.setName(userWrapper.getName());
+		user.setScreenName(userWrapper.getScreenName());
+		return user;
 	}
 
 	public static List<TweetEntity> fromTweetListToEntity(List<Tweet> tweets) {

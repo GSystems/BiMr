@@ -10,7 +10,6 @@ import bimr.bfcl.EbirdFacade;
 import bimr.bfcl.dto.EbirdRequestDTO;
 import bimr.bfcl.dto.EbirdResponseDTO;
 import bimr.df.EbirdRepo;
-import bimr.util.AsyncUtils;
 import bimr.util.EbirdsEnum;
 
 /**
@@ -54,8 +53,7 @@ public class EbirdFacadeBean implements EbirdFacade {
 	}
 
 	private EbirdResponseDTO retrieveEbirdDataFromApi(EbirdRequestDTO request) {
-		return MapTransformer.fromEbirdResponseToDTO(AsyncUtils
-				.getResultFromAsyncTask(repo.retrieveEbirdData(MapTransformer.toEbirdRequestFromDTO(request))));
+		return MapTransformer.fromEbirdResponseToDTO(repo.retrieveEbirdData(MapTransformer.toEbirdRequestFromDTO(request)));
 	}
 
 	private EbirdRequestDTO getRequest(String uri) {
