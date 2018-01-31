@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<title>Bird Migration</title>
+		<link rel="stylesheet" type="text/css" href="WEB-INF/resources/css/worldMap.css"/>
+	</h:head>
+	<h:body>
+		<div id="map" name="map"></div>
+		
+		<div id="controls" class="nicebox">
+			<div>
+<!-- 			  <select id="census-variable">
+			    <option value="https://storage.googleapis.com/mapsdevsite/json/DP05_0001E">Migration Map</option>
+			    <option value="https://storage.googleapis.com/mapsdevsite/json/DP05_0017E">Heat Map</option>
+			    <option value="https://storage.googleapis.com/mapsdevsite/json/DP05_0001E">Normal Map</option>
+			  </select> -->
+			</div>
+		  <div id="legend">
+		    <div id="census-min">12.12.2017</div>
+		    	<input type="range" min="1" max="10" value="1" class="slider" id="slider"></input>
+		    <div id="census-max">1.01.2018</div>
+		  </div>
+		</div>
+		<div id="data-box" class="nicebox">
+		  <label id="data-label" for="data-value"></label>
+		  <span id="data-value"></span>
+		</div>
+	
+		<script src="WEB-INF/resources/js/worldMap.js"></script>
+<!-- 		<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script> -->
+	 	<script async="defer" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlq_PP8W44Z5XdXe-Q0Qfl_76o3bkX-8o&amp;callback=initMap"></script>
+		<!-- <script async="defer" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf10kOSOGdrAt5B_cOiGEmZG_e_myQTNg&amp;libraries=visualization&amo;callback=initMap"></script> -->
+	</h:body>
+</html>

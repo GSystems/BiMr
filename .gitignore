@@ -1,8 +1,15 @@
+# folders
 
-.DS_Store
-*.class
 /target/
+/.idea/
 /.metadata/
 /.settings/
 /bin/
-/.sonarlint/
+
+
+# extensions
+*.iml
+
+
+# specific files
+.DS_Store

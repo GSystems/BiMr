@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+
+	<h1>Tweets</h1>
+
+	<p:panel id="tweets">
+		<p:dataTable value="#{mapBean.mapModel.tweets}" var="tweet">
+			<p:column headerText="Id">
+				<h:outputText value="#{tweet.id}" />
+			</p:column>
+
+			<p:column headerText="Message">
+				<h:outputText value="#{tweet.tweetMessage}" />
+			</p:column>
+
+			<p:column headerText="Observation Date">
+				<h:outputText value="#{tweet.observationDate}" />
+			</p:column>
+
+			<p:column headerText="Latitude">
+				<h:outputText value="#{tweet.latitude}" />
+			</p:column>
+
+			<p:column headerText="Longitude">
+				<h:outputText value="#{tweet.longitude}" />
+			</p:column>
+		</p:dataTable>
+	</p:panel>
+
+	<h1>EBird API Data</h1>
+	<p:panel id="ebirdData">
+		<p:dataTable var="ebird" value="#{mapBean.mapModel.ebirdData}">
+			<p:column headerText="User">
+				<h:outputText value="#{ebird.userDisplayName}" />
+			</p:column>
+			
+			<p:column headerText="Common Name">
+				<h:outputText value="#{ebird.commonName}" />
+			</p:column>
+			
+			<p:column headerText="Country">
+				<h:outputText value="#{ebird.countryName}" />
+			</p:column>
+			
+			<p:column headerText="State">
+				<h:outputText value="#{ebird.stateName}" />
+			</p:column>
+			
+			<p:column headerText="Locality">
+				<h:outputText value="#{ebird.localityName}" />
+			</p:column>
+			
+			<p:column headerText="Observation Date">
+				<h:outputText value="#{ebird.observationDate}" />
+			</p:column>
+			
+			<p:column headerText="Latitude">
+				<h:outputText value="#{ebird.latitude}" />
+			</p:column>
+			
+			<p:column headerText="Longitude">
+				<h:outputText value="#{ebird.longitude}" />
+			</p:column>
+		</p:dataTable>
+	</p:panel>
+
+</h:body>
+</html>
