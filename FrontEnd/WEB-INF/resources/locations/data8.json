@@ -1,0 +1,312 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "commonName": "American Tree Sparrow",
+        "user": "John Doe",
+        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
+        "timestamp": "2017-12-18",
+        "number": 5
+      },
+      "geometry": {
+        "type": "Point",
+        "icon": "/images.png",
+        "coordinates": [
+          10.833984674999999,
+          50.27922900257082
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "commonName": "American Tree Sparrow",
+        "user": "John Doe",
+        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
+        "timestamp": "2017-12-18",
+        "number": 4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.4685065625,
+          49.40756396630067
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "commonName": "American Tree Sparrow",
+        "user": "John Doe",
+        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
+        "timestamp": "2017-12-18",
+        "number": 3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.8671874999999996,
+          48.182036837015886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "commonName": "American Tree Sparrow",
+        "user": "John Doe",
+        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
+        "timestamp": "2017-12-18",
+        "number": 2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.23049875,
+          48.98169548545228
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "commonName": "American Tree Sparrow",
+        "user": "John Doe",
+        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
+        "timestamp": "2017-12-18",
+        "number": 1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.545625,
+          48.748948346462936
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "commonName": "American Tree Sparrow",
+        "user": "John Doe",
+        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
+        "timestamp": "2017-12-18",
+        "number": 5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.349609375,
+          48.27488646704891
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "commonName": "American Tree Sparrow",
+        "user": "John Doe",
+        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
+        "timestamp": "2017-12-18",
+        "number": 6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.68339846749999994,
+          50.96050238891509
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "commonName": "American Tree Sparrow",
+        "user": "John Doe",
+        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
+        "timestamp": "2017-12-18",
+        "number": 3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.927890625,
+          54.67255544839674
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "commonName": "American Tree Sparrow",
+        "user": "John Doe",
+        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
+        "timestamp": "2017-12-18",
+        "number": 2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.211015625,
+          54.01375495718821
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "commonName": "American Tree Sparrow",
+        "user": "John Doe",
+        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
+        "timestamp": "2017-12-18",
+        "number": 5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.703125,
+          54.28940590271679
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "commonName": "American Tree Sparrow",
+        "user": "John Doe",
+        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
+        "timestamp": "2017-12-18",
+        "number": 4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.5048828125,
+          54.72702815705074
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "commonName": "American Tree Sparrow",
+        "user": "John Doe",
+        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
+        "timestamp": "2017-12-18",
+        "number": 2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.072265625,
+          45.58544455738491
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "commonName": "American Tree Sparrow",
+        "user": "John Doe",
+        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
+        "timestamp": "2017-12-18",
+        "number": 2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.508545625,
+          45.032974632441405
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "commonName": "American Tree Sparrow",
+        "user": "John Doe",
+        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
+        "timestamp": "2017-12-18",
+        "number": 5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.3254953125,
+          46.54854811091286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "commonName": "American Tree Sparrow",
+        "user": "John Doe",
+        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
+        "timestamp": "2017-12-18",
+        "number": 4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.369140624999996,
+          45.22854735620852
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "commonName": "American Tree Sparrow",
+        "user": "John Doe",
+        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
+        "timestamp": "2017-12-18",
+        "number": 4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.54171875,
+          45.19596877629178
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "commonName": "American Tree Sparrow",
+        "user": "John Doe",
+        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
+        "timestamp": "2017-12-18",
+        "number": 1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.900390625,
+          50.12995075666307
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "commonName": "American Tree Sparrow",
+        "user": "John Doe",
+        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
+        "timestamp": "2017-12-18",
+        "number": 3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.4909375,
+          49.31658418182218
+        ]
+      }
+    }
+  ]
+}

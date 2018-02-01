@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!-- <html>
+  <head>
+    <link rel="stylesheet" href="WEB-INF/resources/css/map.css"></link>
+  </head>
+  <body>
+    <div id="slider-container">
+      <input type="range" min="1" max="100" value="1" class="slider" id="myRange" oninput="slideStart()">
+    </div>
+    <div id="button">
+      <button id="button">Start</button>
+    </div>
+    <div id="map"></div>
+    <script src="WEB-INF/resources/js/map.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrWpn26iI3ke8uAToJcj0b6tVGsavoqJs&callback=initMap">
+    </script>
+  </body>
+</html> -->
+
+
+<html>
+  <head>
+    <title>Bird Migration</title>
+	<link rel="stylesheet" type="text/css" href="WEB-INF/resources/css/map.css"/>
+  </head>
+  <body>
+	<div id="map"></div>
+		
+	<div id="controls" class="nicebox">
+    Start Date: <input type="date" style="margin-right:5px" id="startDate" name="startDate" value="2018-02-01">
+    <button style="width:50px; margin-right:5px" id="buttonSelect">Select</button>
+    <button style="width:50px; margin-right:5px" id="button">Start</button>
+    Data Type:
+    <select id="dataType" onchange="changeDataType()">
+      <option name="mock" value=1>Mockup</option>
+      <option name="real" value=2>Real</option>
+    </select>
+		<div id="legend">
+		    <div id="censusMin"></div>
+		    	<input type="range" style="margin-right:5px; margin-bottom: 2px" min="1" max="10" value="1" class="slider" id="myRange" oninput="slideStart()"></input>
+		    <div id="census-max">  2018-02-01 </div>   
+		</div>
+	</div>
+	<div id="data-box" class="nicebox">
+		<label id="data-label" for="data-value"></label>
+		<span id="data-value"></span>
+	</div>
+
+    <script src="WEB-INF/resources/js/map.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrWpn26iI3ke8uAToJcj0b6tVGsavoqJs&callback=initMap">
+    </script>
+  </body>
+
+<!--
+AIzaSyBrWpn26iI3ke8uAToJcj0b6tVGsavoqJs
+ -->
