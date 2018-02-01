@@ -7,7 +7,7 @@ import org.apache.jena.rdf.model.Resource;
 
 public class BIMR {
 	private static final String BASE_URI = "http://xmlns.com/hotspot#%s";
-	private static final String USER_URI = "ttp://xmlns.com/bisp/user#%s";
+	private static final String USER_URI = "http://xmlns.com/bisp/user#%s";
 	private static final String OBSERVATION_URI = "http://xmlns.com/bisp/observation#%s";
 	private static final String LOCATION_URI = "http://xmlns.com/bisp/location#%s";
 	private static final String TWEET_URI = "http://xmlns.com/bisp/tweet#%s";

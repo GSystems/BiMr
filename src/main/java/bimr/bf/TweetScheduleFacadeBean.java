@@ -32,19 +32,19 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 	private static StanfordCoreNLP pipeline;
 
 	@EJB
-	TweetFacade tweetFacade;
+	private TweetFacade tweetFacade;
 
 	@EJB
-	BimrOntologyFacade rdfFacade;
+	private BimrOntologyFacade rdfFacade;
 
 	@PostConstruct
 	public void init() {
 		hashtagIterator = 0;
-		initializePipeline();
+//		initializePipeline();
 	}
 
 	@Override
-	@Schedule(minute = "*/15", hour = "*", persistent = false)
+//	@Schedule(minute = "*/15", hour = "*", persistent = false)
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public void twitterApiCallScheduled() {
 
@@ -92,7 +92,6 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 	 */
 	private HotspotDTO parseTweet(Annotation document, Long tweetId) {
 		HotspotDTO hotspot = new HotspotDTO();
-		hotspot.setInformationSourceId(tweetId.toString());
 		List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
 
 		for (CoreMap sentence : sentences) {
@@ -101,15 +100,12 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 			for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
 				// this is the NER label of the token
 				String namedEntity = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
+				if (!namedEntity.equals(StanfordEnum.DEFAULT_NER.getCode())) {
+					String word = token.get(CoreAnnotations.TextAnnotation.class);
+					extractSensitiveInfoFromTweet(namedEntity, word, hotspot);
 
-				extractSensitiveInfoFromTweet(namedEntity, hotspot);
-				hotspot.setBirdSpecies(hotspot.getBirdSpecies());
-				hotspot.setHowMany(hotspot.getHowMany());
-				hotspot.setObservationDate(hotspot.getObservationDate());
-				hotspot.setLocationName(hotspot.getLocationName());
-
-				//TODO remove this method in the final version
-				logInfo(token, namedEntity);
+					logInfo(token, namedEntity);
+				}
 			}
 		}
 		return hotspot;
@@ -124,18 +120,32 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 		log.info(text);
 	}
 
-	private void extractSensitiveInfoFromTweet(String namedEntity, HotspotDTO hotspot) {
-		List<String> birdSpecies = new ArrayList<>();
+	private void extractSensitiveInfoFromTweet(String namedEntity, String word, HotspotDTO hotspot) {
 		if (namedEntity.equals(StanfordEnum.LOCATION.getCode())) {
-			hotspot.setLocationName(namedEntity);
+			hotspot.setLocationName(word);
 		} else if (namedEntity.equals(StanfordEnum.BISP.getCode())) {
-			birdSpecies.add(namedEntity);
+			birdSpeciesController(word, hotspot);
 		} else if (namedEntity.equals(StanfordEnum.NUMBER.getCode())) {
-			hotspot.setHowMany(namedEntity);
+			hotspot.setHowMany(word);
 		} else if (namedEntity.equals(StanfordEnum.DATE.getCode())) {
-			hotspot.setObservationDate(namedEntity);
+			hotspot.setObservationDate(word);
+		} else if (namedEntity.equals(StanfordEnum.LINK.getCode())) {
+			hotspot.setLink(word);
+		} else if (namedEntity.equals(StanfordEnum.AUTHOR.getCode())) {
+			hotspot.setAuthor(word);
 		}
-		hotspot.setBirdSpecies(birdSpecies);
+	}
+
+	private void birdSpeciesController(String word, HotspotDTO hotspot) {
+		List<String> birdSpecies;
+		if (hotspot.getBirdSpecies() != null) {
+			birdSpecies = hotspot.getBirdSpecies();
+			birdSpecies.add(word);
+		} else {
+			birdSpecies = new ArrayList<>();
+			birdSpecies.add(word);
+			hotspot.setBirdSpecies(birdSpecies);
+		}
 	}
 
 	private TweetRequestDTO createRequest() {

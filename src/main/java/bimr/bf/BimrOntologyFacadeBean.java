@@ -1,13 +1,13 @@
 package bimr.bf;
 
+import bimr.bf.transformer.OntologyTransformer;
 import bimr.bfcl.BimrOntologyFacade;
 import bimr.bfcl.dto.HotspotDTO;
 import bimr.bfcl.dto.TwitterUserDTO;
+import bimr.util.BimrOntologyEnum;
 import bimr.util.GeneralConstants;
 import bimr.util.rdf.vocabulary.BIMR;
-import org.apache.jena.query.Dataset;
-import org.apache.jena.query.DatasetAccessor;
-import org.apache.jena.query.DatasetAccessorFactory;
+import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
@@ -35,7 +35,7 @@ public class BimrOntologyFacadeBean implements BimrOntologyFacade {
 	public void init() {
 		hotspotsDataset = TDBFactory.createDataset();
 		migrationDataset = TDBFactory.createDataset();
-		hotspotsDatasetAccesor = DatasetAccessorFactory.createHTTP(GeneralConstants.HOTSPOTS_DATASET_ADDR);
+		hotspotsDatasetAccesor = DatasetAccessorFactory.createHTTP(GeneralConstants.MOCKED_HOTSPOTS_DATASET_ADDR);
 		migrationsDatasetAccesor = DatasetAccessorFactory.createHTTP(GeneralConstants.MOCKED_MIGRATIONS_DATASET_ADDR);
 	}
 
@@ -61,6 +61,17 @@ public class BimrOntologyFacadeBean implements BimrOntologyFacade {
 		for (Model model : models) {
 			hotspotsDatasetAccesor.add(model);
 		}
+	}
+
+	@Override
+	public List<HotspotDTO> getAllHotspots() {
+		QueryExecution allTweetsQuery = QueryExecutionFactory
+				.sparqlService(GeneralConstants.MOCKED_HOTSPOTS_DATASET_QRY_ADDR,
+						BimrOntologyEnum.GET_ALL_HOTSPOTS_QRY.getCode());
+
+		ResultSet results = allTweetsQuery.execSelect();
+
+		return OntologyTransformer.fromRdfToHotspotDTOList(results);
 	}
 
 	private void createHotspotResource(Model model, HotspotDTO hotspotDTO) {

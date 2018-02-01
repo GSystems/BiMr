@@ -10,4 +10,6 @@ public interface BimrOntologyFacade {
 	List<Model> generateHotspotModels(List<HotspotDTO> filteredTweets);
 
 	void persistHotspotModels(List<Model> models);
+
+	List<HotspotDTO> getAllHotspots();
 }
