@@ -1,6 +1,6 @@
 package bimr.bf;
 
-import bimr.bf.transformer.OntologyTransformer;
+import bimr.bf.transformer.BimrOntologyTransformer;
 import bimr.bfcl.BimrOntologyFacade;
 import bimr.bfcl.dto.HotspotDTO;
 import bimr.bfcl.dto.TwitterUserDTO;
@@ -78,7 +78,7 @@ public class BimrOntologyFacadeBean implements BimrOntologyFacade {
 
 		ResultSet results = allTweetsQuery.execSelect();
 
-		return OntologyTransformer.fromRdfToHotspotDTOList(results);
+		return BimrOntologyTransformer.fromRdfToHotspotDTOList(results);
 	}
 
 	private List<Model> createAllModelsForAHotspot(HotspotDTO hotspot) {

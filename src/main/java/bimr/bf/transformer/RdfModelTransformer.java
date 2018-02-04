@@ -1,6 +1,7 @@
 package bimr.bf.transformer;
 
 import bimr.bfcl.dto.HotspotDTO;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,11 +32,11 @@ public class RdfModelTransformer {
 				feature.put("geometry", point);
 				featureList.put(feature);
 				hotspotsCollecion.put("features", featureList);
-				System.out.println("hotspotsCollecion="+hotspotsCollecion.toString());
+				System.out.println(hotspotsCollecion.toString());
 				break;
 			}
 		} catch (JSONException e) {
-			System.out.println("can't save json object: "+e.toString());
+			System.out.println("can't save json object: "+ e.toString());
 		}
 		return hotspotsCollecion;
 	}

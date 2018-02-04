@@ -8,7 +8,7 @@ import org.apache.jena.query.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OntologyTransformer {
+public class BimrOntologyTransformer {
 
 	public static List<HotspotDTO> fromRdfToHotspotDTOList(ResultSet resultSet) {
 		List<HotspotDTO> hotspots = new ArrayList<>();
