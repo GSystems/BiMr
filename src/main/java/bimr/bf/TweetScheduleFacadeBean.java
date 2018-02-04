@@ -44,7 +44,7 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 	}
 
 	@Override
-	@Schedule(minute = "*/15", hour = "*", persistent = false)
+//	@Schedule(minute = "*/15", hour = "*", persistent = false)
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public void twitterApiCallScheduled() {
 		TweetResponseDTO response = tweetFacade.retrieveTweetsFromApi(createRequest());
@@ -664,7 +664,8 @@ public class TweetScheduleFacadeBean implements TweetScheduleFacade {
 		return migrationTweets;
 	}
 
-	private List<HotspotDTO> mockHotspots() {
+	@Override
+	public List<HotspotDTO> mockHotspots() {
 		List<HotspotDTO> migrationTweets = new ArrayList<>();
 		HotspotDTO hotspotDTO = new HotspotDTO();
 

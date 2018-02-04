@@ -1,22 +1,13 @@
 package bimr.rf.transformer;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.logging.Logger;
-
-import bimr.rf.twitter.wrapper.TwitterUserWrapper;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 import bimr.rf.ebird.wrapper.EbirdDataWrapper;
 import bimr.rf.twitter.wrapper.TweetWrapper;
-import bimr.util.GeneralConstants;
+import bimr.rf.twitter.wrapper.TwitterUserWrapper;
 import twitter4j.Status;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 public class DataTransformer {
 
@@ -57,35 +48,35 @@ public class DataTransformer {
 	// TODO declare the constants in GeneralConstants class
 	public static List<EbirdDataWrapper> fromEBirdApiResponseToWrapper(String ebirdData) {
 		// preparing JSON object utility
-		JSONParser jsonParser = new JSONParser();
-		JSONArray jsonArray = new JSONArray();
-		JSONObject jsonObject;
-
-		SimpleDateFormat formatter = new SimpleDateFormat(GeneralConstants.DATE_FORMAT);
-
-		try {
-			jsonArray = (JSONArray) jsonParser.parse(ebirdData);
-		} catch (ParseException e) {
-			log.info(e.getMessage());
-		}
-
-		@SuppressWarnings("rawtypes")
-		Iterator i = jsonArray.iterator();
+//		JSONParser jsonParser = new JSONParser();
+//		JSONArray jsonArray = new JSONArray();
+//		JSONObject jsonObject;
+//
+//		SimpleDateFormat formatter = new SimpleDateFormat(GeneralConstants.DATE_FORMAT);
+//
+//		try {
+//			jsonArray = (JSONArray) jsonParser.parse(ebirdData);
+//		} catch (ParseException e) {
+//			log.info(e.getMessage());
+//		}
+//
+//		@SuppressWarnings("rawtypes")
+//		Iterator i = jsonArray.iterator();
 		List<EbirdDataWrapper> ebirdsWrapper = new ArrayList<>();
-		while (i.hasNext()) {
-			jsonObject = (JSONObject) i.next();
-			EbirdDataWrapper ebirdWrapper = new EbirdDataWrapper();
-			ebirdWrapper.setLatitude((Double) jsonObject.get("lat"));
-			ebirdWrapper.setLongitude((Double) jsonObject.get("lng"));
-			try {
-				ebirdWrapper.setObservationDate((Date) formatter.parse((String) jsonObject.get("obsDt")));
-			} catch (java.text.ParseException e) {
-				log.info(e.getMessage());
-			}
-			ebirdWrapper.setScientificName((String) jsonObject.get("sciName"));
-			ebirdWrapper.setUserDisplayName((String) jsonObject.get("userDisplayName"));
-			ebirdsWrapper.add(ebirdWrapper);
-		}
+//		while (i.hasNext()) {
+//			jsonObject = (JSONObject) i.next();
+//			EbirdDataWrapper ebirdWrapper = new EbirdDataWrapper();
+//			ebirdWrapper.setLatitude((Double) jsonObject.get("lat"));
+//			ebirdWrapper.setLongitude((Double) jsonObject.get("lng"));
+//			try {
+//				ebirdWrapper.setObservationDate((Date) formatter.parse((String) jsonObject.get("obsDt")));
+//			} catch (java.text.ParseException e) {
+//				log.info(e.getMessage());
+//			}
+//			ebirdWrapper.setScientificName((String) jsonObject.get("sciName"));
+//			ebirdWrapper.setUserDisplayName((String) jsonObject.get("userDisplayName"));
+//			ebirdsWrapper.add(ebirdWrapper);
+//		}
 		return ebirdsWrapper;
 	}
 
