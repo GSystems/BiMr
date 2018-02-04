@@ -18,9 +18,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Startup
 @Singleton
@@ -46,20 +44,29 @@ public class BimrOntologyFacadeBean implements BimrOntologyFacade {
 	}
 
 	@Override
-	public List<Model> generateHotspotModels(List<HotspotDTO> hotspots) {
-		List<Model> models = new ArrayList<>();
+	public Map<String, List<Model>> createModelsForHotspots(List<HotspotDTO> hotspots) {
+		Map<String, List<Model>> allModelsForAHotspot = new HashMap<>();
 		for (HotspotDTO hotspot : hotspots) {
-			Model model = hotspotsDataset.getNamedModel(getUUID());
-			createHotspotResource(model, hotspot);
-			models.add(model);
+
+			hotspot.setHotspotId(getUUID());
+
+			List<Model> models = createAllModelsForAHotspot(hotspot);
+			allModelsForAHotspot.put(hotspot.getHotspotId(), models);
 		}
-		return models;
+		return allModelsForAHotspot;
 	}
 
 	@Override
-	public void persistHotspotModels(List<Model> models) {
+	public void persistAllModelsForAHotspot(List<Model> models) {
 		for (Model model : models) {
 			hotspotsDatasetAccesor.add(model);
+		}
+	}
+
+	@Override
+	public void printAllModelsForAHotspot(List<Model> models) {
+		for (Model model : models) {
+			model.write(System.out, BimrOntologyEnum.RDF_XML_FORMAT.getCode());
 		}
 	}
 
@@ -74,85 +81,95 @@ public class BimrOntologyFacadeBean implements BimrOntologyFacade {
 		return OntologyTransformer.fromRdfToHotspotDTOList(results);
 	}
 
-	private void createHotspotResource(Model model, HotspotDTO hotspotDTO) {
-		Resource hotspotResource = model.createResource(BIMR.getBaseUri(getUUID()));
+	private List<Model> createAllModelsForAHotspot(HotspotDTO hotspot) {
+		List<Model> models = new ArrayList<>();
 
-		if (hotspotDTO.getUser() != null) {
-			Resource user = createUserResource(model, hotspotDTO);
-			hotspotResource.addProperty(BIMR.user, user);
+		if (hotspot.getUser() != null) {
+			models.add(createUserModel(hotspot));
 		}
-		Resource observation = createObservationResource(model, hotspotDTO);
-		hotspotResource.addProperty(BIMR.observation, observation);
+		models.add(createHotspotModel(hotspot));
+
+		return models;
 	}
 
-	private static Resource createUserResource(Model model, HotspotDTO hotspotDTO) {
-		Resource user = model.createResource(BIMR.getUserUri(getUUID()));
-		TwitterUserDTO userDTO = hotspotDTO.getUser();
+	private Model createHotspotModel(HotspotDTO hotspot) {
+		Model hotspotModel = hotspotsDataset.getNamedModel(hotspot.getHotspotId());
+		Resource hotspotResource = hotspotModel.createResource(BIMR.getHotspotUri(""));
+
+		if (hotspot.getUser() != null) {
+			checkAndAddProperty(hotspotResource, VCARD.UID, hotspot.getUser().getId());
+		}
+		checkAndAddProperty(hotspotResource, BIMR.hotspotId, hotspot.getHotspotId());
+
+		hotspotResource.addProperty(BIMR.observation, createObservationResource(hotspotModel, hotspot));
+
+		return hotspotModel;
+	}
+
+	private Model createUserModel(HotspotDTO hotspot) {
+		TwitterUserDTO userDTO = hotspot.getUser();
+		Model userModel = hotspotsDataset.getNamedModel(getUUID());
+		Resource user = userModel.createResource(BIMR.getUserUri(""));
 
 		checkAndAddProperty(user, VCARD.NICKNAME, userDTO.getScreenName());
 		checkAndAddProperty(user, VCARD.ADR, userDTO.getLocation());
 		checkAndAddProperty(user, VCARD.NAME, userDTO.getName());
 		checkAndAddProperty(user, VCARD.UID, userDTO.getId());
 		checkAndAddProperty(user, VCARD.EMAIL, userDTO.getEmail());
-		checkAndAddProperty(user, VCARD.GEO, userDTO.isGeoEnabled());
+		checkAndAddProperty(user, BIMR.hasGeoEnabled, userDTO.isGeoEnabled());
 
-		return user;
+		return userModel;
 	}
 
-	private static Resource createObservationResource(Model model, HotspotDTO hotspotDTO) {
-		Resource observation = model.createResource(BIMR.getObservationUri(getUUID()));
+	private Resource createObservationResource(Model model, HotspotDTO hotspot) {
+		Resource observation = model.createResource(BIMR.getObservationUri(""));
 
-		for (String species : hotspotDTO.getBirdSpecies()) {
+		for (String species : hotspot.getBirdSpecies()) {
 			checkAndAddProperty(observation, BIMR.birdSpecies, species);
 		}
-		checkAndAddProperty(observation, BIMR.howMany, hotspotDTO.getHowMany());
-		checkAndAddProperty(observation, BIMR.date, hotspotDTO.getObservationDate());
-		checkAndAddProperty(observation, BIMR.informationSourceId, GeneralConstants.TWITTER_SOURCE);
+		checkAndAddProperty(observation, BIMR.howMany, hotspot.getHowMany());
+		checkAndAddProperty(observation, BIMR.date, hotspot.getObservationDate());
+		checkAndAddProperty(observation, BIMR.informationSourceId, hotspot.getInformationSourceId());
+		checkAndAddProperty(observation, BIMR.tweetId, hotspot.getTweetId());
 
-		Resource tweet = createTweetResource(model, hotspotDTO);
-		Resource location = createLocationResource(model, hotspotDTO);
-
-		observation.addProperty(BIMR.tweet, tweet);
-		observation.addProperty(BIMR.location, location);
+		observation.addProperty(BIMR.tweet, createTweetResource(model, hotspot));
+		observation.addProperty(BIMR.location, createLocationResource(model, hotspot));
 
 		return observation;
 	}
 
 
-	private static Resource createLocationResource(Model model, HotspotDTO hotspotDTO) {
-		Resource location = model.createResource(BIMR.getLocationUri(getUUID()));
+	private Resource createLocationResource(Model model, HotspotDTO hotspot) {
+		Resource location = model.createResource(BIMR.getLocationUri(""));
 
-		checkAndAddProperty(location, BIMR.latitude, hotspotDTO.getLatitude());
-		checkAndAddProperty(location, BIMR.longitude, hotspotDTO.getLongitude());
-		checkAndAddProperty(location, BIMR.name, hotspotDTO.getLocationName());
-		checkAndAddProperty(location, BIMR.country, hotspotDTO.getCountry());
-		checkAndAddProperty(location, BIMR.state, hotspotDTO.getState());
+		checkAndAddProperty(location, BIMR.latitude, hotspot.getLatitude());
+		checkAndAddProperty(location, BIMR.longitude, hotspot.getLongitude());
+		checkAndAddProperty(location, BIMR.city, hotspot.getCity());
+		checkAndAddProperty(location, BIMR.country, hotspot.getCountry());
+		checkAndAddProperty(location, BIMR.state, hotspot.getState());
 
 		return location;
 	}
 
-	private static Resource createTweetResource(Model model, HotspotDTO hotspotDTO) {
-		Resource tweet = model.createResource(BIMR.getTweetUri(getUUID()));
+	private Resource createTweetResource(Model model, HotspotDTO hotspot) {
+		Resource tweet = model.createResource(BIMR.getTweetUri(""));
 
-		checkAndAddProperty(tweet, BIMR.tweetId, hotspotDTO.getTweetId());
+		checkAndAddProperty(tweet, BIMR.tweetId, hotspot.getTweetId());
 		checkAndAddProperty(tweet, BIMR.language, GeneralConstants.EN_LANGUAGE);
-		checkAndAddProperty(tweet, BIMR.text, hotspotDTO.getTweetMessage());
-		if (hotspotDTO.getUser() != null) {
-			checkAndAddProperty(tweet, VCARD.UID, hotspotDTO.getUser().getId());
-		}
-		checkAndAddProperty(tweet, BIMR.link, hotspotDTO.getLink());
-		checkAndAddProperty(tweet, BIMR.author, hotspotDTO.getAuthor());
+		checkAndAddProperty(tweet, BIMR.text, hotspot.getTweetMessage());
+		checkAndAddProperty(tweet, BIMR.link, hotspot.getLink());
+		checkAndAddProperty(tweet, BIMR.author, hotspot.getAuthor());
 
 		return tweet;
 	}
 
-	private static void checkAndAddProperty(Resource resource, Property property, String value) {
+	private void checkAndAddProperty(Resource resource, Property property, String value) {
 		if (value != null) {
 			resource.addProperty(property, value);
 		}
 	}
 
-	private static String getUUID() {
+	private String getUUID() {
 		return UUID.randomUUID().toString();
 	}
 

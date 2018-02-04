@@ -5,12 +5,14 @@ import java.util.List;
 public class HotspotDTO {
 	private String informationSourceId;
 	private List<String> birdSpecies;
-	private String locationName;
 	private String country;
 	private String state;
-	private String locality;
+	private String city;
 	private String latitude;
 	private String longitude;
+	private String locationId;
+	private String observationId;
+	private String hotspotId;
 	private String howMany;
 	private String observationDate;
 	private String tweetMessage;
@@ -35,14 +37,6 @@ public class HotspotDTO {
 		this.birdSpecies = birdSpecies;
 	}
 
-	public String getLocationName() {
-		return locationName;
-	}
-
-	public void setLocationName(String locationName) {
-		this.locationName = locationName;
-	}
-
 	public String getCountry() {
 		return country;
 	}
@@ -59,12 +53,12 @@ public class HotspotDTO {
 		this.state = state;
 	}
 
-	public String getLocality() {
-		return locality;
+	public String getCity() {
+		return city;
 	}
 
-	public void setLocality(String locality) {
-		this.locality = locality;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public String getLatitude() {
@@ -81,6 +75,30 @@ public class HotspotDTO {
 
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
+	}
+
+	public String getLocationId() {
+		return locationId;
+	}
+
+	public void setLocationId(String locationId) {
+		this.locationId = locationId;
+	}
+
+	public String getObservationId() {
+		return observationId;
+	}
+
+	public void setObservationId(String observationId) {
+		this.observationId = observationId;
+	}
+
+	public String getHotspotId() {
+		return hotspotId;
+	}
+
+	public void setHotspotId(String hotspotId) {
+		this.hotspotId = hotspotId;
 	}
 
 	public String getHowMany() {
@@ -138,4 +156,5 @@ public class HotspotDTO {
 	public void setUser(TwitterUserDTO user) {
 		this.user = user;
 	}
+
 }

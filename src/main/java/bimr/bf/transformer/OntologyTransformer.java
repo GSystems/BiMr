@@ -28,7 +28,7 @@ public class OntologyTransformer {
 			hotspot.setHowMany(String.valueOf(querySolution.get("howMany")));
 			hotspot.setInformationSourceId(String.valueOf(querySolution.get("http://xmlns.com/hotspot#informationSourceId")));
 			hotspot.setLink(String.valueOf(querySolution.get("link")));
-			hotspot.setLocality(String.valueOf(querySolution.get("locality")));
+			hotspot.setCity(String.valueOf(querySolution.get("city")));
 			hotspot.setState(String.valueOf(querySolution.get("state")));
 			hotspot.setUser(fromRdfToUserDTO(querySolution));
 			hotspot.setBirdSpecies(fromRdfToBirdSpecies(querySolution));

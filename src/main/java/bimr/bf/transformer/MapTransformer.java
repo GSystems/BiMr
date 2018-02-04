@@ -5,6 +5,7 @@ import java.util.List;
 
 import bimr.bfcl.dto.*;
 import bimr.df.model.*;
+import bimr.util.GeneralConstants;
 
 /**
  * @author GLK
@@ -125,7 +126,7 @@ public class MapTransformer {
 		hotspot.setTweetMessage(tweetDTO.getTweetMessage());
 		//TODO save integer instead of string
 		hotspot.setTweetId(tweetDTO.getTweetId().toString());
-		hotspot.setInformationSourceId("twitter");
+		hotspot.setInformationSourceId(GeneralConstants.TWITTER_SOURCE);
 		hotspot.setUser(tweetDTO.getUser());
 		return hotspot;
 	}
