@@ -1,37 +1,35 @@
 package bimr.ws;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
+import bimr.bfcl.BimrOntologyFacade;
+import bimr.bfcl.TweetScheduleFacade;
+import bimr.bfcl.dto.HotspotDTO;
 
-@Path("/helloworld")
+import javax.ejb.EJB;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.util.List;
+
+@Path("/bimr")
 public class BimrResource {
 
-	@Path("/helloworld") // --> Resource Identifier public class HelloWorldResource {
-	@GET // --> Process HTTP GET requests @Produces("text/plain") // --> MIME Media type
-	public String getMessage() {
-		System.out.println("here");
-		return "<html> <p>Hello World</p></html>";
+	@EJB
+	private BimrOntologyFacade bimrOntologyFacade;
+
+	@EJB
+	private TweetScheduleFacade tweetScheduleFacade;
+
+	@Path("/getAllHotspots")
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON})
+	public List<HotspotDTO> getAllHotspots() {
+		List<HotspotDTO> hotspots = bimrOntologyFacade.getAllHotspots();
+		return hotspots;
 	}
 
-//	@PUT
-//	@Consumes("text/plain")
-//	public void setMessage(String msg) {
-//
-//	}
+	@Path("/test")
+	@GET
+	public void test() {
+		tweetScheduleFacade.twitterApiCallScheduled();
+	}
+
 }
-
-
-//@Path("/message")
-//public class JSONService {
-//
-//	@GET
-//	@Path("/{param}")
-//	@Produces("application/json")
-//	public Response printMessage(@PathParam("param") String msg) {
-//		String result = "Restful example: " + msg;
-//		return Response.status(200).entity(result).build();
-//	}
-//
-//}

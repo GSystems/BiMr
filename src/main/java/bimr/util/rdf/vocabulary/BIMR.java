@@ -6,11 +6,12 @@ import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 
 public class BIMR {
-	private static final String BASE_URI = "http://xmlns.com/hotspot#%s";
-	private static final String USER_URI = "ttp://xmlns.com/bisp/user#%s";
-	private static final String OBSERVATION_URI = "http://xmlns.com/bisp/observation#%s";
-	private static final String LOCATION_URI = "http://xmlns.com/bisp/location#%s";
-	private static final String TWEET_URI = "http://xmlns.com/bisp/tweet#%s";
+	private static final String BASE_URI = "http://xmlns.com/bimr#%s";
+	private static final String HOTSPOT_URI = "http://xmlns.com/bimr/hotspot#%s";
+	private static final String USER_URI = "http://xmlns.com/bimr/user#%s";
+	private static final String OBSERVATION_URI = "http://xmlns.com/bimr/observation#%s";
+	private static final String LOCATION_URI = "http://xmlns.com/bimr/location#%s";
+	private static final String TWEET_URI = "http://xmlns.com/bimr/tweet#%s";
 
 
 	private static final Model m = ModelFactory.createDefaultModel();
@@ -22,7 +23,7 @@ public class BIMR {
 	public static final Property tweet;
 	public static final Property longitude;
 	public static final Property latitude;
-	public static final Property name;
+	public static final Property city;
 	public static final Property country;
 	public static final Property state;
 	public static final Property author;
@@ -35,12 +36,18 @@ public class BIMR {
 	public static final Property howMany;
 	public static final Property link;
 	public static final Property informationSourceId;
+	public static final Property hotspotId;
+	public static final Property hasGeoEnabled;
 
 	private BIMR() {
 	}
 
 	public static final String getBaseUri(final String id) {
 		return String.format(BASE_URI, id);
+	}
+
+	public static final String getHotspotUri(final String id) {
+		return String.format(HOTSPOT_URI, id);
 	}
 
 	public static final String getUserUri(final String id) {
@@ -67,7 +74,7 @@ public class BIMR {
 		tweet = m.createProperty(getBaseUri("tweet"));
 		longitude = m.createProperty(getBaseUri("longitude"));
 		latitude = m.createProperty(getBaseUri("latitude"));
-		name = m.createProperty(getBaseUri("name"));
+		city = m.createProperty(getBaseUri("city"));
 		country = m.createProperty(getBaseUri("country"));
 		state = m.createProperty(getBaseUri("state"));
 		author = m.createProperty(getBaseUri("author"));
@@ -80,5 +87,7 @@ public class BIMR {
 		howMany = m.createProperty(getBaseUri("howMany"));
 		date = m.createProperty(getBaseUri("date"));
 		informationSourceId = m.createProperty(getBaseUri("informationSourceId"));
+		hotspotId = m.createProperty(getBaseUri("hotspotId"));
+		hasGeoEnabled = m.createProperty(getBaseUri("hasGeoEnabled"));
 	}
 }

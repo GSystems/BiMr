@@ -108,6 +108,11 @@
 			<artifactId>jsr311-api</artifactId>
 			<version>1.1.1</version>
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.9.4</version>
+		</dependency>
 		<!--<dependency>-->
 			<!--<groupId>org.wildfly</groupId>-->
 			<!--<artifactId>wildfly-ejb-client-bom</artifactId>-->
@@ -175,25 +180,25 @@
 							<!--<resources>-->
 								<!--<resource>-->
 									<!--<properties>-->
-										<!--<jndi-name>java:/CoreDS</jndi-name>-->
+										<!--<jndi-city>java:/CoreDS</jndi-city>-->
 										<!--<enabled>true</enabled>-->
 										<!--<connection-url>jdbc:mysql://localhost:3306/BIMR</connection-url>-->
 										<!--<driver-class>com.mysql.cj.jdbc.Driver</driver-class>-->
-										<!--<driver-name>mysql</driver-name>-->
-										<!--<user-name>bimruser</user-name>-->
+										<!--<driver-city>mysql</driver-city>-->
+										<!--<user-city>bimruser</user-city>-->
 										<!--<password>bimrpassword</password>-->
 									<!--</properties>-->
 									<!--&lt;!&ndash;<datasources>&ndash;&gt;-->
-										<!--&lt;!&ndash;<datasource jndi-name="java:/CoreDS" pool-name="CoreDS" enabled="true" use-java-context="true">&ndash;&gt;-->
+										<!--&lt;!&ndash;<datasource jndi-city="java:/CoreDS" pool-city="CoreDS" enabled="true" use-java-context="true">&ndash;&gt;-->
 											<!--&lt;!&ndash;<connection-url>jdbc:mysql://localhost:3306/BIMR</connection-url>&ndash;&gt;-->
 											<!--&lt;!&ndash;<driver>mysql</driver>&ndash;&gt;-->
 											<!--&lt;!&ndash;<security>&ndash;&gt;-->
-												<!--&lt;!&ndash;<user-name>bimruser</user-name>&ndash;&gt;-->
+												<!--&lt;!&ndash;<user-city>bimruser</user-city>&ndash;&gt;-->
 												<!--&lt;!&ndash;<password>bimrpassword</password>&ndash;&gt;-->
 											<!--&lt;!&ndash;</security>&ndash;&gt;-->
 										<!--&lt;!&ndash;</datasource>&ndash;&gt;-->
 										<!--&lt;!&ndash;<drivers>&ndash;&gt;-->
-											<!--&lt;!&ndash;<driver name="mysql" module="com.mysql">&ndash;&gt;-->
+											<!--&lt;!&ndash;<driver city="mysql" module="com.mysql">&ndash;&gt;-->
 												<!--&lt;!&ndash;<xa-datasource-class>com.mysql.cj.jdbc.Driver</xa-datasource-class>&ndash;&gt;-->
 											<!--&lt;!&ndash;</driver>&ndash;&gt;-->
 										<!--&lt;!&ndash;</drivers>&ndash;&gt;-->

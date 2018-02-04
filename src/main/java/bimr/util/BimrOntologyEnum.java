@@ -1,6 +1,6 @@
 package bimr.util;
 
-public enum RdfEnum {
+public enum BimrOntologyEnum {
 
 	RDF_XML_FORMAT("RDF/XML-ABBREV"),
 	TURTLE_FORMAT("N-TRIPLES"),
@@ -8,11 +8,13 @@ public enum RdfEnum {
 	LOCATION("location"),
 	TWEET("tweet"),
 	USER("user"),
-	OBSERVATION("observation");
+	OBSERVATION("observation"),
+
+	GET_ALL_HOTSPOTS_QRY("SELECT * WHERE {?subject ?property ?object}");
 
 	private String code;
 
-	RdfEnum(String code) {
+	BimrOntologyEnum(String code) {
 		this.code = code;
 	}
 

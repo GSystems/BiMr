@@ -21,4 +21,9 @@ public class GeneralConstants {
 	public static final String MOCKED_HOTSPOTS_DATASET_ADDR = "http://localhost:3030/mocked-hotspots";
 	public static final String MOCKED_MIGRATIONS_DATASET_ADDR = "http://localhost:3030/mocked-migrations";
 
+	public static final String HOTSPOTS_DATASET_QRY_ADDR = "http://localhost:3030/hotspots/query";
+	public static final String MIGRATIONS_DATASET_QRY_ADDR = "http://localhost:3030/migrations/query";
+	public static final String MOCKED_HOTSPOTS_DATASET_QRY_ADDR = "http://localhost:3030/mocked-hotspots/query";
+	public static final String MOCKED_MIGRATIONS_DATASET_QRY_ADDR = "http://localhost:3030/mocked-migrations/query";
+
 }
