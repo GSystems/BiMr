@@ -10,7 +10,7 @@ var contentTitleStart = '<div id="content">'+
 var contentTitleEnd = '</h1>'+
     '<div id="bodyContent">'+
     '<p><b><h3>';
-var contentUserEnd = " via Twiiter</h3></b>";
+var contentUserEnd = " via Twitter</h3></b>";
 var contentTweetEnd = ".</p>" +
     '</div>'+
     '</div>';
@@ -47,31 +47,45 @@ function initMap() {
 
 function initData(value,timestamp = null)
 { 
-/*    var urlCos = javaUrl + document.getElementById('startDate').value + "/" + document.getElementById('endDate').value;
-    console.log(urlCos);
+    //var urlCos = javaUrl + document.getElementById('startDate').value + "/" + document.getElementById('endDate').value;
 
-    takeJson(urlCos,function(data){
+    takeJson("http://localhost:8080/BiMr/ws/bimr/getAllHotspots",function(data){
         if(data !== null){
-            console.log(data);
-            //map.data.addGeoJson(JSON.parse(data));
+            allHotspots = JSON.parse(data);
         } 
         else 
             console.log("Error");
-    });*/
+    });
 
 
-    loadJson(url + "data" + value + ".json", function(data){
+/*    loadJson(url + "data" + value + ".json", function(data){
         if(data !== null) {  
             allHotspots = JSON.parse(data);
         }
         else
             console.log("Error");
-    });
+    });*/
 }
 
 function getMigrationStartData()
 {
-    loadJson(url + "data" + 2 + ".json", function(data){
+
+    takeJson("http://localhost:8080/BiMr/ws/bimr/getAllMigrations", function(data){
+        if(data !== null){
+            migrationHotspots = JSON.parse(data);
+            let date = findEarliesDate(JSON.parse(data),'migration');
+            currentDate = date;
+            date = formatDate(date);
+            date = getTime(date);
+
+            currentHotspots = getHotspotstsByTime(allHotspots,date,"hotspot");
+            map.data.addGeoJson(currentHotspots);
+        } 
+        else 
+            console.log("Error");
+    });
+
+/*    loadJson(url + "data" + 2 + ".json", function(data){
         if(data !== null) {
 
             migrationHotspots = JSON.parse(data);
@@ -85,7 +99,7 @@ function getMigrationStartData()
         }
         else
             console.log("Error");
-    });
+    });*/
 
     map.data.setStyle(function(feature) {
         var number = feature.getProperty('howMany');
@@ -306,7 +320,20 @@ document.getElementById('buttonSelect').addEventListener("click", function(){
     allDays = [];
     clearWindowInfo();
     clearMap();
-    initData(1,start);
+    takeJson("http://localhost:8080/BiMr/ws/bimr/getMigrationsByDate/"+ start+"/" + end, function(data){
+        if(data !== null){
+            migrationHotspots = JSON.parse(data);
+            let date = findEarliesDate(JSON.parse(data),'migration');
+            currentDate = date;
+            date = formatDate(date);
+            date = getTime(date);
+
+            currentHotspots = getHotspotstsByTime(allHotspots,date,"hotspot");
+            map.data.addGeoJson(currentHotspots);
+        } 
+        else 
+            console.log("Error");
+    });
 })
 
 document.addEventListener('DOMContentLoaded', function() {
