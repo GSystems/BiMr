@@ -1,9 +1,6 @@
 package bimr.bf.transformer;
 
-import bimr.bfcl.dto.HotspotDTO;
-import bimr.bfcl.dto.LocationDTO;
-import bimr.bfcl.dto.MigrationDTO;
-import bimr.bfcl.dto.TwitterUserDTO;
+import bimr.bfcl.dto.*;
 import bimr.util.QueryConstants;
 import com.google.common.collect.ImmutableList;
 import org.apache.commons.lang3.tuple.Pair;
@@ -181,5 +178,47 @@ public class BimrRdfTransformer {
 			migrations.add(migration);
 		}
 		return migrations;
+	}
+
+	public static List<StatisticsDTO> fromRdfToStatisticsDTOList(ResultSet resultSet) {
+		List<StatisticsDTO> statisticsList = new ArrayList<>();
+
+		while (resultSet.hasNext()) {
+			QuerySolution querySolution = resultSet.next();
+
+			StatisticsDTO statistics = fromRdfToStatistics(querySolution);
+
+			statisticsList.add(statistics);
+		}
+
+		return statisticsList;
+	}
+
+	private static StatisticsDTO fromRdfToStatistics(QuerySolution querySolution) {
+		StatisticsDTO statistics = new StatisticsDTO();
+
+		if (String.valueOf(querySolution.get("bird_species")) != null) {
+			statistics.setBirdSpecies(String.valueOf(querySolution.get("bird_species")));
+		}
+		if (String.valueOf(querySolution.get("occurence_number")) != null) {
+			statistics.setCount(String.valueOf(querySolution.get("occurence_number")));
+		}
+		if (String.valueOf(querySolution.get("tweet_id")) != null) {
+			statistics.setTweetId(Long.valueOf(String.valueOf(querySolution.get("tweet_id"))));
+		}
+		if (String.valueOf(querySolution.get("tweet_text")) != null) {
+			statistics.setTweetMessage(String.valueOf(querySolution.get("tweet_text")));
+		}
+		if (String.valueOf(querySolution.get("tweet_language")) != null) {
+			statistics.setLanguage(String.valueOf(querySolution.get("tweet_language")));
+		}
+		if (String.valueOf(querySolution.get("author")) != null) {
+			statistics.setAuthor(String.valueOf(querySolution.get("author")));
+		}
+		if (String.valueOf(querySolution.get("link")) != null) {
+			statistics.setLink(String.valueOf(querySolution.get("link")));
+		}
+
+		return  statistics;
 	}
 }

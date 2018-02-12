@@ -2,6 +2,7 @@ package bimr.bfcl;
 
 import bimr.bfcl.dto.HotspotDTO;
 import bimr.bfcl.dto.MigrationDTO;
+import bimr.bfcl.dto.StatisticsDTO;
 
 import java.util.List;
 
@@ -11,11 +12,13 @@ import java.util.List;
 
 public interface BimrOntologyReadFacade {
 
-	List<HotspotDTO> getAllTweets();
+	List<StatisticsDTO> getAllTweets();
 
 	List<HotspotDTO> getAllHotspots();
 
 	List<MigrationDTO> getAllMigrations();
 
 	List<MigrationDTO> getMigrationsByDate(String startDate, String endDate);
+
+	List<StatisticsDTO> getMostObservedSpecies();
 }

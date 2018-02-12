@@ -2,6 +2,7 @@ package bimr.bf.transformer;
 
 import bimr.bfcl.dto.HotspotDTO;
 import bimr.bfcl.dto.MigrationDTO;
+import bimr.bfcl.dto.StatisticsDTO;
 import bimr.bfcl.dto.TwitterUserDTO;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -132,5 +133,37 @@ public class GeoJsonTransformer {
 			System.out.println("can't save json object: "+ e.toString());
 		}
 		return migrationsCollecion;
+	}
+
+	public static JSONObject fromStatisticsToJsonCollection(List<StatisticsDTO> statisticsList) {
+		JSONObject statisticsCollection = new JSONObject();
+
+		try {
+			statisticsCollection.put("type", "FeatureCollection");
+			JSONArray featureList = new JSONArray();
+
+			for (StatisticsDTO statistics : statisticsList) {
+				JSONObject feature = new JSONObject();
+				JSONObject properties = new JSONObject();
+
+				properties.put("birdSpecies", statistics.getBirdSpecies());
+				properties.put("count", statistics.getCount());
+				properties.put("tweetId", statistics.getTweetId());
+				properties.put("tweetMessage", statistics.getTweetMessage());
+				properties.put("language", statistics.getLanguage());
+				properties.put("author", statistics.getAuthor());
+				properties.put("link", statistics.getLink());
+				properties.put("type", feature);
+
+				feature.put("properties", properties);
+				feature.put("type", "Feature");
+
+				featureList.put(feature);
+				statisticsCollection.put("features", featureList);
+			}
+		} catch (JSONException e) {
+			System.out.println("can't save json object: "+ e.toString());
+		}
+		return statisticsCollection;
 	}
 }

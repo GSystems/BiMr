@@ -6,18 +6,14 @@ public enum BimrOntologyEnum {
 	TURTLE_FORMAT("N-TRIPLES"),
 
 	GET_ALL_TWEETS_QRY(
-			  "PREFIX bimr: <http://xmlns.com/bimr#>\n" + "PREFIX user: <http://xmlns.com/bimr/user#>\n"
-					  + "PREFIX tweet: <http://xmlns.com/bimr/tweet#>\n"
-					  + "PREFIX location: <http://xmlns.com/bimr/location#>\n"
-					  + "PREFIX observation: <http://xmlns.com/bimr/observation#>\n"
-					  + "PREFIX hotspot: <http://xmlns.com/bimr/hotspot#>\n" + "\n"
-					  + "SELECT DISTINCT ?tweet_id ?tweet_text ?tweet_language ?author ?link\n"
-					  + "WHERE {\n" +
-					  "    ?tweet  bimr:id ?tweet_id;\n"
-					  + "          tweet:text ?tweet_text;\n"
+			  "PREFIX bimr: <http://xmlns.com/bimr#>\n" + "PREFIX tweet: <http://xmlns.com/bimr/tweet#>\n"
+					  + "\n"
+					  + "SELECT DISTINCT ?tweet_id ?tweet_text ?tweet_language ?author ?link\n" + "WHERE {\n"
+					  + "  ?tweet  tweet:text ?tweet_text;\n"
+					  + "          #tweet:tweetId ?tweet_id;\n"
 					  + "          tweet:language ?tweet_language.\n"
-					  + "  OPTIONAL { ?tweet tweet:author ?author }\n"
-					  + "  OPTIONAL { ?tweet tweet:link ?link }"
+					  + "  OPTIONAL { ?tweet tweet:author ?author; }\n"
+					  + "  OPTIONAL { ?tweet tweet:link ?link; }\n" + "}\n"
 	),
 
 	GET_ALL_HOTSPOTS_QRY(

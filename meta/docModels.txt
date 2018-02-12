@@ -1,0 +1,53 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:bimr="http://xmlns.com/bimr#"
+    xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+  <rdf:Description rdf:about="http://xmlns.com/bimr/user#143">
+    <vcard:NAME>Sergei Gurenko</vcard:NAME>
+    <vcard:UID>143</vcard:UID>
+    <vcard:NICKNAME>sergurk</vcard:NICKNAME>
+    <vcard:ADR>Dublin</vcard:ADR>
+    <vcard:EMAIL>sergurk@gmail.com</vcard:EMAIL>
+    <bimr:hasGeoEnabled>true</bimr:hasGeoEnabled>
+  </rdf:Description>
+</rdf:RDF>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:bimr="http://xmlns.com/bimr#">
+  <rdf:Description rdf:about="http://xmlns.com/bimr/tweet#43">
+    <bimr:tweetId>43</bimr:tweetId>
+    <bimr:language>en</bimr:language>
+    <bimr:text>This adorable Killdeer was making the most of a very overcast day</bimr:text>
+  </rdf:Description>
+</rdf:RDF>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:bimr="http://xmlns.com/bimr#">
+  <rdf:Description rdf:about="http://xmlns.com/bimr/location#cab85605-9b13-4fb9-bd1f-af80255978eb">
+    <bimr:latitude>53.44</bimr:latitude>
+    <bimr:longitude>31.10</bimr:longitude>
+    <bimr:locationId>2b13c2cc-c4fb-4e5e-9df7-c6524e85e9e7</bimr:locationId>
+  </rdf:Description>
+</rdf:RDF>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:bimr="http://xmlns.com/bimr#">
+  <rdf:Description rdf:about="http://xmlns.com/bimr/observation#38c2af55-1982-4e90-a3b5-5736197e0925">
+    <bimr:tweetId>43</bimr:tweetId>
+    <bimr:locationId>2b13c2cc-c4fb-4e5e-9df7-c6524e85e9e7</bimr:locationId>
+    <bimr:birdSpecies>Killdeer</bimr:birdSpecies>
+    <bimr:date>Mon Jan 08 00:00:00 EET 2018</bimr:date>
+    <bimr:informationSourceId>twitter</bimr:informationSourceId>
+    <bimr:observationId>83ac49ae-9367-4578-8602-95280715480d</bimr:observationId>
+  </rdf:Description>
+</rdf:RDF>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:bimr="http://xmlns.com/bimr#"
+    xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+  <rdf:Description rdf:about="http://xmlns.com/bimr/hotspot#ac16d15a-f9b4-4907-8d18-ea828bc2891a">
+    <vcard:UID>143</vcard:UID>
+    <bimr:observationId>83ac49ae-9367-4578-8602-95280715480d</bimr:observationId>
+    <bimr:hotspotId>7dbdc82c-0912-4e0b-a6c1-cbb07f872406</bimr:hotspotId>
+  </rdf:Description>
+</rdf:RDF>
