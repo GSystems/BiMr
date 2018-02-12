@@ -118,12 +118,58 @@ function getHotspotstsByTime(data,timestamp,type)
 	return hotspots;
 }
 
-function separateHotspots(data)
+function findNextDate(type)
 {
-	let hotspots = new Object();
-	hotspots.type = "FeatureCollection";
-	hotspots.features = [];
+	let date = new Date("2030-01-01");
+
+
+	for(let i = 0 ; i<migrationHotspots.features.length; i++)
+	{
+		let hotspot = migrationHotspots.features[i];
+		let nowDate = new Object();
+
+		if(type == "migration")
+		{
+			nowDate.Year  = hotspot.properties.fromHotspot.observationDate.year;
+			nowDate.Month = hotspot.properties.fromHotspot.observationDate.monthValue;
+			nowDate.Day   = hotspot.properties.fromHotspot.observationDate.dayOfMonth;
+
+		} else {
+			nowDate.Year  = hotspot.properties.observationDate.year;
+			nowDate.Month = hotspot.properties.observationDate.monthValue;
+			nowDate.Day   = hotspot.properties.observationDate.dayOfMonth;
+		}
+		
+		let curDate = nowDate.Year + "-" + nowDate.Month + "-" + nowDate.Day;
+		let newDate = new Date(curDate);
+
+		if(newDate < date && currentDate < newDate){
+			date = newDate;
+		}
+
+		if( type == "migration")
+		{
+			nowDate.Year  = hotspot.properties.toHotspot.observationDate.year;
+			nowDate.Month = hotspot.properties.toHotspot.observationDate.monthValue;
+			nowDate.Day   = hotspot.properties.toHotspot.observationDate.dayOfMonth;
+
+		} else {
+			nowDate.Year  = hotspot.properties.observationDate.year;
+			nowDate.Month = hotspot.properties.observationDate.monthValue;
+			nowDate.Day   = hotspot.properties.observationDate.dayOfMonth;
+		}
+
+		curDate = nowDate.Year + "-" + nowDate.Month + "-" + nowDate.Day;
+		newDate = new Date(curDate);
+
+		if(newDate < date && currentDate < newDate){
+			date = newDate;
+		}
+	}
+
+	return date;
 }
+
 
 function findEarliesDate(data, type)
 {
@@ -173,7 +219,14 @@ function formatDate(date) {
 function findNextStep(date)
 {
 	tempSpots = getHotspotstsByTime(allHotspots,date,'hostpot');
-	console.log(tempSpots.features.length);
+	
+	if(tempSpots.features.length == 0){
+		skip = true;
+		return;
+	} else{
+		skip = false;
+	}
+
 	for(let j = 0; j<tempSpots.features.length; j++)
 	{
 		let spotId = tempSpots.features[j].properties.hotspotId;

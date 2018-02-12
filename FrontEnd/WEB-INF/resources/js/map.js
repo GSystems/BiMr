@@ -21,6 +21,7 @@ var allHotspots;
 var currentHotspots;
 var currentDate;
 var migrationHotspots;
+var skip = false;
 
 function sortByKey(a,b)
 {
@@ -98,20 +99,34 @@ function getMigrationStartData()
     initWindowInfo();
 }
 
+function showAllHotSpots()
+{
+    clearWindowInfo();
+    clearMap();
+    map.data.addGeoJson(allHotspots);
+}
+
 function getMigrations()
 {
     loadJson(url + "data" + 2 + ".json", function(data){
         if(data !== null) {
 
-            currentDate.setDate(currentDate.getDate() + 1);
+            //console.log(findNextDate('migration'));
+            //currentDate.setDate(currentDate.getDate() + 1);
+            currentDate = findNextDate('migration');
             let date = formatDate(currentDate);
             date = getTime(date);
 
+
             console.log(currentDate);
             findNextStep(date);
-            console.log(currentHotspots);
-            //currentHotspots = getHotspotstsByTime(allHotspots,date);
-            map.data.addGeoJson(currentHotspots);
+            console.log(currentHotspots.features.length);
+
+            if(!skip)
+            {
+                map.data.addGeoJson(currentHotspots);
+            }
+
         }
         else
             console.log("Error");
@@ -254,14 +269,11 @@ function initWindowInfo(){
 
 
 function startAction(){
-    //value = document.getElementById("myRange").value;
     clearMap();
     clearWindowInfo();
 
     getMigrations();
 
-/*    for (var k in allDays) {
-    }*/
     
 
     //initData(value);
@@ -274,7 +286,7 @@ document.getElementById("button").addEventListener("click", function(){
     var intervalId = setInterval(function(){
         console.log("iteration: " + timesRun);
         timesRun++;
-        if(timesRun === 90)
+        if(timesRun === 19)
             clearInterval(intervalId);
         startAction();
     } , 500);
@@ -319,4 +331,16 @@ function getTime(date)
     timestamp.Day = options[2];
 
     return timestamp;
+}
+
+function changeDataType()
+{
+    let value = document.getElementById('dataType').value;
+    if(value == 2) {
+        showAllHotSpots();
+    } else {
+        clearWindowInfo();
+        clearMap();
+        getMigrationStartData();   
+    }
 }
