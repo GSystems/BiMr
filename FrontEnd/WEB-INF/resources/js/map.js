@@ -113,6 +113,25 @@ function getMigrationStartData()
     initWindowInfo();
 }
 
+function getMigrationSelectStart(timestamp)
+{
+    loadJson(url + "data" + 2 + ".json", function(data){
+        if(data !== null) {
+
+            migrationHotspots = JSON.parse(data);
+            let date = findEarliesDate(JSON.parse(data),'migration');
+            currentDate = date;
+            date = formatDate(date);
+            date = getTime(date);
+
+            currentHotspots = getHotspotstsByTime(allHotspots,date,"hotspot");
+            map.data.addGeoJson(currentHotspots);
+        }
+        else
+            console.log("Error");
+    });
+}
+
 function showAllHotSpots()
 {
     clearWindowInfo();
@@ -314,7 +333,8 @@ document.getElementById('buttonSelect').addEventListener("click", function(){
     let divMax = document.getElementById('censusMax');
     divMax.innerHTML = end;
 
-
+    initData();
+    getMigrationSelectStart(start);
 /*    allDays = [];
     clearWindowInfo();
     clearMap();
