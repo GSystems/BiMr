@@ -217,10 +217,6 @@
             exchanging valuable information about tweets themselves and the authors. All stored data is in RDF format that
              combine the most important information regarding a tweet.
           </p>
-
-          <pre class="language-xml"><code class="language-xml">
-            
-          </code></pre>
           
           <h2>Data visualization</h2>
           <p>
@@ -237,15 +233,46 @@
           <pre class=" language-json"><code class=" language-json">
             {
               "type": "FeatureCollection",
-              "features": [
-                {
-                  "type": "Feature",
-                  "properties": {
-                    "timestamp": "2017-12-13",
-                    "number": 18,
-                    "information": "You've never seen a hawk do this!", 
-                    "commonName": "Hawk",
-                    "user": "Arnold Sheppard"
+              {
+                "geometry": {
+                    "coordinates": [
+                        22.15,
+                        37.8
+                    ],
+                    "type": "Point"
+                },
+                "type": "Feature",
+                "properties": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 14,
+                        "dayOfWeek": "SUNDAY",
+                        "dayOfYear": 14,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                            }
+                          },
+                          "hotspotId": "c62cb150-017a-4268-a2c3-d19d3b087ebe",
+                          "tweetMessage": "The Killdeer found one of the only open water spaces today in this crack",
+                          "informationSourceId": "twitter",
+                          "language": "en",
+                          "howMany": 1,
+                          "user": {
+                              "name": "Sokratis Papastathopoulos",
+                              "id": 147
+                          },
+                          "tweetId": 47,
+                          "birdSpeciesList": [
+                              "Killdeer"
+                          ]
+                      }
                   },
                   "geometry": {
                     "type": "Point",
