@@ -193,6 +193,135 @@
           </p>
 
 
+          <h2> Internal Data Models </h2>
+
+          <p> The Tweet is the essential entity in our application, therefore the comunication between modules implies sending and receiving information about tweets and their owners. All the stored data will be in the RDF/XML format, aiming to model the necessary information about a tweet. </p>
+
+          <pre class=" language-xml"><code class=" language-xml">
+            <rdf:RDF
+              xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+              xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#"
+              xmlns:bimr="http://xmlns.com/bimr#">
+              <rdf:Description rdf:about="http://xmlns.com/bimr/user#132">
+                <vcard:NAME>Markus Berg</vcard:NAME>
+                <vcard:UID>131242</vcard:UID>
+                <vcard:ADR>Ohio</vcard:ADR>
+                <vcard:EMAIL>marksbrg@gmail.com</vcard:EMAIL>
+                <vcard:NICKNAME>MarkB</vcard:NICKNAME>
+                <bimr:hasGeoEnabled>true</bimr:hasGeoEnabled>
+              </rdf:Description>
+            </rdf:RDF>
+
+          </pre></code>
+
+          <figcaption style="text-align: center"> RDF/XML data format modelling an user </figcaption>
+
+          <pre class=" language-xml"><code class=" language-xml">
+          <rdf:RDF
+              xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+              xmlns:bimr="http://xmlns.com/bimr#"
+              xmlns:tweet="http://xmlns.com/tweet#">
+            <rdf:Description rdf:about="http://xmlns.com/bimr/tweet#32">
+              <bimr:id>32</bimr:id>
+              <tweet:language>en</tweet:language>
+              <tweet:text>Eagle Friday! This pair of eagles are our observation today.</tweet:text>
+              <tweet:link>https://tinyurl.com/214adfjkhv4a1</tweet:link>
+              <tweet:author>Marcel Ron</tweet:author>
+            </rdf:Description>
+          </rdf:RDF>
+
+          </pre></code>
+
+          <figcaption style="text-align: center"> RDF/XML data format modelling a tweet </figcaption>
+
+
+          <pre class=" language-xml"><code class=" language-xml">
+
+            <rdf:RDF
+                xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                xmlns:location="http://xmlns.com/location#">
+              <rdf:Description rdf:about="http://xmlns.com/bimr/location#935a5197-4eef-40e6-957a-d2f90eaf2da9">
+                <location:latitude>57.52</location:latitude>
+                <location:longitude>12.81</location:longitude>
+                <location:city>Ildaho</location:city>
+                <location:state>Ohio</location:state>
+                <location:country>USA</location:country>
+              </rdf:Description>
+            </rdf:RDF>
+
+          </pre></code>
+
+          <figcaption style="text-align: center"> RDF/XML data format modelling a location </figcaption>
+
+
+          <pre class=" language-xml"><code class=" language-xml">
+
+            <rdf:RDF
+              xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+              xmlns:bimr="http://xmlns.com/bimr#"
+              xmlns:location="http://xmlns.com/location#"
+              xmlns:tweet="http://xmlns.com/tweet#"
+              xmlns:observation="http://xmlns.com/observation#">
+            <rdf:Description rdf:about="http://xmlns.com/bimr/observation#a653e810-9b83-4f43-a21b-cfaa84e789e1">
+              <observation:birdSpecies>eagles</bimr:birdSpecies>
+              <observation:birdSpecies>hawks</bimr:birdSpecies>
+              <observation:date>Fri Jan 05 00:00:00 EET 2018</bimr:date>
+              <observation:informationSourceId>twitter</bimr:informationSourceId>
+              <observation:location rdf:about="http://xmlns.com/bimr/location#935a5197-4eef-40e6-957a-d2f90eaf2da9">
+                <location:latitude>57.52</location:latitude>
+                  <location:longitude>12.81</location:longitude>
+                  <location:city>Ildaho</location:city>
+                  <location:state>Ohio</location:state>
+                  <location:country>USA</location:country>
+                </rdf:Description>
+              <observation:tweet rdf:parseType="Resource">
+                <tweet:tweetId>32</bimr:tweetId>
+                <tweet:text>Eagle Friday! This pair of eagles and hawsks are our observation today.</tweet:text>
+              </rdf:Description>
+            </rdf:Description>
+          </rdf:RDF>
+
+          </pre></code>
+          <figcaption style="text-align: center"> RDF/XML data format modelling an observation </figcaption>
+
+
+          <pre class=" language-xml"><code class=" language-xml">
+            <rdf:RDF
+                xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                xmlns:bimr="http://xmlns.com/bimr#"
+                xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#"
+                xmlns:location="http://xmlns.com/location#"
+                xmlns:tweet="http://xmlns.com/tweet#"
+                xmlns:observation="http://xmlns.com/observation#">
+              <rdf:Description rdf:about="http://xmlns.com/bimr/hotspot#69003615-2335-4b59-930c-44ce1eb265d2">
+                  <rdf:Description rdf:about="http://xmlns.com/bimr/user#132">
+                  <vcard:NAME>Markus Berg</vcard:NAME>
+                  <vcard:UID>131242</vcard:UID>
+                  <vcard:ADR>Ohio</vcard:ADR>
+                  <vcard:EMAIL>marksbrg@gmail.com</vcard:EMAIL>
+                  <vcard:NICKNAME>MarkB</vcard:NICKNAME>
+                  <bimr:hasGeoEnabled>true</bimr:hasGeoEnabled>
+                </rdf:Description>
+                <rdf:Description rdf:about="http://xmlns.com/bimr/observation#a653e810-9b83-4f43-a21b-cfaa84e789e1">
+                  <observation:birdSpecies>eagles</bimr:birdSpecies>
+                  <observation:birdSpecies>hawks</bimr:birdSpecies>
+                  <observation:date>Fri Jan 05 00:00:00 EET 2018</bimr:date>
+                  <observation:informationSourceId>twitter</bimr:informationSourceId>
+                  <observation:location rdf:parseType="Resource">
+                    <location:longitude>-102.2</location:longitude>
+                    <location:latitude>80.21</location:latitude>
+                  </observation:location>
+                  <observation:tweet rdf:about="http://xmlns.com/bimr/tweet#32">
+                    <tweet:tweetId>32</bimr:tweetId>
+                    <tweet:text>Eagle Friday! This pair of eagles and hawsks are our observation today.</tweet:text>
+                  </rdf:about>
+                </rdf:Description>
+              </rdf:Description>
+            </rdf:RDF>
+          
+          </pre></code>
+          <figcaption style="text-align: center"> RDF/XML data format modelling a hotspot </figcaption>
+
           <figure typeof="sa:Image">
             <img src="./BiMr Project_files/SequenceDiagram.png" width="950" height="700">
             <figcaption style="text-align: center">
@@ -237,92 +366,157 @@
           <ul>
             <li>/tweets</li>
             <ul>
-              <li>/all – returns all the tweets stored by the application;</li>
-              <li>/date/from/{date} – returns all the tweets from the respective date stored by the application;</li>
-              <li>/date/between?{startDate}&{endDate} – returns all the tweets from the time interval stored by the application;</li>
+              <li>/ws/bimr/getAllTweets – returns all the tweets stored by the application;</li>
             </ul>
             <li>/data</li>
               <ul>
-                <li>/obs /recent – returns the data collected by the application in the last  seven days;</li>
-                <li>/obs/location/?{lat}&{lng}&{range}– returns all the data collected by the application at the specified location and in the range specified (km) ;</li>
-                <li>/obs/date?{datetime} – returns the data collected by the application on the specified date;</li>
-                <li>/obs/date?{startDate}&{endDate} – returns the data collected by the application between the specified interval;</li>
-                <li>/obs/bird?{commonName} – return the data about the birds specified by the ‘commonName’ argument;</li>
+                <li>/ws/bimr/getAllMigrations – returns the data collected by the application in the last  seven days;</li>
+                <li>/ws/bimr/getMigrationsByDate{startDate}/{endDate}– returns all the data collected by the application at the specified location and in the range specified (km) ;</li>
               </ul>
             <li>/stats</li>
             <ul>
-              <li>/birds/ count?{commonName} – returns all the number of data about the birds with the specfied name;</li>
-              <li>/location?{lat}&{lng} – returns a json with the information about the birds that have spotted at the location within 50 km, like the total number of birds spotted, the composition of the migration, etc; </li>
+              <li>/ws/bimr/getMostObservedSpecies - returns a list with all species ordered by the number of their appeareance in tweets
             </ul>
           </ul>
         </section>
 
           <p>
-            The representation of the data coming from the Open API:
+            The representation of a migration coming from the Open API:
           </p>
           <pre class=" language-json"><code class=" language-json">
-{
-  lng: -76.5190244,
-  lat: 42.4618954,
-  locName: "Hog Hole (Allan H. Treman State Marine Park)",
-  howMany: 2,
-  sciName: "Corvus brachyrhynchos",
-  locationPrivate: false,
-  obsDt: "2017-11-25 13:42",
-  comName: "American Crow",
-}
-          </code></pre>
-
-          </code></pre>
-          <h2>External data sources</h2>
-            <p>
-              <b><a href="https://dev.twitter.com/streaming/public">Twitter Public Streaming API</a></b><br>
-               The following streams offer samples of the public data flowing through Twitter.
-              Once applications establish a connection to a streaming endpoint, they are delivered a feed of Tweets,
-              without needing to worry about polling or exceeding REST API quotas.
-            </p>
-
-            <p>
-               <b><a href="http://twitter4j.org/">Twitter4J</a></b><br>
-               Is an open source Java library used to integrate our application with Twitter services.
-            </p>
-
-        <b><a href="https://developers.google.com/maps/documentation/geocoding/intro">The Google Maps Geocoding API</a></b><br>
-          Used for retrieving information about a place mentioned in a tweet, such as latitude and longitude.
-
-          <pre class=" language-json"><code class=" language-json">
-{
-    "formatted_address": "Iasi, Romania",
-    "geometry": {
-        "bounds": {
-            "northeast": {
-                "lat": 47.2274375,
-                "lng": 27.6969839
-            },
-            "southwest": {
-                "lat": 47.0848370999999,
-                "lng": 27.4769569
+    {
+      "features": [
+            {
+                "geometry": {
+                    "coordinates": [
+                        7.17,
+                        58.68
+                    ],
+                    "type": "Point"
+                },
+                "type": "Feature",
+                "properties": {
+                    "migrationId": "c557c9b3-3edf-493d-94ec-b2ad278cf8c5",
+                    "toHotspot": {
+                        "observationDate": {
+                            "year": 2018,
+                            "month": "JANUARY",
+                            "dayOfMonth": 5,
+                            "dayOfWeek": "FRIDAY",
+                            "dayOfYear": 5,
+                            "monthValue": 1,
+                            "nano": 123000000,
+                            "hour": 9,
+                            "minute": 30,
+                            "second": 10,
+                            "chronology": {
+                                "id": "ISO",
+                                "calendarType": "iso8601"
+                            }
+                        },
+                        "hotspotId": "4b9c5017-b016-44d0-9677-b71190a826d5",
+                        "geometry": {
+                            "coordinates": [
+                                12.81,
+                                57.52
+                            ],
+                            "type": "Point"
+                        },
+                        "birdSpeciesList": [
+                            "Eagle"
+                        ]
+                    },
+                    "species": "Eagle",
+                    "toHotspotId": "4b9c5017-b016-44d0-9677-b71190a826d5",
+                    "fromHotspot": {
+                        "observationDate": {
+                            "year": 2018,
+                            "month": "JANUARY",
+                            "dayOfMonth": 3,
+                            "dayOfWeek": "WEDNESDAY",
+                            "dayOfYear": 3,
+                            "monthValue": 1,
+                            "nano": 123000000,
+                            "hour": 9,
+                            "minute": 30,
+                            "second": 10,
+                            "chronology": {
+                                "id": "ISO",
+                                "calendarType": "iso8601"
+                            }
+                        },
+                        "hotspotId": "356f4742-907d-4ae1-a02c-c1df2f5ddd09",
+                        "geometry": {
+                            "coordinates": [
+                                7.17,
+                                58.68
+                            ],
+                            "type": "Point"
+                        },
+                        "birdSpeciesList": [
+                            "Eagle"
+                        ]
+                    },
+                    "fromHotpsotId": "356f4742-907d-4ae1-a02c-c1df2f5ddd09"
+                }
             }
-        },
-        "location": {
-            "lat": 47.1584549,
-            "lng": 27.6014418
-        },
-        "location_type": "APPROXIMATE",
-        "viewport": {
-            "northeast": {
-                "lat": 47.2274375,
-                "lng": 27.6969839
-            }
+          }
         }
-    }
-}
           </code></pre>
-          <figcaption style="text-align: center">
-            Response received from the Google Geocoding API for a specific city
-          </figcaption>
-        <p></p>
 
+          </code></pre>
+
+          <p>
+            The representation of a hotspot coming from the Open API:
+          </p>
+          <pre class=" language-json"><code class=" language-json">
+
+            {
+              "features": [
+                  {
+                      "geometry": {
+                          "coordinates": [
+                              22.15,
+                              37.8
+                          ],
+                          "type": "Point"
+                      },
+                      "type": "Feature",
+                      "properties": {
+                          "observationDate": {
+                              "year": 2018,
+                              "month": "JANUARY",
+                              "dayOfMonth": 14,
+                              "dayOfWeek": "SUNDAY",
+                              "dayOfYear": 14,
+                              "monthValue": 1,
+                              "nano": 123000000,
+                              "hour": 9,
+                              "minute": 30,
+                              "second": 10,
+                              "chronology": {
+                                  "id": "ISO",
+                                  "calendarType": "iso8601"
+                              }
+                          },
+                          "hotspotId": "c62cb150-017a-4268-a2c3-d19d3b087ebe",
+                          "tweetMessage": "The Killdeer found one of the only open water spaces today in this crack",
+                          "informationSourceId": "twitter",
+                          "language": "en",
+                          "howMany": 1,
+                          "user": {
+                              "name": "Sokratis Papastathopoulos",
+                              "id": 147
+                          },
+                          "tweetId": 47,
+                          "birdSpeciesList": [
+                              "Killdeer"
+                          ]
+                      }
+                  }
+              }
+
+          </code></pre>
 
             <h2>Conclusion</h2>
             <p>The application will provide a real-time migration map of different species of birds across the globe with the help of live data in the form of tweets from twitter and also from stable data coming from the eBird API for people who love birds or who have a hooby in spotting birds or those of whom just have curiosity about the birds migration. </p>
