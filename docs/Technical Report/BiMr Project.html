@@ -334,24 +334,12 @@
             All the endpoints of the API will require GET methods to be accessed. Some example of these endpoints: 
           </p>
           <ul>
-            <li>/tweets</li>
+            <li>/bimr</li>
             <ul>
-              <li>/all – returns all the tweets stored by the application;</li>
-              <li>/date/from/{date} – returns all the tweets from the respective date stored by the application;</li>
-              <li>/date/between?{startDate}&{endDate} – returns all the tweets from the time interval stored by the application;</li>
-            </ul>
-            <li>/data</li>
-              <ul>
-                <li>/obs /recent – returns the data collected by the application in the last  seven days;</li>
-                <li>/obs/location/?{lat}&{lng}&{range}– returns all the data collected by the application at the specified location and in the range specified (km) ;</li>
-                <li>/obs/date?{datetime} – returns the data collected by the application on the specified date;</li>
-                <li>/obs/date?{startDate}&{endDate} – returns the data collected by the application between the specified interval;</li>
-                <li>/obs/bird?{commonName} – return the data about the birds specified by the ‘commonName’ argument;</li>
-              </ul>
-            <li>/stats</li>
-            <ul>
-              <li>/birds/ count?{commonName} – returns all the number of data about the birds with the specfied name;</li>
-              <li>/location?{lat}&{lng} – returns a json with the information about the birds that have spotted at the location within 50 km, like the total number of birds spotted, the composition of the migration, etc; </li>
+              <li>/getAllTweets – returns all the tweets stored by the application;</li>
+              <li>/getAllHotspots – returns all the hotspots stored by the application;</li>
+              <li>/getAllMigrations – returns all the bird migrations stored by the application;</li>
+              <li>/getMigrationsByDate/{startDate}/{endDate} – returns migrations between the  desired interval set by 2 dates</li>
             </ul>
           </ul>
         </section>
@@ -360,16 +348,83 @@
             The representation of the data coming from the Open API:
           </p>
           <pre class=" language-json"><code class=" language-json">
-{
-  lng: -76.5190244,
-  lat: 42.4618954,
-  locName: "Hog Hole (Allan H. Treman State Marine Park)",
-  howMany: 2,
-  sciName: "Corvus brachyrhynchos",
-  locationPrivate: false,
-  obsDt: "2017-11-25 13:42",
-  comName: "American Crow",
-}
+            {
+              "features": [
+                  {
+                      "geometry": {
+                          "coordinates": [
+                              7.17,
+                              58.68
+                          ],
+                          "type": "Point"
+                      },
+                      "type": "Feature",
+                      "properties": {
+                          "migrationId": "c557c9b3-3edf-493d-94ec-b2ad278cf8c5",
+                          "toHotspot": {
+                              "observationDate": {
+                                  "year": 2018,
+                                  "month": "JANUARY",
+                                  "dayOfMonth": 5,
+                                  "dayOfWeek": "FRIDAY",
+                                  "dayOfYear": 5,
+                                  "monthValue": 1,
+                                  "nano": 123000000,
+                                  "hour": 9,
+                                  "minute": 30,
+                                  "second": 10,
+                                  "chronology": {
+                                      "id": "ISO",
+                                      "calendarType": "iso8601"
+                                  }
+                              },
+                              "hotspotId": "4b9c5017-b016-44d0-9677-b71190a826d5",
+                              "geometry": {
+                                  "coordinates": [
+                                      12.81,
+                                      57.52
+                                  ],
+                                  "type": "Point"
+                              },
+                              "birdSpeciesList": [
+                                  "Eagle"
+                              ]
+                          },
+                          "species": "Eagle",
+                          "toHotspotId": "4b9c5017-b016-44d0-9677-b71190a826d5",
+                          "fromHotspot": {
+                              "observationDate": {
+                                  "year": 2018,
+                                  "month": "JANUARY",
+                                  "dayOfMonth": 3,
+                                  "dayOfWeek": "WEDNESDAY",
+                                  "dayOfYear": 3,
+                                  "monthValue": 1,
+                                  "nano": 123000000,
+                                  "hour": 9,
+                                  "minute": 30,
+                                  "second": 10,
+                                  "chronology": {
+                                      "id": "ISO",
+                                      "calendarType": "iso8601"
+                                  }
+                              },
+                              "hotspotId": "356f4742-907d-4ae1-a02c-c1df2f5ddd09",
+                              "geometry": {
+                                  "coordinates": [
+                                      7.17,
+                                      58.68
+                                  ],
+                                  "type": "Point"
+                              },
+                              "birdSpeciesList": [
+                                  "Eagle"
+                              ]
+                          },
+                          "fromHotpsotId": "356f4742-907d-4ae1-a02c-c1df2f5ddd09"
+                      }
+                  }
+                }
           </code></pre>
 
           </code></pre>
