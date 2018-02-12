@@ -181,7 +181,7 @@
           <figure typeof="sa:Image">
             <img src="./BiMr Project_files/bpmn.svg" width="950" height="700">
             <figcaption style="text-align: center">
-              Figure 3. Class Diagram
+              Figure 3. BPMN Diagram
             </figcaption>
           </figure>
 
@@ -194,6 +194,71 @@
             To filter the tweets that meets this criterias we will analyse each tweet's content using <a href="https://nlp.stanford.edu/">Stanford NLP</a> TokensRegex framework, defining different patterns over text, patterns which match with the description of a location/bird.
             In the case of data provided by the <a href="https://confluence.cornell.edu/display/CLOISAPI/eBird+API+1.1">eBird API</a> the things are way simpler because the API provides all information needed by our application.
           </p>
+
+               <p> In order to find out if a simple word represents a name for a bird species or any other interesting entity (like person, link, location, author, etc.) we manually trained a model. These data represents the classifier in action. Obviously, some assumptions are wrong, because we need a lot more (manually) annotated tweets to obtain good results. From our calculations, we can obtain 65% rate of success with this classifier. </p>
+
+            <xmp>
+                [hawk] pos: [NN] ne: [BISP]
+                [today] pos: [NN] ne: [TIME]
+                [winter] pos: [NN] ne: [DATE]
+                [hawk] pos: [NN] ne: [BISP]
+                [hawk] pos: [NN] ne: [BISP]
+                [White-throated] pos: [JJ] ne: [BISP]
+                [Osprey] pos: [NNP] ne: [BISP]
+                [Osprey] pos: [NNP] ne: [BISP]
+                [Osprey] pos: [NNP] ne: [BISP]
+                [Whopper] pos: [NNP] ne: [BISP]
+                [Osprey] pos: [NNP] ne: [BISP]
+                [Washington] pos: [NNP] ne: [LOC]
+                [today] pos: [NN] ne: [TIME]
+                [!!!] pos: [CD] ne: [NUMBER]
+                [Osprey] pos: [NNP] ne: [BISP]
+                [Osprey] pos: [NNP] ne: [BISP]
+                [Osprey] pos: [NNP] ne: [BISP]
+                [Urbanized] pos: [JJ] ne: [BISP]
+                [Eagle] pos: [NNP] ne: [BISP]
+                [Eagle] pos: [NNP] ne: [BISP]
+                [Friday] pos: [NNP] ne: [BISP]
+                [eagles] pos: [NNS] ne: [BISP]
+                [today] pos: [NN] ne: [TIME]
+                [Eagle] pos: [NNP] ne: [BISP]
+                [???] pos: [CD] ne: [NUMBER]
+                [Tufted] pos: [JJ] ne: [BISP]
+                [Eagle] pos: [NNP] ne: [BISP]
+                [Tricolored] pos: [JJ] ne: [BISP]
+                [eagle] pos: [NN] ne: [BISP]
+                [Eagle] pos: [NNP] ne: [BISP]
+                [Eagle] pos: [NNP] ne: [BISP]
+                [Eagles] pos: [NNPS] ne: [BISP]
+                [red-tailed] pos: [JJ] ne: [BISP]
+                [Eagle] pos: [NNP] ne: [BISP]
+                [6] pos: [CD] ne: [NUMBER]
+                [Killdeer] pos: [NNP] ne: [BISP]
+                [this] pos: [DT] ne: [TIME]
+                [morning] pos: [NN] ne: [TIME]
+                [one] pos: [CD] ne: [NUMBER]
+                [4] pos: [CD] ne: [NUMBER]
+                [Killdeer] pos: [NN] ne: [BISP]
+                [Killdeer] pos: [NNP] ne: [BISP]
+                [day] pos: [NN] ne: [DURATION]
+                [Killdeer] pos: [NNP] ne: [BISP]
+                [Killdeers] pos: [NNS] ne: [BISP]
+                [winter] pos: [NN] ne: [DATE]
+                [months] pos: [NNS] ne: [DURATION]
+                [Killdeer] pos: [NN] ne: [BISP]
+                [Killdeer] pos: [NNP] ne: [BISP]
+                [one] pos: [CD] ne: [NUMBER]
+                [today] pos: [NN] ne: [TIME]
+                [The] pos: [DT] ne: [DATE]
+                [other] pos: [JJ] ne: [DATE]
+                [day] pos: [NN] ne: [DATE]
+                [I] pos: [CD] ne: [NUMBER]
+                [Killdeer] pos: [NNP] ne: [BISP]
+                [Killdeers] pos: [NNP] ne: [BISP]
+                [today] pos: [NN] ne: [TIME]
+
+        </xmp>
+
 
           <h2>Data Persistance</h2>
           <p>
@@ -210,14 +275,134 @@
             </figcaption>
           </figure>
           
-          <h3>Internal Data Models</h3>
+  <h3> Internal Data Models </h3>
 
-          <p>
-            A Tweet is one of the most essential entities in this application. The communication between modules presumes
-            exchanging valuable information about tweets themselves and the authors. All stored data is in RDF format that
-             combine the most important information regarding a tweet.
-          </p>
+          <p> The Tweet is the essential entity in our application, therefore the comunication between modules implies sending and receiving information about tweets and their owners. All the stored data will be in the RDF/XML format, aiming to model the necessary information about a tweet. </p>
+
+          <xmp>
+            <rdf:RDF
+              xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+              xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#"
+              xmlns:bimr="http://xmlns.com/bimr#">
+              <rdf:Description rdf:about="http://xmlns.com/bimr/user#132">
+                <vcard:NAME>Markus Berg</vcard:NAME>
+                <vcard:UID>131242</vcard:UID>
+                <vcard:ADR>Ohio</vcard:ADR>
+                <vcard:EMAIL>marksbrg@gmail.com</vcard:EMAIL>
+                <vcard:NICKNAME>MarkB</vcard:NICKNAME>
+                <bimr:hasGeoEnabled>true</bimr:hasGeoEnabled>
+              </rdf:Description>
+            </rdf:RDF>
+
+          </xmp>
+
+          <figcaption style="text-align: center"> RDF/XML data format modelling an user </figcaption>
+
+          <xmp>
+          <rdf:RDF
+              xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+              xmlns:bimr="http://xmlns.com/bimr#"
+              xmlns:tweet="http://xmlns.com/tweet#">
+            <rdf:Description rdf:about="http://xmlns.com/bimr/tweet#32">
+              <bimr:id>32</bimr:id>
+              <tweet:language>en</tweet:language>
+              <tweet:text>Eagle Friday! This pair of eagles are our observation today.</tweet:text>
+              <tweet:link>https://tinyurl.com/214adfjkhv4a1</tweet:link>
+              <tweet:author>Marcel Ron</tweet:author>
+            </rdf:Description>
+          </rdf:RDF>
+
+          </xmp>
+
+          <figcaption style="text-align: center"> RDF/XML data format modelling a tweet </figcaption>
+
+
+          <xmp>
+
+            <rdf:RDF
+                xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                xmlns:location="http://xmlns.com/location#">
+              <rdf:Description rdf:about="http://xmlns.com/bimr/location#935a5197-4eef-40e6-957a-d2f90eaf2da9">
+                <location:latitude>57.52</location:latitude>
+                <location:longitude>12.81</location:longitude>
+                <location:city>Ildaho</location:city>
+                <location:state>Ohio</location:state>
+                <location:country>USA</location:country>
+              </rdf:Description>
+            </rdf:RDF>
+
+          </xmp>
+
+          <figcaption style="text-align: center"> RDF/XML data format modelling a location </figcaption>
+
+
+          <xmp>
+
+            <rdf:RDF
+              xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+              xmlns:bimr="http://xmlns.com/bimr#"
+              xmlns:location="http://xmlns.com/location#"
+              xmlns:tweet="http://xmlns.com/tweet#"
+              xmlns:observation="http://xmlns.com/observation#">
+            <rdf:Description rdf:about="http://xmlns.com/bimr/observation#a653e810-9b83-4f43-a21b-cfaa84e789e1">
+              <observation:birdSpecies>eagles</bimr:birdSpecies>
+              <observation:birdSpecies>hawks</bimr:birdSpecies>
+              <observation:date>Fri Jan 05 00:00:00 EET 2018</bimr:date>
+              <observation:informationSourceId>twitter</bimr:informationSourceId>
+              <observation:location rdf:about="http://xmlns.com/bimr/location#935a5197-4eef-40e6-957a-d2f90eaf2da9">
+                <location:latitude>57.52</location:latitude>
+                  <location:longitude>12.81</location:longitude>
+                  <location:city>Ildaho</location:city>
+                  <location:state>Ohio</location:state>
+                  <location:country>USA</location:country>
+                </rdf:Description>
+              <observation:tweet rdf:parseType="Resource">
+                <tweet:tweetId>32</bimr:tweetId>
+                <tweet:text>Eagle Friday! This pair of eagles and hawsks are our observation today.</tweet:text>
+              </rdf:Description>
+            </rdf:Description>
+          </rdf:RDF>
+
+          </xmp>
+          <figcaption style="text-align: center"> RDF/XML data format modelling an observation </figcaption>
+
+
+          <xmp>
+            <rdf:RDF
+                xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                xmlns:bimr="http://xmlns.com/bimr#"
+                xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#"
+                xmlns:location="http://xmlns.com/location#"
+                xmlns:tweet="http://xmlns.com/tweet#"
+                xmlns:observation="http://xmlns.com/observation#">
+              <rdf:Description rdf:about="http://xmlns.com/bimr/hotspot#69003615-2335-4b59-930c-44ce1eb265d2">
+                  <rdf:Description rdf:about="http://xmlns.com/bimr/user#132">
+                  <vcard:NAME>Markus Berg</vcard:NAME>
+                  <vcard:UID>131242</vcard:UID>
+                  <vcard:ADR>Ohio</vcard:ADR>
+                  <vcard:EMAIL>marksbrg@gmail.com</vcard:EMAIL>
+                  <vcard:NICKNAME>MarkB</vcard:NICKNAME>
+                  <bimr:hasGeoEnabled>true</bimr:hasGeoEnabled>
+                </rdf:Description>
+                <rdf:Description rdf:about="http://xmlns.com/bimr/observation#a653e810-9b83-4f43-a21b-cfaa84e789e1">
+                  <observation:birdSpecies>eagles</bimr:birdSpecies>
+                  <observation:birdSpecies>hawks</bimr:birdSpecies>
+                  <observation:date>Fri Jan 05 00:00:00 EET 2018</bimr:date>
+                  <observation:informationSourceId>twitter</bimr:informationSourceId>
+                  <observation:location rdf:parseType="Resource">
+                    <location:longitude>-102.2</location:longitude>
+                    <location:latitude>80.21</location:latitude>
+                  </observation:location>
+                  <observation:tweet rdf:about="http://xmlns.com/bimr/tweet#32">
+                    <tweet:tweetId>32</bimr:tweetId>
+                    <tweet:text>Eagle Friday! This pair of eagles and hawsks are our observation today.</tweet:text>
+                  </rdf:about>
+                </rdf:Description>
+              </rdf:Description>
+            </rdf:RDF>
           
+          </xmp>
+          <figcaption style="text-align: center"> RDF/XML data format modelling a hotspot </figcaption>
           <h2>Data visualization</h2>
           <p>
             All of the data which have been collected and processed will be renderend on a world map with the help of 
@@ -230,78 +415,8 @@
             what are the prefered migration routes of certain species each year, how much time they spend in one place (amount of months, for example) etc.
           </p>
 
-          <pre class=" language-json"><code class=" language-json">
-            {
-              "type": "FeatureCollection",
-              {
-                "geometry": {
-                    "coordinates": [
-                        22.15,
-                        37.8
-                    ],
-                    "type": "Point"
-                },
-                "type": "Feature",
-                "properties": {
-                    "observationDate": {
-                        "year": 2018,
-                        "month": "JANUARY",
-                        "dayOfMonth": 14,
-                        "dayOfWeek": "SUNDAY",
-                        "dayOfYear": 14,
-                        "monthValue": 1,
-                        "nano": 123000000,
-                        "hour": 9,
-                        "minute": 30,
-                        "second": 10,
-                        "chronology": {
-                            "id": "ISO",
-                            "calendarType": "iso8601"
-                            }
-                          },
-                          "hotspotId": "c62cb150-017a-4268-a2c3-d19d3b087ebe",
-                          "tweetMessage": "The Killdeer found one of the only open water spaces today in this crack",
-                          "informationSourceId": "twitter",
-                          "language": "en",
-                          "howMany": 1,
-                          "user": {
-                              "name": "Sokratis Papastathopoulos",
-                              "id": 147
-                          },
-                          "tweetId": 47,
-                          "birdSpeciesList": [
-                              "Killdeer"
-                          ]
-                      }
-                  },
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      37.26126953125,
-                      -105.6041710435201
-                    ]
-                  }
-                },
-                {
-                  "type": "Feature",
-                  "properties": {
-                      "timestamp": "2018-01-09",
-                       "number": 12,
-                       "information": "White-throated Osprey going the distance", 
-                       "commonName": "Osprey",
-                       "user": "Ross Barkley"
-                  },
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      45.74874023437499,
-                      -75.7651602771705
-                    ]
-                  }
-                }
-              ]
-            }
-          </code></pre>
+     
+
 
           <p>
             Up above is an example of geoJSON, a format for encoding a variety of geographic data structures.
@@ -317,15 +432,8 @@
             <img src="./BiMr Project_files/descriptionSpecies.png" width="950" height="700">
             <figcaption style="text-align: center">Figure 6. Species Information</figcaption>
           </figure>
-          
-          <figure typeof="sa:Image">
-            <img src="./BiMr Project_files/slider_map.png" width="950" height="700">
-            <figcaption style="text-align: center">Figure 6. Migration Map with slider for illustration</figcaption>
-          </figure>
 
-
-
-        <section typeof="sa:Open Api" id="openApi">
+   <section typeof="sa:Open Api" id="openApi">
           <h2>Open API</h2>
           <p>
             The application will provide an REST API which can be used to access the data collected by the aplication.  The API will define a set of functions which will offer information about the data, from where has been collected, statistics about the data and the data itself.  Developers can perform requests and receive responses via HTTP protocol such as GET and POST. The responses will be in JSON format.
@@ -334,18 +442,25 @@
             All the endpoints of the API will require GET methods to be accessed. Some example of these endpoints: 
           </p>
           <ul>
-            <li>/bimr</li>
+            <li>/tweets</li>
             <ul>
-              <li>/getAllTweets – returns all the tweets stored by the application;</li>
-              <li>/getAllHotspots – returns all the hotspots stored by the application;</li>
-              <li>/getAllMigrations – returns all the bird migrations stored by the application;</li>
-              <li>/getMigrationsByDate/{startDate}/{endDate} – returns migrations between the  desired interval set by 2 dates</li>
+              <li>/ws/bimr/getAllTweets – returns all the tweets stored by the application;</li>
+            </ul>
+            <li>/data</li>
+              <ul>
+                <li>/ws/bimr/getAllMigrations – returns the data collected by the application in the last  seven days;</li>
+                <li>/ws/bimr/getMigrationsByDate{startDate}/{endDate}– returns all the data collected by the application at the specified location and in the range specified (km) ;</li>
+              </ul>
+            <li>/stats</li>
+            <ul>
+              <li>/ws/bimr/getMostObservedSpecies - returns a list with all species ordered by the number of their appeareance in tweets
             </ul>
           </ul>
         </section>
 
+
           <p>
-            The representation of the data coming from the Open API:
+            The representation of migration object coming from the Open API:
           </p>
           <pre class=" language-json"><code class=" language-json">
             {

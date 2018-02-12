@@ -171,19 +171,84 @@
           <figure typeof="sa:Image">
             <img src="./BiMr Project_files/bpmn.svg" width="950" height="700">
             <figcaption style="text-align: center">
-              Figure 3. Class Diagram
+              Figure 3. BPMN Diagram
             </figcaption>
           </figure>
 
           <h2>Data processing</h2>
           <p>
             
-            Now that we have a continously fresh stream of data we can filter and process tweets. We keep only tweets which have the right hasttag (eg: #birdMigration, #birds, #birdsmig, etc) and come with a place or a specified location. 
+            Now that we have a continously fresh stream of data we can filter and process tweets. We keep only tweets which have the right hashtag (eg: #birdMigration, #birds, #birdsmig, etc) and come with a place or a specified location. 
             Nowadays the users deactivate their localisation service of their phones and the tweets that have the location included are very few.
             Also, the tweet must to include the common name or the scientific name of the birds species.
             To filter the tweets that meets this criterias we will analyse each tweet's content using <a href="https://nlp.stanford.edu/">Stanford NLP</a> TokensRegex framework, defining different patterns over text, patterns which match with the description of a location/bird.
             In the case of data provided by the <a href="https://confluence.cornell.edu/display/CLOISAPI/eBird+API+1.1">eBird API</a> the things are way simpler because the API provides all information needed by our application.
           </p>
+
+
+          <p> In order to find out if a simple word represents a name for a bird species or any other interesting entity (like person, link, location, author, etc.) we manually trained a model. These data represents the classifier in action. Obviously, some assumptions are wrong, because we need a lot more (manually) annotated tweets to obtain good results. From our calculations, we can obtain 65% rate of success with this classifier. </p>
+
+          	<xmp>
+				[hawk] pos: [NN] ne: [BISP]
+				[today] pos: [NN] ne: [TIME]
+				[winter] pos: [NN] ne: [DATE]
+				[hawk] pos: [NN] ne: [BISP]
+				[hawk] pos: [NN] ne: [BISP]
+				[White-throated] pos: [JJ] ne: [BISP]
+				[Osprey] pos: [NNP] ne: [BISP]
+				[Osprey] pos: [NNP] ne: [BISP]
+				[Osprey] pos: [NNP] ne: [BISP]
+				[Whopper] pos: [NNP] ne: [BISP]
+				[Osprey] pos: [NNP] ne: [BISP]
+				[Washington] pos: [NNP] ne: [LOC]
+				[today] pos: [NN] ne: [TIME]
+				[!!!] pos: [CD] ne: [NUMBER]
+				[Osprey] pos: [NNP] ne: [BISP]
+				[Osprey] pos: [NNP] ne: [BISP]
+				[Osprey] pos: [NNP] ne: [BISP]
+				[Urbanized] pos: [JJ] ne: [BISP]
+				[Eagle] pos: [NNP] ne: [BISP]
+				[Eagle] pos: [NNP] ne: [BISP]
+				[Friday] pos: [NNP] ne: [BISP]
+				[eagles] pos: [NNS] ne: [BISP]
+				[today] pos: [NN] ne: [TIME]
+				[Eagle] pos: [NNP] ne: [BISP]
+				[???] pos: [CD] ne: [NUMBER]
+				[Tufted] pos: [JJ] ne: [BISP]
+				[Eagle] pos: [NNP] ne: [BISP]
+				[Tricolored] pos: [JJ] ne: [BISP]
+				[eagle] pos: [NN] ne: [BISP]
+				[Eagle] pos: [NNP] ne: [BISP]
+				[Eagle] pos: [NNP] ne: [BISP]
+				[Eagles] pos: [NNPS] ne: [BISP]
+				[red-tailed] pos: [JJ] ne: [BISP]
+				[Eagle] pos: [NNP] ne: [BISP]
+				[6] pos: [CD] ne: [NUMBER]
+				[Killdeer] pos: [NNP] ne: [BISP]
+				[this] pos: [DT] ne: [TIME]
+				[morning] pos: [NN] ne: [TIME]
+				[one] pos: [CD] ne: [NUMBER]
+				[4] pos: [CD] ne: [NUMBER]
+				[Killdeer] pos: [NN] ne: [BISP]
+				[Killdeer] pos: [NNP] ne: [BISP]
+				[day] pos: [NN] ne: [DURATION]
+				[Killdeer] pos: [NNP] ne: [BISP]
+				[Killdeers] pos: [NNS] ne: [BISP]
+				[winter] pos: [NN] ne: [DATE]
+				[months] pos: [NNS] ne: [DURATION]
+				[Killdeer] pos: [NN] ne: [BISP]
+				[Killdeer] pos: [NNP] ne: [BISP]
+				[one] pos: [CD] ne: [NUMBER]
+				[today] pos: [NN] ne: [TIME]
+				[The] pos: [DT] ne: [DATE]
+				[other] pos: [JJ] ne: [DATE]
+				[day] pos: [NN] ne: [DATE]
+				[I] pos: [CD] ne: [NUMBER]
+				[Killdeer] pos: [NNP] ne: [BISP]
+				[Killdeers] pos: [NNP] ne: [BISP]
+				[today] pos: [NN] ne: [TIME]
+
+          	</xmp>
 
           <h2>Data Persistance</h2>
           <p>
@@ -193,11 +258,11 @@
           </p>
 
 
-          <h2> Internal Data Models </h2>
+          <h3> Internal Data Models </h3>
 
           <p> The Tweet is the essential entity in our application, therefore the comunication between modules implies sending and receiving information about tweets and their owners. All the stored data will be in the RDF/XML format, aiming to model the necessary information about a tweet. </p>
 
-          <pre class=" language-xml"><code class=" language-xml">
+          <xmp>
             <rdf:RDF
               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
               xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#"
@@ -212,11 +277,11 @@
               </rdf:Description>
             </rdf:RDF>
 
-          </pre></code>
+          </xmp>
 
           <figcaption style="text-align: center"> RDF/XML data format modelling an user </figcaption>
 
-          <pre class=" language-xml"><code class=" language-xml">
+          <xmp>
           <rdf:RDF
               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
               xmlns:bimr="http://xmlns.com/bimr#"
@@ -230,12 +295,12 @@
             </rdf:Description>
           </rdf:RDF>
 
-          </pre></code>
+          </xmp>
 
           <figcaption style="text-align: center"> RDF/XML data format modelling a tweet </figcaption>
 
 
-          <pre class=" language-xml"><code class=" language-xml">
+          <xmp>
 
             <rdf:RDF
                 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -249,12 +314,12 @@
               </rdf:Description>
             </rdf:RDF>
 
-          </pre></code>
+          </xmp>
 
           <figcaption style="text-align: center"> RDF/XML data format modelling a location </figcaption>
 
 
-          <pre class=" language-xml"><code class=" language-xml">
+          <xmp>
 
             <rdf:RDF
               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -281,11 +346,11 @@
             </rdf:Description>
           </rdf:RDF>
 
-          </pre></code>
+          </xmp>
           <figcaption style="text-align: center"> RDF/XML data format modelling an observation </figcaption>
 
 
-          <pre class=" language-xml"><code class=" language-xml">
+          <xmp>
             <rdf:RDF
                 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                 xmlns:bimr="http://xmlns.com/bimr#"
@@ -319,15 +384,8 @@
               </rdf:Description>
             </rdf:RDF>
           
-          </pre></code>
+          </xmp>
           <figcaption style="text-align: center"> RDF/XML data format modelling a hotspot </figcaption>
-
-          <figure typeof="sa:Image">
-            <img src="./BiMr Project_files/SequenceDiagram.png" width="950" height="700">
-            <figcaption style="text-align: center">
-             Figure 4. Application sequence diagram
-            </figcaption>
-          </figure>
 
           <h2>Data visualization</h2>
           <p>
@@ -351,8 +409,6 @@
             <img src="./BiMr Project_files/descriptionSpecies.png" width="950" height="700">
             <figcaption style="text-align: center">Figure 6. Species Information</figcaption>
           </figure>
-
-
 
 
         <section typeof="sa:Open Api" id="openApi">
