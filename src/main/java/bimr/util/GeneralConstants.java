@@ -8,7 +8,8 @@ public class GeneralConstants {
 	private GeneralConstants() {}
 
 	public static final String SCHEMA = "BIMR";
-	public static final String DATE_FORMAT = "yyyy-MM-dd";
+	public static final String SIMPLE_DATE_FORMAT = "yyyy-MM-dd";
+	public static final String XSD_DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS";
 	public static final Long DEFAULT_SINCE_ID = 931486142918250496l;
 	public static final Integer MAX_NUMBER_HASHTAGS = 10;
 	public static final String TWITTER_SOURCE = "twitter";

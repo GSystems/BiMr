@@ -53,7 +53,7 @@ public class TweetMapper {
 	private static TwitterUser toTwitterUserFromWrapper(TwitterUserWrapper userWrapper) {
 		TwitterUser user = new TwitterUser();
 		user.setEmail(userWrapper.getEmail());
-		user.setId(String.valueOf(userWrapper.getId()));
+		user.setId(userWrapper.getId());
 		user.setIsGeoEnabled(String.valueOf(userWrapper.isGeoEnabled()));
 		user.setLocation(userWrapper.getLocation());
 		user.setName(userWrapper.getName());

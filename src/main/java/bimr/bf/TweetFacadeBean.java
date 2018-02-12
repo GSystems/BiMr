@@ -13,11 +13,13 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author GLK
  */
+
 @Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class TweetFacadeBean implements TweetFacade {
@@ -46,7 +48,7 @@ public class TweetFacadeBean implements TweetFacade {
 	}
 
 	@Override
-	public void persistTweets(List<TweetDTO> tweets) {
+	public void persistTweetsInRelationalDb(List<TweetDTO> tweets) {
 		tweetRepo.insertTweets(MapTransformer.toTweetsFromDTO(tweets));
 	}
 
@@ -58,38 +60,5 @@ public class TweetFacadeBean implements TweetFacade {
 			date = dateList.get(0);
 		}
 		return date;
-	}
-
-	private TweetResponseDTO generateTweets() {
-		TweetResponseDTO response = new TweetResponseDTO();
-		List<TweetDTO> tweets = new ArrayList<>();
-		TweetDTO tweet1 = new TweetDTO();
-		TweetDTO tweet2 = new TweetDTO();
-		TweetDTO tweet3 = new TweetDTO();
-
-		tweet1.setLatitude("1234");
-		tweet1.setLongitude("1234");
-		tweet1.setObservationDate(new Date());
-		tweet1.setTweetId(1L);
-		tweet1.setTweetMessage("Some pigeons near Washington");
-
-		tweet2.setLatitude("2345");
-		tweet2.setLongitude("2345");
-		tweet2.setObservationDate(new Date());
-		tweet2.setTweetId(2L);
-		tweet2.setTweetMessage("I saw a flock of ducks at Salt Lake");
-
-		tweet3.setLatitude("3456");
-		tweet3.setLongitude("3456");
-		tweet3.setObservationDate(new Date());
-		tweet3.setTweetId(3L);
-		tweet3.setTweetMessage("Beautiful flocks of ravens in Yosemite Park");
-
-		tweets.add(tweet1);
-		tweets.add(tweet2);
-		tweets.add(tweet3);
-
-		response.setTweets(tweets);
-		return response;
 	}
 }

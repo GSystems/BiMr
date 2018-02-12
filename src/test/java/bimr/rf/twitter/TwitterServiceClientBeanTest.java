@@ -34,8 +34,8 @@ public class TwitterServiceClientBeanTest {
 		TweetWrapper tweet1 = new TweetWrapper();
 		TweetWrapper tweet2 = new TweetWrapper();
 		TweetWrapper tweet3 = new TweetWrapper();
-		String latitude = "123";
-		String longitude = "321";
+		Double latitude = 123.2;
+		Double longitude = 321.7;
 
 		tweet1.setLatitude(latitude);
 		tweet1.setLongitude(longitude);
