@@ -1,0 +1,125 @@
+Get all tweets query - http://localhost:8080/BiMr/ws/bimr/getAllTweets
+
+PREFIX bimr: <http://xmlns.com/bimr#>
+PREFIX tweet: <http://xmlns.com/bimr/tweet#>
+
+SELECT DISTINCT ?tweet_id ?tweet_text ?tweet_language ?author ?link
+WHERE {
+  ?tweet  tweet:text ?tweet_text;
+          tweet:tweetId ?tweet_id;
+          tweet:language ?tweet_language.
+  OPTIONAL { ?tweet tweet:author ?author; }
+  OPTIONAL { ?tweet tweet:link ?link; }
+}
+
+
+GET ALL HOTSPOTS
+
+PREFIX bimr: <http://xmlns.com/bimr#>
+PREFIX user: <http://xmlns.com/bimr/user#>
+PREFIX tweet: <http://xmlns.com/bimr/tweet#>
+PREFIX location: <http://xmlns.com/bimr/location#>
+PREFIX observation: <http://xmlns.com/bimr/observation#>
+PREFIX hotspot: <http://xmlns.com/bimr/hotspot#>
+PREFIX uid: <http://www.w3.org/2001/vcard-rdf/3.0#UID>
+PREFIX name: <http://www.w3.org/2001/vcard-rdf/3.0#NAME>
+PREFIX address: <http://schemas.talis.com/2005/address/schema#>
+PREFIX screenName: <http://www.w3.org/2001/vcard-rdf/3.0#NICKNAME>
+PREFIX address: <http://www.w3.org/2001/vcard-rdf/3.0#ADR>
+PREFIX email: <http://www.w3.org/2001/vcard-rdf/3.0#EMAIL>
+
+SELECT ?bird_species ?hotspot_id ?how_many ?observation_date ?latitude ?longitude ?tweet_id ?tweet_text ?tweet_language ?information_source_id ?author ?link ?city ?country ?state ?user_name ?user_id ?email ?address ?screen_name ?has_geo_enabled
+WHERE {
+  ?hotspot hotspot:hotspotId ?hotspot_id;
+           hotspot:observation ?observation.
+  ?observation observation:informationSourceId ?information_source_id;
+               observation:howMany ?how_many;
+               observation:date ?observation_date;
+               observation:tweet ?tweet;
+               observation:location ?location;
+               observation:birdSpecies ?bird_species.
+  ?location location:latitude ?latitude;        
+            location:longitude ?longitude.
+  ?tweet  tweet:tweetId ?tweet_id;
+          tweet:text ?tweet_text;
+          tweet:language ?tweet_language.
+
+  OPTIONAL { ?location location:country ?country }
+  OPTIONAL { ?location location:city ?city }
+  OPTIONAL { ?location location:state ?state }
+  OPTIONAL { ?tweet tweet:author ?author }
+  OPTIONAL { ?tweet tweet:link ?link }
+  OPTIONAL {
+    ?hotspot uid: ?user_id.
+    ?user uid: ?user_id;
+          name: ?user_name;
+  }
+  OPTIONAL { ?user email: ?email }
+  OPTIONAL { ?user address: ?address }
+  OPTIONAL { ?user screenName: ?screen_name }
+  OPTIONAL { ?user user:hasGeoEnabled ?has_geo_enabled }
+}
+ORDER BY ?hotspot ?bird_species
+
+GET ALL MIGRATIONS
+PREFIX bimr: <http://xmlns.com/bimr#>
+PREFIX user: <http://xmlns.com/bimr/user#>
+PREFIX tweet: <http://xmlns.com/bimr/tweet#>
+PREFIX location: <http://xmlns.com/bimr/location#>
+PREFIX observation: <http://xmlns.com/bimr/observation#>
+PREFIX hotspot: <http://xmlns.com/bimr/hotspot#>
+PREFIX uid: <http://www.w3.org/2001/vcard-rdf/3.0#UID>
+PREFIX name: <http://www.w3.org/2001/vcard-rdf/3.0#NAME>
+PREFIX address: <http://schemas.talis.com/2005/address/schema#>
+PREFIX screenName: <http://www.w3.org/2001/vcard-rdf/3.0#NICKNAME>
+PREFIX address: <http://www.w3.org/2001/vcard-rdf/3.0#ADR>
+PREFIX email: <http://www.w3.org/2001/vcard-rdf/3.0#EMAIL>
+PREFIX migration: <http://xmlns.com/bimr/migration#>
+PREFIX ui: <http://www.w3.org/ns/ui#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?species ?migration_id ?from_date ?to_date ?from_latitude ?from_longitude ?to_latitude ?to_longitude ?from_tweet_message ?to_tweet_message ?from_user_name ?from_user_id ?from_hotspot_id ?to_hotspot_id
+WHERE {
+  ?migration observation:birdSpecies ?species;
+             bimr:id ?migration_id;
+             migration:from ?from_hotspot;
+             migration:to ?to_hotspot.
+  ?from_hotspot bimr:id ?from_hotspot_id;
+                hotspot:observation ?from_observation.
+  ?to_hotspot bimr:id ?to_hotspot_id;
+              uid: ?to_user_id;
+              hotspot:observation ?to_observation.
+  ?from_observation observation:date ?from_date;
+                    observation:location ?from_location;
+                    observation:tweet ?from_tweet.
+  ?from_location location:latitude ?from_latitude;
+                 location:longitude ?from_longitude.
+  ?to_observation observation:date ?to_date;
+                  observation:location ?to_location;
+                  observation:tweet ?to_tweet.
+  ?to_location location:latitude ?to_latitude;
+                 location:longitude ?to_longitude.
+  ?from_tweet tweet:text ?from_tweet_message.
+  ?to_tweet tweet:text ?to_tweet_message .
+}
+ORDER BY ?species ?from_date
+
+
+GET MOST OBSERVED SPECIES
+PREFIX observation: <http://xmlns.com/bimr/observation#>
+PREFIX hotspot: <http://xmlns.com/bimr/hotspot#>
+
+SELECT ?bird_species (COUNT(?bird_species) as ?occurence_number)
+WHERE {
+  ?hotspot hotspot:observation ?observation.
+  ?observation observation:informationSourceId ?information_source_id;
+               observation:birdSpecies ?bird_species.
+}
+GROUP BY (?bird_species)
+ORDER BY DESC(?occurence_number)
+
+
+
+
+
+http://localhost:8080/BiMr/ws/bimr/getMigrationsByDate/2017-12-20T09:30:10.123/2018-01-16T09:30:10.123

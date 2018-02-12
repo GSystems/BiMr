@@ -1,5 +1,7 @@
 package bimr.bfcl.dto;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -10,9 +12,9 @@ public class TweetDTO {
 	private Long id;
 	private Long tweetId;
 	private String tweetMessage;
-	private String latitude;
-	private String longitude;
-	private Date observationDate;
+	private Double latitude;
+	private Double longitude;
+	private LocalDateTime observationDate;
 	private TwitterUserDTO user;
 
 	public Long getId() {
@@ -39,27 +41,27 @@ public class TweetDTO {
 		this.tweetMessage = tweetMessage;
 	}
 
-	public String getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(String latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
-	public String getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(String longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 
-	public Date getObservationDate() {
+	public LocalDateTime getObservationDate() {
 		return observationDate;
 	}
 
-	public void setObservationDate(Date observationDate) {
+	public void setObservationDate(LocalDateTime observationDate) {
 		this.observationDate = observationDate;
 	}
 

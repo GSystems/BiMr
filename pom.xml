@@ -39,11 +39,6 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.googlecode.json-simple</groupId>
-			<artifactId>json-simple</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
@@ -108,6 +103,26 @@
 			<artifactId>jsr311-api</artifactId>
 			<version>1.1.1</version>
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.9.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20171018</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>19.0</version>
+		</dependency>
 		<!--<dependency>-->
 			<!--<groupId>org.wildfly</groupId>-->
 			<!--<artifactId>wildfly-ejb-client-bom</artifactId>-->
@@ -138,11 +153,26 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.0</version>
 				<executions>
 					<execution>
 						<id>prepare-agent</id>
 						<goals>
 							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.zeroturnaround</groupId>
+				<artifactId>jrebel-maven-plugin</artifactId>
+				<version>1.1.8</version>
+				<executions>
+					<execution>
+						<id>generate-rebel-xml</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>generate</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -175,25 +205,25 @@
 							<!--<resources>-->
 								<!--<resource>-->
 									<!--<properties>-->
-										<!--<jndi-name>java:/CoreDS</jndi-name>-->
+										<!--<jndi-city>java:/CoreDS</jndi-city>-->
 										<!--<enabled>true</enabled>-->
 										<!--<connection-url>jdbc:mysql://localhost:3306/BIMR</connection-url>-->
 										<!--<driver-class>com.mysql.cj.jdbc.Driver</driver-class>-->
-										<!--<driver-name>mysql</driver-name>-->
-										<!--<user-name>bimruser</user-name>-->
+										<!--<driver-city>mysql</driver-city>-->
+										<!--<user-city>bimruser</user-city>-->
 										<!--<password>bimrpassword</password>-->
 									<!--</properties>-->
 									<!--&lt;!&ndash;<datasources>&ndash;&gt;-->
-										<!--&lt;!&ndash;<datasource jndi-name="java:/CoreDS" pool-name="CoreDS" enabled="true" use-java-context="true">&ndash;&gt;-->
+										<!--&lt;!&ndash;<datasource jndi-city="java:/CoreDS" pool-city="CoreDS" enabled="true" use-java-context="true">&ndash;&gt;-->
 											<!--&lt;!&ndash;<connection-url>jdbc:mysql://localhost:3306/BIMR</connection-url>&ndash;&gt;-->
 											<!--&lt;!&ndash;<driver>mysql</driver>&ndash;&gt;-->
 											<!--&lt;!&ndash;<security>&ndash;&gt;-->
-												<!--&lt;!&ndash;<user-name>bimruser</user-name>&ndash;&gt;-->
+												<!--&lt;!&ndash;<user-city>bimruser</user-city>&ndash;&gt;-->
 												<!--&lt;!&ndash;<password>bimrpassword</password>&ndash;&gt;-->
 											<!--&lt;!&ndash;</security>&ndash;&gt;-->
 										<!--&lt;!&ndash;</datasource>&ndash;&gt;-->
 										<!--&lt;!&ndash;<drivers>&ndash;&gt;-->
-											<!--&lt;!&ndash;<driver name="mysql" module="com.mysql">&ndash;&gt;-->
+											<!--&lt;!&ndash;<driver city="mysql" module="com.mysql">&ndash;&gt;-->
 												<!--&lt;!&ndash;<xa-datasource-class>com.mysql.cj.jdbc.Driver</xa-datasource-class>&ndash;&gt;-->
 											<!--&lt;!&ndash;</driver>&ndash;&gt;-->
 										<!--&lt;!&ndash;</drivers>&ndash;&gt;-->

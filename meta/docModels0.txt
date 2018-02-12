@@ -1,0 +1,44 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:bimr="http://xmlns.com/bimr#"
+    xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+  <rdf:Description rdf:about="http://xmlns.com/bimr/user#">
+    <vcard:NAME>Sergei Gurenko</vcard:NAME>
+    <vcard:UID>143</vcard:UID>
+    <vcard:NICKNAME>sergurk</vcard:NICKNAME>
+    <vcard:ADR>Dublin</vcard:ADR>
+    <vcard:EMAIL>sergurk@gmail.com</vcard:EMAIL>
+    <bimr:hasGeoEnabled>true</bimr:hasGeoEnabled>
+  </rdf:Description>
+</rdf:RDF>
+
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:bimr="http://xmlns.com/bimr#"
+    xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+  <rdf:Description rdf:about="http://xmlns.com/bimr/hotspot#">
+    <vcard:UID>143</vcard:UID>
+    <bimr:hotspotId>2d75da2f-449a-47bc-8dc2-19b186dd2bb7</bimr:hotspotId>
+    <bimr:observation>
+      <rdf:Description rdf:about="http://xmlns.com/bimr/observation#">
+        <bimr:birdSpecies>Killdeer</bimr:birdSpecies>
+        <bimr:date>Mon Jan 08 00:00:00 EET 2018</bimr:date>
+        <bimr:informationSourceId>twitter</bimr:informationSourceId>
+        <bimr:tweetId>43</bimr:tweetId>
+        <bimr:tweet>
+          <rdf:Description rdf:about="http://xmlns.com/bimr/tweet#">
+            <bimr:tweetId>43</bimr:tweetId>
+            <bimr:language>en</bimr:language>
+            <bimr:text>This adorable Killdeer was making the most of a very overcast day</bimr:text>
+          </rdf:Description>
+        </bimr:tweet>
+        <bimr:location>
+          <rdf:Description rdf:about="http://xmlns.com/bimr/location#">
+            <bimr:latitude>53.44</bimr:latitude>
+            <bimr:longitude>31.10</bimr:longitude>
+          </rdf:Description>
+        </bimr:location>
+      </rdf:Description>
+    </bimr:observation>
+  </rdf:Description>
+</rdf:RDF>

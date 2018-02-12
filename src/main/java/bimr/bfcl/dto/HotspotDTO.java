@@ -1,30 +1,29 @@
 package bimr.bfcl.dto;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
-public class HotspotDTO {
-	private String informationSourceId;
+public class HotspotDTO implements Comparable<HotspotDTO> {
+	private String informationSource;
 	private List<String> birdSpecies;
-	private String locationName;
-	private String country;
-	private String state;
-	private String locality;
-	private String latitude;
-	private String longitude;
-	private String howMany;
-	private String observationDate;
+	LocationDTO location;
+	private String hotspotId;
+	private Integer howMany;
+	private LocalDateTime observationDate;
 	private String tweetMessage;
-	private String tweetId;
+	private Long tweetId;
 	private String link;
 	private String author;
+	private String language;
 	private TwitterUserDTO user;
 
-	public String getInformationSourceId() {
-		return informationSourceId;
+	public String getInformationSource() {
+		return informationSource;
 	}
 
-	public void setInformationSourceId(String informationSourceId) {
-		this.informationSourceId = informationSourceId;
+	public void setInformationSource(String informationSource) {
+		this.informationSource = informationSource;
 	}
 
 	public List<String> getBirdSpecies() {
@@ -35,67 +34,35 @@ public class HotspotDTO {
 		this.birdSpecies = birdSpecies;
 	}
 
-	public String getLocationName() {
-		return locationName;
+	public LocationDTO getLocation() {
+		return location;
 	}
 
-	public void setLocationName(String locationName) {
-		this.locationName = locationName;
+	public void setLocation(LocationDTO location) {
+		this.location = location;
 	}
 
-	public String getCountry() {
-		return country;
+	public String getHotspotId() {
+		return hotspotId;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
+	public void setHotspotId(String hotspotId) {
+		this.hotspotId = hotspotId;
 	}
 
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getLocality() {
-		return locality;
-	}
-
-	public void setLocality(String locality) {
-		this.locality = locality;
-	}
-
-	public String getLatitude() {
-		return latitude;
-	}
-
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
-
-	public String getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
-	}
-
-	public String getHowMany() {
+	public Integer getHowMany() {
 		return howMany;
 	}
 
-	public void setHowMany(String howMany) {
+	public void setHowMany(Integer howMany) {
 		this.howMany = howMany;
 	}
 
-	public String getObservationDate() {
+	public LocalDateTime getObservationDate() {
 		return observationDate;
 	}
 
-	public void setObservationDate(String observationDate) {
+	public void setObservationDate(LocalDateTime observationDate) {
 		this.observationDate = observationDate;
 	}
 
@@ -107,11 +74,11 @@ public class HotspotDTO {
 		this.tweetMessage = tweetMessage;
 	}
 
-	public String getTweetId() {
+	public Long getTweetId() {
 		return tweetId;
 	}
 
-	public void setTweetId(String tweetId) {
+	public void setTweetId(Long tweetId) {
 		this.tweetId = tweetId;
 	}
 
@@ -131,11 +98,24 @@ public class HotspotDTO {
 		this.author = author;
 	}
 
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
 	public TwitterUserDTO getUser() {
 		return user;
 	}
 
 	public void setUser(TwitterUserDTO user) {
 		this.user = user;
+	}
+
+	@Override
+	public int compareTo(HotspotDTO o) {
+		return observationDate.compareTo(o.observationDate);
 	}
 }

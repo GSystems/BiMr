@@ -14,7 +14,6 @@ public class EbirdResponse {
 		return ebirdData;
 	}
 
-	// TODO change the methods name
 	public void setEbirdData(List<EbirdData> ebirdData) {
 		this.ebirdData = ebirdData;
 	}

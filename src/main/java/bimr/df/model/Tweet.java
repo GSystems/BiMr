@@ -1,6 +1,6 @@
 package bimr.df.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * @author GLK
@@ -10,9 +10,9 @@ public class Tweet {
 	private Long id;
 	private Long tweetId;
 	private String tweetMessage;
-	private String latitude;
-	private String longitude;
-	private Date observationDate;
+	private Double latitude;
+	private Double longitude;
+	private LocalDate observationDate;
 	private TwitterUser user;
 
 	public Long getId() {
@@ -39,27 +39,27 @@ public class Tweet {
 		this.tweetMessage = tweetMessage;
 	}
 
-	public String getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(String latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
-	public String getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(String longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 
-	public Date getObservationDate() {
+	public LocalDate getObservationDate() {
 		return observationDate;
 	}
 
-	public void setObservationDate(Date observationDate) {
+	public void setObservationDate(LocalDate observationDate) {
 		this.observationDate = observationDate;
 	}
 

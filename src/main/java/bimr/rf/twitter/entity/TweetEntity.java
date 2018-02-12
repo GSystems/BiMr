@@ -1,11 +1,10 @@
 package bimr.rf.twitter.entity;
 
-import java.io.Serializable;
-import java.util.Date;
+import bimr.util.GeneralConstants;
 
 import javax.persistence.*;
-
-import bimr.util.GeneralConstants;
+import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * @author GLK
@@ -31,9 +30,9 @@ public class TweetEntity implements Serializable {
 	private Long id;
 	private Long tweetId;
 	private String tweetMessage;
-	private String latitude;
-	private String longitude;
-	private Date observationDate;
+	private Double latitude;
+	private Double longitude;
+	private LocalDate observationDate;
 
 	public Long getId() {
 		return id;
@@ -59,27 +58,27 @@ public class TweetEntity implements Serializable {
 		this.tweetMessage = tweetMessage;
 	}
 
-	public String getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(String latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
-	public String getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(String longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 
-	public Date getObservationDate() {
+	public LocalDate getObservationDate() {
 		return observationDate;
 	}
 
-	public void setObservationDate(Date observationDate) {
+	public void setObservationDate(LocalDate observationDate) {
 		this.observationDate = observationDate;
 	}
 
