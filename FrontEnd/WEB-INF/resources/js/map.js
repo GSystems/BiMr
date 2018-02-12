@@ -119,7 +119,8 @@ function getMigrationSelectStart(timestamp)
         if(data !== null) {
 
             migrationHotspots = JSON.parse(data);
-            let date = findEarliesDate(JSON.parse(data),'migration');
+            
+            let date = new Date(timestamp);
             currentDate = date;
             date = formatDate(date);
             date = getTime(date);
@@ -141,6 +142,27 @@ function showAllHotSpots()
 
 function getMigrations()
 {
+
+/*    takeJson("http://localhost:8080/BiMr/ws/bimr/getAllMigrations", function(data){
+        if(data !== null){
+            currentDate = findNextDate('migration');
+            let date = formatDate(currentDate);
+            date = getTime(date);
+
+
+            console.log(currentDate);
+            findNextStep(date);
+            console.log(currentHotspots.features.length);
+
+            if(!skip)
+            {
+                map.data.addGeoJson(currentHotspots);
+            }
+        } 
+        else 
+            console.log("Error");
+    });*/
+
     loadJson(url + "data" + 2 + ".json", function(data){
         if(data !== null) {
 
@@ -300,12 +322,10 @@ function initWindowInfo(){
 
 
 function startAction(){
-    clearMap();
+    //clearMap();
     clearWindowInfo();
 
     getMigrations();
-
-    
 
     //initData(value);
     //document.getElementById("myRange").value++;
@@ -333,11 +353,13 @@ document.getElementById('buttonSelect').addEventListener("click", function(){
     let divMax = document.getElementById('censusMax');
     divMax.innerHTML = end;
 
-    initData();
-    getMigrationSelectStart(start);
-/*    allDays = [];
     clearWindowInfo();
     clearMap();
+    initData(1);
+    getMigrationSelectStart(start);
+
+/*    allDays = [];
+
     takeJson("http://localhost:8080/BiMr/ws/bimr/getMigrationsByDate/"+ start+"/" + end, function(data){
         if(data !== null){
             migrationHotspots = JSON.parse(data);
