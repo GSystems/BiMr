@@ -49,28 +49,28 @@ function initData(value,timestamp = null)
 { 
     //var urlCos = javaUrl + document.getElementById('startDate').value + "/" + document.getElementById('endDate').value;
 
-    takeJson("http://localhost:8080/BiMr/ws/bimr/getAllHotspots",function(data){
+/*    takeJson("http://localhost:8080/BiMr/ws/bimr/getAllHotspots",function(data){
         if(data !== null){
             allHotspots = JSON.parse(data);
         } 
         else 
             console.log("Error");
-    });
+    });*/
 
 
-/*    loadJson(url + "data" + value + ".json", function(data){
+    loadJson(url + "data" + value + ".json", function(data){
         if(data !== null) {  
             allHotspots = JSON.parse(data);
         }
         else
             console.log("Error");
-    });*/
+    });
 }
 
 function getMigrationStartData()
 {
 
-    takeJson("http://localhost:8080/BiMr/ws/bimr/getAllMigrations", function(data){
+/*    takeJson("http://localhost:8080/BiMr/ws/bimr/getAllMigrations", function(data){
         if(data !== null){
             migrationHotspots = JSON.parse(data);
             let date = findEarliesDate(JSON.parse(data),'migration');
@@ -83,9 +83,9 @@ function getMigrationStartData()
         } 
         else 
             console.log("Error");
-    });
+    });*/
 
-/*    loadJson(url + "data" + 2 + ".json", function(data){
+    loadJson(url + "data" + 2 + ".json", function(data){
         if(data !== null) {
 
             migrationHotspots = JSON.parse(data);
@@ -99,7 +99,7 @@ function getMigrationStartData()
         }
         else
             console.log("Error");
-    });*/
+    });
 
     map.data.setStyle(function(feature) {
         var number = feature.getProperty('howMany');
@@ -125,8 +125,6 @@ function getMigrations()
     loadJson(url + "data" + 2 + ".json", function(data){
         if(data !== null) {
 
-            //console.log(findNextDate('migration'));
-            //currentDate.setDate(currentDate.getDate() + 1);
             currentDate = findNextDate('migration');
             let date = formatDate(currentDate);
             date = getTime(date);
@@ -317,7 +315,7 @@ document.getElementById('buttonSelect').addEventListener("click", function(){
     divMax.innerHTML = end;
 
 
-    allDays = [];
+/*    allDays = [];
     clearWindowInfo();
     clearMap();
     takeJson("http://localhost:8080/BiMr/ws/bimr/getMigrationsByDate/"+ start+"/" + end, function(data){
@@ -333,7 +331,7 @@ document.getElementById('buttonSelect').addEventListener("click", function(){
         } 
         else 
             console.log("Error");
-    });
+    });*/
 })
 
 document.addEventListener('DOMContentLoaded', function() {
