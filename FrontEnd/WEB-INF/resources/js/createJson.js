@@ -207,7 +207,8 @@ function removeHotspotById(id)
 	{
 		let hotspot = currentHotspots.features[i];
 		if(id == hotspot.properties.hotspotId){
-			currentHotspots.features.splice(i, 1);
+			currentHotspots.features[i].properties.trail = true;
+			//currentHotspots.features.splice(i, 1);
 		}
 	}
 }

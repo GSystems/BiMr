@@ -119,23 +119,27 @@ function getMigrations()
 
     map.data.setStyle(function(feature) {
         var number = feature.getProperty('howMany');
+        let trail  = feature.getProperty('trail');
         if(number == undefined)
             number = 1;
         return {
-            icon: getCircle(number)
+            icon: getCircle(number,trail)
         };
     });
 
     initWindowInfo(); 
 }
 
-function getCircle(magnitude) {
+function getCircle(magnitude,trail) {
+    let opacity = .8;
+    if(trail == true)
+        opacity = .3;
     var quan = 15;
     if(magnitude < 4 ){
         return {
             path: google.maps.SymbolPath.CIRCLE,
             fillColor: 'red',
-            fillOpacity: .8,
+            fillOpacity: opacity,
             scale: quan,
             strokeColor: 'red',
             strokeWeight: .5
@@ -144,7 +148,7 @@ function getCircle(magnitude) {
         return {
             path: google.maps.SymbolPath.CIRCLE,
             fillColor: 'red',
-            fillOpacity: .9,
+            fillOpacity: opacity,
             scale: Math.pow(2, magnitude) / 2 + 1,
             strokeColor: 'red',
             strokeWeight: .5
@@ -230,6 +234,9 @@ function initWindowInfo(){
             contentUserEnd+
             event.feature.getProperty('tweetMessage')+
             contentTweetEnd + 
+            "<br> Spotting Date: " + event.feature.getProperty('observationDate').year + "-"
+            + event.feature.getProperty('observationDate').monthValue + "-" +
+            + event.feature.getProperty('observationDate').dayOfMonth +
             "<br>Number of birds estimated:" + event.feature.getProperty('howMany');
 
         infowindow.setContent(content);
