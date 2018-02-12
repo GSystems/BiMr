@@ -2,18 +2,18 @@ package bimr.rf.twitter.wrapper;
 
 public class TwitterUserWrapper {
 
-	private String id;
+	private Long id;
 	private String email;
 	private String location;
 	private String screenName;
 	private String isGeoEnabled;
 	private String name;
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -32,7 +32,7 @@ public interface TweetFacade {
      *
      * @param tweets
      */
-    void persistTweets(List<TweetDTO> tweets);
+    void persistTweetsInRelationalDb(List<TweetDTO> tweets);
 
     /**
      * Retrieve the most recent tweet id from the database
