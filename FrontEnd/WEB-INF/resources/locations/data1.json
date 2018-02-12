@@ -1,323 +1,1126 @@
 {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "number": 5,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-12"
-      },
-      "geometry": {
-        "type": "Point",
-        "icon": "/images.png",
-        "coordinates": [
-          4.833984374999999,
-          47.27922900257082
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-12",
-        "number": 4,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          4.4384765625,
-          46.40756396630067
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "timestamp": "2017-12-12",
-        "number": 3,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe"    
-    },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3.8671874999999996,
-          45.182036837015886
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "timestamp": "2017-12-12",
-        "number": 2,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          1.23046875,
-          45.98169518512228
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "timestamp": "2017-12-12",
-        "number": 1,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
-        
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3.515625,
-          48.748945343432936
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "timestamp": "2017-12-12",
-        "number": 5,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
-        
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          8.349609375,
-          45.27488643704891
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "timestamp": "2017-12-12",
-        "number": 6,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
-        
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.48339843749999994,
-          47.96050238891509
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "timestamp": "2017-12-12",
-        "number": 3,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
-        
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.087890625,
-          51.67255514839674
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "timestamp": "2017-12-12",
-        "number": 2,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
-        
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.791015625,
-          51.01375465718821
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "timestamp": "2017-12-12",
-        "number": 5,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
-        
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          0.703125,
-          51.28940590271679
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "timestamp": "2017-12-12",
-        "number": 4,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",     
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -2.5048828125,
-          51.72702815704774
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "timestamp": "2017-12-12",
-        "number": 2,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",      
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          19.072265625,
-          42.58544425738491
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "timestamp": "2017-12-12",
-        "number": 2,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
-        
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          20.478515625,
-          42.032974332441405
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "timestamp": "2017-12-12",
-        "number": 5,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
-        
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          18.3251953125,
-          43.54854811091286
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "timestamp": "2017-12-12",
-        "number": 4,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
-        
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          18.369140624999996,
-          42.22851735620852
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "timestamp": "2017-12-12",
-        "number": 4,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
-        
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          19.51171875,
-          42.19596877629178
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "timestamp": "2017-12-12",
-        "number": 1,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.",
-        
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.900390625,
-          47.12995075666307
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "timestamp": "2017-12-12",
-        "number": 3,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North.", 
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.4609375,
-          46.31658418182218
-        ]
-      }
-    }
-  ]
+    "features": [
+        {
+            "geometry": {
+                "coordinates": [
+                    22.15,
+                    37.8
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2018,
+                    "month": "JANUARY",
+                    "dayOfMonth": 14,
+                    "dayOfWeek": "SUNDAY",
+                    "dayOfYear": 14,
+                    "monthValue": 1,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "c62cb150-017a-4268-a2c3-d19d3b087ebe",
+                "tweetMessage": "The Killdeer found one of the only open water spaces today in this crack",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Sokratis Papastathopoulos",
+                    "id": 147
+                },
+                "tweetId": 47,
+                "birdSpeciesList": [
+                    "Killdeer"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -8.81,
+                    39.68
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2018,
+                    "month": "JANUARY",
+                    "dayOfMonth": 16,
+                    "dayOfWeek": "TUESDAY",
+                    "dayOfYear": 16,
+                    "monthValue": 1,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "eed4b10e-d1cc-40f2-8928-7805750b32cc",
+                "tweetMessage": "This red-tailed Eagle is so well camouflaged that I came within 6 feet of it before seeing it",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Andre Gomes",
+                    "id": 3110
+                },
+                "tweetId": 310,
+                "birdSpeciesList": [
+                    "Eagle",
+                    "red-tailed"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    27.28,
+                    47.2
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2018,
+                    "month": "JANUARY",
+                    "dayOfMonth": 11,
+                    "dayOfWeek": "THURSDAY",
+                    "dayOfYear": 11,
+                    "monthValue": 1,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "33c04310-158c-423f-97b4-4a9e910765ba",
+                "tweetMessage": "The trees filled with little Killdeers",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Alexandru Mocanu",
+                    "id": 145
+                },
+                "tweetId": 45,
+                "birdSpeciesList": [
+                    "Killdeers"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -75.25,
+                    43.85
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2017,
+                    "month": "OCTOBER",
+                    "dayOfMonth": 26,
+                    "dayOfWeek": "THURSDAY",
+                    "dayOfYear": 299,
+                    "monthValue": 10,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "faf76920-7020-49eb-a28e-11d16c66b4f1",
+                "tweetMessage": "Why these Osprey carry flames in their beaks",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Chris Bridges",
+                    "id": 123
+                },
+                "tweetId": 23,
+                "birdSpeciesList": [
+                    "Osprey"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    8.11,
+                    52.87
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2018,
+                    "month": "JANUARY",
+                    "dayOfMonth": 8,
+                    "dayOfWeek": "MONDAY",
+                    "dayOfYear": 8,
+                    "monthValue": 1,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "153d5ceb-0cb3-42e6-b7a5-60504ade809d",
+                "tweetMessage": "Tweety pie the cute Eagle being showered with love???",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Robert Adler",
+                    "id": 134
+                },
+                "tweetId": 34,
+                "birdSpeciesList": [
+                    "Eagle"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    39.36,
+                    59.54
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2018,
+                    "month": "JANUARY",
+                    "dayOfMonth": 6,
+                    "dayOfWeek": "SATURDAY",
+                    "dayOfYear": 6,
+                    "monthValue": 1,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "d879fc68-c950-4537-8314-40341cb870ed",
+                "tweetMessage": "This Killdeer had quite a bit to say to us this morning.",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Andrey Kokorin",
+                    "id": 141
+                },
+                "tweetId": 41,
+                "birdSpeciesList": [
+                    "Killdeer"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -77.81,
+                    38.37
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2017,
+                    "month": "OCTOBER",
+                    "dayOfMonth": 29,
+                    "dayOfWeek": "SUNDAY",
+                    "dayOfYear": 302,
+                    "monthValue": 10,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "377f7e00-014d-47cd-926e-ee375e0a415d",
+                "tweetMessage": "Whopper Osprey at Washington outskirts today",
+                "city": "Washington",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Jamie Vardy",
+                    "id": 126
+                },
+                "tweetId": 26,
+                "birdSpeciesList": [
+                    "Osprey",
+                    "Whopper"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    12.81,
+                    57.52
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2018,
+                    "month": "JANUARY",
+                    "dayOfMonth": 5,
+                    "dayOfWeek": "FRIDAY",
+                    "dayOfYear": 5,
+                    "monthValue": 1,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "4b9c5017-b016-44d0-9677-b71190a826d5",
+                "tweetMessage": "Eagle Friday! This pair of eagles are our observation today.",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Markus Berg",
+                    "id": 132
+                },
+                "tweetId": 32,
+                "birdSpeciesList": [
+                    "Eagle",
+                    "Friday",
+                    "eagles"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.91,
+                    50.87
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2018,
+                    "month": "JANUARY",
+                    "dayOfMonth": 9,
+                    "dayOfWeek": "TUESDAY",
+                    "dayOfYear": 9,
+                    "monthValue": 1,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "81b385a4-dd92-43de-a77b-14b46c2a5fae",
+                "tweetMessage": "Tufted Eagle spotted",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Lasse Schone",
+                    "id": 135
+                },
+                "tweetId": 35,
+                "birdSpeciesList": [
+                    "Eagle",
+                    "Tufted"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -4.53,
+                    42.66
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2018,
+                    "month": "JANUARY",
+                    "dayOfMonth": 14,
+                    "dayOfWeek": "SUNDAY",
+                    "dayOfYear": 14,
+                    "monthValue": 1,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "f245a3a8-9695-4dd5-a50d-68dec99749f4",
+                "tweetMessage": "Through the lens: Eagles sighted!",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "David Silva",
+                    "id": 139
+                },
+                "tweetId": 39,
+                "birdSpeciesList": [
+                    "Eagles"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    7.17,
+                    58.68
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2018,
+                    "month": "JANUARY",
+                    "dayOfMonth": 3,
+                    "dayOfWeek": "WEDNESDAY",
+                    "dayOfYear": 3,
+                    "monthValue": 1,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "356f4742-907d-4ae1-a02c-c1df2f5ddd09",
+                "tweetMessage": "Urbanized Eagle loitering in front of a KFC",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Ankjell Karlof",
+                    "id": 131
+                },
+                "tweetId": 31,
+                "birdSpeciesList": [
+                    "Eagle",
+                    "Urbanized"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    26.01,
+                    30.05
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2018,
+                    "month": "JANUARY",
+                    "dayOfMonth": 16,
+                    "dayOfWeek": "TUESDAY",
+                    "dayOfYear": 16,
+                    "monthValue": 1,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "e50a0854-c918-49a9-b3a0-3f91f8b00dd3",
+                "tweetMessage": "The other day I spent a long time chasing Killdeer around",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Asim Ramses",
+                    "id": 148
+                },
+                "tweetId": 48,
+                "birdSpeciesList": [
+                    "Killdeer"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -80.05,
+                    32.95
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2017,
+                    "month": "OCTOBER",
+                    "dayOfMonth": 31,
+                    "dayOfWeek": "TUESDAY",
+                    "dayOfYear": 304,
+                    "monthValue": 10,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "7e1fb269-35cb-4510-b010-10507e21d027",
+                "tweetMessage": "We are officially off to track down a Osprey!",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Andy Anderson",
+                    "id": 128
+                },
+                "tweetId": 28,
+                "birdSpeciesList": [
+                    "Osprey"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    4.76,
+                    48.44
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2018,
+                    "month": "JANUARY",
+                    "dayOfMonth": 11,
+                    "dayOfWeek": "THURSDAY",
+                    "dayOfYear": 11,
+                    "monthValue": 1,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "114b2875-57be-4840-8455-5f7d74b3f0ab",
+                "tweetMessage": "Tourism sector to promote Eagle as niche market",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Alexandre Lacazette",
+                    "id": 137
+                },
+                "tweetId": 37,
+                "birdSpeciesList": [
+                    "Eagle"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -75.76,
+                    45.74
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2017,
+                    "month": "OCTOBER",
+                    "dayOfMonth": 25,
+                    "dayOfWeek": "WEDNESDAY",
+                    "dayOfYear": 298,
+                    "monthValue": 10,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "01362292-9b6d-402b-8080-046ec335e64b",
+                "tweetMessage": "White-throated Osprey going the distance",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Ross Barkley",
+                    "id": 122
+                },
+                "tweetId": 22,
+                "birdSpeciesList": [
+                    "Osprey",
+                    "White-throated"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -77.24,
+                    40.29
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2017,
+                    "month": "OCTOBER",
+                    "dayOfMonth": 27,
+                    "dayOfWeek": "FRIDAY",
+                    "dayOfYear": 300,
+                    "monthValue": 10,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "5f7c3df3-bdc6-43aa-a5d1-7d8257f1767f",
+                "tweetMessage": "What a hoot! Just look at this Osprey!",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Gary Silverton",
+                    "id": 125
+                },
+                "tweetId": 25,
+                "birdSpeciesList": [
+                    "Osprey"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -82.47,
+                    27.51
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2017,
+                    "month": "NOVEMBER",
+                    "dayOfMonth": 2,
+                    "dayOfWeek": "THURSDAY",
+                    "dayOfYear": 306,
+                    "monthValue": 11,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "f4aaf48c-6843-498f-ae4e-2249505d9b3c",
+                "tweetMessage": "Usually don't see this guy so active - Osprey",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Cody Walker",
+                    "id": 1101
+                },
+                "tweetId": 210,
+                "birdSpeciesList": [
+                    "Osprey"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -111.3,
+                    24.53
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2017,
+                    "month": "DECEMBER",
+                    "dayOfMonth": 20,
+                    "dayOfWeek": "WEDNESDAY",
+                    "dayOfYear": 354,
+                    "monthValue": 12,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "de4251e8-ac92-43b9-9b31-b191b4511eed",
+                "tweetMessage": "Some birds of paradise are the hawk",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Hernan Reyes",
+                    "id": 119
+                },
+                "tweetId": 19,
+                "birdSpeciesList": [
+                    "hawk"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    27.76,
+                    50.54
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2018,
+                    "month": "JANUARY",
+                    "dayOfMonth": 9,
+                    "dayOfWeek": "TUESDAY",
+                    "dayOfYear": 9,
+                    "monthValue": 1,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "d8f36b01-1a95-414d-8bb1-683fb29ec24c",
+                "tweetMessage": "Think Killdeer watching is something only hardened people enjoy?",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Andryi Shevchenko",
+                    "id": 144
+                },
+                "tweetId": 44,
+                "birdSpeciesList": [
+                    "Killdeer"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -109.9,
+                    23.52
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2017,
+                    "month": "DECEMBER",
+                    "dayOfMonth": 21,
+                    "dayOfWeek": "THURSDAY",
+                    "dayOfYear": 355,
+                    "monthValue": 12,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "ba6b1b50-1079-41e6-907d-809349ac22e2",
+                "tweetMessage": "What kinda bird is that? It is a hawk, right?",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Elena Neves",
+                    "id": 1110
+                },
+                "tweetId": 110,
+                "birdSpeciesList": [
+                    "hawk"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -105.6,
+                    37.26
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2017,
+                    "month": "DECEMBER",
+                    "dayOfMonth": 13,
+                    "dayOfWeek": "WEDNESDAY",
+                    "dayOfYear": 347,
+                    "monthValue": 12,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "7618ef58-ceec-4aef-b361-72dd0095cfa6",
+                "tweetMessage": "You've never seen a hawk do this!",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "John Wick",
+                    "id": 112
+                },
+                "tweetId": 12,
+                "birdSpeciesList": [
+                    "hawk"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    34.13,
+                    56.21
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2018,
+                    "month": "JANUARY",
+                    "dayOfMonth": 7,
+                    "dayOfWeek": "SUNDAY",
+                    "dayOfYear": 7,
+                    "monthValue": 1,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "580a9db8-a661-4134-ba1e-5d6e7daffeae",
+                "tweetMessage": "This is one of the  4 subspecies of the spectacular Killdeer!",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Alan Dzagoev",
+                    "id": 142
+                },
+                "tweetId": 42,
+                "birdSpeciesList": [
+                    "Killdeer"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    31.1,
+                    53.44
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2018,
+                    "month": "JANUARY",
+                    "dayOfMonth": 8,
+                    "dayOfWeek": "MONDAY",
+                    "dayOfYear": 8,
+                    "monthValue": 1,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "ced76a8e-3069-404e-9bba-955b2e2d6af5",
+                "tweetMessage": "This adorable Killdeer was making the most of a very overcast day",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Sergei Gurenko",
+                    "location": "Dublin",
+                    "id": 143,
+                    "screenName": "sergurk",
+                    "isGeoEnabled": "true",
+                    "email": "sergurk@gmail.com"
+                },
+                "tweetId": 43,
+                "birdSpeciesList": [
+                    "Killdeer"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    40.43,
+                    13.15
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2018,
+                    "month": "JANUARY",
+                    "dayOfMonth": 19,
+                    "dayOfWeek": "FRIDAY",
+                    "dayOfYear": 19,
+                    "monthValue": 1,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "29b14ba5-d7ac-4b6a-bcac-f38dd4b4d2ee",
+                "tweetMessage": "The Killdeers are busy chasing each other today.",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Jemal Tassew",
+                    "id": 1109
+                },
+                "tweetId": 410,
+                "birdSpeciesList": [
+                    "Killdeers"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    5.08,
+                    50.08
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2018,
+                    "month": "JANUARY",
+                    "dayOfMonth": 9,
+                    "dayOfWeek": "TUESDAY",
+                    "dayOfYear": 9,
+                    "monthValue": 1,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "ba094210-fd71-49e1-b3ef-73aa9405402f",
+                "tweetMessage": "Tricolored eagle Eagle outskirts of the city",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Axel Witsel",
+                    "id": 136
+                },
+                "tweetId": 36,
+                "birdSpeciesList": [
+                    "Eagle",
+                    "Tricolored",
+                    "eagle"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -83.5,
+                    30.81
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2017,
+                    "month": "NOVEMBER",
+                    "dayOfMonth": 1,
+                    "dayOfWeek": "WEDNESDAY",
+                    "dayOfYear": 305,
+                    "monthValue": 11,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "1deb28ab-eab6-437f-8682-8b4b5538b02e",
+                "tweetMessage": "Look at this! Just found a flock of Osprey",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "David Duchovny",
+                    "id": 129
+                },
+                "tweetId": 29,
+                "birdSpeciesList": [
+                    "Osprey"
+                ]
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    26.23,
+                    44.4
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "observationDate": {
+                    "year": 2018,
+                    "month": "JANUARY",
+                    "dayOfMonth": 11,
+                    "dayOfWeek": "THURSDAY",
+                    "dayOfYear": 11,
+                    "monthValue": 1,
+                    "nano": 123000000,
+                    "hour": 9,
+                    "minute": 30,
+                    "second": 10,
+                    "chronology": {
+                        "id": "ISO",
+                        "calendarType": "iso8601"
+                    }
+                },
+                "hotspotId": "91853460-d50d-448e-a024-ad2881e3fc03",
+                "tweetMessage": "The winter months are a perfect time to keep an eye out for beautiful Killdeer",
+                "informationSourceId": "twitter",
+                "language": "en",
+                "howMany": 1,
+                "user": {
+                    "name": "Ioan Petrescu",
+                    "id": 146
+                },
+                "tweetId": 46,
+                "birdSpeciesList": [
+                    "Killdeer"
+                ]
+            }
+        }
+    ],
+    "type": "FeatureCollection"
 }

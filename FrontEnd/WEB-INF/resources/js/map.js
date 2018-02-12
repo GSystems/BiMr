@@ -1,29 +1,36 @@
 var map;
 var url = "http://localhost/WEB-INF/resources/locations/";
-var javaUrl = "http://localhost/BiMr/";
+var javaUrl = "http://localhost:8080/BiMr/ws/bimr/getMigrations/";
 var allInfoWindows = [];
-
-var startDate = new Date(2017,12,12,0,0,0,0);
-var endDate   = new Date(2018,1,12,0,0,0,0);
-
 
 var contentTitleStart = '<div id="content">'+
     '<div id="siteNotice">'+
     '</div>'+
     '<h1 id="firstHeading" class="firstHeading">';
-
 var contentTitleEnd = '</h1>'+
     '<div id="bodyContent">'+
-    '<p>From <b>';
-
-var contentUserEnd = "</b>: ";
-
-var contentTweetEnd = "</p>" +
+    '<p><b><h3>';
+var contentUserEnd = " via Twiiter</h3></b>";
+var contentTweetEnd = ".</p>" +
     '</div>'+
     '</div>';
-
 var contetnTweetend = '';
 
+var allDays = []
+var allHotspots;
+var currentHotspots;
+var currentDate;
+var migrationHotspots;
+
+function sortByKey(a,b)
+{
+    let keyA = new Date(a.Date);
+    let keyB = new Date(b.Date);
+    // Compare the 2 dates
+    if(keyA < keyB) return -1;
+    if(keyA > keyB) return 1;
+    return 0;
+}
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -32,7 +39,94 @@ function initMap() {
         mapTypeId: 'terrain'
     });
 
+
     initData(1);
+    getMigrationStartData();
+}
+
+function initData(value,timestamp = null)
+{ 
+/*    var urlCos = javaUrl + document.getElementById('startDate').value + "/" + document.getElementById('endDate').value;
+    console.log(urlCos);
+
+    takeJson(urlCos,function(data){
+        if(data !== null){
+            console.log(data);
+            //map.data.addGeoJson(JSON.parse(data));
+        } 
+        else 
+            console.log("Error");
+    });*/
+
+
+    loadJson(url + "data" + value + ".json", function(data){
+        if(data !== null) {  
+            allHotspots = JSON.parse(data);
+        }
+        else
+            console.log("Error");
+    });
+}
+
+function getMigrationStartData()
+{
+    loadJson(url + "data" + 2 + ".json", function(data){
+        if(data !== null) {
+
+            migrationHotspots = JSON.parse(data);
+            let date = findEarliesDate(JSON.parse(data),'migration');
+            currentDate = date;
+            date = formatDate(date);
+            date = getTime(date);
+
+            currentHotspots = getHotspotstsByTime(allHotspots,date,"hotspot");
+            map.data.addGeoJson(currentHotspots);
+        }
+        else
+            console.log("Error");
+    });
+
+    map.data.setStyle(function(feature) {
+        var number = feature.getProperty('howMany');
+        if(number == undefined)
+            number = 1;
+        return {
+            icon: getCircle(number)
+        };
+    });
+
+    initWindowInfo();
+}
+
+function getMigrations()
+{
+    loadJson(url + "data" + 2 + ".json", function(data){
+        if(data !== null) {
+
+            currentDate.setDate(currentDate.getDate() + 1);
+            let date = formatDate(currentDate);
+            date = getTime(date);
+
+            console.log(currentDate);
+            findNextStep(date);
+            console.log(currentHotspots);
+            //currentHotspots = getHotspotstsByTime(allHotspots,date);
+            map.data.addGeoJson(currentHotspots);
+        }
+        else
+            console.log("Error");
+    });
+
+    map.data.setStyle(function(feature) {
+        var number = feature.getProperty('howMany');
+        if(number == undefined)
+            number = 1;
+        return {
+            icon: getCircle(number)
+        };
+    });
+
+    initWindowInfo(); 
 }
 
 function getCircle(magnitude) {
@@ -55,9 +149,7 @@ function getCircle(magnitude) {
             strokeColor: 'red',
             strokeWeight: .5
         };    
-    }
-
-    
+    }  
 }
 
 function slideStart(){
@@ -91,7 +183,8 @@ function loadJson(path,callback){
 function takeJson(path,callback)
 {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "https://ebird.org/ws1.1/data/obs/geo/recent?lng=-76.51&lat=42.46&dist=2&back=5&maxResults=500&locale=en_US&fmt=json", true);
+    xhttp.open("GET", path);
+    //xhttp.open("GET", "https://ebird.org/ws1.1/data/obs/geo/recent?lng=-76.51&lat=42.46&dist=2&back=5&maxResults=500&locale=en_US&fmt=json", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.onreadystatechange = function()
     {
@@ -122,15 +215,22 @@ function initWindowInfo(){
     map.data.addListener('click', function(event){
         if(infowindow)
             infowindow.close();
+        let speciesList = ""; 
+
+        for(let i = 0 ;i<event.feature.getProperty('birdSpeciesList').length; i++){
+            speciesList += event.feature.getProperty('birdSpeciesList')[i];
+            speciesList += ",";
+        }
+        speciesList = speciesList.slice(0, -1);
 
         var content =  contentTitleStart +
-            event.feature.getProperty('commonName') +
+            speciesList +
             contentTitleEnd+
-            event.feature.getProperty('user')+
+            event.feature.getProperty('user').name+
             contentUserEnd+
-            event.feature.getProperty('information')+
+            event.feature.getProperty('tweetMessage')+
             contentTweetEnd + 
-            "<br>Number of birds estimated:" + event.feature.getProperty('number');
+            "<br>Number of birds estimated:" + event.feature.getProperty('howMany');
 
         infowindow.setContent(content);
         infowindow.setPosition(event.feature.getGeometry().get());
@@ -140,100 +240,76 @@ function initWindowInfo(){
     })
 
     google.maps.event.addListener(infowindow,'closeclick',function(){
-        console.log("closeclick event");
         clearWindowInfo();
     });
 }
 
-function initData(value)
-{
-/*    var dateTime = document.getElementById('startDate').value;
-    var d = new Date(2017,12,12,0,0,0,0);
-    d.setDate(d.getDate() + 1);
-    var res = d.toISOString().substring(0,10);
-    console.log(res);*/
 
-/*    takeJson('test',function(data){
-        if(data !== null){
-            console.log(data);
-            map.data.addGeoJson(JSON.parse(data));
-        } 
-        else 
-            console.log("Error");
-    });*/
-
-    loadJson(url + "data" + value + ".json", function(data){
-        if(data !== null) {
-            map.data.addGeoJson(JSON.parse(data))
-        }
-        else
-            console.log("Error");
-    });
-
-    map.data.setStyle(function(feature) {
-        var number = feature.getProperty('number');
-        var iconProperty = feature.getProperty('icon');
-        if(iconProperty == undefined){
-            return {
-                icon: getCircle(number)
-            };
-        } else {
-            return {
-                icon: feature.getProperty('icon')
-            };
-        }
-    });
-
-    initWindowInfo();
-
-}
 
 function startAction(){
-    value = document.getElementById("myRange").value;
-    console.log("iteration:" + value);
-    if(value >= 11)
-        return;
+    //value = document.getElementById("myRange").value;
     clearMap();
     clearWindowInfo();
-    initData(value);
-    document.getElementById("myRange").value++;
+
+    getMigrations();
+
+/*    for (var k in allDays) {
+    }*/
+    
+
+    //initData(value);
+    //document.getElementById("myRange").value++;
 }
 
 document.getElementById("button").addEventListener("click", function(){
     initAction();
     var timesRun = 0;
     var intervalId = setInterval(function(){
+        console.log("iteration: " + timesRun);
         timesRun++;
-        if(timesRun === 10)
+        if(timesRun === 90)
             clearInterval(intervalId);
         startAction();
-    } , 1000);
+    } , 500);
 });
 
 document.getElementById('buttonSelect').addEventListener("click", function(){
     initAction();
-
-    var start = document.getElementById('startDate').value;
-    var div = document.getElementById('censusMin');
+    let start = document.getElementById('startDate').value;
+    let div = document.getElementById('censusMin');
     div.innerHTML = start;
 
-    var dateTime = document.getElementById('startDate').value;
+    let end = document.getElementById('endDate').value;
+    let divMax = document.getElementById('censusMax');
+    divMax.innerHTML = end;
+
+
+    allDays = [];
     clearWindowInfo();
-    initData(1);
+    clearMap();
+    initData(1,start);
 })
 
-function changeDataType()
-{
-    var select = document.getElementById('dataType');
-    initAction();
-    clearWindowInfo();
-    initData(9);
-    console.log(select.value);
-}
-
 document.addEventListener('DOMContentLoaded', function() {
-    var start = document.getElementById('startDate').value;
-    var div = document.getElementById('censusMin');
-    div.innerHTML = start;
+    let start = document.getElementById('startDate').value;
+    let divMin = document.getElementById('censusMin');
+    divMin.innerHTML = start;
+
+    let end = document.getElementById('endDate').value;
+    let divMax = document.getElementById('censusMax');
+    divMax.innerHTML = end;
+
 }, false);
 
+
+function getTime(date)
+{
+    let timestamp = new Object(); 
+    let options = date.split("-");
+
+    timestamp.Year = options[0];
+    timestamp.Month = options[1];
+    timestamp.Day = options[2];
+
+    return timestamp;
+}

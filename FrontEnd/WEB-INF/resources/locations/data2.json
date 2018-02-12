@@ -1,328 +1,1559 @@
 {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-13",
-        "number": 5,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-      },
-      "geometry": {
-        "type": "Point",
-        "icon": "/images.png",
-        "coordinates": [
-          4.833984674999999,
-          50.27922900257082
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-13",
-        "number": 4,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          4.4685065625,
-          49.40756396630067
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-13",
-        "number": 3,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3.8671874999999996,
-          48.182036837015886
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-13",
-        "number": 2,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          1.23049875,
-          48.98169548545228
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-13",
-        "number": 1,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3.545625,
-          48.748948346462936
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-13",
-        "number": 5,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          8.349609375,
-          48.27488646704891
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-13",
-        "number": 6,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.48339846749999994,
-          50.96050238891509
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-13",
-        "number": 3,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.087890625,
-          54.67255544839674
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-13",
-        "number": 2,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.791015625,
-          54.01375495718821
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-13",
-        "number": 5,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          0.703125,
-          54.28940590271679
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-13",
-        "number": 4,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -2.5048828125,
-          54.72702815705074
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-13",
-        "number": 2,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          19.072265625,
-          45.58544455738491
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-13",
-        "number": 2,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          20.508545625,
-          45.032974632441405
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-13",
-        "number": 5,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          18.3254953125,
-          46.54854811091286
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-13",
-        "number": 4,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          18.369140624999996,
-          45.22854735620852
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-13",
-        "number": 4,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          19.54171875,
-          45.19596877629178
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-13",
-        "number": 1,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-  
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.900390625,
-          50.12995075666307
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "commonName": "American Tree Sparrow",
-        "user": "John Doe",
-        "timestamp": "2017-12-13",
-        "number": 3,
-        "information": "Plump and long-tailed, American Tree Sparrows are busy visitors in winter backyards and weedy, snow-covered fields across southern Canada and the northern United States. Hopping up at bent weeds or even beating their wings to dislodge seeds from grass heads, they scratch and peck the ground in small flocks, trading soft, musical twitters. Come snowmelt, these small rusty-capped and smooth-breasted sparrows begin their long migrations to breeding grounds in the tundra of the far North."
-
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.4909375,
-          49.31658418182218
-        ]
-      }
-    }
-  ]
+    "features": [
+        {
+            "geometry": {
+                "coordinates": [
+                    7.17,
+                    58.68
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "c557c9b3-3edf-493d-94ec-b2ad278cf8c5",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 5,
+                        "dayOfWeek": "FRIDAY",
+                        "dayOfYear": 5,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "4b9c5017-b016-44d0-9677-b71190a826d5",
+                    "geometry": {
+                        "coordinates": [
+                            12.81,
+                            57.52
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Eagle"
+                    ]
+                },
+                "species": "Eagle",
+                "toHotspotId": "4b9c5017-b016-44d0-9677-b71190a826d5",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 3,
+                        "dayOfWeek": "WEDNESDAY",
+                        "dayOfYear": 3,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "356f4742-907d-4ae1-a02c-c1df2f5ddd09",
+                    "geometry": {
+                        "coordinates": [
+                            7.17,
+                            58.68
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Eagle"
+                    ]
+                },
+                "fromHotpsotId": "356f4742-907d-4ae1-a02c-c1df2f5ddd09"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    12.81,
+                    57.52
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "b0be9236-6265-4f92-b9d1-dc5dcc7f2c7b",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 8,
+                        "dayOfWeek": "MONDAY",
+                        "dayOfYear": 8,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "153d5ceb-0cb3-42e6-b7a5-60504ade809d",
+                    "geometry": {
+                        "coordinates": [
+                            8.11,
+                            52.87
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Eagle"
+                    ]
+                },
+                "species": "Eagle",
+                "toHotspotId": "153d5ceb-0cb3-42e6-b7a5-60504ade809d",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 5,
+                        "dayOfWeek": "FRIDAY",
+                        "dayOfYear": 5,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "4b9c5017-b016-44d0-9677-b71190a826d5",
+                    "geometry": {
+                        "coordinates": [
+                            12.81,
+                            57.52
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Eagle"
+                    ]
+                },
+                "fromHotpsotId": "4b9c5017-b016-44d0-9677-b71190a826d5"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    8.11,
+                    52.87
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "3c0c2897-256e-4d0d-be35-3856f9f3918c",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 9,
+                        "dayOfWeek": "TUESDAY",
+                        "dayOfYear": 9,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "81b385a4-dd92-43de-a77b-14b46c2a5fae",
+                    "geometry": {
+                        "coordinates": [
+                            -5.91,
+                            50.87
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Eagle"
+                    ]
+                },
+                "species": "Eagle",
+                "toHotspotId": "81b385a4-dd92-43de-a77b-14b46c2a5fae",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 8,
+                        "dayOfWeek": "MONDAY",
+                        "dayOfYear": 8,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "153d5ceb-0cb3-42e6-b7a5-60504ade809d",
+                    "geometry": {
+                        "coordinates": [
+                            8.11,
+                            52.87
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Eagle"
+                    ]
+                },
+                "fromHotpsotId": "153d5ceb-0cb3-42e6-b7a5-60504ade809d"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.91,
+                    50.87
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "c3404f34-ec95-46fe-be08-190486fcbbee",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 9,
+                        "dayOfWeek": "TUESDAY",
+                        "dayOfYear": 9,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "ba094210-fd71-49e1-b3ef-73aa9405402f",
+                    "geometry": {
+                        "coordinates": [
+                            5.08,
+                            50.08
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Eagle"
+                    ]
+                },
+                "species": "Eagle",
+                "toHotspotId": "ba094210-fd71-49e1-b3ef-73aa9405402f",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 9,
+                        "dayOfWeek": "TUESDAY",
+                        "dayOfYear": 9,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "81b385a4-dd92-43de-a77b-14b46c2a5fae",
+                    "geometry": {
+                        "coordinates": [
+                            -5.91,
+                            50.87
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Eagle"
+                    ]
+                },
+                "fromHotpsotId": "81b385a4-dd92-43de-a77b-14b46c2a5fae"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    5.08,
+                    50.08
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "6a8c35a1-e055-4d00-8d4c-1c1821fa9cf9",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 11,
+                        "dayOfWeek": "THURSDAY",
+                        "dayOfYear": 11,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "114b2875-57be-4840-8455-5f7d74b3f0ab",
+                    "geometry": {
+                        "coordinates": [
+                            4.76,
+                            48.44
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Eagle"
+                    ]
+                },
+                "species": "Eagle",
+                "toHotspotId": "114b2875-57be-4840-8455-5f7d74b3f0ab",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 9,
+                        "dayOfWeek": "TUESDAY",
+                        "dayOfYear": 9,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "ba094210-fd71-49e1-b3ef-73aa9405402f",
+                    "geometry": {
+                        "coordinates": [
+                            5.08,
+                            50.08
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Eagle"
+                    ]
+                },
+                "fromHotpsotId": "ba094210-fd71-49e1-b3ef-73aa9405402f"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    4.76,
+                    48.44
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "4ca2f60c-70d4-4fca-bf91-b6fd4893f8ae",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 16,
+                        "dayOfWeek": "TUESDAY",
+                        "dayOfYear": 16,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "eed4b10e-d1cc-40f2-8928-7805750b32cc",
+                    "geometry": {
+                        "coordinates": [
+                            -8.81,
+                            39.68
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Eagle"
+                    ]
+                },
+                "species": "Eagle",
+                "toHotspotId": "eed4b10e-d1cc-40f2-8928-7805750b32cc",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 11,
+                        "dayOfWeek": "THURSDAY",
+                        "dayOfYear": 11,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "114b2875-57be-4840-8455-5f7d74b3f0ab",
+                    "geometry": {
+                        "coordinates": [
+                            4.76,
+                            48.44
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Eagle"
+                    ]
+                },
+                "fromHotpsotId": "114b2875-57be-4840-8455-5f7d74b3f0ab"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    39.36,
+                    59.54
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "ab4d0a2f-057b-4258-b6b8-a0b2d4f16743",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 7,
+                        "dayOfWeek": "SUNDAY",
+                        "dayOfYear": 7,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "580a9db8-a661-4134-ba1e-5d6e7daffeae",
+                    "geometry": {
+                        "coordinates": [
+                            34.13,
+                            56.21
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Killdeer"
+                    ]
+                },
+                "species": "Killdeer",
+                "toHotspotId": "580a9db8-a661-4134-ba1e-5d6e7daffeae",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 6,
+                        "dayOfWeek": "SATURDAY",
+                        "dayOfYear": 6,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "d879fc68-c950-4537-8314-40341cb870ed",
+                    "geometry": {
+                        "coordinates": [
+                            39.36,
+                            59.54
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Killdeer"
+                    ]
+                },
+                "fromHotpsotId": "d879fc68-c950-4537-8314-40341cb870ed"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    34.13,
+                    56.21
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "c037f2a0-41c3-4d9c-bc3b-f71e9d663ab9",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 8,
+                        "dayOfWeek": "MONDAY",
+                        "dayOfYear": 8,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "ced76a8e-3069-404e-9bba-955b2e2d6af5",
+                    "geometry": {
+                        "coordinates": [
+                            31.1,
+                            53.44
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Killdeer"
+                    ]
+                },
+                "species": "Killdeer",
+                "toHotspotId": "ced76a8e-3069-404e-9bba-955b2e2d6af5",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 7,
+                        "dayOfWeek": "SUNDAY",
+                        "dayOfYear": 7,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "580a9db8-a661-4134-ba1e-5d6e7daffeae",
+                    "geometry": {
+                        "coordinates": [
+                            34.13,
+                            56.21
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Killdeer"
+                    ]
+                },
+                "fromHotpsotId": "580a9db8-a661-4134-ba1e-5d6e7daffeae"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    31.1,
+                    53.44
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "d7316f5b-4094-4e64-9a85-a65f65f9f7ae",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 9,
+                        "dayOfWeek": "TUESDAY",
+                        "dayOfYear": 9,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "d8f36b01-1a95-414d-8bb1-683fb29ec24c",
+                    "geometry": {
+                        "coordinates": [
+                            27.76,
+                            50.54
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Killdeer"
+                    ]
+                },
+                "species": "Killdeer",
+                "toHotspotId": "d8f36b01-1a95-414d-8bb1-683fb29ec24c",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 8,
+                        "dayOfWeek": "MONDAY",
+                        "dayOfYear": 8,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "ced76a8e-3069-404e-9bba-955b2e2d6af5",
+                    "geometry": {
+                        "coordinates": [
+                            31.1,
+                            53.44
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Killdeer"
+                    ]
+                },
+                "fromHotpsotId": "ced76a8e-3069-404e-9bba-955b2e2d6af5"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    27.76,
+                    50.54
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "8c3fe539-0250-404b-b008-f2655f5936e0",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 11,
+                        "dayOfWeek": "THURSDAY",
+                        "dayOfYear": 11,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "91853460-d50d-448e-a024-ad2881e3fc03",
+                    "geometry": {
+                        "coordinates": [
+                            26.23,
+                            44.4
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Killdeer"
+                    ]
+                },
+                "species": "Killdeer",
+                "toHotspotId": "91853460-d50d-448e-a024-ad2881e3fc03",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 9,
+                        "dayOfWeek": "TUESDAY",
+                        "dayOfYear": 9,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "d8f36b01-1a95-414d-8bb1-683fb29ec24c",
+                    "geometry": {
+                        "coordinates": [
+                            27.76,
+                            50.54
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Killdeer"
+                    ]
+                },
+                "fromHotpsotId": "d8f36b01-1a95-414d-8bb1-683fb29ec24c"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    26.23,
+                    44.4
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "83c6104a-7fe5-4abe-a82a-47d182e288cf",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 14,
+                        "dayOfWeek": "SUNDAY",
+                        "dayOfYear": 14,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "c62cb150-017a-4268-a2c3-d19d3b087ebe",
+                    "geometry": {
+                        "coordinates": [
+                            22.15,
+                            37.8
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Killdeer"
+                    ]
+                },
+                "species": "Killdeer",
+                "toHotspotId": "c62cb150-017a-4268-a2c3-d19d3b087ebe",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 11,
+                        "dayOfWeek": "THURSDAY",
+                        "dayOfYear": 11,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "91853460-d50d-448e-a024-ad2881e3fc03",
+                    "geometry": {
+                        "coordinates": [
+                            26.23,
+                            44.4
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Killdeer"
+                    ]
+                },
+                "fromHotpsotId": "91853460-d50d-448e-a024-ad2881e3fc03"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    22.15,
+                    37.8
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "1df426ba-f42a-488a-87a5-a92a24c39ed2",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 16,
+                        "dayOfWeek": "TUESDAY",
+                        "dayOfYear": 16,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "e50a0854-c918-49a9-b3a0-3f91f8b00dd3",
+                    "geometry": {
+                        "coordinates": [
+                            26.01,
+                            30.05
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Killdeer"
+                    ]
+                },
+                "species": "Killdeer",
+                "toHotspotId": "e50a0854-c918-49a9-b3a0-3f91f8b00dd3",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 14,
+                        "dayOfWeek": "SUNDAY",
+                        "dayOfYear": 14,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "c62cb150-017a-4268-a2c3-d19d3b087ebe",
+                    "geometry": {
+                        "coordinates": [
+                            22.15,
+                            37.8
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Killdeer"
+                    ]
+                },
+                "fromHotpsotId": "c62cb150-017a-4268-a2c3-d19d3b087ebe"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    27.28,
+                    47.2
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "7eb6b6b3-1e80-47e2-b0ec-c24e6fe88206",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 19,
+                        "dayOfWeek": "FRIDAY",
+                        "dayOfYear": 19,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "29b14ba5-d7ac-4b6a-bcac-f38dd4b4d2ee",
+                    "geometry": {
+                        "coordinates": [
+                            40.43,
+                            13.15
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Killdeers"
+                    ]
+                },
+                "species": "Killdeers",
+                "toHotspotId": "29b14ba5-d7ac-4b6a-bcac-f38dd4b4d2ee",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2018,
+                        "month": "JANUARY",
+                        "dayOfMonth": 11,
+                        "dayOfWeek": "THURSDAY",
+                        "dayOfYear": 11,
+                        "monthValue": 1,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "33c04310-158c-423f-97b4-4a9e910765ba",
+                    "geometry": {
+                        "coordinates": [
+                            27.28,
+                            47.2
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Killdeers"
+                    ]
+                },
+                "fromHotpsotId": "33c04310-158c-423f-97b4-4a9e910765ba"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -75.76,
+                    45.74
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "41fa4968-b7cb-4ddf-9607-8382222db357",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2017,
+                        "month": "OCTOBER",
+                        "dayOfMonth": 26,
+                        "dayOfWeek": "THURSDAY",
+                        "dayOfYear": 299,
+                        "monthValue": 10,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "faf76920-7020-49eb-a28e-11d16c66b4f1",
+                    "geometry": {
+                        "coordinates": [
+                            -75.25,
+                            43.85
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Osprey"
+                    ]
+                },
+                "species": "Osprey",
+                "toHotspotId": "faf76920-7020-49eb-a28e-11d16c66b4f1",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2017,
+                        "month": "OCTOBER",
+                        "dayOfMonth": 25,
+                        "dayOfWeek": "WEDNESDAY",
+                        "dayOfYear": 298,
+                        "monthValue": 10,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "01362292-9b6d-402b-8080-046ec335e64b",
+                    "geometry": {
+                        "coordinates": [
+                            -75.76,
+                            45.74
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Osprey"
+                    ]
+                },
+                "fromHotpsotId": "01362292-9b6d-402b-8080-046ec335e64b"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -75.25,
+                    43.85
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "39a45837-d9ab-46b7-846f-d8d941ea8ada",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2017,
+                        "month": "OCTOBER",
+                        "dayOfMonth": 27,
+                        "dayOfWeek": "FRIDAY",
+                        "dayOfYear": 300,
+                        "monthValue": 10,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "5f7c3df3-bdc6-43aa-a5d1-7d8257f1767f",
+                    "geometry": {
+                        "coordinates": [
+                            -77.24,
+                            40.29
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Osprey"
+                    ]
+                },
+                "species": "Osprey",
+                "toHotspotId": "5f7c3df3-bdc6-43aa-a5d1-7d8257f1767f",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2017,
+                        "month": "OCTOBER",
+                        "dayOfMonth": 26,
+                        "dayOfWeek": "THURSDAY",
+                        "dayOfYear": 299,
+                        "monthValue": 10,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "faf76920-7020-49eb-a28e-11d16c66b4f1",
+                    "geometry": {
+                        "coordinates": [
+                            -75.25,
+                            43.85
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Osprey"
+                    ]
+                },
+                "fromHotpsotId": "faf76920-7020-49eb-a28e-11d16c66b4f1"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -77.24,
+                    40.29
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "cf36a15d-15cf-471c-b135-e1e8eb77f76a",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2017,
+                        "month": "OCTOBER",
+                        "dayOfMonth": 29,
+                        "dayOfWeek": "SUNDAY",
+                        "dayOfYear": 302,
+                        "monthValue": 10,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "377f7e00-014d-47cd-926e-ee375e0a415d",
+                    "geometry": {
+                        "coordinates": [
+                            -77.81,
+                            38.37
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Osprey"
+                    ]
+                },
+                "species": "Osprey",
+                "toHotspotId": "377f7e00-014d-47cd-926e-ee375e0a415d",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2017,
+                        "month": "OCTOBER",
+                        "dayOfMonth": 27,
+                        "dayOfWeek": "FRIDAY",
+                        "dayOfYear": 300,
+                        "monthValue": 10,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "5f7c3df3-bdc6-43aa-a5d1-7d8257f1767f",
+                    "geometry": {
+                        "coordinates": [
+                            -77.24,
+                            40.29
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Osprey"
+                    ]
+                },
+                "fromHotpsotId": "5f7c3df3-bdc6-43aa-a5d1-7d8257f1767f"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -77.81,
+                    38.37
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "2de9dd5d-0110-48e1-9382-b6db0a830736",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2017,
+                        "month": "OCTOBER",
+                        "dayOfMonth": 31,
+                        "dayOfWeek": "TUESDAY",
+                        "dayOfYear": 304,
+                        "monthValue": 10,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "7e1fb269-35cb-4510-b010-10507e21d027",
+                    "geometry": {
+                        "coordinates": [
+                            -80.05,
+                            32.95
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Osprey"
+                    ]
+                },
+                "species": "Osprey",
+                "toHotspotId": "7e1fb269-35cb-4510-b010-10507e21d027",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2017,
+                        "month": "OCTOBER",
+                        "dayOfMonth": 29,
+                        "dayOfWeek": "SUNDAY",
+                        "dayOfYear": 302,
+                        "monthValue": 10,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "377f7e00-014d-47cd-926e-ee375e0a415d",
+                    "geometry": {
+                        "coordinates": [
+                            -77.81,
+                            38.37
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Osprey"
+                    ]
+                },
+                "fromHotpsotId": "377f7e00-014d-47cd-926e-ee375e0a415d"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -80.05,
+                    32.95
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "4b96e8ed-c507-430d-9be6-a783ac29e0a7",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2017,
+                        "month": "NOVEMBER",
+                        "dayOfMonth": 1,
+                        "dayOfWeek": "WEDNESDAY",
+                        "dayOfYear": 305,
+                        "monthValue": 11,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "1deb28ab-eab6-437f-8682-8b4b5538b02e",
+                    "geometry": {
+                        "coordinates": [
+                            -83.5,
+                            30.81
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Osprey"
+                    ]
+                },
+                "species": "Osprey",
+                "toHotspotId": "1deb28ab-eab6-437f-8682-8b4b5538b02e",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2017,
+                        "month": "OCTOBER",
+                        "dayOfMonth": 31,
+                        "dayOfWeek": "TUESDAY",
+                        "dayOfYear": 304,
+                        "monthValue": 10,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "7e1fb269-35cb-4510-b010-10507e21d027",
+                    "geometry": {
+                        "coordinates": [
+                            -80.05,
+                            32.95
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Osprey"
+                    ]
+                },
+                "fromHotpsotId": "7e1fb269-35cb-4510-b010-10507e21d027"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -83.5,
+                    30.81
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "a752548f-bdda-44e3-b313-4ef6c815216e",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2017,
+                        "month": "NOVEMBER",
+                        "dayOfMonth": 2,
+                        "dayOfWeek": "THURSDAY",
+                        "dayOfYear": 306,
+                        "monthValue": 11,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "f4aaf48c-6843-498f-ae4e-2249505d9b3c",
+                    "geometry": {
+                        "coordinates": [
+                            -82.47,
+                            27.51
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Osprey"
+                    ]
+                },
+                "species": "Osprey",
+                "toHotspotId": "f4aaf48c-6843-498f-ae4e-2249505d9b3c",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2017,
+                        "month": "NOVEMBER",
+                        "dayOfMonth": 1,
+                        "dayOfWeek": "WEDNESDAY",
+                        "dayOfYear": 305,
+                        "monthValue": 11,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "1deb28ab-eab6-437f-8682-8b4b5538b02e",
+                    "geometry": {
+                        "coordinates": [
+                            -83.5,
+                            30.81
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "Osprey"
+                    ]
+                },
+                "fromHotpsotId": "1deb28ab-eab6-437f-8682-8b4b5538b02e"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -105.6,
+                    37.26
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "83776a68-7329-486a-82a8-164ad00268bd",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2017,
+                        "month": "DECEMBER",
+                        "dayOfMonth": 20,
+                        "dayOfWeek": "WEDNESDAY",
+                        "dayOfYear": 354,
+                        "monthValue": 12,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "de4251e8-ac92-43b9-9b31-b191b4511eed",
+                    "geometry": {
+                        "coordinates": [
+                            -111.3,
+                            24.53
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "hawk"
+                    ]
+                },
+                "species": "hawk",
+                "toHotspotId": "de4251e8-ac92-43b9-9b31-b191b4511eed",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2017,
+                        "month": "DECEMBER",
+                        "dayOfMonth": 13,
+                        "dayOfWeek": "WEDNESDAY",
+                        "dayOfYear": 347,
+                        "monthValue": 12,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "7618ef58-ceec-4aef-b361-72dd0095cfa6",
+                    "geometry": {
+                        "coordinates": [
+                            -105.6,
+                            37.26
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "hawk"
+                    ]
+                },
+                "fromHotpsotId": "7618ef58-ceec-4aef-b361-72dd0095cfa6"
+            }
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -111.3,
+                    24.53
+                ],
+                "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+                "migrationId": "5c7ea5f2-e9d6-4bf7-bebe-ade58fff1fcd",
+                "toHotspot": {
+                    "observationDate": {
+                        "year": 2017,
+                        "month": "DECEMBER",
+                        "dayOfMonth": 21,
+                        "dayOfWeek": "THURSDAY",
+                        "dayOfYear": 355,
+                        "monthValue": 12,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "ba6b1b50-1079-41e6-907d-809349ac22e2",
+                    "geometry": {
+                        "coordinates": [
+                            -109.9,
+                            23.52
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "hawk"
+                    ]
+                },
+                "species": "hawk",
+                "toHotspotId": "ba6b1b50-1079-41e6-907d-809349ac22e2",
+                "fromHotspot": {
+                    "observationDate": {
+                        "year": 2017,
+                        "month": "DECEMBER",
+                        "dayOfMonth": 20,
+                        "dayOfWeek": "WEDNESDAY",
+                        "dayOfYear": 354,
+                        "monthValue": 12,
+                        "nano": 123000000,
+                        "hour": 9,
+                        "minute": 30,
+                        "second": 10,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "hotspotId": "de4251e8-ac92-43b9-9b31-b191b4511eed",
+                    "geometry": {
+                        "coordinates": [
+                            -111.3,
+                            24.53
+                        ],
+                        "type": "Point"
+                    },
+                    "birdSpeciesList": [
+                        "hawk"
+                    ]
+                },
+                "fromHotpsotId": "de4251e8-ac92-43b9-9b31-b191b4511eed"
+            }
+        }
+    ],
+    "type": "FeatureCollection"
 }
